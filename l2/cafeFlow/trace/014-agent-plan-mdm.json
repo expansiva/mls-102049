@@ -1,0 +1,114 @@
+{
+  "savedAt": "2026-06-25T02:00:47.181Z",
+  "agentName": "agentPlanMDM",
+  "stepId": 14,
+  "planning": {
+    "planId": "plan-mdm",
+    "dependsOn": [
+      "plan-finalize-solution-plan"
+    ],
+    "executionMode": "parallel_static",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitMdmPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "mdmDomains": [
+            {
+              "domainId": "menuCategory",
+              "title": "Categoria do Cardápio",
+              "masterEntities": [
+                "MenuCategory"
+              ],
+              "sourceOfTruth": "project 102034",
+              "consumers": [
+                "menuManagementWorkflow",
+                "menuUsecaseEntity",
+                "menuInventoryManagementPage"
+              ],
+              "governanceRules": [
+                "Apenas o perfil gerente pode criar, editar ou desativar categorias.",
+                "Categorias devem ser únicas e padronizadas para garantir consistência em relatórios e filtros.",
+                "Itens do cardápio só podem ser associados a categorias ativas no MDM."
+              ]
+            },
+            {
+              "domainId": "menuItem",
+              "title": "Item do Cardápio",
+              "masterEntities": [
+                "MenuItem"
+              ],
+              "sourceOfTruth": "project 102034",
+              "consumers": [
+                "menuManagementWorkflow",
+                "menuUsecaseEntity",
+                "menuInventoryManagementPage",
+                "topSellingItemsMetricsTable"
+              ],
+              "governanceRules": [
+                "Apenas o perfil gerente pode cadastrar, editar ou desativar itens do cardápio.",
+                "Cada item deve estar vinculado a uma categoria do MDM de categorias.",
+                "Itens podem ter vínculo com ingredientes de estoque para controle de insumos.",
+                "Alterações de preço e disponibilidade devem ser auditadas no MDM."
+              ]
+            },
+            {
+              "domainId": "orderStatus",
+              "title": "Status do Pedido",
+              "masterEntities": [
+                "OrderStatus"
+              ],
+              "sourceOfTruth": "project 102034",
+              "consumers": [
+                "orderLifecycleWorkflow",
+                "kitchenPreparationWorkflow",
+                "orderUsecaseEntity"
+              ],
+              "governanceRules": [
+                "Status seguem o fluxo padronizado obrigatório: recebido → preparando → pronto → entregue.",
+                "Cancelado é um estado terminal que encerra o fluxo do pedido sem permitir retorno.",
+                "Transições de status são controladas exclusivamente pelos workflows de pedido e cozinha."
+              ]
+            },
+            {
+              "domainId": "stockUnit",
+              "title": "Unidade de Estoque",
+              "masterEntities": [
+                "StockUnit"
+              ],
+              "sourceOfTruth": "project 102034",
+              "consumers": [
+                "menuInventoryManagementPage",
+                "inventoryUsecaseEntity",
+                "inventoryDecrementWorkflow",
+                "lowStockMetricsTable"
+              ],
+              "governanceRules": [
+                "Apenas o perfil gerente pode cadastrar ou alterar unidades de medida.",
+                "Unidades devem ser padronizadas para garantir consistência na baixa de estoque e movimentações.",
+                "Itens de estoque só podem usar unidades previamente cadastradas no MDM."
+              ]
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Identificadas entidades mdmOwned no domínio: MenuCategory, OrderStatus e StockUnit.",
+          "Incluído MenuItem como domínio MDM conforme decisão addMenuItemMdm do plano final.",
+          "Definido sourceOfTruth como project 102034, usando a infraestrutura MDM compartilhada da plataforma.",
+          "Mapeados consumidores diretos para cada domínio: workflows, páginas, usecaseEntities e metricTables.",
+          "Estabelecidas regras de governança por domínio com base nas regras de negócio e no controle de acesso do perfil gerente."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 38,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

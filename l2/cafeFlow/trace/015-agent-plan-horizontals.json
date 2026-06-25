@@ -1,0 +1,51 @@
+{
+  "savedAt": "2026-06-25T02:00:23.105Z",
+  "agentName": "agentPlanHorizontals",
+  "stepId": 15,
+  "planning": {
+    "planId": "plan-horizontals",
+    "dependsOn": [
+      "plan-finalize-solution-plan"
+    ],
+    "executionMode": "parallel_static",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitHorizontalPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "horizontalModules": [
+            {
+              "horizontalModuleId": "notifications",
+              "priority": "soon",
+              "reason": "Há alertas de pedido pronto e estoque baixo previstos no fluxo, exigindo comunicação/avisos operacionais.",
+              "reusedOntologyRefs": [
+                "NotificationTemplate",
+                "NotificationDelivery",
+                "NotificationPreference"
+              ],
+              "consumedByArtifacts": [
+                "orderLifecycleWorkflow",
+                "lowStockMetricsTable"
+              ]
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Planejado o horizontal de notificações por haver alertas e avisos operacionais no escopo.",
+          "Não planejado finance ou documentos por ausência de cobrança/pagamentos ou geração de documentos.",
+          "AuthRoles e i18n são providos pela plataforma e não requerem módulo dedicado."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 44,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

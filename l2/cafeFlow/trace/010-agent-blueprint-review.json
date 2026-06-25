@@ -1,0 +1,60 @@
+{
+  "savedAt": "2026-06-25T01:58:18.043Z",
+  "agentName": "agentBlueprintReview",
+  "stepId": 10,
+  "planning": {
+    "planId": "plan-blueprint-review",
+    "dependsOn": [
+      "plan-solution-blueprint"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitBlueprintReview",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "issues": [
+            {
+              "severity": "error",
+              "code": "missing_usecase_layer3",
+              "message": "A capability com escrita (gerenciar cardápio) não tem planejamento de layer_3 (usecase entity/workflow) para os comandos de criação/edição.",
+              "path": "$.userActions[?(@.actionId=='manageMenuItem')]",
+              "evidence": [
+                "manageMenuItem é commandType upsert para MenuItem/MenuCategory",
+                "Não há workflow/usecaseEntity dedicado a MenuItem/MenuCategory no artifactPlan"
+              ]
+            },
+            {
+              "severity": "error",
+              "code": "invalid_reference",
+              "message": "Referência de artefato inexistente no agente de IA.",
+              "path": "$.artifactPlan.agents[?(@.signal=='salesAssistantAgent')].references",
+              "evidence": [
+                "Referência 'managerMetricsTable' não existe em artifactPlan.metricTables ou outros artefatos"
+              ]
+            }
+          ],
+          "recommendedFixes": [
+            "Adicionar um workflow e/ou usecaseEntity de layer_3 para gestão de cardápio, referenciando MenuItem e MenuCategory, e atualizar a cobertura da capability manageMenu para incluir esses artefatos.",
+            "Corrigir a referência do salesAssistantAgent para um artefato existente (ex.: last7DaysSalesMetricsTable e/ou dailySalesMetricsTable) ou criar o metricTable faltante com o signal 'managerMetricsTable'."
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Revisei ações com escrita/lifecycle e verifiquei presença de artefatos layer_3 (workflow/usecaseEntity).",
+          "Verifiquei referências cruzadas entre artefatos para detectar sinais inexistentes.",
+          "Não identifiquei falhas de MDM, dashboards/métricas aceitas ou conflitos de enum/lifecycle."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 35,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

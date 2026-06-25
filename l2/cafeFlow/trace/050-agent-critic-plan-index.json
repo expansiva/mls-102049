@@ -1,0 +1,134 @@
+{
+  "savedAt": "2026-06-25T02:12:57.125Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 50,
+  "planning": {
+    "planId": "plan-index-critic:usecasePlan:1",
+    "dependsOn": [
+      "plan-usecase-entities"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "failed",
+        "result": {
+          "approved": false,
+          "errors": [
+            {
+              "code": "usecase.missing.obviousRead",
+              "message": "Falta um usecase de leitura (list/search, writesTables vazio) para orders com actor kitchen; a página e o workflow aprovados para a cozinha exigem listar pedidos para atualizar status, mas o listarPedidos existente é restrito ao attendantCashier.",
+              "path": "usecases"
+            },
+            {
+              "code": "usecase.missing.obviousRead",
+              "message": "Falta um usecase de leitura (list/search, writesTables vazio) para MenuItem com actor attendantCashier; a página de POS aprovada exibe o cardápio para criação de pedidos, mas o listarItensCardapio existente é restrito ao manager.",
+              "path": "usecases"
+            }
+          ],
+          "warnings": [
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase criarPedido escreve na tabela de métrica dailySalesMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[0]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase criarPedido escreve na tabela de métrica topSellingItemsMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[0]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase criarPedido escreve na tabela de métrica weeklySalesMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[0]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase criarPedido escreve na tabela de métrica operationalMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[0]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase cancelarPedido escreve na tabela de métrica dailySalesMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[2]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase cancelarPedido escreve na tabela de métrica topSellingItemsMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[2]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase cancelarPedido escreve na tabela de métrica weeklySalesMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[2]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase cancelarPedido escreve na tabela de métrica operationalMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[2]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase registrarMovimentoEstoque escreve na tabela de métrica inventoryAlertMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[14]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase registrarMovimentoEstoque escreve na tabela de métrica operationalMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[14]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase fecharTurno escreve na tabela de métrica dailySalesMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[17]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase fecharTurno escreve na tabela de métrica operationalMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[17]"
+            },
+            {
+              "code": "usecase.outputEntity.incomplete",
+              "message": "criarPedido escreve tabelas de métricas do salesAIEntity mas não inclui salesAIEntity em outputEntities",
+              "path": "usecases[0]"
+            },
+            {
+              "code": "usecase.outputEntity.incomplete",
+              "message": "cancelarPedido escreve tabelas de métricas do salesAIEntity mas não inclui salesAIEntity em outputEntities",
+              "path": "usecases[2]"
+            },
+            {
+              "code": "usecase.outputEntity.incomplete",
+              "message": "registrarMovimentoEstoque escreve tabelas de métricas do salesAIEntity mas não inclui salesAIEntity em outputEntities",
+              "path": "usecases[14]"
+            },
+            {
+              "code": "usecase.outputEntity.incomplete",
+              "message": "fecharTurno escreve tabelas de métricas do salesAIEntity mas não inclui salesAIEntity em outputEntities",
+              "path": "usecases[17]"
+            }
+          ],
+          "notes": []
+        },
+        "questions": [],
+        "trace": [
+          "Verificada cobertura de escrita: todas as tabelas moduleOwned e métricas possuem usecases de escrita.",
+          "Verificada cobertura de leitura: todas as tabelas escritas possuem usecases de leitura com writesTables vazio.",
+          "Verificados atores dos usecases de leitura: listarPedidos é attendantCashier, mas a página/workflow da cozinha exigem listar pedidos; listarItensCardapio é manager, mas a página de POS do attendantCashier precisa exibir o cardápio.",
+          "Verificadas transições de ciclo de vida: orderStatusLifecycle, shiftClosureRule e inventoryDecrementRule estão aplicadas nos usecases corretos.",
+          "Confirmados 12 warnings de metricWrite.unjustified do verificador determinístico.",
+          "Adicionados warnings de outputEntities incompletos para usecases que escrevem métricas sem declarar salesAIEntity como saída."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 51,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

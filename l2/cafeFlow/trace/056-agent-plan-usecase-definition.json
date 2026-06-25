@@ -1,0 +1,41 @@
+{
+  "savedAt": "2026-06-25T02:13:40.314Z",
+  "agentName": "agentPlanUsecaseDefinition",
+  "stepId": 56,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitUsecaseDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "usecaseDefinition": {
+            "usecaseId": "listarSugestoesPromocoes",
+            "commands": [
+              {
+                "commandId": "listarSugestoesPromocoes",
+                "input": [],
+                "output": [
+                  {
+                    "name": "sugestoesPromocoes",
+                    "type": "salesAIEntity[]"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Definido comando único para listar sugestões de promoção a partir da tabela promotion_suggestions."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 59,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

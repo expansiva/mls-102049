@@ -1,0 +1,348 @@
+{
+  "savedAt": "2026-06-25T01:53:13.023Z",
+  "agentName": "agentDiscoverSolutionScope",
+  "stepId": 5,
+  "planning": {
+    "planId": "req-discover-scope",
+    "dependsOn": [
+      "req-clarification-answer"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitSolutionScopeDraft",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "domain": "cafeFlow",
+          "summary": "Aplicativo CafeFlow para cafeterias e lanchonetes pequenas, focado em pedidos rápidos, coordenação de cozinha, controle básico de estoque e fechamento de turno. Inclui dashboard com métricas do dia e um assistente IA para resumo de vendas e sugestões de promoção.",
+          "actors": [
+            {
+              "actorId": "attendantCashier",
+              "title": "Atendente/Caixa",
+              "description": "Registra pedidos, acompanha status e recebe clientes."
+            },
+            {
+              "actorId": "kitchen",
+              "title": "Cozinha",
+              "description": "Prepara pedidos e atualiza status de produção."
+            },
+            {
+              "actorId": "manager",
+              "title": "Gerente",
+              "description": "Gerencia cardápio, estoque, turnos e acompanha métricas."
+            }
+          ],
+          "capabilities": [
+            {
+              "capabilityId": "manageOrders",
+              "title": "Lançar e acompanhar pedidos",
+              "description": "Criar pedidos de mesa ou takeout e acompanhar status até a entrega.",
+              "actor": "attendantCashier",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "updateKitchenStatus",
+              "title": "Atualizar status da cozinha",
+              "description": "Alterar status do pedido para preparar, pronto e entregue.",
+              "actor": "kitchen",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "manageMenu",
+              "title": "Gerenciar cardápio",
+              "description": "Cadastrar e ajustar itens do cardápio e categorias.",
+              "actor": "manager",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "manageInventory",
+              "title": "Gerenciar estoque",
+              "description": "Cadastrar itens de estoque e controlar níveis/alertas.",
+              "actor": "manager",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "closeDailyShift",
+              "title": "Fechar turno diário",
+              "description": "Consolidar vendas e registrar fechamento do turno.",
+              "actor": "manager",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "viewDashboard",
+              "title": "Acompanhar dashboard",
+              "description": "Visualizar vendas do dia, itens mais vendidos e estoque baixo.",
+              "actor": "manager",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "aiSalesAssistant",
+              "title": "Assistente IA de vendas",
+              "description": "Gerar resumo de vendas do dia e sugerir promoções com base nos últimos 7 dias.",
+              "actor": "manager",
+              "priority": "soon"
+            }
+          ],
+          "artifactSignals": {
+            "pages": [
+              {
+                "signal": "dashboardPage",
+                "title": "Dashboard",
+                "actor": "manager",
+                "reason": "Mostrar vendas do dia, itens mais vendidos e estoque baixo.",
+                "priority": "now"
+              },
+              {
+                "signal": "posQuickOrderPage",
+                "title": "Interface rápida de POS",
+                "actor": "attendantCashier",
+                "reason": "Registrar pedidos rapidamente e acompanhar status da cozinha.",
+                "priority": "now"
+              },
+              {
+                "signal": "kitchenStatusPage",
+                "title": "Painel de status da cozinha",
+                "actor": "kitchen",
+                "reason": "Atualizar e acompanhar o fluxo de preparo dos pedidos.",
+                "priority": "now"
+              },
+              {
+                "signal": "menuInventoryManagementPage",
+                "title": "Gerenciamento de cardápio e estoque",
+                "actor": "manager",
+                "reason": "Cadastrar itens do cardápio e controlar estoque.",
+                "priority": "now"
+              },
+              {
+                "signal": "shiftCloseReportPage",
+                "title": "Relatório de fechamento de turno",
+                "actor": "manager",
+                "reason": "Consolidar e visualizar o fechamento diário.",
+                "priority": "now"
+              },
+              {
+                "signal": "adminMetricsDashboardPage",
+                "title": "Dashboard administrativo de métricas",
+                "actor": "manager",
+                "reason": "Configurar e revisar métricas básicas do sistema.",
+                "priority": "soon"
+              }
+            ],
+            "workflows": [
+              {
+                "signal": "orderLifecycleWorkflow",
+                "title": "Fluxo de pedido",
+                "actor": "attendantCashier",
+                "reason": "Criar pedido e mover por status até entrega.",
+                "priority": "now"
+              },
+              {
+                "signal": "kitchenPreparationWorkflow",
+                "title": "Fluxo de preparo na cozinha",
+                "actor": "kitchen",
+                "reason": "Atualizar status do pedido no preparo.",
+                "priority": "now"
+              },
+              {
+                "signal": "inventoryDecrementWorkflow",
+                "title": "Baixa de estoque por pedido",
+                "actor": "manager",
+                "reason": "Atualizar estoque conforme itens vendidos.",
+                "priority": "now"
+              },
+              {
+                "signal": "dailyShiftCloseWorkflow",
+                "title": "Fechamento de turno",
+                "actor": "manager",
+                "reason": "Consolidar vendas e encerrar o turno diário.",
+                "priority": "now"
+              },
+              {
+                "signal": "aiSalesSummaryWorkflow",
+                "title": "Geração de resumo e sugestões IA",
+                "actor": "manager",
+                "reason": "Produzir resumo de vendas do dia e sugestões de promoção.",
+                "priority": "soon"
+              }
+            ],
+            "plugins": [
+              {
+                "signal": "llmAssistantPlugin",
+                "title": "Plugin de Assistente IA",
+                "actor": "manager",
+                "reason": "Permitir geração de resumo e sugestões com LLM.",
+                "priority": "soon"
+              }
+            ],
+            "agents": [
+              {
+                "signal": "salesAssistantAgent",
+                "title": "Agente Assistente de Vendas",
+                "actor": "manager",
+                "reason": "Orquestrar pedidos ao LLM e formatar respostas.",
+                "priority": "soon"
+              }
+            ],
+            "horizontalModules": [
+              {
+                "signal": "roleAccessControl",
+                "title": "Controle de acesso por perfil",
+                "actor": "manager",
+                "reason": "Separar permissões entre atendente, cozinha e gerente.",
+                "priority": "now"
+              },
+              {
+                "signal": "notificationCenter",
+                "title": "Central de notificações internas",
+                "actor": "attendantCashier",
+                "reason": "Avisos de pedido pronto e alertas de estoque baixo.",
+                "priority": "soon"
+              }
+            ],
+            "mdm": [
+              {
+                "signal": "menuCategoryMdm",
+                "title": "MDM de categorias do cardápio",
+                "actor": "manager",
+                "reason": "Padronizar categorias para relatórios e filtros.",
+                "priority": "now",
+                "mdmKind": "reference"
+              },
+              {
+                "signal": "orderStatusMdm",
+                "title": "MDM de status de pedido",
+                "actor": "manager",
+                "reason": "Garantir estados consistentes no fluxo da cozinha.",
+                "priority": "now",
+                "mdmKind": "reference"
+              },
+              {
+                "signal": "stockUnitMdm",
+                "title": "MDM de unidades de medida de estoque",
+                "actor": "manager",
+                "reason": "Evitar inconsistências na baixa de estoque.",
+                "priority": "now",
+                "mdmKind": "reference"
+              }
+            ],
+            "metrics": [
+              {
+                "signal": "dailySalesMetrics",
+                "title": "Métricas de vendas do dia",
+                "actor": "manager",
+                "reason": "Alimentar o dashboard com total de vendas e ticket médio.",
+                "priority": "now"
+              },
+              {
+                "signal": "topSellingItemsMetrics",
+                "title": "Itens mais vendidos",
+                "actor": "manager",
+                "reason": "Identificar produtos com maior saída.",
+                "priority": "now"
+              },
+              {
+                "signal": "lowStockMetrics",
+                "title": "Alertas de estoque baixo",
+                "actor": "manager",
+                "reason": "Sinalizar reposição necessária.",
+                "priority": "now"
+              },
+              {
+                "signal": "last7DaysSalesMetrics",
+                "title": "Vendas dos últimos 7 dias",
+                "actor": "manager",
+                "reason": "Base para sugestões de promoção do assistente IA.",
+                "priority": "soon"
+              }
+            ],
+            "usecases": [
+              {
+                "signal": "createOrderUsecase",
+                "title": "Criar pedido",
+                "actor": "attendantCashier",
+                "reason": "Registrar pedido de mesa ou takeout com itens.",
+                "priority": "now"
+              },
+              {
+                "signal": "updateOrderStatusUsecase",
+                "title": "Atualizar status do pedido",
+                "actor": "kitchen",
+                "reason": "Mover pedido entre estados do fluxo da cozinha.",
+                "priority": "now"
+              },
+              {
+                "signal": "decrementInventoryUsecase",
+                "title": "Baixar estoque por venda",
+                "actor": "manager",
+                "reason": "Manter níveis de estoque atualizados após pedidos.",
+                "priority": "now"
+              },
+              {
+                "signal": "manageMenuItemsUsecase",
+                "title": "Gerenciar itens do cardápio",
+                "actor": "manager",
+                "reason": "CRUD de itens e categorias do cardápio.",
+                "priority": "now"
+              },
+              {
+                "signal": "manageStockItemsUsecase",
+                "title": "Gerenciar itens de estoque",
+                "actor": "manager",
+                "reason": "CRUD de itens e níveis de estoque.",
+                "priority": "now"
+              },
+              {
+                "signal": "closeShiftUsecase",
+                "title": "Fechar turno diário",
+                "actor": "manager",
+                "reason": "Consolidar vendas e encerrar turno.",
+                "priority": "now"
+              },
+              {
+                "signal": "generateSalesSummaryUsecase",
+                "title": "Gerar resumo de vendas (IA)",
+                "actor": "manager",
+                "reason": "Produzir resumo do dia para o gerente.",
+                "priority": "soon"
+              },
+              {
+                "signal": "suggestPromotionsUsecase",
+                "title": "Sugerir itens para promoção (IA)",
+                "actor": "manager",
+                "reason": "Sugerir promoções baseadas nos últimos 7 dias.",
+                "priority": "soon"
+              }
+            ]
+          },
+          "businessRisks": [
+            "Baixa automática de estoque pode divergir de ajustes manuais se não houver reconciliação.",
+            "Resumos e sugestões da IA podem induzir decisões incorretas se os dados estiverem incompletos.",
+            "Atualizações de status da cozinha em tempo real exigem disciplina operacional."
+          ],
+          "missingContext": [
+            "Regra exata para baixa de estoque (automática no fechamento do pedido ou manual pelo gerente).",
+            "Detalhes do fluxo de fechamento de turno (itens obrigatórios no relatório)."
+          ]
+        },
+        "questions": [
+          "A baixa de estoque deve ocorrer automaticamente quando o pedido é concluído ou será sempre manual pelo gerente?",
+          "No fechamento de turno, quais campos são obrigatórios (ex.: vendas por forma de pagamento, cancelamentos, descontos)?"
+        ],
+        "trace": [
+          "Prompt inicial define entidades, telas e foco operacional.",
+          "Clarificação confirma uma única loja, idiomas pt-BR/en, papéis principais e dashboard básico.",
+          "Necessidade de métricas e dashboard administrativo inferida pelo pedido de métricas iniciais básicas."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 34,
+    "interaction": null,
+    "nextSteps": null
+  }
+}
