@@ -1,0 +1,48 @@
+{
+  "savedAt": "2026-06-25T02:02:11.103Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 44,
+  "planning": {
+    "planId": "plan-index-critic:persistenceIndex:1",
+    "dependsOn": [
+      "plan-persistence-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": true,
+          "errors": [],
+          "warnings": [
+            {
+              "code": "persistence.noRules",
+              "message": "table tableSeat has no rulesApplied",
+              "path": "tables[2]"
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Verificada propriedade de todas as tabelas: 100% moduleOwned.",
+          "Verificados excludedEntities: todas as entidades MDM listadas (MenuCategory, MenuItem, OrderStatus, StockUnit) estão excluídas.",
+          "Verificado tableKind: todas as tabelas são transactional; nenhuma tabela de métricas está presente neste índice.",
+          "Verificada necessidade das tabelas: todas derivam de entidades da ontologia aprovada e de artefatos/workflows do plano final.",
+          "Verificados readsByArtifacts/writesByArtifacts: todas as tabelas possuem leitores e escritores declarados.",
+          "Verificado padrão de details column: aplicado apenas em agregados sem ciclo de vida independente (shiftClosureReport, promotionSuggestion, salesSummary).",
+          "Mantido warning determinístico sobre tableSeat sem rulesApplied."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 39,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

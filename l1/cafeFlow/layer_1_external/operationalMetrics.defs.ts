@@ -1,0 +1,263 @@
+/// <mls fileReference="_102049_/l1/cafeFlow/layer_1_external/operationalMetrics.defs.ts" enhancement="_blank"/>
+
+export const operationalMetricsTableDefinition = {
+  "schemaVersion": "2026-06-06",
+  "artifactType": "metricTable",
+  "artifactId": "operationalMetrics",
+  "moduleName": "cafeFlow",
+  "status": "draft",
+  "source": {
+    "agentName": "agentPlanMetricTableDefinition",
+    "stepId": 54,
+    "planId": ""
+  },
+  "data": {
+    "metricTableDefinition": {
+      "metricTableId": "operationalMetrics",
+      "tableName": "operational_metrics",
+      "moduleId": "cafeFlow",
+      "title": "Tabela de métricas operacionais",
+      "purpose": "Consolidar indicadores de eficiência operacional como tempo de preparo e cancelamentos.",
+      "tableKind": "metricTimeseries",
+      "storageEngine": "postgresTimescaleDB",
+      "layer": "layer_1_external",
+      "timeColumn": "recorded_at",
+      "columns": [
+        {
+          "name": "recorded_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "description": "Timestamp de registro da métrica."
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": true,
+          "description": "Identificador do pedido."
+        },
+        {
+          "name": "menu_item_id",
+          "type": "uuid",
+          "nullable": true,
+          "description": "Identificador do item do cardápio."
+        },
+        {
+          "name": "inventory_item_id",
+          "type": "uuid",
+          "nullable": true,
+          "description": "Identificador do item de estoque."
+        },
+        {
+          "name": "stock_unit_id",
+          "type": "uuid",
+          "nullable": true,
+          "description": "Identificador da unidade de medida."
+        },
+        {
+          "name": "order_status_id",
+          "type": "uuid",
+          "nullable": true,
+          "description": "Identificador do status do pedido."
+        },
+        {
+          "name": "menu_category_id",
+          "type": "text",
+          "nullable": true,
+          "description": "Identificador da categoria do cardápio."
+        },
+        {
+          "name": "table_seat_id",
+          "type": "uuid",
+          "nullable": true,
+          "description": "Identificador da mesa/comanda."
+        },
+        {
+          "name": "daily_shift_id",
+          "type": "uuid",
+          "nullable": true,
+          "description": "Identificador do turno diário."
+        },
+        {
+          "name": "cancellation_count",
+          "type": "integer",
+          "nullable": false,
+          "default": 0,
+          "description": "Quantidade de pedidos cancelados."
+        },
+        {
+          "name": "avg_preparation_time",
+          "type": "integer",
+          "nullable": true,
+          "description": "Tempo médio de preparo em segundos."
+        },
+        {
+          "name": "low_stock_item_count",
+          "type": "integer",
+          "nullable": false,
+          "default": 0,
+          "description": "Quantidade de itens com estoque baixo."
+        }
+      ],
+      "dimensions": [
+        {
+          "dimensionId": "orderId",
+          "column": "order_id",
+          "type": "string",
+          "description": "Identificador do pedido"
+        },
+        {
+          "dimensionId": "menuItemId",
+          "column": "menu_item_id",
+          "type": "string",
+          "description": "Identificador do item do cardápio"
+        },
+        {
+          "dimensionId": "inventoryItemId",
+          "column": "inventory_item_id",
+          "type": "string",
+          "description": "Identificador do item de estoque"
+        },
+        {
+          "dimensionId": "stockUnitId",
+          "column": "stock_unit_id",
+          "type": "string",
+          "description": "Identificador da unidade de medida"
+        },
+        {
+          "dimensionId": "orderStatusId",
+          "column": "order_status_id",
+          "type": "string",
+          "description": "Identificador do status do pedido"
+        },
+        {
+          "dimensionId": "menuCategoryId",
+          "column": "menu_category_id",
+          "type": "text",
+          "description": "FK dimension derived from ontology relationship menuItemCategory (MenuItem -> MenuCategory)"
+        },
+        {
+          "dimensionId": "tableSeatId",
+          "column": "table_seat_id",
+          "type": "text",
+          "description": "FK dimension derived from ontology relationship orderTableSeat (Order -> TableSeat)"
+        },
+        {
+          "dimensionId": "dailyShiftId",
+          "column": "daily_shift_id",
+          "type": "text",
+          "description": "FK dimension derived from ontology relationship shiftOrders (Order -> DailyShift)"
+        }
+      ],
+      "measures": [
+        {
+          "measureId": "cancellationCount",
+          "column": "cancellation_count",
+          "aggregation": "sum",
+          "unit": "count",
+          "description": "Quantidade de pedidos cancelados"
+        },
+        {
+          "measureId": "avgPreparationTime",
+          "column": "avg_preparation_time",
+          "aggregation": "avg",
+          "unit": "seconds",
+          "description": "Tempo médio de preparo em segundos"
+        },
+        {
+          "measureId": "lowStockItemCount",
+          "column": "low_stock_item_count",
+          "aggregation": "sum",
+          "unit": "count",
+          "description": "Quantidade de itens com estoque baixo"
+        }
+      ],
+      "sourceWriteEvents": [
+        "order.created",
+        "order.statusUpdated",
+        "order.cancelled",
+        "inventoryItem.updated"
+      ],
+      "hypertable": {
+        "timeColumn": "recorded_at",
+        "chunkTimeInterval": "1 day",
+        "retentionPolicy": "90 days",
+        "compressionPolicy": "30 days",
+        "indexes": [
+          {
+            "indexName": "idx_operational_metrics_recorded_at",
+            "columns": [
+              "recorded_at"
+            ],
+            "purpose": "Consulta temporal principal por período."
+          },
+          {
+            "indexName": "idx_operational_metrics_recorded_at_order",
+            "columns": [
+              "recorded_at",
+              "order_id"
+            ],
+            "purpose": "Filtro por pedido e período."
+          },
+          {
+            "indexName": "idx_operational_metrics_recorded_at_menu_item",
+            "columns": [
+              "recorded_at",
+              "menu_item_id"
+            ],
+            "purpose": "Filtro por item do cardápio e período."
+          },
+          {
+            "indexName": "idx_operational_metrics_recorded_at_inventory_item",
+            "columns": [
+              "recorded_at",
+              "inventory_item_id"
+            ],
+            "purpose": "Filtro por item de estoque e período."
+          },
+          {
+            "indexName": "idx_operational_metrics_recorded_at_shift",
+            "columns": [
+              "recorded_at",
+              "daily_shift_id"
+            ],
+            "purpose": "Filtro por turno diário e período."
+          },
+          {
+            "indexName": "idx_operational_metrics_recorded_at_status",
+            "columns": [
+              "recorded_at",
+              "order_status_id"
+            ],
+            "purpose": "Filtro por status do pedido e período."
+          }
+        ]
+      },
+      "updatePolicy": {
+        "updatedByLayer": "layer_3_usecases",
+        "pagesMayUpdate": false,
+        "controllersMayUpdate": false
+      },
+      "accessPolicy": {
+        "directAccessAllowedFor": [
+          "layer_3_usecases"
+        ],
+        "forbiddenFor": [
+          "pages",
+          "layer_2_controllers",
+          "agents"
+        ]
+      },
+      "rulesApplied": [
+        "orderStatusLifecycle",
+        "lowStockAlertRule"
+      ]
+    },
+    "defsPlan": {
+      "fileName": "tables/operationalMetrics.defs.ts",
+      "exportName": "operationalMetricsTableDefinition",
+      "saveAsDefs": true
+    }
+  }
+} as const;
+
+export default operationalMetricsTableDefinition;

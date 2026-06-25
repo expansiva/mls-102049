@@ -1,0 +1,315 @@
+/// <mls fileReference="_102049_/l5/cafeFlow/journeys.defs.ts" enhancement="_blank"/>
+
+export const userJourneysPlan = {
+  "schemaVersion": "2026-06-06",
+  "artifactType": "userJourneys",
+  "artifactId": "journeys",
+  "moduleName": "cafeFlow",
+  "status": "draft",
+  "source": {
+    "agentName": "agentPlanUserJourneys",
+    "stepId": 12,
+    "planId": "plan-user-journeys"
+  },
+  "data": {
+    "journeys": [
+      {
+        "journeyId": "lancarPedidoPos",
+        "title": "Lançar pedido no POS rápido",
+        "actor": "attendantCashier",
+        "capabilityIds": [
+          "manageOrders"
+        ],
+        "description": "O atendente registra um pedido rápido no balcão ou mesa e acompanha o status inicial.",
+        "steps": [
+          {
+            "intent": "Iniciar um novo pedido para o cliente",
+            "action": "Abrir a interface rápida de POS e selecionar mesa/comanda",
+            "entities": [
+              "Order",
+              "TableSeat"
+            ],
+            "pageHint": "posRapido",
+            "outcome": "Pedido iniciado vinculado à mesa/comanda"
+          },
+          {
+            "intent": "Adicionar itens do cardápio ao pedido",
+            "action": "Buscar itens por categoria e tocar para incluir com quantidades",
+            "entities": [
+              "MenuItem",
+              "MenuCategory",
+              "OrderItem",
+              "Order"
+            ],
+            "pageHint": "posRapido",
+            "outcome": "Itens adicionados ao pedido com quantidades"
+          },
+          {
+            "intent": "Confirmar o pedido para a cozinha",
+            "action": "Revisar itens e confirmar envio",
+            "entities": [
+              "Order",
+              "OrderItem",
+              "OrderStatus"
+            ],
+            "pageHint": "posRapido",
+            "outcome": "Pedido criado com status recebido"
+          }
+        ]
+      },
+      {
+        "journeyId": "cancelarPedido",
+        "title": "Cancelar pedido antes da produção",
+        "actor": "attendantCashier",
+        "capabilityIds": [
+          "manageOrders"
+        ],
+        "description": "O atendente cancela um pedido quando o cliente desiste.",
+        "steps": [
+          {
+            "intent": "Localizar o pedido do cliente",
+            "action": "Abrir lista de pedidos ativos e selecionar o pedido",
+            "entities": [
+              "Order",
+              "OrderStatus"
+            ],
+            "pageHint": "posRapido",
+            "outcome": "Pedido aberto para ação"
+          },
+          {
+            "intent": "Cancelar o pedido",
+            "action": "Tocar em cancelar e confirmar o motivo",
+            "entities": [
+              "Order",
+              "OrderStatus"
+            ],
+            "pageHint": "posRapido",
+            "outcome": "Pedido passa para status cancelado"
+          }
+        ]
+      },
+      {
+        "journeyId": "atualizarStatusCozinha",
+        "title": "Atualizar status do preparo na cozinha",
+        "actor": "kitchen",
+        "capabilityIds": [
+          "updateKitchenStatus"
+        ],
+        "description": "A cozinha acompanha o fluxo por etapas e marca o progresso dos pedidos.",
+        "steps": [
+          {
+            "intent": "Ver a fila de pedidos recebidos",
+            "action": "Abrir painel de status da cozinha e filtrar por recebidos",
+            "entities": [
+              "Order",
+              "OrderStatus"
+            ],
+            "pageHint": "painelCozinha",
+            "outcome": "Fila de pedidos recebidos visível"
+          },
+          {
+            "intent": "Indicar início do preparo",
+            "action": "Selecionar pedido e marcar como preparando",
+            "entities": [
+              "Order",
+              "OrderStatus"
+            ],
+            "pageHint": "painelCozinha",
+            "outcome": "Pedido atualizado para preparando"
+          },
+          {
+            "intent": "Marcar pedido como pronto",
+            "action": "Ao finalizar, marcar como pronto",
+            "entities": [
+              "Order",
+              "OrderStatus"
+            ],
+            "pageHint": "painelCozinha",
+            "outcome": "Pedido atualizado para pronto"
+          },
+          {
+            "intent": "Finalizar pedido entregue",
+            "action": "Confirmar entrega ao cliente",
+            "entities": [
+              "Order",
+              "OrderStatus"
+            ],
+            "pageHint": "painelCozinha",
+            "outcome": "Pedido atualizado para entregue"
+          }
+        ]
+      },
+      {
+        "journeyId": "gerenciarCardapio",
+        "title": "Gerenciar itens do cardápio",
+        "actor": "manager",
+        "capabilityIds": [
+          "manageMenu"
+        ],
+        "description": "O gerente cria e ajusta itens do cardápio para venda.",
+        "steps": [
+          {
+            "intent": "Acessar gestão de cardápio",
+            "action": "Abrir gerenciamento de cardápio e estoque e ir para a seção de cardápio",
+            "entities": [
+              "MenuItem",
+              "MenuCategory"
+            ],
+            "pageHint": "cardapioEstoque",
+            "outcome": "Lista de itens do cardápio exibida"
+          },
+          {
+            "intent": "Cadastrar novo item",
+            "action": "Tocar em novo item, preencher nome, preço e categoria e salvar",
+            "entities": [
+              "MenuItem",
+              "MenuCategory"
+            ],
+            "pageHint": "cardapioEstoque",
+            "outcome": "Item do cardápio criado e disponível no POS"
+          },
+          {
+            "intent": "Editar item existente",
+            "action": "Selecionar item, ajustar preço ou disponibilidade e salvar",
+            "entities": [
+              "MenuItem"
+            ],
+            "pageHint": "cardapioEstoque",
+            "outcome": "Item do cardápio atualizado"
+          }
+        ]
+      },
+      {
+        "journeyId": "gerenciarEstoque",
+        "title": "Registrar e ajustar estoque",
+        "actor": "manager",
+        "capabilityIds": [
+          "manageInventory"
+        ],
+        "description": "O gerente controla itens de estoque e registra entradas e saídas.",
+        "steps": [
+          {
+            "intent": "Acessar controle de estoque",
+            "action": "Abrir gerenciamento de cardápio e estoque e ir para a seção de estoque",
+            "entities": [
+              "InventoryItem",
+              "StockUnit"
+            ],
+            "pageHint": "cardapioEstoque",
+            "outcome": "Lista de itens de estoque exibida"
+          },
+          {
+            "intent": "Cadastrar ou editar item de estoque",
+            "action": "Criar item com unidade de medida ou editar dados e salvar",
+            "entities": [
+              "InventoryItem",
+              "StockUnit"
+            ],
+            "pageHint": "cardapioEstoque",
+            "outcome": "Item de estoque cadastrado ou atualizado"
+          },
+          {
+            "intent": "Registrar movimento de estoque",
+            "action": "Selecionar item e registrar entrada ou saída com quantidade",
+            "entities": [
+              "InventoryItem",
+              "InventoryMovement"
+            ],
+            "pageHint": "cardapioEstoque",
+            "outcome": "Movimento registrado e saldo atualizado"
+          },
+          {
+            "intent": "Verificar alerta de baixo estoque",
+            "action": "Abrir notificações internas de estoque baixo",
+            "entities": [
+              "InventoryItem"
+            ],
+            "pageHint": "centralNotificacoes",
+            "outcome": "Itens com estoque baixo destacados para ação"
+          }
+        ]
+      },
+      {
+        "journeyId": "fecharTurnoDiario",
+        "title": "Abrir e fechar turno diário",
+        "actor": "manager",
+        "capabilityIds": [
+          "closeDailyShift"
+        ],
+        "description": "O gerente abre o turno no início do dia e realiza o fechamento com relatório.",
+        "steps": [
+          {
+            "intent": "Abrir o turno do dia",
+            "action": "Abrir relatório de fechamento de turno e iniciar novo turno",
+            "entities": [
+              "DailyShift"
+            ],
+            "pageHint": "fechamentoTurno",
+            "outcome": "Turno diário aberto"
+          },
+          {
+            "intent": "Revisar vendas e ajustes do turno",
+            "action": "Durante o dia, acompanhar o resumo no painel de fechamento",
+            "entities": [
+              "DailyShift",
+              "ShiftClosureReport"
+            ],
+            "pageHint": "fechamentoTurno",
+            "outcome": "Dados consolidados para fechamento"
+          },
+          {
+            "intent": "Fechar o turno com conferência",
+            "action": "Informar valores e confirmar fechamento",
+            "entities": [
+              "DailyShift",
+              "ShiftClosureReport"
+            ],
+            "pageHint": "fechamentoTurno",
+            "outcome": "Turno diário fechado com relatório gerado"
+          }
+        ]
+      },
+      {
+        "journeyId": "acompanharDashboardGerente",
+        "title": "Acompanhar dashboard de métricas",
+        "actor": "manager",
+        "capabilityIds": [
+          "viewDashboard"
+        ],
+        "description": "O gerente acompanha indicadores operacionais e de vendas.",
+        "steps": [
+          {
+            "intent": "Ver visão geral do dia",
+            "action": "Abrir dashboard administrativo de métricas",
+            "entities": [
+              "SalesSummary"
+            ],
+            "pageHint": "dashboardGerente",
+            "outcome": "Métricas do dia exibidas"
+          },
+          {
+            "intent": "Analisar alertas operacionais",
+            "action": "Explorar cartões de alertas e itens mais vendidos",
+            "entities": [
+              "InventoryItem",
+              "MenuItem"
+            ],
+            "pageHint": "dashboardGerente",
+            "outcome": "Principais alertas e tendências identificados"
+          },
+          {
+            "intent": "Detalhar período recente",
+            "action": "Filtrar para últimos 7 dias",
+            "entities": [
+              "SalesSummary"
+            ],
+            "pageHint": "dashboardGerente",
+            "outcome": "Métricas históricas atualizadas na tela"
+          }
+        ]
+      }
+    ]
+  }
+} as const;
+
+export default userJourneysPlan;

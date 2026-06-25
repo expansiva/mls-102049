@@ -1,0 +1,135 @@
+{
+  "savedAt": "2026-06-25T02:05:11.149Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 46,
+  "planning": {
+    "planId": "plan-index-critic:metricsIndex:1",
+    "dependsOn": [
+      "plan-metrics-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": false,
+          "errors": [
+            {
+              "code": "metrics.dimension.missingOntologyFk",
+              "message": "weeklySalesMetrics falta a dimensão orderId exigida pela T-013 (OrderItem -> Order).",
+              "path": "metricTables[3].dimensions"
+            },
+            {
+              "code": "metrics.dimension.missingOntologyFk",
+              "message": "dailySalesMetrics usa orderStatus (string) em vez da dimensão FK orderStatusId para o relacionamento Order -> OrderStatus (T-013).",
+              "path": "metricTables[0].dimensions"
+            },
+            {
+              "code": "metrics.dimension.missingOntologyFk",
+              "message": "operationalMetrics usa orderStatus (string) em vez da dimensão FK orderStatusId para o relacionamento Order -> OrderStatus (T-013).",
+              "path": "metricTables[4].dimensions"
+            },
+            {
+              "code": "metrics.dimension.missingOntologyFk",
+              "message": "weeklySalesMetrics usa orderStatus (string) em vez da dimensão FK orderStatusId para o relacionamento Order -> OrderStatus (T-013).",
+              "path": "metricTables[3].dimensions"
+            }
+          ],
+          "warnings": [
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table dailySalesMetrics sources unknown base table orders",
+              "path": "metricTables[0]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table dailySalesMetrics sources unknown base table order_items",
+              "path": "metricTables[0]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table topSellingItemsMetrics sources unknown base table order_items",
+              "path": "metricTables[1]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table topSellingItemsMetrics sources unknown base table orders",
+              "path": "metricTables[1]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table inventoryAlertMetrics sources unknown base table inventory_items",
+              "path": "metricTables[2]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table inventoryAlertMetrics sources unknown base table inventory_movements",
+              "path": "metricTables[2]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table weeklySalesMetrics sources unknown base table orders",
+              "path": "metricTables[3]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table weeklySalesMetrics sources unknown base table order_items",
+              "path": "metricTables[3]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table operationalMetrics sources unknown base table orders",
+              "path": "metricTables[4]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table operationalMetrics sources unknown base table order_items",
+              "path": "metricTables[4]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table operationalMetrics sources unknown base table inventory_items",
+              "path": "metricTables[4]"
+            },
+            {
+              "code": "metrics.dimension.inconsistentNaming",
+              "message": "Nomeação inconsistente da dimensão de status do pedido (orderStatus string vs orderStatusId FK) entre as tabelas de métricas.",
+              "path": "metricTables"
+            },
+            {
+              "code": "metrics.priority.mismatch",
+              "message": "weeklySalesMetrics define priority 'now', mas o artefato aprovado indica 'soon'.",
+              "path": "metricTables[3].priority"
+            }
+          ],
+          "notes": [
+            "Todas as tabelas de métricas utilizam storageEngine postgresTimescaleDB corretamente.",
+            "O dashboard managerMetricsDashboard referencia apenas métricas deste índice e aponta para o actorId manager válido.",
+            "A responsabilidade de atualização está corretamente atribuída a layer_3_usecases."
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Verificação da quantidade de metricTables contra artefatos aprovados: 5 tabelas, 5 aprovadas.",
+          "Verificação de storageEngine: todas postgresTimescaleDB.",
+          "Verificação de updateResponsibility: layer_3_usecases.",
+          "Verificação do dashboard actor: manager existe no plano final.",
+          "Verificação T-013 de dimensões FK dos relacionamentos diretos das sourceEntities.",
+          "Identificação de inconsistência: dailySalesMetrics, operationalMetrics e weeklySalesMetrics utilizam orderStatus (string) em vez de orderStatusId (FK).",
+          "Identificação de omissão: weeklySalesMetrics não contém orderId apesar de OrderItem ser sourceEntity.",
+          "Confirmação dos warnings determinísticos sobre base tables desconhecidas."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 40,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

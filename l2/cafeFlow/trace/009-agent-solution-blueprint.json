@@ -1,0 +1,896 @@
+{
+  "savedAt": "2026-06-25T01:57:42.036Z",
+  "agentName": "agentSolutionBlueprint",
+  "stepId": 9,
+  "planning": {
+    "planId": "plan-solution-blueprint",
+    "dependsOn": [
+      "req-implementation-decisions"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitSolutionBlueprint",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "module": {
+            "moduleName": "cafeFlow",
+            "purpose": "Agilizar pedidos, coordenação da cozinha e controle básico de estoque e turno para cafeterias e lanchonetes pequenas.",
+            "businessDomain": "Food service / cafeteria POS e operações",
+            "languages": [
+              "pt-BR",
+              "en"
+            ],
+            "visualStyle": {
+              "tone": "Limpo e moderno",
+              "layout": "Fácil de ler em tablets",
+              "palette": [
+                "#1F2937",
+                "#F9FAFB",
+                "#F59E0B",
+                "#10B981"
+              ]
+            }
+          },
+          "actors": [
+            {
+              "actorId": "attendantCashier",
+              "title": "Atendente/Caixa",
+              "description": "Registra pedidos, acompanha status e atende clientes."
+            },
+            {
+              "actorId": "kitchen",
+              "title": "Cozinha",
+              "description": "Prepara pedidos e atualiza status de produção."
+            },
+            {
+              "actorId": "manager",
+              "title": "Gerente",
+              "description": "Gerencia cardápio, estoque, turnos e métricas."
+            }
+          ],
+          "capabilities": [
+            {
+              "capabilityId": "manageOrders",
+              "title": "Lançar e acompanhar pedidos",
+              "description": "Criar pedidos de mesa ou takeout e acompanhar status até a entrega.",
+              "actor": "attendantCashier",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "updateKitchenStatus",
+              "title": "Atualizar status da cozinha",
+              "description": "Alterar status do pedido para preparar, pronto e entregue.",
+              "actor": "kitchen",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "manageMenu",
+              "title": "Gerenciar cardápio",
+              "description": "Cadastrar e ajustar itens do cardápio e categorias.",
+              "actor": "manager",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "manageInventory",
+              "title": "Gerenciar estoque",
+              "description": "Cadastrar itens de estoque e controlar níveis/alertas.",
+              "actor": "manager",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "closeDailyShift",
+              "title": "Fechar turno diário",
+              "description": "Consolidar vendas e registrar fechamento do turno.",
+              "actor": "manager",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "viewDashboard",
+              "title": "Acompanhar dashboard",
+              "description": "Visualizar vendas do dia, itens mais vendidos e estoque baixo.",
+              "actor": "manager",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "aiSalesAssistant",
+              "title": "Assistente IA de vendas",
+              "description": "Gerar resumo de vendas do dia e sugerir promoções com base nos últimos 7 dias.",
+              "actor": "manager",
+              "priority": "soon"
+            }
+          ],
+          "ontology": {
+            "entities": {
+              "MenuItem": {
+                "title": "Item do Cardápio",
+                "description": "Produto vendável com preço, categoria e vínculo com ingredientes do estoque.",
+                "ownership": "moduleOwned"
+              },
+              "MenuCategory": {
+                "title": "Categoria do Cardápio",
+                "description": "Categoria padronizada para organizar itens do cardápio.",
+                "ownership": "mdmOwned"
+              },
+              "Order": {
+                "title": "Pedido",
+                "description": "Compromisso principal de venda com origem (mesa/takeout), itens e status.",
+                "ownership": "moduleOwned",
+                "statusEnum": [
+                  "recebido",
+                  "preparando",
+                  "pronto",
+                  "entregue",
+                  "cancelado"
+                ]
+              },
+              "OrderItem": {
+                "title": "Item do Pedido",
+                "description": "Linha de pedido vinculada ao item do cardápio e quantidade.",
+                "ownership": "moduleOwned"
+              },
+              "TableSeat": {
+                "title": "Mesa/Comanda",
+                "description": "Referência de mesa ou comanda para pedidos no salão.",
+                "ownership": "moduleOwned"
+              },
+              "InventoryItem": {
+                "title": "Item de Estoque",
+                "description": "Ingrediente ou insumo com unidade de medida e níveis de estoque.",
+                "ownership": "moduleOwned"
+              },
+              "InventoryMovement": {
+                "title": "Movimento de Estoque",
+                "description": "Registro de baixa automática ou ajuste manual por item de estoque.",
+                "ownership": "moduleOwned"
+              },
+              "DailyShift": {
+                "title": "Turno Diário",
+                "description": "Registro do turno do dia com abertura, fechamento e consolidação de vendas.",
+                "ownership": "moduleOwned",
+                "lifecycleStates": [
+                  "aberto",
+                  "fechado"
+                ]
+              },
+              "ShiftClosureReport": {
+                "title": "Relatório de Fechamento",
+                "description": "Resumo consolidado do turno diário.",
+                "ownership": "moduleOwned"
+              },
+              "OrderStatus": {
+                "title": "Status do Pedido",
+                "description": "Catálogo padronizado de status do pedido para o fluxo da cozinha.",
+                "ownership": "mdmOwned"
+              },
+              "StockUnit": {
+                "title": "Unidade de Estoque",
+                "description": "Catálogo de unidades de medida do estoque.",
+                "ownership": "mdmOwned"
+              },
+              "PromotionSuggestion": {
+                "title": "Sugestão de Promoção",
+                "description": "Sugestões geradas pela IA com base nos últimos 7 dias.",
+                "ownership": "moduleOwned"
+              },
+              "SalesSummary": {
+                "title": "Resumo de Vendas",
+                "description": "Resumo diário gerado pela IA.",
+                "ownership": "moduleOwned"
+              }
+            }
+          },
+          "rules": [
+            {
+              "ruleId": "orderStatusLifecycle",
+              "title": "Transições válidas de status do pedido",
+              "description": "Pedidos devem seguir o fluxo recebido -> preparando -> pronto -> entregue; cancelado encerra o fluxo.",
+              "appliesTo": [
+                "Order"
+              ],
+              "layer": "layer_3"
+            },
+            {
+              "ruleId": "inventoryDecrementRule",
+              "title": "Baixa de estoque por venda",
+              "description": "Cada item do pedido consumirá ingredientes conforme o vínculo do cardápio; baixa ocorre conforme regra definida no fluxo de estoque.",
+              "appliesTo": [
+                "InventoryMovement",
+                "Order"
+              ],
+              "layer": "layer_3"
+            },
+            {
+              "ruleId": "shiftClosureRule",
+              "title": "Fechamento de turno obrigatório",
+              "description": "Turno só pode ser fechado após consolidar vendas do dia e registrar resumo de fechamento.",
+              "appliesTo": [
+                "DailyShift",
+                "ShiftClosureReport"
+              ],
+              "layer": "layer_3"
+            },
+            {
+              "ruleId": "lowStockAlertRule",
+              "title": "Alerta de estoque baixo",
+              "description": "Quando o nível de um item estiver abaixo do mínimo, sinalizar alerta no dashboard.",
+              "appliesTo": [
+                "InventoryItem"
+              ],
+              "layer": "layer_2"
+            },
+            {
+              "ruleId": "aiSummarySourceRule",
+              "title": "Fonte de dados do assistente IA",
+              "description": "Resumos e sugestões devem usar métricas agregadas dos últimos dias e vendas do dia.",
+              "appliesTo": [
+                "SalesSummary",
+                "PromotionSuggestion"
+              ],
+              "layer": "layer_3"
+            }
+          ],
+          "relationships": [
+            {
+              "relationshipId": "menuItemCategory",
+              "fromEntity": "MenuItem",
+              "toEntity": "MenuCategory",
+              "type": "manyToOne",
+              "description": "Item do cardápio pertence a uma categoria."
+            },
+            {
+              "relationshipId": "orderItemsOrder",
+              "fromEntity": "OrderItem",
+              "toEntity": "Order",
+              "type": "manyToOne",
+              "description": "Item de pedido pertence a um pedido."
+            },
+            {
+              "relationshipId": "orderItemsMenuItem",
+              "fromEntity": "OrderItem",
+              "toEntity": "MenuItem",
+              "type": "manyToOne",
+              "description": "Item de pedido referencia item do cardápio."
+            },
+            {
+              "relationshipId": "orderTableSeat",
+              "fromEntity": "Order",
+              "toEntity": "TableSeat",
+              "type": "optionalManyToOne",
+              "description": "Pedido pode estar associado a uma mesa/comanda."
+            },
+            {
+              "relationshipId": "menuItemInventory",
+              "fromEntity": "MenuItem",
+              "toEntity": "InventoryItem",
+              "type": "manyToMany",
+              "description": "Item do cardápio consome itens de estoque (ingredientes)."
+            },
+            {
+              "relationshipId": "inventoryMovementItem",
+              "fromEntity": "InventoryMovement",
+              "toEntity": "InventoryItem",
+              "type": "manyToOne",
+              "description": "Movimento de estoque referencia item de estoque."
+            },
+            {
+              "relationshipId": "shiftOrders",
+              "fromEntity": "Order",
+              "toEntity": "DailyShift",
+              "type": "manyToOne",
+              "description": "Pedidos pertencem a um turno diário."
+            },
+            {
+              "relationshipId": "shiftReport",
+              "fromEntity": "ShiftClosureReport",
+              "toEntity": "DailyShift",
+              "type": "oneToOne",
+              "description": "Relatório de fechamento consolida um turno."
+            },
+            {
+              "relationshipId": "orderStatusRef",
+              "fromEntity": "Order",
+              "toEntity": "OrderStatus",
+              "type": "manyToOne",
+              "description": "Pedido referencia status padronizado."
+            },
+            {
+              "relationshipId": "inventoryUnit",
+              "fromEntity": "InventoryItem",
+              "toEntity": "StockUnit",
+              "type": "manyToOne",
+              "description": "Item de estoque usa unidade de medida."
+            },
+            {
+              "relationshipId": "summaryShift",
+              "fromEntity": "SalesSummary",
+              "toEntity": "DailyShift",
+              "type": "optionalManyToOne",
+              "description": "Resumo de vendas pode referenciar turno do dia."
+            }
+          ],
+          "userActions": [
+            {
+              "actionId": "createOrder",
+              "title": "Criar pedido",
+              "actor": "attendantCashier",
+              "capabilityId": "manageOrders",
+              "description": "Selecionar mesa/takeout, itens do cardápio e confirmar o pedido.",
+              "commandType": "create",
+              "affectedEntities": [
+                "Order",
+                "OrderItem"
+              ],
+              "rulesApplied": [
+                "orderStatusLifecycle"
+              ]
+            },
+            {
+              "actionId": "updateOrderStatus",
+              "title": "Atualizar status do pedido",
+              "actor": "kitchen",
+              "capabilityId": "updateKitchenStatus",
+              "description": "Mover pedido para preparando, pronto ou entregue.",
+              "commandType": "update",
+              "affectedEntities": [
+                "Order"
+              ],
+              "rulesApplied": [
+                "orderStatusLifecycle"
+              ]
+            },
+            {
+              "actionId": "cancelOrder",
+              "title": "Cancelar pedido",
+              "actor": "attendantCashier",
+              "capabilityId": "manageOrders",
+              "description": "Cancelar pedido com motivo.",
+              "commandType": "update",
+              "affectedEntities": [
+                "Order"
+              ],
+              "rulesApplied": [
+                "orderStatusLifecycle"
+              ]
+            },
+            {
+              "actionId": "manageMenuItem",
+              "title": "Cadastrar/editar item do cardápio",
+              "actor": "manager",
+              "capabilityId": "manageMenu",
+              "description": "Criar, editar ou desativar item do cardápio e seus ingredientes.",
+              "commandType": "upsert",
+              "affectedEntities": [
+                "MenuItem",
+                "MenuCategory"
+              ]
+            },
+            {
+              "actionId": "manageInventoryItem",
+              "title": "Cadastrar/editar item de estoque",
+              "actor": "manager",
+              "capabilityId": "manageInventory",
+              "description": "Criar ou ajustar itens e níveis de estoque.",
+              "commandType": "upsert",
+              "affectedEntities": [
+                "InventoryItem"
+              ]
+            },
+            {
+              "actionId": "recordInventoryMovement",
+              "title": "Registrar movimento de estoque",
+              "actor": "manager",
+              "capabilityId": "manageInventory",
+              "description": "Registrar baixa automática ou ajuste manual de estoque.",
+              "commandType": "create",
+              "affectedEntities": [
+                "InventoryMovement"
+              ],
+              "rulesApplied": [
+                "inventoryDecrementRule"
+              ]
+            },
+            {
+              "actionId": "openDailyShift",
+              "title": "Abrir turno diário",
+              "actor": "manager",
+              "capabilityId": "closeDailyShift",
+              "description": "Abrir o turno do dia para iniciar registro de vendas.",
+              "commandType": "create",
+              "affectedEntities": [
+                "DailyShift"
+              ]
+            },
+            {
+              "actionId": "closeDailyShift",
+              "title": "Fechar turno diário",
+              "actor": "manager",
+              "capabilityId": "closeDailyShift",
+              "description": "Consolidar vendas e registrar fechamento do turno.",
+              "commandType": "update",
+              "affectedEntities": [
+                "DailyShift",
+                "ShiftClosureReport"
+              ],
+              "rulesApplied": [
+                "shiftClosureRule"
+              ]
+            },
+            {
+              "actionId": "viewDashboard",
+              "title": "Visualizar dashboard",
+              "actor": "manager",
+              "capabilityId": "viewDashboard",
+              "description": "Consultar métricas do dia, itens mais vendidos e estoque baixo.",
+              "commandType": "read",
+              "affectedEntities": [
+                "DailyShift",
+                "InventoryItem"
+              ]
+            },
+            {
+              "actionId": "generateSalesSummary",
+              "title": "Gerar resumo de vendas (IA)",
+              "actor": "manager",
+              "capabilityId": "aiSalesAssistant",
+              "description": "Solicitar resumo de vendas do dia via assistente IA.",
+              "commandType": "create",
+              "affectedEntities": [
+                "SalesSummary"
+              ],
+              "rulesApplied": [
+                "aiSummarySourceRule"
+              ]
+            },
+            {
+              "actionId": "suggestPromotions",
+              "title": "Sugerir itens para promoção (IA)",
+              "actor": "manager",
+              "capabilityId": "aiSalesAssistant",
+              "description": "Solicitar sugestões de promoção com base nos últimos 7 dias.",
+              "commandType": "create",
+              "affectedEntities": [
+                "PromotionSuggestion"
+              ],
+              "rulesApplied": [
+                "aiSummarySourceRule"
+              ]
+            }
+          ],
+          "artifactPlan": {
+            "pages": [
+              {
+                "signal": "dashboardPage",
+                "title": "Dashboard",
+                "reason": "Mostrar vendas do dia, itens mais vendidos e estoque baixo.",
+                "priority": "now",
+                "actor": "manager",
+                "artifactType": "page",
+                "references": [
+                  "dailySalesMetricsTable",
+                  "topSellingItemsMetricsTable",
+                  "lowStockMetricsTable"
+                ],
+                "rulesApplied": [
+                  "lowStockAlertRule"
+                ]
+              },
+              {
+                "signal": "posQuickOrderPage",
+                "title": "Interface rápida de POS",
+                "reason": "Registrar pedidos rapidamente e acompanhar status da cozinha.",
+                "priority": "now",
+                "actor": "attendantCashier",
+                "artifactType": "page",
+                "references": [
+                  "orderLifecycleWorkflow",
+                  "orderUsecaseEntity"
+                ]
+              },
+              {
+                "signal": "kitchenStatusPage",
+                "title": "Painel de status da cozinha",
+                "reason": "Atualizar e acompanhar o fluxo de preparo dos pedidos.",
+                "priority": "now",
+                "actor": "kitchen",
+                "artifactType": "page",
+                "references": [
+                  "orderLifecycleWorkflow"
+                ]
+              },
+              {
+                "signal": "menuInventoryManagementPage",
+                "title": "Gerenciamento de cardápio e estoque",
+                "reason": "Cadastrar itens do cardápio e controlar estoque.",
+                "priority": "now",
+                "actor": "manager",
+                "artifactType": "page",
+                "references": [
+                  "menuCategoryMdm",
+                  "stockUnitMdm",
+                  "inventoryUsecaseEntity"
+                ]
+              },
+              {
+                "signal": "shiftCloseReportPage",
+                "title": "Relatório de fechamento de turno",
+                "reason": "Consolidar e visualizar o fechamento diário.",
+                "priority": "now",
+                "actor": "manager",
+                "artifactType": "page",
+                "references": [
+                  "dailyShiftCloseWorkflow"
+                ]
+              },
+              {
+                "signal": "adminMetricsDashboardPage",
+                "title": "Dashboard administrativo de métricas",
+                "reason": "Configurar e revisar métricas básicas do sistema.",
+                "priority": "soon",
+                "actor": "manager",
+                "artifactType": "page",
+                "references": [
+                  "managerMetricsDashboard"
+                ]
+              }
+            ],
+            "workflows": [
+              {
+                "signal": "orderLifecycleWorkflow",
+                "title": "Fluxo de pedido",
+                "reason": "Criar pedido e mover por status até entrega.",
+                "priority": "now",
+                "actor": "attendantCashier",
+                "artifactType": "workflow",
+                "references": [
+                  "Order",
+                  "OrderStatus"
+                ],
+                "rulesApplied": [
+                  "orderStatusLifecycle"
+                ]
+              },
+              {
+                "signal": "kitchenPreparationWorkflow",
+                "title": "Fluxo de preparo na cozinha",
+                "reason": "Atualizar status do pedido no preparo.",
+                "priority": "now",
+                "actor": "kitchen",
+                "artifactType": "workflow",
+                "references": [
+                  "Order"
+                ],
+                "rulesApplied": [
+                  "orderStatusLifecycle"
+                ]
+              },
+              {
+                "signal": "inventoryDecrementWorkflow",
+                "title": "Baixa de estoque por pedido",
+                "reason": "Atualizar estoque conforme itens vendidos.",
+                "priority": "now",
+                "actor": "manager",
+                "artifactType": "workflow",
+                "references": [
+                  "InventoryMovement",
+                  "InventoryItem"
+                ],
+                "rulesApplied": [
+                  "inventoryDecrementRule"
+                ]
+              },
+              {
+                "signal": "dailyShiftCloseWorkflow",
+                "title": "Fechamento de turno",
+                "reason": "Consolidar vendas e encerrar o turno diário.",
+                "priority": "now",
+                "actor": "manager",
+                "artifactType": "workflow",
+                "references": [
+                  "DailyShift",
+                  "ShiftClosureReport"
+                ],
+                "rulesApplied": [
+                  "shiftClosureRule"
+                ]
+              },
+              {
+                "signal": "aiSalesSummaryWorkflow",
+                "title": "Geração de resumo e sugestões IA",
+                "reason": "Produzir resumo de vendas do dia e sugestões de promoção.",
+                "priority": "soon",
+                "actor": "manager",
+                "artifactType": "workflow",
+                "references": [
+                  "SalesSummary",
+                  "PromotionSuggestion"
+                ],
+                "rulesApplied": [
+                  "aiSummarySourceRule"
+                ]
+              }
+            ],
+            "plugins": [
+              {
+                "signal": "llmAssistantPlugin",
+                "title": "Plugin de Assistente IA",
+                "reason": "Permitir geração de resumo e sugestões com LLM.",
+                "priority": "soon",
+                "actor": "manager",
+                "artifactType": "plugin",
+                "references": [
+                  "salesAssistantAgent"
+                ]
+              }
+            ],
+            "agents": [
+              {
+                "signal": "salesAssistantAgent",
+                "title": "Agente Assistente de Vendas",
+                "reason": "Orquestrar pedidos ao LLM e formatar respostas.",
+                "priority": "soon",
+                "actor": "manager",
+                "artifactType": "agent",
+                "references": [
+                  "managerMetricsTable"
+                ],
+                "rulesApplied": [
+                  "aiSummarySourceRule"
+                ]
+              }
+            ],
+            "horizontalModules": [
+              {
+                "signal": "notificationCenter",
+                "title": "Central de notificações internas",
+                "reason": "Avisos de pedido pronto e alertas de estoque baixo.",
+                "priority": "soon",
+                "actor": "attendantCashier",
+                "artifactType": "horizontalModule",
+                "references": [
+                  "orderLifecycleWorkflow",
+                  "lowStockMetricsTable"
+                ]
+              }
+            ],
+            "mdm": [
+              {
+                "signal": "menuCategoryMdm",
+                "title": "MDM de categorias do cardápio",
+                "reason": "Padronizar categorias para relatórios e filtros.",
+                "priority": "now",
+                "actor": "manager",
+                "artifactType": "mdm",
+                "references": [
+                  "MenuCategory"
+                ]
+              },
+              {
+                "signal": "orderStatusMdm",
+                "title": "MDM de status de pedido",
+                "reason": "Garantir estados consistentes no fluxo da cozinha.",
+                "priority": "now",
+                "actor": "manager",
+                "artifactType": "mdm",
+                "references": [
+                  "OrderStatus"
+                ]
+              },
+              {
+                "signal": "stockUnitMdm",
+                "title": "MDM de unidades de medida de estoque",
+                "reason": "Evitar inconsistências na baixa de estoque.",
+                "priority": "now",
+                "actor": "manager",
+                "artifactType": "mdm",
+                "references": [
+                  "StockUnit"
+                ]
+              }
+            ],
+            "metricTables": [
+              {
+                "signal": "dailySalesMetricsTable",
+                "title": "Métricas de vendas do dia",
+                "reason": "Alimentar o dashboard com total de vendas e ticket médio.",
+                "priority": "now",
+                "actor": "manager",
+                "artifactType": "metricTable",
+                "references": [
+                  "Order",
+                  "DailyShift"
+                ]
+              },
+              {
+                "signal": "topSellingItemsMetricsTable",
+                "title": "Itens mais vendidos",
+                "reason": "Identificar produtos com maior saída.",
+                "priority": "now",
+                "actor": "manager",
+                "artifactType": "metricTable",
+                "references": [
+                  "OrderItem",
+                  "MenuItem"
+                ]
+              },
+              {
+                "signal": "lowStockMetricsTable",
+                "title": "Alertas de estoque baixo",
+                "reason": "Sinalizar reposição necessária.",
+                "priority": "now",
+                "actor": "manager",
+                "artifactType": "metricTable",
+                "references": [
+                  "InventoryItem"
+                ]
+              },
+              {
+                "signal": "last7DaysSalesMetricsTable",
+                "title": "Vendas dos últimos 7 dias",
+                "reason": "Base para sugestões de promoção do assistente IA.",
+                "priority": "soon",
+                "actor": "manager",
+                "artifactType": "metricTable",
+                "references": [
+                  "Order",
+                  "DailyShift"
+                ]
+              }
+            ],
+            "metricDashboards": [
+              {
+                "signal": "managerMetricsDashboard",
+                "title": "Dashboard de métricas do gerente",
+                "reason": "Painel com vendas do dia, itens mais vendidos e estoque baixo.",
+                "priority": "now",
+                "actor": "manager",
+                "artifactType": "metricDashboard",
+                "references": [
+                  "dailySalesMetricsTable",
+                  "topSellingItemsMetricsTable",
+                  "lowStockMetricsTable"
+                ]
+              }
+            ],
+            "usecaseEntities": [
+              {
+                "signal": "orderUsecaseEntity",
+                "title": "Entidade de caso de uso de Pedido",
+                "reason": "Comandos de criação e atualização do pedido e itens.",
+                "priority": "now",
+                "actor": "attendantCashier",
+                "artifactType": "usecaseEntity",
+                "references": [
+                  "Order",
+                  "OrderItem"
+                ]
+              },
+              {
+                "signal": "inventoryUsecaseEntity",
+                "title": "Entidade de caso de uso de Estoque",
+                "reason": "Comandos de baixa e ajuste de estoque.",
+                "priority": "now",
+                "actor": "manager",
+                "artifactType": "usecaseEntity",
+                "references": [
+                  "InventoryItem",
+                  "InventoryMovement"
+                ]
+              },
+              {
+                "signal": "shiftUsecaseEntity",
+                "title": "Entidade de caso de uso de Turno Diário",
+                "reason": "Comandos de abertura e fechamento do turno.",
+                "priority": "now",
+                "actor": "manager",
+                "artifactType": "usecaseEntity",
+                "references": [
+                  "DailyShift",
+                  "ShiftClosureReport"
+                ]
+              },
+              {
+                "signal": "aiSalesUsecaseEntity",
+                "title": "Entidade de caso de uso IA de Vendas",
+                "reason": "Comandos para gerar resumo e sugestões de promoção.",
+                "priority": "soon",
+                "actor": "manager",
+                "artifactType": "usecaseEntity",
+                "references": [
+                  "SalesSummary",
+                  "PromotionSuggestion"
+                ]
+              }
+            ]
+          },
+          "coverage": [
+            {
+              "capabilityId": "manageOrders",
+              "coveredBy": [
+                "posQuickOrderPage",
+                "orderLifecycleWorkflow",
+                "orderUsecaseEntity"
+              ],
+              "notes": "Cobertura completa para criação e acompanhamento de pedidos."
+            },
+            {
+              "capabilityId": "updateKitchenStatus",
+              "coveredBy": [
+                "kitchenStatusPage",
+                "kitchenPreparationWorkflow",
+                "orderLifecycleWorkflow"
+              ],
+              "notes": "Fluxo de atualização de status disponível para cozinha."
+            },
+            {
+              "capabilityId": "manageMenu",
+              "coveredBy": [
+                "menuInventoryManagementPage",
+                "menuCategoryMdm"
+              ],
+              "notes": "CRUD do cardápio e categorias."
+            },
+            {
+              "capabilityId": "manageInventory",
+              "coveredBy": [
+                "menuInventoryManagementPage",
+                "inventoryDecrementWorkflow",
+                "inventoryUsecaseEntity"
+              ],
+              "notes": "Controle básico e baixa por venda."
+            },
+            {
+              "capabilityId": "closeDailyShift",
+              "coveredBy": [
+                "shiftCloseReportPage",
+                "dailyShiftCloseWorkflow",
+                "shiftUsecaseEntity"
+              ],
+              "notes": "Fechamento de turno com relatório."
+            },
+            {
+              "capabilityId": "viewDashboard",
+              "coveredBy": [
+                "dashboardPage",
+                "managerMetricsDashboard",
+                "dailySalesMetricsTable",
+                "topSellingItemsMetricsTable",
+                "lowStockMetricsTable"
+              ],
+              "notes": "Dashboard básico com métricas do dia."
+            },
+            {
+              "capabilityId": "aiSalesAssistant",
+              "coveredBy": [
+                "salesAssistantAgent",
+                "aiSalesSummaryWorkflow",
+                "aiSalesUsecaseEntity",
+                "last7DaysSalesMetricsTable"
+              ],
+              "notes": "Assistente IA usando métricas agregadas."
+            }
+          ]
+        },
+        "questions": [
+          "A baixa de estoque deve ocorrer automaticamente quando o pedido é concluído ou será sempre manual pelo gerente?",
+          "No fechamento de turno, quais campos são obrigatórios (ex.: vendas por forma de pagamento, cancelamentos, descontos)?"
+        ],
+        "trace": [
+          "Prompt inicial define entidades, telas e foco operacional.",
+          "Clarificação confirma uma única loja, idiomas pt-BR/en, papéis principais e dashboard básico.",
+          "Escopo inclui pedidos, cozinha, estoque, turnos e assistente IA.",
+          "Decisões aceitam métricas e dashboard administrativo, além de agente IA e notificações futuras."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 35,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

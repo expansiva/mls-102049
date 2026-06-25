@@ -1,0 +1,47 @@
+{
+  "savedAt": "2026-06-25T02:18:10.122Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 60,
+  "planning": {
+    "planId": "plan-index-critic:pageIndex:1",
+    "dependsOn": [
+      "plan-page-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "needs_input",
+        "result": {
+          "approved": false,
+          "errors": [
+            {
+              "code": "INVENTED_PAGE",
+              "message": "Página 'centralNotificacoes' não consta nos artefatos aprovados (pages) e a capacidade 'manageInventory' já é atendida pela página 'cardapioEstoque'.",
+              "path": "pages[3].pageId"
+            }
+          ],
+          "warnings": []
+        },
+        "questions": [],
+        "trace": [
+          "Verificada cobertura das 6 capacidades 'now' que exigem interação do usuário",
+          "Verificado se todos os page.actorId correspondem a atores finais do plano",
+          "Verificadas referências de flowRefs contra workflows existentes",
+          "Verificadas referências de usecaseHints e bffCommandHints contra usecaseIds aprovados",
+          "Verificada suficiência de hints de leitura em páginas de exibição",
+          "Identificada página extra não aprovada: centralNotificacoes"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 61,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

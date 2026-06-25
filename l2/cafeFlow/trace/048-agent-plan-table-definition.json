@@ -1,0 +1,141 @@
+{
+  "savedAt": "2026-06-25T02:02:31.616Z",
+  "agentName": "agentPlanTableDefinition",
+  "stepId": 48,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitTableDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "tableDefinition": {
+            "tableId": "dailyShift",
+            "tableName": "daily_shifts",
+            "moduleId": "cafeFlow",
+            "title": "Turnos Diários",
+            "purpose": "Controlar abertura e fechamento de turnos.",
+            "ownership": "moduleOwned",
+            "rootEntity": "DailyShift",
+            "layer": "layer_1_external",
+            "tableKind": "transactional",
+            "columns": [
+              {
+                "name": "daily_shift_id",
+                "type": "uuid",
+                "nullable": false,
+                "primaryKey": true,
+                "description": "Identificador único do turno diário."
+              },
+              {
+                "name": "business_date",
+                "type": "date",
+                "nullable": false,
+                "description": "Data de referência do turno."
+              },
+              {
+                "name": "status",
+                "type": "string",
+                "nullable": false,
+                "description": "Estado atual do turno diário."
+              },
+              {
+                "name": "opened_at",
+                "type": "datetime",
+                "nullable": false,
+                "description": "Data e hora de abertura do turno."
+              },
+              {
+                "name": "closed_at",
+                "type": "datetime",
+                "nullable": true,
+                "description": "Data e hora de fechamento do turno."
+              },
+              {
+                "name": "created_at",
+                "type": "datetime",
+                "nullable": false,
+                "description": "Data e hora de criação do registro."
+              },
+              {
+                "name": "updated_at",
+                "type": "datetime",
+                "nullable": false,
+                "description": "Data e hora da última atualização do registro."
+              }
+            ],
+            "primaryKey": [
+              "daily_shift_id"
+            ],
+            "indexes": [
+              {
+                "indexName": "idx_daily_shifts_business_date",
+                "columns": [
+                  "business_date"
+                ],
+                "unique": false,
+                "reason": "Filtrar e localizar turno por data."
+              },
+              {
+                "indexName": "idx_daily_shifts_status",
+                "columns": [
+                  "status"
+                ],
+                "unique": false,
+                "reason": "Filtrar turnos por estado."
+              },
+              {
+                "indexName": "idx_daily_shifts_business_date_status",
+                "columns": [
+                  "business_date",
+                  "status"
+                ],
+                "unique": false,
+                "reason": "Relatórios e fluxo de fechamento por data e estado."
+              }
+            ],
+            "detailsColumn": {
+              "enabled": false
+            },
+            "metricUpdatePolicy": {
+              "feedsMetrics": false,
+              "updatedByLayer": "layer_3_usecases"
+            },
+            "accessPolicy": {
+              "directAccessAllowedFor": [
+                "layer_3_usecases"
+              ],
+              "forbiddenFor": [
+                "pages",
+                "layer_2_controllers",
+                "agents"
+              ]
+            },
+            "rulesApplied": [
+              "shiftClosureRule"
+            ]
+          },
+          "defsPlan": {
+            "fileName": "tables/dailyShift.defs.ts",
+            "exportName": "dailyShiftTableDefinition",
+            "saveAsDefs": true
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Tabela diária selecionada: dailyShift.",
+          "Entidade raiz DailyShift com ciclo de vida e estados.",
+          "Colunas mapeadas dos campos obrigatórios para filtros por data e status.",
+          "Índices definidos para consultas de fechamento e relatório.",
+          "Acesso direto restrito a layer_3_usecases."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 39,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

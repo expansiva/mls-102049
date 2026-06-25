@@ -1,0 +1,738 @@
+{
+  "savedAt": "2026-06-25T02:18:46.230Z",
+  "agentName": "agentPlanPageDefinition",
+  "stepId": 64,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPageDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "pageDefinition": {
+            "pageId": "cardapioEstoque",
+            "pageName": "Cardápio e estoque",
+            "actor": "manager",
+            "purpose": "Gerenciar itens do cardápio e controle de estoque.",
+            "capabilities": [
+              "manageMenu",
+              "manageInventory"
+            ],
+            "flowRefs": {
+              "experienceFlows": [],
+              "entityLifecycles": [
+                "menuManagement"
+              ],
+              "taskWorkflows": [],
+              "automations": [
+                "inventoryDecrement"
+              ]
+            },
+            "pluginRefs": [],
+            "mdmRefs": [
+              "menuItem",
+              "menuCategory",
+              "stockUnit"
+            ],
+            "pageInputs": [
+              {
+                "name": "menuItemId",
+                "type": "MenuItem",
+                "required": false,
+                "sources": [
+                  "routeParam",
+                  "selection"
+                ],
+                "description": "Identificador do item do cardápio para edição contextual."
+              },
+              {
+                "name": "inventoryItemId",
+                "type": "InventoryItem",
+                "required": false,
+                "sources": [
+                  "routeParam",
+                  "selection"
+                ],
+                "description": "Identificador do item de estoque para edição ou movimentação contextual.",
+                "entityRef": "InventoryItem",
+                "fieldRef": "inventoryItemId"
+              }
+            ],
+            "navigationRefs": [
+              {
+                "direction": "outbound",
+                "pageId": "centralNotificacoes",
+                "trigger": "ver alertas de estoque baixo",
+                "description": "Acessar alertas de estoque baixo e notificações operacionais."
+              }
+            ],
+            "sections": [
+              {
+                "sectionName": "Gestão de cardápio",
+                "mode": "interactive",
+                "organisms": [
+                  {
+                    "organismName": "Lista de itens do cardápio",
+                    "purpose": "Visualizar itens do cardápio com categorias e status.",
+                    "userActions": [
+                      "filtrar por categoria",
+                      "selecionar item",
+                      "iniciar criação de item",
+                      "iniciar edição de item"
+                    ],
+                    "requiredEntities": [
+                      "MenuItem",
+                      "MenuCategory"
+                    ],
+                    "readsFields": [
+                      "menuItemId",
+                      "name",
+                      "description",
+                      "price",
+                      "menuCategoryId",
+                      "isActive"
+                    ],
+                    "writesFields": [],
+                    "rulesApplied": []
+                  },
+                  {
+                    "organismName": "Editor de item do cardápio",
+                    "purpose": "Cadastrar ou atualizar item do cardápio.",
+                    "userActions": [
+                      "salvar novo item",
+                      "salvar alterações",
+                      "ativar/desativar item"
+                    ],
+                    "requiredEntities": [
+                      "MenuItem",
+                      "MenuCategory"
+                    ],
+                    "readsFields": [
+                      "menuItemId",
+                      "name",
+                      "description",
+                      "price",
+                      "menuCategoryId",
+                      "isActive"
+                    ],
+                    "writesFields": [
+                      "name",
+                      "description",
+                      "price",
+                      "menuCategoryId",
+                      "isActive"
+                    ],
+                    "rulesApplied": []
+                  }
+                ]
+              },
+              {
+                "sectionName": "Gestão de estoque",
+                "mode": "interactive",
+                "organisms": [
+                  {
+                    "organismName": "Lista de itens de estoque",
+                    "purpose": "Acompanhar saldo, unidade e alertas de itens de estoque.",
+                    "userActions": [
+                      "filtrar por unidade",
+                      "selecionar item",
+                      "iniciar criação de item",
+                      "iniciar edição de item"
+                    ],
+                    "requiredEntities": [
+                      "InventoryItem",
+                      "StockUnit"
+                    ],
+                    "readsFields": [
+                      "inventoryItemId",
+                      "name",
+                      "description",
+                      "stockUnitId",
+                      "currentStock",
+                      "minimumStock",
+                      "updatedAt"
+                    ],
+                    "writesFields": [],
+                    "rulesApplied": [
+                      "lowStockAlertRule"
+                    ]
+                  },
+                  {
+                    "organismName": "Editor de item de estoque",
+                    "purpose": "Cadastrar ou atualizar item de estoque e parâmetros de alerta.",
+                    "userActions": [
+                      "salvar novo item",
+                      "salvar alterações",
+                      "ajustar níveis mínimos"
+                    ],
+                    "requiredEntities": [
+                      "InventoryItem",
+                      "StockUnit"
+                    ],
+                    "readsFields": [
+                      "inventoryItemId",
+                      "name",
+                      "description",
+                      "stockUnitId",
+                      "currentStock",
+                      "minimumStock",
+                      "status"
+                    ],
+                    "writesFields": [
+                      "name",
+                      "description",
+                      "stockUnitId",
+                      "currentStock",
+                      "minimumStock",
+                      "status"
+                    ],
+                    "rulesApplied": [
+                      "lowStockAlertRule"
+                    ]
+                  }
+                ]
+              },
+              {
+                "sectionName": "Movimentos de estoque",
+                "mode": "interactive",
+                "organisms": [
+                  {
+                    "organismName": "Histórico de movimentos",
+                    "purpose": "Consultar entradas, saídas e ajustes de estoque.",
+                    "userActions": [
+                      "filtrar por item",
+                      "filtrar por período",
+                      "ver detalhes do movimento"
+                    ],
+                    "requiredEntities": [
+                      "InventoryMovement",
+                      "InventoryItem",
+                      "StockUnit"
+                    ],
+                    "readsFields": [
+                      "id",
+                      "inventoryItemId",
+                      "movementType",
+                      "movementStatus",
+                      "quantity",
+                      "unitCost",
+                      "reason",
+                      "createdAt"
+                    ],
+                    "writesFields": [],
+                    "rulesApplied": [
+                      "inventoryDecrementRule"
+                    ]
+                  },
+                  {
+                    "organismName": "Registrar movimento manual",
+                    "purpose": "Registrar entrada, saída ou ajuste de estoque manual.",
+                    "userActions": [
+                      "registrar entrada",
+                      "registrar saída",
+                      "registrar ajuste"
+                    ],
+                    "requiredEntities": [
+                      "InventoryMovement",
+                      "InventoryItem",
+                      "StockUnit"
+                    ],
+                    "readsFields": [
+                      "inventoryItemId",
+                      "currentStock",
+                      "stockUnitId"
+                    ],
+                    "writesFields": [
+                      "inventoryItemId",
+                      "movementType",
+                      "quantity",
+                      "unitCost",
+                      "reason"
+                    ],
+                    "rulesApplied": [
+                      "inventoryDecrementRule",
+                      "lowStockAlertRule"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "bffCommands": [
+            {
+              "commandName": "listarItensCardapio",
+              "purpose": "Exibir itens e categorias do cardápio.",
+              "kind": "query",
+              "input": [
+                {
+                  "name": "menuCategoryId",
+                  "type": "MenuCategory",
+                  "required": false
+                },
+                {
+                  "name": "isActive",
+                  "type": "boolean",
+                  "required": false
+                },
+                {
+                  "name": "search",
+                  "type": "string",
+                  "required": false
+                }
+              ],
+              "output": [
+                {
+                  "name": "menuItems",
+                  "type": "MenuItem[]"
+                }
+              ],
+              "readsEntities": [
+                "menuEntity"
+              ],
+              "writesEntities": [],
+              "readsTables": [],
+              "writesTables": [],
+              "usecaseRefs": [
+                "listarItensCardapio"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": []
+            },
+            {
+              "commandName": "criarItemCardapio",
+              "purpose": "Cadastrar novo item de cardápio.",
+              "kind": "command",
+              "input": [
+                {
+                  "name": "name",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "name": "description",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "price",
+                  "type": "number",
+                  "required": true
+                },
+                {
+                  "name": "menuCategoryId",
+                  "type": "MenuCategory",
+                  "required": true
+                },
+                {
+                  "name": "isActive",
+                  "type": "boolean",
+                  "required": false
+                }
+              ],
+              "output": [
+                {
+                  "name": "menuItemId",
+                  "type": "MenuItem"
+                }
+              ],
+              "readsEntities": [
+                "menuEntity"
+              ],
+              "writesEntities": [
+                "menuEntity"
+              ],
+              "readsTables": [],
+              "writesTables": [],
+              "usecaseRefs": [
+                "criarItemCardapio"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": []
+            },
+            {
+              "commandName": "atualizarItemCardapio",
+              "purpose": "Editar item de cardápio existente.",
+              "kind": "command",
+              "input": [
+                {
+                  "name": "menuItemId",
+                  "type": "MenuItem",
+                  "required": true
+                },
+                {
+                  "name": "name",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "description",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "price",
+                  "type": "number",
+                  "required": false
+                },
+                {
+                  "name": "menuCategoryId",
+                  "type": "MenuCategory",
+                  "required": false
+                },
+                {
+                  "name": "isActive",
+                  "type": "boolean",
+                  "required": false
+                }
+              ],
+              "output": [
+                {
+                  "name": "menuItemId",
+                  "type": "MenuItem"
+                }
+              ],
+              "readsEntities": [
+                "menuEntity"
+              ],
+              "writesEntities": [
+                "menuEntity"
+              ],
+              "readsTables": [],
+              "writesTables": [],
+              "usecaseRefs": [
+                "atualizarItemCardapio"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": []
+            },
+            {
+              "commandName": "listarItensEstoque",
+              "purpose": "Exibir itens de estoque e saldos.",
+              "kind": "query",
+              "input": [
+                {
+                  "name": "stockUnitId",
+                  "type": "StockUnit",
+                  "required": false
+                },
+                {
+                  "name": "status",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "search",
+                  "type": "string",
+                  "required": false
+                }
+              ],
+              "output": [
+                {
+                  "name": "inventoryItems",
+                  "type": "InventoryItem[]"
+                }
+              ],
+              "readsEntities": [
+                "inventoryEntity"
+              ],
+              "writesEntities": [],
+              "readsTables": [
+                "inventory_items"
+              ],
+              "writesTables": [],
+              "usecaseRefs": [
+                "listarItensEstoque"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": []
+            },
+            {
+              "commandName": "criarItemEstoque",
+              "purpose": "Cadastrar item de estoque.",
+              "kind": "command",
+              "input": [
+                {
+                  "name": "name",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "name": "description",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "stockUnitId",
+                  "type": "StockUnit",
+                  "required": true
+                },
+                {
+                  "name": "currentStock",
+                  "type": "number",
+                  "required": true
+                },
+                {
+                  "name": "minimumStock",
+                  "type": "number",
+                  "required": true
+                }
+              ],
+              "output": [
+                {
+                  "name": "inventoryItemId",
+                  "type": "InventoryItem"
+                }
+              ],
+              "readsEntities": [
+                "inventoryEntity"
+              ],
+              "writesEntities": [
+                "inventoryEntity"
+              ],
+              "readsTables": [],
+              "writesTables": [
+                "inventory_items"
+              ],
+              "usecaseRefs": [
+                "criarItemEstoque"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "lowStockAlertRule"
+              ]
+            },
+            {
+              "commandName": "atualizarItemEstoque",
+              "purpose": "Editar item de estoque.",
+              "kind": "command",
+              "input": [
+                {
+                  "name": "inventoryItemId",
+                  "type": "InventoryItem",
+                  "required": true
+                },
+                {
+                  "name": "name",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "description",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "stockUnitId",
+                  "type": "StockUnit",
+                  "required": false
+                },
+                {
+                  "name": "currentStock",
+                  "type": "number",
+                  "required": false
+                },
+                {
+                  "name": "minimumStock",
+                  "type": "number",
+                  "required": false
+                },
+                {
+                  "name": "status",
+                  "type": "string",
+                  "required": false
+                }
+              ],
+              "output": [
+                {
+                  "name": "inventoryItemId",
+                  "type": "InventoryItem"
+                }
+              ],
+              "readsEntities": [
+                "inventoryEntity"
+              ],
+              "writesEntities": [
+                "inventoryEntity"
+              ],
+              "readsTables": [
+                "inventory_items"
+              ],
+              "writesTables": [
+                "inventory_items"
+              ],
+              "usecaseRefs": [
+                "atualizarItemEstoque"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "lowStockAlertRule"
+              ]
+            },
+            {
+              "commandName": "registrarMovimentoEstoque",
+              "purpose": "Registrar entrada ou saída de estoque.",
+              "kind": "mutation",
+              "input": [
+                {
+                  "name": "inventoryItemId",
+                  "type": "InventoryItem",
+                  "required": true
+                },
+                {
+                  "name": "movementType",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "name": "quantity",
+                  "type": "number",
+                  "required": true
+                },
+                {
+                  "name": "unitCost",
+                  "type": "number",
+                  "required": false
+                },
+                {
+                  "name": "reason",
+                  "type": "string",
+                  "required": false
+                }
+              ],
+              "output": [
+                {
+                  "name": "movementId",
+                  "type": "InventoryMovement"
+                },
+                {
+                  "name": "updatedStock",
+                  "type": "number"
+                }
+              ],
+              "readsEntities": [
+                "inventoryEntity",
+                "orderEntity"
+              ],
+              "writesEntities": [
+                "inventoryEntity"
+              ],
+              "readsTables": [
+                "inventory_items",
+                "orders",
+                "order_items"
+              ],
+              "writesTables": [
+                "inventory_movements",
+                "inventory_items",
+                "inventory_alert_metrics",
+                "operational_metrics"
+              ],
+              "usecaseRefs": [
+                "registrarMovimentoEstoque"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "inventoryDecrementRule",
+                "lowStockAlertRule"
+              ]
+            },
+            {
+              "commandName": "listarMovimentosEstoque",
+              "purpose": "Listar histórico de movimentações de estoque.",
+              "kind": "query",
+              "input": [
+                {
+                  "name": "inventoryItemId",
+                  "type": "InventoryItem",
+                  "required": false
+                },
+                {
+                  "name": "dateStart",
+                  "type": "date",
+                  "required": false
+                },
+                {
+                  "name": "dateEnd",
+                  "type": "date",
+                  "required": false
+                },
+                {
+                  "name": "movementType",
+                  "type": "string",
+                  "required": false
+                }
+              ],
+              "output": [
+                {
+                  "name": "inventoryMovements",
+                  "type": "InventoryMovement[]"
+                }
+              ],
+              "readsEntities": [
+                "inventoryEntity"
+              ],
+              "writesEntities": [],
+              "readsTables": [
+                "inventory_movements",
+                "inventory_items"
+              ],
+              "writesTables": [],
+              "usecaseRefs": [
+                "listarMovimentosEstoque"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "inventoryDecrementRule"
+              ]
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Página planejada a partir do selector cardapioEstoque e suas capabilities manageMenu/manageInventory.",
+          "Organismos cobrem listagem/edição de cardápio, listagem/edição de estoque e movimentos de estoque.",
+          "Comandos BFF derivados de usecaseHints e vinculados aos usecases existentes.",
+          "Regras aplicadas conforme catálogo: lowStockAlertRule e inventoryDecrementRule."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 67,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

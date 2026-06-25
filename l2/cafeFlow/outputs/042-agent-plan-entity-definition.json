@@ -1,0 +1,94 @@
+{
+  "savedAt": "2026-06-25T02:00:16.402Z",
+  "agentName": "agentPlanEntityDefinition",
+  "stepId": 42,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitEntityDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "entityDefinition": {
+            "entityId": "SalesSummary",
+            "title": "Resumo de Vendas",
+            "description": "Resumo diário gerado pela IA.",
+            "ownership": "moduleOwned",
+            "fields": [
+              {
+                "fieldId": "salesSummaryId",
+                "type": "uuid",
+                "required": true,
+                "description": "Identificador único do resumo de vendas."
+              },
+              {
+                "fieldId": "summaryDate",
+                "type": "date",
+                "required": true,
+                "description": "Data do resumo de vendas."
+              },
+              {
+                "fieldId": "totalSales",
+                "type": "money",
+                "required": true,
+                "description": "Total de vendas do dia."
+              },
+              {
+                "fieldId": "totalOrders",
+                "type": "number",
+                "required": true,
+                "description": "Quantidade total de pedidos do dia."
+              },
+              {
+                "fieldId": "averageTicket",
+                "type": "money",
+                "required": false,
+                "description": "Ticket médio do dia."
+              },
+              {
+                "fieldId": "highlights",
+                "type": "text",
+                "required": false,
+                "description": "Destaques e observações geradas pela IA."
+              },
+              {
+                "fieldId": "dailyShiftId",
+                "type": "DailyShift",
+                "required": false,
+                "description": "Referência opcional ao turno do dia relacionado ao resumo."
+              },
+              {
+                "fieldId": "createdAt",
+                "type": "datetime",
+                "required": true,
+                "description": "Data e hora de criação do registro."
+              },
+              {
+                "fieldId": "updatedAt",
+                "type": "datetime",
+                "required": true,
+                "description": "Data e hora da última atualização do registro."
+              }
+            ],
+            "rulesApplied": [
+              "aiSummarySourceRule"
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Entidade SalesSummary selecionada como resumo diário de vendas.",
+          "Relacionamento optionalManyToOne com DailyShift mapeado em dailyShiftId.",
+          "Campos de métricas e texto adicionados conforme descrição do resumo.",
+          "Campos de auditoria incluídos por persistência."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 46,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

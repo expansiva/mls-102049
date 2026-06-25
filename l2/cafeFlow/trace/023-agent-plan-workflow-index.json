@@ -1,0 +1,383 @@
+{
+  "savedAt": "2026-06-25T02:14:06.814Z",
+  "agentName": "agentPlanWorkflowIndex",
+  "stepId": 23,
+  "planning": {
+    "planId": "plan-workflow-index",
+    "dependsOn": [
+      "plan-usecase-entities"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitWorkflowIndex",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "workflows": [
+            {
+              "workflowId": "orderLifecycle",
+              "title": "Fluxo de pedido",
+              "purpose": "Gerenciar o ciclo de vida completo de um pedido, desde a criação pelo atendente até a entrega ou cancelamento, integrando com a fila da cozinha.",
+              "executionMode": "entityLifecycle",
+              "createsTask": true,
+              "actors": [
+                "attendantCashier",
+                "kitchen"
+              ],
+              "relatedEntities": [
+                "Order",
+                "OrderItem",
+                "TableSeat"
+              ],
+              "rulesApplied": [
+                "orderStatusLifecycle",
+                "inventoryDecrementRule"
+              ],
+              "persistenceRefs": [
+                "order",
+                "orderItem",
+                "tableSeat",
+                "dailySalesMetrics",
+                "topSellingItemsMetrics",
+                "operationalMetrics"
+              ],
+              "metricRefs": [
+                "dailySalesMetrics",
+                "topSellingItemsMetrics",
+                "operationalMetrics"
+              ],
+              "usecaseRefs": [
+                "criarPedido",
+                "cancelarPedido",
+                "listarPedidos",
+                "buscarPedidoPorId"
+              ],
+              "relatedCapabilities": [
+                "manageOrders"
+              ],
+              "priority": "now",
+              "implementationSuggestions": [
+                {
+                  "suggestionId": "kitchenTaskOnCreate",
+                  "title": "Criar tarefa na cozinha ao confirmar pedido",
+                  "reason": "Garantir que cada pedido novo apareça automaticamente na fila de preparo da cozinha como uma tarefa visível.",
+                  "priority": "now"
+                },
+                {
+                  "suggestionId": "notifyAttendantReady",
+                  "title": "Notificar atendente quando pedido ficar pronto",
+                  "reason": "Permitir que o atendente saiba exatamente quando retirar o pedido na cozinha para entrega ao cliente.",
+                  "priority": "now"
+                }
+              ]
+            },
+            {
+              "workflowId": "kitchenPreparation",
+              "title": "Fluxo de preparo na cozinha",
+              "purpose": "Coordenar a fila de preparo dos pedidos na cozinha, controlando as transições de status de recebido, preparando, pronto e entregue.",
+              "executionMode": "taskWorkflow",
+              "createsTask": true,
+              "actors": [
+                "kitchen"
+              ],
+              "relatedEntities": [
+                "Order"
+              ],
+              "rulesApplied": [
+                "orderStatusLifecycle"
+              ],
+              "persistenceRefs": [
+                "order",
+                "operationalMetrics"
+              ],
+              "metricRefs": [
+                "operationalMetrics"
+              ],
+              "usecaseRefs": [
+                "atualizarStatusPedido"
+              ],
+              "relatedCapabilities": [
+                "updateKitchenStatus"
+              ],
+              "priority": "now",
+              "implementationSuggestions": [
+                {
+                  "suggestionId": "kitchenRealtimeQueue",
+                  "title": "Exibir fila de preparo em tempo real",
+                  "reason": "O painel da cozinha deve refletir o estado atual da fila sem necessidade de refresh manual.",
+                  "priority": "now"
+                },
+                {
+                  "suggestionId": "prepTimeEstimate",
+                  "title": "Calcular tempo estimado de preparo por pedido",
+                  "reason": "Auxiliar a cozinha a priorizar pedidos e informar o atendente sobre atrasos.",
+                  "priority": "soon"
+                }
+              ]
+            },
+            {
+              "workflowId": "inventoryDecrement",
+              "title": "Baixa de estoque por pedido",
+              "purpose": "Registrar automaticamente a saída de insumos do estoque vinculados aos produtos vendidos, garantindo a integridade do inventário.",
+              "executionMode": "automation",
+              "createsTask": false,
+              "actors": [],
+              "relatedEntities": [
+                "InventoryItem",
+                "InventoryMovement"
+              ],
+              "rulesApplied": [
+                "inventoryDecrementRule"
+              ],
+              "persistenceRefs": [
+                "inventoryItem",
+                "inventoryMovement",
+                "order",
+                "orderItem",
+                "inventoryAlertMetrics"
+              ],
+              "metricRefs": [
+                "inventoryAlertMetrics"
+              ],
+              "usecaseRefs": [
+                "registrarMovimentoEstoque"
+              ],
+              "relatedCapabilities": [
+                "manageInventory"
+              ],
+              "priority": "now",
+              "implementationSuggestions": [
+                {
+                  "suggestionId": "decrementOnDelivered",
+                  "title": "Executar baixa apenas no status 'entregue'",
+                  "reason": "Evitar consumo de estoque para pedidos cancelados ou ainda não confirmados pelo cliente.",
+                  "priority": "now"
+                },
+                {
+                  "suggestionId": "batchDecrement",
+                  "title": "Processar baixas em lote ao fechar turno",
+                  "reason": "Reduzir concorrência no estoque durante o horário de pico, reconciliando ao final do dia.",
+                  "priority": "later"
+                }
+              ]
+            },
+            {
+              "workflowId": "dailyShiftClosure",
+              "title": "Fechamento de turno",
+              "purpose": "Controlar a abertura e o fechamento do turno diário, bloqueando operações e gerando o relatório consolidado de vendas do período.",
+              "executionMode": "entityLifecycle",
+              "createsTask": false,
+              "actors": [
+                "manager"
+              ],
+              "relatedEntities": [
+                "DailyShift",
+                "ShiftClosureReport"
+              ],
+              "rulesApplied": [
+                "shiftClosureRule"
+              ],
+              "persistenceRefs": [
+                "dailyShift",
+                "shiftClosureReport",
+                "order",
+                "orderItem",
+                "dailySalesMetrics",
+                "operationalMetrics"
+              ],
+              "metricRefs": [
+                "dailySalesMetrics",
+                "operationalMetrics"
+              ],
+              "usecaseRefs": [
+                "abrirTurno",
+                "fecharTurno",
+                "buscarRelatorioFechamento",
+                "listarTurnos"
+              ],
+              "relatedCapabilities": [
+                "closeDailyShift"
+              ],
+              "priority": "now",
+              "implementationSuggestions": [
+                {
+                  "suggestionId": "blockOrdersOnClosure",
+                  "title": "Bloquear novos pedidos após início do fechamento",
+                  "reason": "Garantir integridade dos dados do relatório de fechamento, impedindo vendas fora do turno.",
+                  "priority": "now"
+                },
+                {
+                  "suggestionId": "managerConfirmClosure",
+                  "title": "Exigir confirmação explícita do gerente para fechamento",
+                  "reason": "O fechamento de turno é crítico para o caixa e deve ser explicitamente confirmado.",
+                  "priority": "now"
+                }
+              ]
+            },
+            {
+              "workflowId": "aiSalesAssistant",
+              "title": "Geração de resumo e sugestões IA",
+              "purpose": "Executar a geração automática de resumos de vendas e sugestões de promoções via assistente de IA, consumindo dados de pedidos e estoque.",
+              "executionMode": "automation",
+              "createsTask": true,
+              "actors": [
+                "manager"
+              ],
+              "relatedEntities": [
+                "SalesSummary",
+                "PromotionSuggestion"
+              ],
+              "rulesApplied": [
+                "aiSummarySourceRule"
+              ],
+              "persistenceRefs": [
+                "salesSummary",
+                "promotionSuggestion",
+                "order",
+                "orderItem",
+                "inventoryItem",
+                "weeklySalesMetrics",
+                "topSellingItemsMetrics"
+              ],
+              "metricRefs": [
+                "weeklySalesMetrics",
+                "topSellingItemsMetrics"
+              ],
+              "usecaseRefs": [
+                "gerarResumoVendas",
+                "sugerirPromocoes",
+                "listarResumosVendas",
+                "listarSugestoesPromocoes"
+              ],
+              "relatedCapabilities": [
+                "aiSalesAssistant"
+              ],
+              "priority": "soon",
+              "implementationSuggestions": [
+                {
+                  "suggestionId": "scheduleNightlyRun",
+                  "title": "Agendar execução noturna do resumo IA",
+                  "reason": "Gerar resumos automaticamente ao final do dia para revisão matinal do gerente.",
+                  "priority": "soon"
+                },
+                {
+                  "suggestionId": "managerReviewPromoTask",
+                  "title": "Criar tarefa de revisão para sugestões de promoção",
+                  "reason": "Garantir que o gerente avalie as sugestões antes de aplicá-las ao cardápio.",
+                  "priority": "soon"
+                }
+              ]
+            },
+            {
+              "workflowId": "menuManagement",
+              "title": "Fluxo de gestão de cardápio",
+              "purpose": "Gerenciar o ciclo de vida dos itens do cardápio, permitindo cadastro, edição, desativação e vínculo com insumos de estoque.",
+              "executionMode": "entityLifecycle",
+              "createsTask": false,
+              "actors": [
+                "manager"
+              ],
+              "relatedEntities": [
+                "MenuItem"
+              ],
+              "rulesApplied": [],
+              "persistenceRefs": [],
+              "metricRefs": [],
+              "usecaseRefs": [
+                "criarItemCardapio",
+                "atualizarItemCardapio",
+                "listarItensCardapio"
+              ],
+              "relatedCapabilities": [
+                "manageMenu"
+              ],
+              "priority": "now",
+              "implementationSuggestions": [
+                {
+                  "suggestionId": "linkInventoryItem",
+                  "title": "Vincular item do cardápio a item de estoque",
+                  "reason": "Permitir controle de custos e baixa automática de insumos na venda.",
+                  "priority": "now"
+                },
+                {
+                  "suggestionId": "approvalForPriceChange",
+                  "title": "Solicitar aprovação para alteração de preço",
+                  "reason": "Evitar erros de digitação em valores que impactam diretamente o faturamento.",
+                  "priority": "soon"
+                }
+              ]
+            },
+            {
+              "workflowId": "inventoryAlert",
+              "title": "Alerta de estoque baixo",
+              "purpose": "Monitorar continuamente os níveis de estoque e gerar alertas quando insumos atingem o limite mínimo configurado.",
+              "executionMode": "automation",
+              "createsTask": true,
+              "actors": [
+                "manager"
+              ],
+              "relatedEntities": [
+                "InventoryItem"
+              ],
+              "rulesApplied": [
+                "lowStockAlertRule"
+              ],
+              "persistenceRefs": [
+                "inventoryItem",
+                "inventoryMovement",
+                "inventoryAlertMetrics"
+              ],
+              "metricRefs": [
+                "inventoryAlertMetrics"
+              ],
+              "usecaseRefs": [
+                "listarItensEstoque"
+              ],
+              "relatedCapabilities": [
+                "manageInventory"
+              ],
+              "priority": "now",
+              "implementationSuggestions": [
+                {
+                  "suggestionId": "createRestockTask",
+                  "title": "Criar tarefa para gerente ao detectar estoque baixo",
+                  "reason": "Garantir ação rápida de reabastecimento e evitar ruptura durante o atendimento.",
+                  "priority": "now"
+                },
+                {
+                  "suggestionId": "alertThresholdConfig",
+                  "title": "Permitir configuração de limite mínimo por item",
+                  "reason": "Diferentes insumos têm velocidades de consumo distintas e precisam de limites personalizados.",
+                  "priority": "now"
+                }
+              ]
+            }
+          ]
+        },
+        "questions": [
+          "A baixa de estoque deve ser executada no momento em que o pedido muda para 'pronto' ou apenas quando for marcado como 'entregue'?",
+          "O assistente IA deve gerar tarefas ativas para o gerente revisar, ou apenas registros passivos de sugestão?",
+          "O fechamento de turno deve ser obrigatório uma vez por dia ou pode haver múltiplos turnos (manhã/tarde) com fechamentos parciais?"
+        ],
+        "trace": [
+          "Mapeados 7 workflows a partir dos artefatos aprovados e das regras de negócio do domínio de cafeteria.",
+          "orderLifecycle e kitchenPreparation foram separados para distinguir a responsabilidade do atendente (criação/cancelamento) da cozinha (preparo/entrega), ambos operando sobre a entidade Order.",
+          "inventoryDecrement foi modelado como automation disparada pelo ciclo de vida do pedido, aplicando a inventoryDecrementRule.",
+          "dailyShiftClosure foi modelado como entityLifecycle da entidade DailyShift, integrando relatório e métricas do dia.",
+          "aiSalesAssistant foi priorizado como 'soon' e modelado como automation que alimenta métricas de vendas e gera entidades de sugestão.",
+          "inventoryAlert foi incluído para cobrir a lowStockAlertRule, gerando tarefas para o gerente e alimentando a tabela de métricas de alerta.",
+          "menuManagement foi mantido como entityLifecycle mesmo sem tabelas de persistência listadas no contexto reduzido, dado que a entidade MenuItem é moduleOwned e o fluxo está nos artefatos aprovados."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 52,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

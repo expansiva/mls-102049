@@ -1,0 +1,43 @@
+{
+  "savedAt": "2026-06-25T02:13:40.636Z",
+  "agentName": "agentPlanUsecaseDefinition",
+  "stepId": 55,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitUsecaseDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "usecaseDefinition": {
+            "usecaseId": "sugerirPromocoes",
+            "commands": [
+              {
+                "commandId": "sugerirPromocoes",
+                "input": [],
+                "output": [
+                  {
+                    "name": "salesAIEntityId",
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Definido único comando para sugerir promoções.",
+          "Sem parâmetros explícitos; usa dados de vendas e estoque das tabelas lidas.",
+          "Retorna identificador da entidade de IA de vendas com sugestões."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 57,
+    "interaction": null,
+    "nextSteps": null
+  }
+}
