@@ -1,0 +1,250 @@
+{
+  "savedAt": "2026-06-25T01:53:31.090Z",
+  "agentName": "agentRecommendImplementations",
+  "stepId": 6,
+  "planning": {
+    "planId": "req-recommend-implementations",
+    "dependsOn": [
+      "req-discover-scope"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitImplementationRecommendations",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "recommendations": [
+            {
+              "recommendationId": "menuItemMdm",
+              "artifactType": "mdm",
+              "title": "MDM de itens e categorias do cardápio",
+              "description": "Domínio mestre para categorias e itens do cardápio com padronização de nomes, preços base e vínculo com ingredientes em estoque.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Baseia filtros, relatórios e evita divergências entre cardápio e estoque.",
+              "requiresClientDecision": false,
+              "dependencies": []
+            },
+            {
+              "recommendationId": "orderStatusMdm",
+              "artifactType": "mdm",
+              "title": "MDM de status do pedido",
+              "description": "Catálogo de estados do pedido (ex.: recebido, preparando, pronto, entregue, cancelado) usado por POS e cozinha.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Garante consistência nas transições de status e no painel da cozinha.",
+              "requiresClientDecision": false,
+              "dependencies": []
+            },
+            {
+              "recommendationId": "stockUnitMdm",
+              "artifactType": "mdm",
+              "title": "MDM de unidades de medida de estoque",
+              "description": "Unidades padrão para itens de estoque (ex.: kg, g, un, ml) e conversões simples quando aplicável.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Evita erros na baixa de estoque e nos relatórios de consumo.",
+              "requiresClientDecision": false,
+              "dependencies": []
+            },
+            {
+              "recommendationId": "orderUsecaseEntity",
+              "artifactType": "usecaseEntity",
+              "title": "Entidade de caso de uso para Pedido",
+              "description": "Entidade operacional do fluxo de pedido com itens, origem (mesa/takeout) e status, incluindo comandos de criação e atualização.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "O escopo inclui criação/atualização de pedidos e transições de status.",
+              "requiresClientDecision": false,
+              "dependencies": []
+            },
+            {
+              "recommendationId": "inventoryUsecaseEntity",
+              "artifactType": "usecaseEntity",
+              "title": "Entidade de caso de uso para Estoque",
+              "description": "Entidade operacional para baixa automática e ajustes manuais de itens de estoque vinculados a vendas.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Há atualizações de estoque e necessidade de rastrear alterações por pedido.",
+              "requiresClientDecision": false,
+              "dependencies": []
+            },
+            {
+              "recommendationId": "shiftUsecaseEntity",
+              "artifactType": "usecaseEntity",
+              "title": "Entidade de caso de uso para Turno Diário",
+              "description": "Entidade operacional para abertura e fechamento de turno com consolidação de vendas do dia.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "O fechamento diário requer registro e consolidação de dados.",
+              "requiresClientDecision": false,
+              "dependencies": []
+            },
+            {
+              "recommendationId": "ordersWorkflow",
+              "artifactType": "workflow",
+              "title": "Workflow de ciclo do pedido",
+              "description": "Transições de status do pedido da criação até entrega/cancelamento, incluindo atualização no painel da cozinha.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "É crítico para coordenação entre atendimento e cozinha.",
+              "requiresClientDecision": false,
+              "dependencies": [
+                "orderUsecaseEntity",
+                "orderStatusMdm"
+              ]
+            },
+            {
+              "recommendationId": "inventoryDecrementWorkflow",
+              "artifactType": "workflow",
+              "title": "Workflow de baixa de estoque por venda",
+              "description": "Aplicar baixa de estoque ao concluir o pedido e registrar ajustes manuais quando necessário.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Controle de estoque é parte central do escopo.",
+              "requiresClientDecision": true,
+              "dependencies": [
+                "inventoryUsecaseEntity",
+                "stockUnitMdm"
+              ]
+            },
+            {
+              "recommendationId": "dailyShiftCloseWorkflow",
+              "artifactType": "workflow",
+              "title": "Workflow de fechamento de turno",
+              "description": "Consolidar vendas, cancelamentos e registrar fechamento do dia.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Relatório de fechamento é tela-chave.",
+              "requiresClientDecision": true,
+              "dependencies": [
+                "shiftUsecaseEntity"
+              ]
+            },
+            {
+              "recommendationId": "menuInventoryManagementPage",
+              "artifactType": "page",
+              "title": "Tela de gerenciamento de cardápio e estoque",
+              "description": "CRUD de itens do cardápio, ingredientes em estoque e níveis mínimos.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Necessária para manutenção do cardápio e controle simples de estoque.",
+              "requiresClientDecision": false,
+              "dependencies": [
+                "menuItemMdm",
+                "inventoryUsecaseEntity"
+              ]
+            },
+            {
+              "recommendationId": "posQuickOrderPage",
+              "artifactType": "page",
+              "title": "Interface rápida de POS",
+              "description": "Lançamento rápido de pedidos com seleção de itens, mesa/takeout e status da cozinha.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Atendimento rápido é objetivo principal do MVP.",
+              "requiresClientDecision": false,
+              "dependencies": [
+                "orderUsecaseEntity",
+                "ordersWorkflow"
+              ]
+            },
+            {
+              "recommendationId": "kitchenStatusPage",
+              "artifactType": "page",
+              "title": "Painel de status da cozinha",
+              "description": "Fila de pedidos em preparo com atualização de status em tempo real.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Coordenação de cozinha depende do fluxo de status visível.",
+              "requiresClientDecision": false,
+              "dependencies": [
+                "ordersWorkflow"
+              ]
+            },
+            {
+              "recommendationId": "shiftCloseReportPage",
+              "artifactType": "page",
+              "title": "Relatório de fechamento de turno",
+              "description": "Resumo diário com totais e indicadores operacionais.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Tela-chave solicitada para o gerente.",
+              "requiresClientDecision": true,
+              "dependencies": [
+                "dailyShiftCloseWorkflow"
+              ]
+            },
+            {
+              "recommendationId": "managerMetricsTable",
+              "artifactType": "metricTable",
+              "title": "Tabela de métricas operacionais",
+              "description": "Agregações diárias de vendas, ticket médio, itens mais vendidos e alertas de estoque baixo.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Dashboard básico foi aceito e precisa de base de dados agregada.",
+              "requiresClientDecision": false,
+              "dependencies": []
+            },
+            {
+              "recommendationId": "managerMetricsDashboard",
+              "artifactType": "metricDashboard",
+              "title": "Dashboard de métricas do gerente",
+              "description": "Painel com vendas do dia, itens mais vendidos e estoque baixo.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "O escopo inclui dashboard básico para acompanhamento diário.",
+              "requiresClientDecision": false,
+              "dependencies": [
+                "managerMetricsTable"
+              ]
+            },
+            {
+              "recommendationId": "salesAssistantAgent",
+              "artifactType": "agent",
+              "title": "Agente Assistente IA de vendas",
+              "description": "Gera resumo de vendas do dia e sugestões de promoção usando o proxy LLM da plataforma.",
+              "priority": "soon",
+              "defaultPriority": "soon",
+              "reason": "A funcionalidade LLM é desejada, mas não crítica para o MVP operacional.",
+              "requiresClientDecision": true,
+              "dependencies": [
+                "managerMetricsTable"
+              ]
+            },
+            {
+              "recommendationId": "notificationsModule",
+              "artifactType": "horizontalModule",
+              "title": "Notificações operacionais",
+              "description": "Alertas de pedido pronto e estoque baixo para atendimento e cozinha.",
+              "priority": "soon",
+              "defaultPriority": "soon",
+              "reason": "Melhora a coordenação, mas pode entrar após o fluxo básico.",
+              "requiresClientDecision": true,
+              "dependencies": [
+                "ordersWorkflow",
+                "managerMetricsTable"
+              ]
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Escopo inclui criação e atualização de pedidos, baixa de estoque e fechamento de turno, exigindo entidades de caso de uso e workflows.",
+          "Dashboard básico e métricas iniciais foram aceitos, demandando tabela de métricas e dashboard de métricas.",
+          "MDMs são necessários para padronizar categorias, status e unidades de estoque.",
+          "Funcionalidade IA foi solicitada, recomendada como agente que usa o proxy LLM da plataforma."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 34,
+    "interaction": null,
+    "nextSteps": null
+  }
+}
