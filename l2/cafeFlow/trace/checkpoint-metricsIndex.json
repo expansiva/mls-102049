@@ -1,0 +1,801 @@
+{
+  "schemaVersion": "2026-06-06",
+  "artifactType": "indexCheckpoint",
+  "indexName": "metricsIndex",
+  "moduleName": "cafeFlow",
+  "status": "frozen",
+  "approvedAt": "2026-06-25T02:07:05.280Z",
+  "source": {
+    "agentName": "agentPlanMetricsIndex",
+    "stepId": 19,
+    "planId": "plan-metrics-index"
+  },
+  "healthReport": {
+    "localErrors": [],
+    "localWarnings": [
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table dailySalesMetrics sources unknown base table orders",
+        "path": "metricTables[0]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table dailySalesMetrics sources unknown base table order_items",
+        "path": "metricTables[0]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table topSellingItemsMetrics sources unknown base table order_items",
+        "path": "metricTables[1]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table topSellingItemsMetrics sources unknown base table orders",
+        "path": "metricTables[1]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table inventoryAlertMetrics sources unknown base table inventory_items",
+        "path": "metricTables[2]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table inventoryAlertMetrics sources unknown base table inventory_movements",
+        "path": "metricTables[2]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table weeklySalesMetrics sources unknown base table orders",
+        "path": "metricTables[3]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table weeklySalesMetrics sources unknown base table order_items",
+        "path": "metricTables[3]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table operationalMetrics sources unknown base table orders",
+        "path": "metricTables[4]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table operationalMetrics sources unknown base table order_items",
+        "path": "metricTables[4]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table operationalMetrics sources unknown base table inventory_items",
+        "path": "metricTables[4]"
+      }
+    ],
+    "criticErrors": [],
+    "criticWarnings": [
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table dailySalesMetrics sources unknown base table orders",
+        "path": "metricTables[0]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table dailySalesMetrics sources unknown base table order_items",
+        "path": "metricTables[0]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table topSellingItemsMetrics sources unknown base table order_items",
+        "path": "metricTables[1]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table topSellingItemsMetrics sources unknown base table orders",
+        "path": "metricTables[1]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table inventoryAlertMetrics sources unknown base table inventory_items",
+        "path": "metricTables[2]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table inventoryAlertMetrics sources unknown base table inventory_movements",
+        "path": "metricTables[2]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table weeklySalesMetrics sources unknown base table orders",
+        "path": "metricTables[3]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table weeklySalesMetrics sources unknown base table order_items",
+        "path": "metricTables[3]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table operationalMetrics sources unknown base table orders",
+        "path": "metricTables[4]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table operationalMetrics sources unknown base table order_items",
+        "path": "metricTables[4]"
+      },
+      {
+        "severity": "warning",
+        "code": "metrics.sourceBaseTable.unknown",
+        "message": "metric table operationalMetrics sources unknown base table inventory_items",
+        "path": "metricTables[4]"
+      }
+    ],
+    "attempts": 2,
+    "notes": []
+  },
+  "index": {
+    "runId": "provider-tool-call",
+    "stepId": "repair:metricsIndex",
+    "schemaVersion": "2026-06-02",
+    "status": "ok",
+    "result": {
+      "metricsPlan": {
+        "enabled": true,
+        "storageEngine": "postgresTimescaleDB",
+        "moduleId": "cafeFlow",
+        "title": "Plano de métricas do cafeFlow",
+        "description": "Métricas operacionais de vendas, estoque e turno para cafeterias e lanchonetes.",
+        "updateResponsibility": "layer_3_usecases",
+        "derivationSources": [
+          "baseTableUpdates",
+          "lifecycleTransitions",
+          "operationalRisks"
+        ]
+      },
+      "metricTables": [
+        {
+          "metricTableId": "dailySalesMetrics",
+          "tableName": "daily_sales_metrics",
+          "title": "Métricas de vendas do dia",
+          "purpose": "Acompanhar receita, quantidade de pedidos e ticket médio em tempo real durante o turno.",
+          "storageEngine": "postgresTimescaleDB",
+          "sourceBaseTables": [
+            "orders",
+            "order_items"
+          ],
+          "sourceEntities": [
+            "Order",
+            "OrderItem",
+            "MenuItem",
+            "MenuCategory",
+            "DailyShift",
+            "TableSeat"
+          ],
+          "sourceWriteEvents": [
+            "order.created",
+            "order.statusUpdated",
+            "orderItem.created"
+          ],
+          "timeColumn": "recorded_at",
+          "dimensions": [
+            {
+              "dimensionId": "orderId",
+              "column": "order_id",
+              "type": "string",
+              "description": "Identificador do pedido"
+            },
+            {
+              "dimensionId": "orderItemId",
+              "column": "order_item_id",
+              "type": "string",
+              "description": "Identificador do item do pedido"
+            },
+            {
+              "dimensionId": "menuItemId",
+              "column": "menu_item_id",
+              "type": "string",
+              "description": "Identificador do item do cardápio"
+            },
+            {
+              "dimensionId": "menuCategoryId",
+              "column": "menu_category_id",
+              "type": "string",
+              "description": "Identificador da categoria do cardápio"
+            },
+            {
+              "dimensionId": "dailyShiftId",
+              "column": "daily_shift_id",
+              "type": "string",
+              "description": "Identificador do turno diário"
+            },
+            {
+              "dimensionId": "tableSeatId",
+              "column": "table_seat_id",
+              "type": "string",
+              "description": "Identificador da mesa/comanda"
+            },
+            {
+              "dimensionId": "orderStatusId",
+              "column": "order_status_id",
+              "type": "string",
+              "description": "Identificador do status do pedido"
+            },
+            {
+              "dimensionId": "inventoryItemId",
+              "column": "inventory_item_id",
+              "type": "text",
+              "description": "FK dimension derived from ontology relationship menuItemInventory (MenuItem -> InventoryItem)"
+            }
+          ],
+          "measures": [
+            {
+              "measureId": "revenue",
+              "column": "revenue",
+              "type": "decimal",
+              "aggregation": "sum",
+              "unit": "BRL",
+              "description": "Receita gerada"
+            },
+            {
+              "measureId": "orderCount",
+              "column": "order_count",
+              "type": "integer",
+              "aggregation": "sum",
+              "unit": "count",
+              "description": "Quantidade de pedidos"
+            },
+            {
+              "measureId": "itemsSold",
+              "column": "items_sold",
+              "type": "integer",
+              "aggregation": "sum",
+              "unit": "count",
+              "description": "Quantidade de itens vendidos"
+            },
+            {
+              "measureId": "averageTicket",
+              "column": "average_ticket",
+              "type": "decimal",
+              "aggregation": "avg",
+              "unit": "BRL",
+              "description": "Ticket médio"
+            }
+          ],
+          "aggregationWindows": [
+            "1 hour",
+            "1 day"
+          ],
+          "retentionPolicy": "1 year",
+          "priority": "now",
+          "rulesApplied": [
+            "orderStatusLifecycle",
+            "inventoryDecrementRule"
+          ],
+          "reason": "Permite ao gerente acompanhar o desempenho de vendas do dia e tomar decisões rápidas durante o turno."
+        },
+        {
+          "metricTableId": "topSellingItemsMetrics",
+          "tableName": "top_selling_items_metrics",
+          "title": "Itens mais vendidos",
+          "purpose": "Identificar quais produtos do cardápio têm maior saída por período.",
+          "storageEngine": "postgresTimescaleDB",
+          "sourceBaseTables": [
+            "order_items",
+            "orders"
+          ],
+          "sourceEntities": [
+            "OrderItem",
+            "Order",
+            "MenuItem",
+            "MenuCategory",
+            "DailyShift"
+          ],
+          "sourceWriteEvents": [
+            "orderItem.created",
+            "order.statusUpdated"
+          ],
+          "timeColumn": "recorded_at",
+          "dimensions": [
+            {
+              "dimensionId": "menuItemId",
+              "column": "menu_item_id",
+              "type": "string",
+              "description": "Identificador do item do cardápio"
+            },
+            {
+              "dimensionId": "menuCategoryId",
+              "column": "menu_category_id",
+              "type": "string",
+              "description": "Identificador da categoria"
+            },
+            {
+              "dimensionId": "orderId",
+              "column": "order_id",
+              "type": "string",
+              "description": "Identificador do pedido"
+            },
+            {
+              "dimensionId": "dailyShiftId",
+              "column": "daily_shift_id",
+              "type": "string",
+              "description": "Identificador do turno diário"
+            },
+            {
+              "dimensionId": "tableSeatId",
+              "column": "table_seat_id",
+              "type": "text",
+              "description": "FK dimension derived from ontology relationship orderTableSeat (Order -> TableSeat)"
+            },
+            {
+              "dimensionId": "inventoryItemId",
+              "column": "inventory_item_id",
+              "type": "text",
+              "description": "FK dimension derived from ontology relationship menuItemInventory (MenuItem -> InventoryItem)"
+            },
+            {
+              "dimensionId": "orderStatusId",
+              "column": "order_status_id",
+              "type": "text",
+              "description": "FK dimension derived from ontology relationship orderStatusRef (Order -> OrderStatus)"
+            }
+          ],
+          "measures": [
+            {
+              "measureId": "quantitySold",
+              "column": "quantity_sold",
+              "type": "integer",
+              "aggregation": "sum",
+              "unit": "count",
+              "description": "Quantidade vendida do item"
+            },
+            {
+              "measureId": "revenue",
+              "column": "revenue",
+              "type": "decimal",
+              "aggregation": "sum",
+              "unit": "BRL",
+              "description": "Receita gerada pelo item"
+            }
+          ],
+          "aggregationWindows": [
+            "1 day",
+            "7 days"
+          ],
+          "retentionPolicy": "1 year",
+          "priority": "now",
+          "rulesApplied": [
+            "orderStatusLifecycle"
+          ],
+          "reason": "Base para sugestões de promoção e controle de produção na cozinha."
+        },
+        {
+          "metricTableId": "inventoryAlertMetrics",
+          "tableName": "inventory_alert_metrics",
+          "title": "Alertas de estoque baixo",
+          "purpose": "Monitorar níveis de estoque e disparar alertas quando itens atingirem quantidade mínima.",
+          "storageEngine": "postgresTimescaleDB",
+          "sourceBaseTables": [
+            "inventory_items",
+            "inventory_movements"
+          ],
+          "sourceEntities": [
+            "InventoryItem",
+            "InventoryMovement",
+            "StockUnit",
+            "Order"
+          ],
+          "sourceWriteEvents": [
+            "inventoryMovement.created",
+            "inventoryItem.updated"
+          ],
+          "timeColumn": "recorded_at",
+          "dimensions": [
+            {
+              "dimensionId": "inventoryItemId",
+              "column": "inventory_item_id",
+              "type": "string",
+              "description": "Identificador do item de estoque"
+            },
+            {
+              "dimensionId": "stockUnitId",
+              "column": "stock_unit_id",
+              "type": "string",
+              "description": "Identificador da unidade de medida"
+            },
+            {
+              "dimensionId": "movementType",
+              "column": "movement_type",
+              "type": "string",
+              "description": "Tipo de movimentação"
+            },
+            {
+              "dimensionId": "orderId",
+              "column": "order_id",
+              "type": "string",
+              "description": "Identificador do pedido relacionado"
+            },
+            {
+              "dimensionId": "tableSeatId",
+              "column": "table_seat_id",
+              "type": "text",
+              "description": "FK dimension derived from ontology relationship orderTableSeat (Order -> TableSeat)"
+            },
+            {
+              "dimensionId": "dailyShiftId",
+              "column": "daily_shift_id",
+              "type": "text",
+              "description": "FK dimension derived from ontology relationship shiftOrders (Order -> DailyShift)"
+            },
+            {
+              "dimensionId": "orderStatusId",
+              "column": "order_status_id",
+              "type": "text",
+              "description": "FK dimension derived from ontology relationship orderStatusRef (Order -> OrderStatus)"
+            }
+          ],
+          "measures": [
+            {
+              "measureId": "currentStock",
+              "column": "current_stock",
+              "type": "decimal",
+              "aggregation": "last",
+              "unit": "unit",
+              "description": "Estoque atual do item"
+            },
+            {
+              "measureId": "lowStockAlertCount",
+              "column": "low_stock_alert_count",
+              "type": "integer",
+              "aggregation": "sum",
+              "unit": "count",
+              "description": "Contagem de alertas de estoque baixo"
+            },
+            {
+              "measureId": "quantityDelta",
+              "column": "quantity_delta",
+              "type": "decimal",
+              "aggregation": "sum",
+              "unit": "unit",
+              "description": "Variação de quantidade em movimentações"
+            }
+          ],
+          "aggregationWindows": [
+            "1 hour",
+            "1 day"
+          ],
+          "retentionPolicy": "90 days",
+          "priority": "now",
+          "rulesApplied": [
+            "lowStockAlertRule",
+            "inventoryDecrementRule"
+          ],
+          "reason": "Evita ruptura de insumos críticos durante o expediente."
+        },
+        {
+          "metricTableId": "weeklySalesMetrics",
+          "tableName": "weekly_sales_metrics",
+          "title": "Vendas dos últimos 7 dias",
+          "purpose": "Analisar tendência de vendas e comparar desempenho semanal.",
+          "storageEngine": "postgresTimescaleDB",
+          "sourceBaseTables": [
+            "orders",
+            "order_items"
+          ],
+          "sourceEntities": [
+            "Order",
+            "OrderItem",
+            "MenuItem",
+            "MenuCategory",
+            "DailyShift"
+          ],
+          "sourceWriteEvents": [
+            "order.created",
+            "orderItem.created",
+            "order.statusUpdated"
+          ],
+          "timeColumn": "recorded_at",
+          "dimensions": [
+            {
+              "dimensionId": "orderId",
+              "column": "order_id",
+              "type": "string",
+              "description": "Identificador do pedido"
+            },
+            {
+              "dimensionId": "dailyShiftId",
+              "column": "daily_shift_id",
+              "type": "string",
+              "description": "Identificador do turno diário"
+            },
+            {
+              "dimensionId": "menuItemId",
+              "column": "menu_item_id",
+              "type": "string",
+              "description": "Identificador do item do cardápio"
+            },
+            {
+              "dimensionId": "menuCategoryId",
+              "column": "menu_category_id",
+              "type": "string",
+              "description": "Identificador da categoria"
+            },
+            {
+              "dimensionId": "orderStatusId",
+              "column": "order_status_id",
+              "type": "string",
+              "description": "Identificador do status do pedido"
+            },
+            {
+              "dimensionId": "tableSeatId",
+              "column": "table_seat_id",
+              "type": "text",
+              "description": "FK dimension derived from ontology relationship orderTableSeat (Order -> TableSeat)"
+            },
+            {
+              "dimensionId": "inventoryItemId",
+              "column": "inventory_item_id",
+              "type": "text",
+              "description": "FK dimension derived from ontology relationship menuItemInventory (MenuItem -> InventoryItem)"
+            }
+          ],
+          "measures": [
+            {
+              "measureId": "revenue",
+              "column": "revenue",
+              "type": "decimal",
+              "aggregation": "sum",
+              "unit": "BRL",
+              "description": "Receita total"
+            },
+            {
+              "measureId": "orderCount",
+              "column": "order_count",
+              "type": "integer",
+              "aggregation": "sum",
+              "unit": "count",
+              "description": "Total de pedidos"
+            },
+            {
+              "measureId": "itemsSold",
+              "column": "items_sold",
+              "type": "integer",
+              "aggregation": "sum",
+              "unit": "count",
+              "description": "Total de itens vendidos"
+            }
+          ],
+          "aggregationWindows": [
+            "1 day",
+            "7 days"
+          ],
+          "retentionPolicy": "1 year",
+          "priority": "soon",
+          "rulesApplied": [
+            "orderStatusLifecycle"
+          ],
+          "reason": "Suporta planejamento de compras e ajustes no cardápio com base na sazonalidade."
+        },
+        {
+          "metricTableId": "operationalMetrics",
+          "tableName": "operational_metrics",
+          "title": "Tabela de métricas operacionais",
+          "purpose": "Consolidar indicadores de eficiência operacional como tempo de preparo e cancelamentos.",
+          "storageEngine": "postgresTimescaleDB",
+          "sourceBaseTables": [
+            "orders",
+            "order_items",
+            "inventory_items"
+          ],
+          "sourceEntities": [
+            "Order",
+            "OrderItem",
+            "InventoryItem",
+            "MenuItem",
+            "StockUnit"
+          ],
+          "sourceWriteEvents": [
+            "order.created",
+            "order.statusUpdated",
+            "order.cancelled",
+            "inventoryItem.updated"
+          ],
+          "timeColumn": "recorded_at",
+          "dimensions": [
+            {
+              "dimensionId": "orderId",
+              "column": "order_id",
+              "type": "string",
+              "description": "Identificador do pedido"
+            },
+            {
+              "dimensionId": "menuItemId",
+              "column": "menu_item_id",
+              "type": "string",
+              "description": "Identificador do item do cardápio"
+            },
+            {
+              "dimensionId": "inventoryItemId",
+              "column": "inventory_item_id",
+              "type": "string",
+              "description": "Identificador do item de estoque"
+            },
+            {
+              "dimensionId": "stockUnitId",
+              "column": "stock_unit_id",
+              "type": "string",
+              "description": "Identificador da unidade de medida"
+            },
+            {
+              "dimensionId": "orderStatusId",
+              "column": "order_status_id",
+              "type": "string",
+              "description": "Identificador do status do pedido"
+            },
+            {
+              "dimensionId": "menuCategoryId",
+              "column": "menu_category_id",
+              "type": "text",
+              "description": "FK dimension derived from ontology relationship menuItemCategory (MenuItem -> MenuCategory)"
+            },
+            {
+              "dimensionId": "tableSeatId",
+              "column": "table_seat_id",
+              "type": "text",
+              "description": "FK dimension derived from ontology relationship orderTableSeat (Order -> TableSeat)"
+            },
+            {
+              "dimensionId": "dailyShiftId",
+              "column": "daily_shift_id",
+              "type": "text",
+              "description": "FK dimension derived from ontology relationship shiftOrders (Order -> DailyShift)"
+            }
+          ],
+          "measures": [
+            {
+              "measureId": "cancellationCount",
+              "column": "cancellation_count",
+              "type": "integer",
+              "aggregation": "sum",
+              "unit": "count",
+              "description": "Quantidade de pedidos cancelados"
+            },
+            {
+              "measureId": "avgPreparationTime",
+              "column": "avg_preparation_time",
+              "type": "integer",
+              "aggregation": "avg",
+              "unit": "seconds",
+              "description": "Tempo médio de preparo em segundos"
+            },
+            {
+              "measureId": "lowStockItemCount",
+              "column": "low_stock_item_count",
+              "type": "integer",
+              "aggregation": "sum",
+              "unit": "count",
+              "description": "Quantidade de itens com estoque baixo"
+            }
+          ],
+          "aggregationWindows": [
+            "1 hour",
+            "1 day"
+          ],
+          "retentionPolicy": "90 days",
+          "priority": "now",
+          "rulesApplied": [
+            "orderStatusLifecycle",
+            "lowStockAlertRule"
+          ],
+          "reason": "Fornece visibilidade sobre gargalos na cozinha e perdas por cancelamento."
+        }
+      ],
+      "dashboardPages": [
+        {
+          "metricDashboardId": "managerMetricsDashboard",
+          "title": "Dashboard de métricas do gerente",
+          "actor": "manager",
+          "accessPolicy": "adminOnly",
+          "priority": "now",
+          "sources": [
+            "dailySalesMetrics",
+            "topSellingItemsMetrics",
+            "inventoryAlertMetrics",
+            "weeklySalesMetrics",
+            "operationalMetrics"
+          ],
+          "rulesApplied": [
+            "orderStatusLifecycle",
+            "inventoryDecrementRule",
+            "shiftClosureRule",
+            "lowStockAlertRule"
+          ],
+          "description": "Painel administrativo consolidado com indicadores de vendas, estoque e operação.",
+          "widgets": [
+            {
+              "widgetId": "dailyRevenueWidget",
+              "title": "Receita do dia",
+              "metricId": "revenue",
+              "type": "chart",
+              "sourceMetricTable": "dailySalesMetrics"
+            },
+            {
+              "widgetId": "dailyOrdersWidget",
+              "title": "Pedidos do dia",
+              "metricId": "orderCount",
+              "type": "chart",
+              "sourceMetricTable": "dailySalesMetrics"
+            },
+            {
+              "widgetId": "topItemsWidget",
+              "title": "Itens mais vendidos",
+              "metricId": "quantitySold",
+              "type": "table",
+              "sourceMetricTable": "topSellingItemsMetrics"
+            },
+            {
+              "widgetId": "lowStockWidget",
+              "title": "Alertas de estoque baixo",
+              "metricId": "lowStockAlertCount",
+              "type": "list",
+              "sourceMetricTable": "inventoryAlertMetrics"
+            },
+            {
+              "widgetId": "weeklyRevenueWidget",
+              "title": "Vendas dos últimos 7 dias",
+              "metricId": "revenue",
+              "type": "chart",
+              "sourceMetricTable": "weeklySalesMetrics"
+            },
+            {
+              "widgetId": "avgTicketWidget",
+              "title": "Ticket médio",
+              "metricId": "averageTicket",
+              "type": "stat",
+              "sourceMetricTable": "dailySalesMetrics"
+            },
+            {
+              "widgetId": "avgPrepTimeWidget",
+              "title": "Tempo médio de preparo",
+              "metricId": "avgPreparationTime",
+              "type": "stat",
+              "sourceMetricTable": "operationalMetrics"
+            },
+            {
+              "widgetId": "cancellationWidget",
+              "title": "Cancelamentos",
+              "metricId": "cancellationCount",
+              "type": "stat",
+              "sourceMetricTable": "operationalMetrics"
+            }
+          ]
+        }
+      ]
+    },
+    "questions": [],
+    "trace": [
+      "Corrigi dimensões FK de status do pedido para orderStatusId em dailySalesMetrics, weeklySalesMetrics e operationalMetrics conforme T-013.",
+      "Adicionei dimensão orderId em weeklySalesMetrics para cobrir relação OrderItem -> Order.",
+      "Ajustei prioridade de weeklySalesMetrics para 'soon' conforme artefato aprovado.",
+      "Mantive demais estruturas e fontes inalteradas."
+    ]
+  }
+}

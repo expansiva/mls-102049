@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "2026-06-06",
+  "artifactType": "indexCheckpoint",
+  "indexName": "usecasePlan",
+  "moduleName": "cafeFlow",
+  "status": "frozen",
+  "approvedAt": "2026-06-25T02:12:57.128Z",
+  "source": {
+    "agentName": "agentPlanUsecaseEntities",
+    "stepId": 21,
+    "planId": "plan-usecase-entities"
+  },
+  "healthReport": {
+    "localErrors": [],
+    "localWarnings": [
+      {
+        "severity": "warning",
+        "code": "usecase.metricWrite.unjustified",
+        "message": "usecase criarPedido writes metric table dailySalesMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+        "path": "usecases[0]"
+      },
+      {
+        "severity": "warning",
+        "code": "usecase.metricWrite.unjustified",
+        "message": "usecase criarPedido writes metric table topSellingItemsMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+        "path": "usecases[0]"
+      },
+      {
+        "severity": "warning",
+        "code": "usecase.metricWrite.unjustified",
+        "message": "usecase criarPedido writes metric table weeklySalesMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+        "path": "usecases[0]"
+      },
+      {
+        "severity": "warning",
+        "code": "usecase.metricWrite.unjustified",
+        "message": "usecase criarPedido writes metric table operationalMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+        "path": "usecases[0]"
+      },
+      {
+        "severity": "warning",
+        "code": "usecase.metricWrite.unjustified",
+        "message": "usecase cancelarPedido writes metric table dailySalesMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+        "path": "usecases[2]"
+      },
+      {
+        "severity": "warning",
+        "code": "usecase.metricWrite.unjustified",
+        "message": "usecase cancelarPedido writes metric table topSellingItemsMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+        "path": "usecases[2]"
+      },
+      {
+        "severity": "warning",
+        "code": "usecase.metricWrite.unjustified",
+        "message": "usecase cancelarPedido writes metric table weeklySalesMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+        "path": "usecases[2]"
+      },
+      {
+        "severity": "warning",
+        "code": "usecase.metricWrite.unjustified",
+        "message": "usecase cancelarPedido writes metric table operationalMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+        "path": "usecases[2]"
+      },
+      {
+        "severity": "warning",
+        "code": "usecase.metricWrite.unjustified",
+        "message": "usecase registrarMovimentoEstoque writes metric table inventoryAlertMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+        "path": "usecases[14]"
+      },
+      {
+        "severity": "warning",
+        "code": "usecase.metricWrite.unjustified",
+        "message": "usecase registrarMovimentoEstoque writes metric table operationalMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+        "path": "usecases[14]"
+      },
+      {
+        "severity": "warning",
+        "code": "usecase.metricWrite.unjustified",
+        "message": "usecase fecharTurno writes metric table dailySalesMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+        "path": "usecases[17]"
+      },
+      {
+        "severity": "warning",
+        "code": "usecase.metricWrite.unjustified",
+        "message": "usecase fecharTurno writes metric table operationalMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+        "path": "usecases[17]"
+      }
+    ],
+    "criticErrors": [],
+    "criticWarnings": [],
+    "attempts": 1,
+    "notes": [
+      "critic LLM failed, approved by fallback: critic returned status failed"
+    ]
+  },
+  "index": {
+    "runId": "provider-tool-call",
+    "stepId": "16-plan-usecase-entities",
+    "schemaVersion": "2026-06-02",
+    "status": "ok",
+    "result": {
+      "backendArchitecture": {
+        "pattern": "Clean Architecture / Ports and Adapters",
+        "layer1Responsibility": "Persistência, integrações externas e acesso a dados (tabelas do módulo, MDM, horizontais e plugins)",
+        "layer2Responsibility": "Controllers e BFF — orquestram chamadas para use cases, sem acesso direto a tabelas",
+        "layer3Responsibility": "Casos de uso e regras de negócio — única camada com permissão para acessar tabelas de layer_1_external"
+      },
+      "usecaseEntities": [
+        {
+          "usecaseEntityId": "orderEntity",
+          "title": "Entidade de Pedido",
+          "purpose": "Agrupa pedidos, itens de pedido, mesas/comandas e status de pedido",
+          "sourceTables": [
+            {
+              "tableName": "orders",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "order_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "table_seats",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "OrderStatus",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "allowedOperations": [
+            "create",
+            "read",
+            "update",
+            "list",
+            "search"
+          ],
+          "layer": "layer_3_usecases",
+          "rulesApplied": [
+            "orderStatusLifecycle",
+            "inventoryDecrementRule"
+          ]
+        },
+        {
+          "usecaseEntityId": "menuEntity",
+          "title": "Entidade de Cardápio",
+          "purpose": "Agrupa itens e categorias do cardápio gerenciados via MDM",
+          "sourceTables": [
+            {
+              "tableName": "MenuItem",
+              "ownership": "mdmOwned"
+            },
+            {
+              "tableName": "MenuCategory",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "allowedOperations": [
+            "create",
+            "read",
+            "update",
+            "list",
+            "search"
+          ],
+          "layer": "layer_3_usecases",
+          "rulesApplied": []
+        },
+        {
+          "usecaseEntityId": "inventoryEntity",
+          "title": "Entidade de Estoque",
+          "purpose": "Agrupa itens de estoque, movimentações e unidades de medida",
+          "sourceTables": [
+            {
+              "tableName": "inventory_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "inventory_movements",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "StockUnit",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "allowedOperations": [
+            "create",
+            "read",
+            "update",
+            "list",
+            "search"
+          ],
+          "layer": "layer_3_usecases",
+          "rulesApplied": [
+            "inventoryDecrementRule",
+            "lowStockAlertRule"
+          ]
+        },
+        {
+          "usecaseEntityId": "dailyShiftEntity",
+          "title": "Entidade de Turno Diário",
+          "purpose": "Agrupa turnos diários e relatórios de fechamento",
+          "sourceTables": [
+            {
+              "tableName": "daily_shifts",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "shift_closure_reports",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "allowedOperations": [
+            "create",
+            "read",
+            "update",
+            "list",
+            "search"
+          ],
+          "layer": "layer_3_usecases",
+          "rulesApplied": [
+            "shiftClosureRule"
+          ]
+        },
+        {
+          "usecaseEntityId": "salesAIEntity",
+          "title": "Entidade de IA e Métricas de Vendas",
+          "purpose": "Agrupa resumos de vendas, sugestões de promoção e tabelas de métricas operacionais",
+          "sourceTables": [
+            {
+              "tableName": "sales_summaries",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "promotion_suggestions",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "daily_sales_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "top_selling_items_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "inventory_alert_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "weekly_sales_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "operational_metrics",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "allowedOperations": [
+            "create",
+            "read",
+            "list"
+          ],
+          "layer": "layer_3_usecases",
+          "rulesApplied": [
+            "aiSummarySourceRule"
+          ]
+        }
+      ],
+      "usecases": [
+        {
+          "usecaseId": "criarPedido",
+          "title": "Criar pedido",
+          "purpose": "Registra um novo pedido com seus itens e atualiza métricas de vendas",
+          "actor": "attendantCashier",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "orderEntity"
+          ],
+          "outputEntities": [
+            "orderEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "table_seats",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "MenuItem",
+              "ownership": "mdmOwned"
+            },
+            {
+              "tableName": "OrderStatus",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "writesTables": [
+            {
+              "tableName": "orders",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "order_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "daily_sales_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "top_selling_items_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "weekly_sales_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "operational_metrics",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "rulesApplied": [
+            "orderStatusLifecycle",
+            "inventoryDecrementRule"
+          ]
+        },
+        {
+          "usecaseId": "atualizarStatusPedido",
+          "title": "Atualizar status do pedido",
+          "purpose": "Avança o status do pedido no fluxo de preparo",
+          "actor": "kitchen",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "orderEntity"
+          ],
+          "outputEntities": [
+            "orderEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "orders",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "order_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "OrderStatus",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "writesTables": [
+            {
+              "tableName": "orders",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "rulesApplied": [
+            "orderStatusLifecycle"
+          ]
+        },
+        {
+          "usecaseId": "cancelarPedido",
+          "title": "Cancelar pedido",
+          "purpose": "Cancela um pedido e reverte métricas de vendas",
+          "actor": "attendantCashier",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "orderEntity"
+          ],
+          "outputEntities": [
+            "orderEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "orders",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "order_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "inventory_items",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "writesTables": [
+            {
+              "tableName": "orders",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "inventory_movements",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "daily_sales_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "top_selling_items_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "weekly_sales_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "operational_metrics",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "rulesApplied": [
+            "orderStatusLifecycle",
+            "inventoryDecrementRule"
+          ]
+        },
+        {
+          "usecaseId": "listarPedidos",
+          "title": "Listar pedidos",
+          "purpose": "Lista pedidos com filtros e paginação",
+          "actor": "attendantCashier",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "orderEntity"
+          ],
+          "outputEntities": [
+            "orderEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "orders",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "order_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "table_seats",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "MenuItem",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "writesTables": [],
+          "rulesApplied": []
+        },
+        {
+          "usecaseId": "buscarPedidoPorId",
+          "title": "Buscar pedido por ID",
+          "purpose": "Retorna detalhes completos de um pedido",
+          "actor": "attendantCashier",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "orderEntity"
+          ],
+          "outputEntities": [
+            "orderEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "orders",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "order_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "table_seats",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "MenuItem",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "writesTables": [],
+          "rulesApplied": []
+        },
+        {
+          "usecaseId": "criarMesa",
+          "title": "Criar mesa/comanda",
+          "purpose": "Cadastra uma nova mesa ou comanda",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "orderEntity"
+          ],
+          "outputEntities": [
+            "orderEntity"
+          ],
+          "readsTables": [],
+          "writesTables": [
+            {
+              "tableName": "table_seats",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "rulesApplied": []
+        },
+        {
+          "usecaseId": "atualizarMesa",
+          "title": "Atualizar mesa/comanda",
+          "purpose": "Atualiza dados de uma mesa ou comanda",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "orderEntity"
+          ],
+          "outputEntities": [
+            "orderEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "table_seats",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "writesTables": [
+            {
+              "tableName": "table_seats",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "rulesApplied": []
+        },
+        {
+          "usecaseId": "listarMesas",
+          "title": "Listar mesas/comandas",
+          "purpose": "Lista mesas e comandas disponíveis",
+          "actor": "attendantCashier",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "orderEntity"
+          ],
+          "outputEntities": [
+            "orderEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "table_seats",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "writesTables": [],
+          "rulesApplied": []
+        },
+        {
+          "usecaseId": "criarItemCardapio",
+          "title": "Criar item do cardápio",
+          "purpose": "Cadastra um novo item no cardápio via MDM",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "menuEntity"
+          ],
+          "outputEntities": [
+            "menuEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "MenuCategory",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "writesTables": [
+            {
+              "tableName": "MenuItem",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "rulesApplied": []
+        },
+        {
+          "usecaseId": "atualizarItemCardapio",
+          "title": "Atualizar item do cardápio",
+          "purpose": "Edita um item existente no cardápio",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "menuEntity"
+          ],
+          "outputEntities": [
+            "menuEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "MenuItem",
+              "ownership": "mdmOwned"
+            },
+            {
+              "tableName": "MenuCategory",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "writesTables": [
+            {
+              "tableName": "MenuItem",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "rulesApplied": []
+        },
+        {
+          "usecaseId": "listarItensCardapio",
+          "title": "Listar itens do cardápio",
+          "purpose": "Lista itens do cardápio com categorias",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "menuEntity"
+          ],
+          "outputEntities": [
+            "menuEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "MenuItem",
+              "ownership": "mdmOwned"
+            },
+            {
+              "tableName": "MenuCategory",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "writesTables": [],
+          "rulesApplied": []
+        },
+        {
+          "usecaseId": "criarItemEstoque",
+          "title": "Criar item de estoque",
+          "purpose": "Cadastra um novo insumo ou produto no estoque",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "inventoryEntity"
+          ],
+          "outputEntities": [
+            "inventoryEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "StockUnit",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "writesTables": [
+            {
+              "tableName": "inventory_items",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "rulesApplied": [
+            "lowStockAlertRule"
+          ]
+        },
+        {
+          "usecaseId": "atualizarItemEstoque",
+          "title": "Atualizar item de estoque",
+          "purpose": "Edita quantidade, alertas ou unidade de um item de estoque",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "inventoryEntity"
+          ],
+          "outputEntities": [
+            "inventoryEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "inventory_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "StockUnit",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "writesTables": [
+            {
+              "tableName": "inventory_items",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "rulesApplied": [
+            "lowStockAlertRule"
+          ]
+        },
+        {
+          "usecaseId": "listarItensEstoque",
+          "title": "Listar itens de estoque",
+          "purpose": "Lista itens de estoque com saldo e unidades",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "inventoryEntity"
+          ],
+          "outputEntities": [
+            "inventoryEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "inventory_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "StockUnit",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "writesTables": [],
+          "rulesApplied": []
+        },
+        {
+          "usecaseId": "registrarMovimentoEstoque",
+          "title": "Registrar movimento de estoque",
+          "purpose": "Registra entrada, saída ou ajuste de estoque",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "inventoryEntity"
+          ],
+          "outputEntities": [
+            "inventoryEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "inventory_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "orders",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "order_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "StockUnit",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "writesTables": [
+            {
+              "tableName": "inventory_movements",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "inventory_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "inventory_alert_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "operational_metrics",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "rulesApplied": [
+            "inventoryDecrementRule",
+            "lowStockAlertRule"
+          ]
+        },
+        {
+          "usecaseId": "listarMovimentosEstoque",
+          "title": "Listar movimentos de estoque",
+          "purpose": "Lista histórico de movimentações de estoque",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "inventoryEntity"
+          ],
+          "outputEntities": [
+            "inventoryEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "inventory_movements",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "inventory_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "StockUnit",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "writesTables": [],
+          "rulesApplied": []
+        },
+        {
+          "usecaseId": "abrirTurno",
+          "title": "Abrir turno diário",
+          "purpose": "Inicia um novo turno de operações",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "dailyShiftEntity"
+          ],
+          "outputEntities": [
+            "dailyShiftEntity"
+          ],
+          "readsTables": [],
+          "writesTables": [
+            {
+              "tableName": "daily_shifts",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "rulesApplied": [
+            "shiftClosureRule"
+          ]
+        },
+        {
+          "usecaseId": "fecharTurno",
+          "title": "Fechar turno diário",
+          "purpose": "Finaliza o turno, gera relatório e consolida métricas",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "dailyShiftEntity"
+          ],
+          "outputEntities": [
+            "dailyShiftEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "daily_shifts",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "orders",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "order_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "inventory_movements",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "writesTables": [
+            {
+              "tableName": "daily_shifts",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "shift_closure_reports",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "daily_sales_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "operational_metrics",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "rulesApplied": [
+            "shiftClosureRule"
+          ]
+        },
+        {
+          "usecaseId": "listarTurnos",
+          "title": "Listar turnos diários",
+          "purpose": "Lista turnos com status e datas",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "dailyShiftEntity"
+          ],
+          "outputEntities": [
+            "dailyShiftEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "daily_shifts",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "writesTables": [],
+          "rulesApplied": []
+        },
+        {
+          "usecaseId": "buscarRelatorioFechamento",
+          "title": "Buscar relatório de fechamento",
+          "purpose": "Retorna o relatório de fechamento de um turno",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "dailyShiftEntity"
+          ],
+          "outputEntities": [
+            "dailyShiftEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "shift_closure_reports",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "daily_shifts",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "writesTables": [],
+          "rulesApplied": []
+        },
+        {
+          "usecaseId": "visualizarDashboard",
+          "title": "Visualizar dashboard",
+          "purpose": "Apresenta métricas operacionais e de vendas",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "salesAIEntity",
+            "orderEntity",
+            "inventoryEntity"
+          ],
+          "outputEntities": [
+            "salesAIEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "daily_sales_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "top_selling_items_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "inventory_alert_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "weekly_sales_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "operational_metrics",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "orders",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "daily_shifts",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "writesTables": [],
+          "rulesApplied": []
+        },
+        {
+          "usecaseId": "gerarResumoVendas",
+          "title": "Gerar resumo de vendas (IA)",
+          "purpose": "Gera resumo analítico de vendas via assistente IA",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "salesAIEntity"
+          ],
+          "outputEntities": [
+            "salesAIEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "orders",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "order_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "daily_shifts",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "inventory_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "MenuItem",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "writesTables": [
+            {
+              "tableName": "sales_summaries",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "rulesApplied": [
+            "aiSummarySourceRule"
+          ]
+        },
+        {
+          "usecaseId": "sugerirPromocoes",
+          "title": "Sugerir itens para promoção (IA)",
+          "purpose": "Sugere promoções baseadas em vendas e estoque",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "salesAIEntity"
+          ],
+          "outputEntities": [
+            "salesAIEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "orders",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "order_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "inventory_items",
+              "ownership": "moduleOwned"
+            },
+            {
+              "tableName": "MenuItem",
+              "ownership": "mdmOwned"
+            }
+          ],
+          "writesTables": [
+            {
+              "tableName": "promotion_suggestions",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "rulesApplied": [
+            "aiSummarySourceRule"
+          ]
+        },
+        {
+          "usecaseId": "listarResumosVendas",
+          "title": "Listar resumos de vendas",
+          "purpose": "Lista resumos de vendas gerados",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "salesAIEntity"
+          ],
+          "outputEntities": [
+            "salesAIEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "sales_summaries",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "writesTables": [],
+          "rulesApplied": []
+        },
+        {
+          "usecaseId": "listarSugestoesPromocoes",
+          "title": "Listar sugestões de promoção",
+          "purpose": "Lista sugestões de promoção geradas",
+          "actor": "manager",
+          "layer": "layer_3_usecases",
+          "inputEntities": [
+            "salesAIEntity"
+          ],
+          "outputEntities": [
+            "salesAIEntity"
+          ],
+          "readsTables": [
+            {
+              "tableName": "promotion_suggestions",
+              "ownership": "moduleOwned"
+            }
+          ],
+          "writesTables": [],
+          "rulesApplied": []
+        }
+      ],
+      "controllerRules": {
+        "bffMustCallUsecases": true,
+        "bffDirectTableAccessForbidden": true
+      }
+    },
+    "questions": [
+      "O cancelamento de pedido deve gerar automaticamente um movimento de estoque de reversão?",
+      "A atualização das tabelas de métricas ocorre de forma síncrona dentro do usecase ou via processamento assíncrono?"
+    ],
+    "trace": [
+      "Mapeamento de 5 entidades de caso de uso a partir dos 5 grupos aprovados no plano",
+      "Consolidação de pedidos, itens e mesas na orderEntity para manter agregado pai-filho",
+      "Separação de cardápio em menuEntity devido à origem MDM das tabelas MenuItem e MenuCategory",
+      "Estoque e movimentações agrupados na inventoryEntity com unidade de medida MDM",
+      "Turnos e relatórios de fechamento isolados na dailyShiftEntity",
+      "Métricas operacionais e funcionalidades de IA consolidadas na salesAIEntity",
+      "Garantia de read coverage: toda tabela escrita possui usecase de leitura correspondente (listar/buscar)",
+      "Inclusão de responsabilidade de atualização de métricas nos usecases que escrevem tabelas transacionais base",
+      "Declaração explícita de tabelas MDM com ownership mdmOwned em sourceTables, readsTables e writesTables",
+      "Definição de regras de negócio aplicadas em cada usecase conforme o contexto do domínio"
+    ]
+  }
+}
