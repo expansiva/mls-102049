@@ -20,28 +20,6 @@
   "links": [],
   "servicesConfigEnabled": false,
   "modules": [
-    {
-      "moduleName": "cafeFlow",
-      "module": {
-        "moduleName": "cafeFlow",
-        "purpose": "Agilizar pedidos, coordenação da cozinha e controle básico de estoque e turno para cafeterias e lanchonetes pequenas.",
-        "businessDomain": "Food service / cafeteria POS e operações",
-        "languages": [
-          "pt-BR",
-          "en"
-        ],
-        "visualStyle": {
-          "tone": "Limpo e moderno",
-          "layout": "Fácil de ler em tablets",
-          "palette": [
-            "#1F2937",
-            "#F9FAFB",
-            "#F59E0B",
-            "#10B981"
-          ]
-        }
-      }
-    }
   ],
   "dependencies": [
     {
