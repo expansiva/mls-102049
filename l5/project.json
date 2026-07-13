@@ -25,43 +25,6 @@
   "links": [],
   "servicesConfigEnabled": false,
   "modules": [
-    {
-      "moduleName": "cafeFlow",
-      "backend": {
-        "backendControllers": "./_102049_/l1/cafeFlow/layer_1_external/adapters/http/controllers",
-        "persistence": {
-          "tableDefsDir": "./_102049_/l1/cafeFlow/layer_1_external/adapters/persistence"
-        },
-        "routeKeys": [
-          "cafeFlow.adjustStockLevel.adjustStockLevel",
-          "cafeFlow.createComboRule.createComboRule",
-          "cafeFlow.createMenuItem.createMenuItem",
-          "cafeFlow.createStockItem.createStockItem",
-          "cafeFlow.createTable.createTable",
-          "cafeFlow.dailyShiftLifecycle.closeShift",
-          "cafeFlow.dailyShiftLifecycle.generateShiftClosingReport",
-          "cafeFlow.dailyShiftLifecycle.openShift",
-          "cafeFlow.dailyShiftLifecycle.queryDashboard",
-          "cafeFlow.deleteComboRule.deleteComboRule",
-          "cafeFlow.deleteMenuItem.deleteMenuItem",
-          "cafeFlow.deleteStockItem.deleteStockItem",
-          "cafeFlow.deleteTable.deleteTable",
-          "cafeFlow.orderLifecycle.createOrder",
-          "cafeFlow.orderLifecycle.createStockMovement",
-          "cafeFlow.orderLifecycle.settleOrder",
-          "cafeFlow.orderLifecycle.updateKitchenStatus",
-          "cafeFlow.queryComboRules.queryComboRules",
-          "cafeFlow.queryMenuItems.queryMenuItems",
-          "cafeFlow.queryStockItems.queryStockItems",
-          "cafeFlow.queryStockLevels.queryStockLevels",
-          "cafeFlow.queryTables.queryTables",
-          "cafeFlow.updateComboRule.updateComboRule",
-          "cafeFlow.updateMenuItem.updateMenuItem",
-          "cafeFlow.updateStockItem.updateStockItem",
-          "cafeFlow.updateTable.updateTable"
-        ]
-      }
-    }
   ],
   "dependencies": [
     {
