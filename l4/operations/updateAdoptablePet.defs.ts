@@ -1,0 +1,133 @@
+/// <mls fileReference="_102049_/l4/operations/updateAdoptablePet.defs.ts" enhancement="_blank"/>
+
+export const operationUpdateAdoptablePet = {
+  "operationId": "updateAdoptablePet",
+  "title": "Editar pet e controlar disponibilidade",
+  "actor": "admin",
+  "entity": "AdoptablePet",
+  "kind": "update",
+  "reads": [
+    "AdoptablePet"
+  ],
+  "writes": [
+    "AdoptablePet"
+  ],
+  "rulesApplied": [
+    "onlyAvailablePetsShownInGallery",
+    "petImageUsesPlatformStorage"
+  ],
+  "story": {
+    "actor": "admin",
+    "goal": "Atualizar as informações de um pet cadastrado e/ou controlar sua disponibilidade para adoção, determinando se ele aparece na galeria pública.",
+    "steps": [
+      "O administrador seleciona um pet cadastrado na lista de gestão de pets.",
+      "O sistema carrega os dados atuais do pet (nome, idade, descrição, foto e status).",
+      "O administrador edita os campos desejados e/ou altera o status entre disponível e indisponível.",
+      "O sistema valida os dados informados e persiste a atualização, atualizando updatedAt.",
+      "Se o status for alterado para indisponível, o pet deixa de aparecer na galeria pública; se for disponível, ele passa a aparecer."
+    ],
+    "outcome": "O pet selecionado tem seus dados atualizados e sua disponibilidade refletida na galeria pública conforme o status definido."
+  },
+  "accessPattern": {
+    "kind": "commandInput",
+    "entity": "AdoptablePet",
+    "keyField": "AdoptablePet.adoptablePetId",
+    "pagination": "none",
+    "selection": "single",
+    "output": [
+      "AdoptablePet.adoptablePetId",
+      "AdoptablePet.name",
+      "AdoptablePet.age",
+      "AdoptablePet.description",
+      "AdoptablePet.photoUrl",
+      "AdoptablePet.status",
+      "AdoptablePet.updatedAt"
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "adoptablePetId",
+      "fieldRef": "AdoptablePet.adoptablePetId",
+      "required": true,
+      "source": "selectedEntity",
+      "description": "Identificador do pet selecionado para edição na lista de gestão"
+    },
+    {
+      "inputId": "name",
+      "fieldRef": "AdoptablePet.name",
+      "required": true,
+      "source": "userInput",
+      "description": "Nome do pet editado pelo administrador"
+    },
+    {
+      "inputId": "age",
+      "fieldRef": "AdoptablePet.age",
+      "required": true,
+      "source": "userInput",
+      "description": "Idade do pet em anos editada pelo administrador"
+    },
+    {
+      "inputId": "description",
+      "fieldRef": "AdoptablePet.description",
+      "required": true,
+      "source": "userInput",
+      "description": "Descrição do pet editada pelo administrador"
+    },
+    {
+      "inputId": "photoUrl",
+      "fieldRef": "AdoptablePet.photoUrl",
+      "required": true,
+      "source": "userInput",
+      "description": "URL da foto do pet no armazenamento de mídia da plataforma"
+    },
+    {
+      "inputId": "status",
+      "fieldRef": "AdoptablePet.status",
+      "required": true,
+      "source": "userInput",
+      "description": "Disponibilidade do pet: available ou unavailable"
+    },
+    {
+      "inputId": "updatedAt",
+      "fieldRef": "AdoptablePet.updatedAt",
+      "required": true,
+      "source": "systemDefault",
+      "description": "Data e hora da atualização, gerada automaticamente pelo sistema"
+    }
+  ],
+  "contextResolution": [
+    {
+      "targetRef": "AdoptablePet.adoptablePetId",
+      "source": "selectedEntity",
+      "originRef": "AdoptablePet.adoptablePetId",
+      "description": "O backend resolve o identificador do pet a partir da entidade selecionada pelo administrador na lista de gestão de pets"
+    },
+    {
+      "targetRef": "AdoptablePet.updatedAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "O backend define updatedAt com o timestamp atual no momento da persistência da atualização"
+    }
+  ],
+  "acceptanceAssertions": [
+    "Após a confirmação, o pet existe com os campos name, age, description e photoUrl atualizados conforme os valores informados pelo administrador",
+    "Após a confirmação, o campo status do pet reflete o valor enviado (available ou unavailable)",
+    "Após a confirmação, o campo updatedAt é atualizado para o timestamp atual do sistema",
+    "Se o status for definido como unavailable, o pet não aparece na galeria pública de adoção",
+    "Se o status for definido como available, o pet aparece na galeria pública de adoção",
+    "A foto do pet utiliza uma URL do armazenamento de mídia da plataforma, sem armazenamento próprio de arquivos"
+  ],
+  "pageId": "updateAdoptablePet",
+  "commandName": "updateAdoptablePet",
+  "bffName": "petShop.updateAdoptablePet.updateAdoptablePet",
+  "capability": {
+    "capabilityId": "updateAdoptablePet",
+    "title": "Editar pet e controlar disponibilidade",
+    "actor": "admin",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationUpdateAdoptablePet;

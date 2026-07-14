@@ -1,0 +1,326 @@
+{
+  "savedAt": "2026-07-13T19:56:29.586Z",
+  "stepId": "e5-operation-createProduct",
+  "agentName": "agentNs3Behavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "operationId": "createProduct",
+      "title": "Cadastrar produto",
+      "actor": "admin",
+      "entity": "Product",
+      "kind": "create",
+      "reads": [
+        "ProductCategory",
+        "Product"
+      ],
+      "writes": [
+        "Product"
+      ],
+      "rulesApplied": [
+        "featuredProductRequiresActive",
+        "productImageUsesPlatformStorage"
+      ],
+      "story": {
+        "actor": "admin",
+        "goal": "Cadastrar um novo produto no catálogo do pet shop informando nome, descrição, preço, imagem e categoria para que ele apareça no catálogo do site.",
+        "steps": [
+          "O administrador acessa a tela de cadastro de produtos e preenche nome, descrição, preço, URL da imagem, categoria e flag de destaque.",
+          "O sistema valida que a categoria informada existe e que, se o produto for marcado como destaque, seu status será ativo.",
+          "O sistema gera um productId (UUID), define status como ativo, registra createdAt e updatedAt e persiste o produto no catálogo."
+        ],
+        "outcome": "O produto é criado no catálogo com status ativo, pronto para exibição no site e na página inicial quando marcado como destaque."
+      },
+      "accessPattern": {
+        "kind": "commandInput",
+        "entity": "Product",
+        "keyField": "Product.productId",
+        "pagination": "none",
+        "selection": "single",
+        "output": [
+          "Product.productId",
+          "Product.name",
+          "Product.price",
+          "Product.productCategoryId",
+          "Product.featured",
+          "Product.status",
+          "Product.createdAt"
+        ]
+      },
+      "inputs": [
+        {
+          "inputId": "name",
+          "fieldRef": "Product.name",
+          "required": true,
+          "source": "userInput",
+          "description": "Nome do produto exibido no catálogo e na página inicial."
+        },
+        {
+          "inputId": "description",
+          "fieldRef": "Product.description",
+          "required": false,
+          "source": "userInput",
+          "description": "Descrição detalhada do produto para o cliente."
+        },
+        {
+          "inputId": "price",
+          "fieldRef": "Product.price",
+          "required": true,
+          "source": "userInput",
+          "description": "Preço do produto cobrado na retirada presencial na loja."
+        },
+        {
+          "inputId": "imageUrl",
+          "fieldRef": "Product.imageUrl",
+          "required": false,
+          "source": "userInput",
+          "description": "URL da imagem do produto no armazenamento de mídia da plataforma."
+        },
+        {
+          "inputId": "productCategoryId",
+          "fieldRef": "Product.productCategoryId",
+          "required": true,
+          "source": "userInput",
+          "description": "Categoria do produto selecionada pelo administrador."
+        },
+        {
+          "inputId": "featured",
+          "fieldRef": "Product.featured",
+          "required": true,
+          "source": "userInput",
+          "description": "Indica se o produto deve ser exibido em destaque na página inicial."
+        },
+        {
+          "inputId": "productId",
+          "fieldRef": "Product.productId",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Identificador único do produto gerado automaticamente."
+        },
+        {
+          "inputId": "status",
+          "fieldRef": "Product.status",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Status inicial do produto, definido como ativo no cadastro."
+        },
+        {
+          "inputId": "createdAt",
+          "fieldRef": "Product.createdAt",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Data e hora de cadastro do produto."
+        },
+        {
+          "inputId": "updatedAt",
+          "fieldRef": "Product.updatedAt",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Data e hora da última atualização do produto."
+        }
+      ],
+      "contextResolution": [
+        {
+          "targetRef": "Product.productId",
+          "source": "systemDefault",
+          "originRef": "systemDefault.uuid",
+          "description": "O backend gera um UUID para o novo produto antes da persistência."
+        },
+        {
+          "targetRef": "Product.status",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "O backend define o status inicial do produto como 'active' no momento do cadastro."
+        },
+        {
+          "targetRef": "Product.createdAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "O backend registra a data e hora atuais no campo createdAt ao criar o produto."
+        },
+        {
+          "targetRef": "Product.updatedAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "O backend registra a data e hora atuais no campo updatedAt ao criar o produto."
+        }
+      ],
+      "acceptanceAssertions": [
+        "Após a confirmação, o produto existe no catálogo com status 'active'.",
+        "O produto cadastrado possui um productId gerado automaticamente (UUID).",
+        "Os campos createdAt e updatedAt são preenchidos com a data e hora atuais.",
+        "O productCategoryId informado corresponde a uma categoria existente em ProductCategory.",
+        "Se featured for true, o produto é criado com status 'active', satisfazendo a regra de que apenas produtos ativos podem ser destaque.",
+        "A imageUrl, quando informada, aponta para o armazenamento de mídia da plataforma e não para armazenamento próprio do módulo."
+      ],
+      "pageId": "createProduct",
+      "commandName": "createProduct",
+      "bffName": "petShop.createProduct.createProduct",
+      "capability": {
+        "capabilityId": "createProduct",
+        "title": "Cadastrar produto",
+        "actor": "admin",
+        "priority": "now"
+      },
+      "statusFrontend": "toCreate",
+      "statusBackend": "toCreate"
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "operationId": "createProduct",
+        "title": "Cadastrar produto",
+        "actor": "admin",
+        "entity": "Product",
+        "kind": "create",
+        "reads": [
+          "ProductCategory",
+          "Product"
+        ],
+        "writes": [
+          "Product"
+        ],
+        "rulesApplied": [
+          "featuredProductRequiresActive",
+          "productImageUsesPlatformStorage"
+        ],
+        "story": {
+          "actor": "admin",
+          "goal": "Cadastrar um novo produto no catálogo do pet shop informando nome, descrição, preço, imagem e categoria para que ele apareça no catálogo do site.",
+          "steps": [
+            "O administrador acessa a tela de cadastro de produtos e preenche nome, descrição, preço, URL da imagem, categoria e flag de destaque.",
+            "O sistema valida que a categoria informada existe e que, se o produto for marcado como destaque, seu status será ativo.",
+            "O sistema gera um productId (UUID), define status como ativo, registra createdAt e updatedAt e persiste o produto no catálogo."
+          ],
+          "outcome": "O produto é criado no catálogo com status ativo, pronto para exibição no site e na página inicial quando marcado como destaque."
+        },
+        "accessPattern": {
+          "kind": "commandInput",
+          "entity": "Product",
+          "keyField": "Product.productId",
+          "pagination": "none",
+          "selection": "single",
+          "output": [
+            "Product.productId",
+            "Product.name",
+            "Product.price",
+            "Product.productCategoryId",
+            "Product.featured",
+            "Product.status",
+            "Product.createdAt"
+          ]
+        },
+        "inputs": [
+          {
+            "inputId": "name",
+            "fieldRef": "Product.name",
+            "required": true,
+            "source": "userInput",
+            "description": "Nome do produto exibido no catálogo e na página inicial."
+          },
+          {
+            "inputId": "description",
+            "fieldRef": "Product.description",
+            "required": false,
+            "source": "userInput",
+            "description": "Descrição detalhada do produto para o cliente."
+          },
+          {
+            "inputId": "price",
+            "fieldRef": "Product.price",
+            "required": true,
+            "source": "userInput",
+            "description": "Preço do produto cobrado na retirada presencial na loja."
+          },
+          {
+            "inputId": "imageUrl",
+            "fieldRef": "Product.imageUrl",
+            "required": false,
+            "source": "userInput",
+            "description": "URL da imagem do produto no armazenamento de mídia da plataforma."
+          },
+          {
+            "inputId": "productCategoryId",
+            "fieldRef": "Product.productCategoryId",
+            "required": true,
+            "source": "userInput",
+            "description": "Categoria do produto selecionada pelo administrador."
+          },
+          {
+            "inputId": "featured",
+            "fieldRef": "Product.featured",
+            "required": true,
+            "source": "userInput",
+            "description": "Indica se o produto deve ser exibido em destaque na página inicial."
+          },
+          {
+            "inputId": "productId",
+            "fieldRef": "Product.productId",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Identificador único do produto gerado automaticamente."
+          },
+          {
+            "inputId": "status",
+            "fieldRef": "Product.status",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Status inicial do produto, definido como ativo no cadastro."
+          },
+          {
+            "inputId": "createdAt",
+            "fieldRef": "Product.createdAt",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Data e hora de cadastro do produto."
+          },
+          {
+            "inputId": "updatedAt",
+            "fieldRef": "Product.updatedAt",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Data e hora da última atualização do produto."
+          }
+        ],
+        "contextResolution": [
+          {
+            "targetRef": "Product.productId",
+            "source": "systemDefault",
+            "originRef": "systemDefault.uuid",
+            "description": "O backend gera um UUID para o novo produto antes da persistência."
+          },
+          {
+            "targetRef": "Product.status",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "O backend define o status inicial do produto como 'active' no momento do cadastro."
+          },
+          {
+            "targetRef": "Product.createdAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "O backend registra a data e hora atuais no campo createdAt ao criar o produto."
+          },
+          {
+            "targetRef": "Product.updatedAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "O backend registra a data e hora atuais no campo updatedAt ao criar o produto."
+          }
+        ],
+        "acceptanceAssertions": [
+          "Após a confirmação, o produto existe no catálogo com status 'active'.",
+          "O produto cadastrado possui um productId gerado automaticamente (UUID).",
+          "Os campos createdAt e updatedAt são preenchidos com a data e hora atuais.",
+          "O productCategoryId informado corresponde a uma categoria existente em ProductCategory.",
+          "Se featured for true, o produto é criado com status 'active', satisfazendo a regra de que apenas produtos ativos podem ser destaque.",
+          "A imageUrl, quando informada, aponta para o armazenamento de mídia da plataforma e não para armazenamento próprio do módulo."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "savedAt": "2026-07-13T19:56:29.634Z",
+  "stepId": "e5-operation-browseHomePage",
+  "agentName": "agentNs3Behavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "operationId": "browseHomePage",
+      "title": "Explorar página inicial",
+      "actor": "cliente",
+      "entity": "Product",
+      "kind": "view",
+      "reads": [
+        "Product",
+        "ProductCategory",
+        "Service",
+        "AdoptablePet"
+      ],
+      "writes": [],
+      "rulesApplied": [
+        "featuredProductRequiresActive",
+        "productImageUsesPlatformStorage"
+      ],
+      "story": {
+        "actor": "cliente",
+        "goal": "Explorar a página inicial do pet shop para ver produtos em destaque, serviços oferecidos e pets disponíveis para adoção",
+        "steps": [
+          "O cliente acessa a página inicial do site",
+          "Visualiza os produtos em destaque com imagem, nome e preço",
+          "Visualiza a lista de serviços oferecidos com descrição e preço",
+          "Percebe a seção de pets disponíveis para adoção na galeria"
+        ],
+        "outcome": "O cliente obtém uma visão geral das ofertas do pet shop e pode decidir qual seção explorar em detalhe"
+      },
+      "accessPattern": {
+        "kind": "list",
+        "entity": "Product",
+        "keyField": "Product.productId",
+        "filters": [
+          "Product.featured",
+          "Product.status"
+        ],
+        "sort": [
+          "Product.createdAt"
+        ],
+        "pagination": "optional",
+        "selection": "multiple",
+        "output": [
+          "Product.productId",
+          "Product.name",
+          "Product.description",
+          "Product.price",
+          "Product.imageUrl",
+          "Product.productCategoryId",
+          "Product.featured",
+          "Product.status"
+        ]
+      },
+      "inputs": [],
+      "contextResolution": [],
+      "acceptanceAssertions": [
+        "A página inicial exibe apenas produtos com status ativo e flag featured verdadeira na seção de destaque",
+        "A página inicial exibe pelo menos um produto em destaque quando existem produtos cadastrados",
+        "Cada produto em destaque exibe nome, imagem e preço",
+        "A página inicial exibe a lista de serviços oferecidos com descrição e preço",
+        "A página inicial exibe a seção de pets disponíveis para adoção com foto e informações básicas",
+        "As imagens dos produtos referenciam o armazenamento de mídia da plataforma"
+      ],
+      "pageId": "browseHomePage",
+      "commandName": "browseHomePage",
+      "bffName": "petShop.browseHomePage.browseHomePage",
+      "capability": {
+        "capabilityId": "browseHomePage",
+        "title": "Explorar página inicial",
+        "actor": "cliente",
+        "priority": "now"
+      },
+      "statusFrontend": "toCreate",
+      "statusBackend": "toCreate"
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "operationId": "browseHomePage",
+        "title": "Explorar página inicial",
+        "actor": "cliente",
+        "entity": "Product",
+        "kind": "view",
+        "reads": [
+          "Product",
+          "ProductCategory",
+          "Service",
+          "AdoptablePet"
+        ],
+        "writes": [],
+        "rulesApplied": [
+          "featuredProductRequiresActive",
+          "productImageUsesPlatformStorage"
+        ],
+        "story": {
+          "actor": "cliente",
+          "goal": "Explorar a página inicial do pet shop para ver produtos em destaque, serviços oferecidos e pets disponíveis para adoção",
+          "steps": [
+            "O cliente acessa a página inicial do site",
+            "Visualiza os produtos em destaque com imagem, nome e preço",
+            "Visualiza a lista de serviços oferecidos com descrição e preço",
+            "Percebe a seção de pets disponíveis para adoção na galeria"
+          ],
+          "outcome": "O cliente obtém uma visão geral das ofertas do pet shop e pode decidir qual seção explorar em detalhe"
+        },
+        "accessPattern": {
+          "kind": "list",
+          "entity": "Product",
+          "keyField": "Product.productId",
+          "filters": [
+            "Product.featured",
+            "Product.status"
+          ],
+          "sort": [
+            "Product.createdAt"
+          ],
+          "pagination": "optional",
+          "selection": "multiple",
+          "output": [
+            "Product.productId",
+            "Product.name",
+            "Product.description",
+            "Product.price",
+            "Product.imageUrl",
+            "Product.productCategoryId",
+            "Product.featured",
+            "Product.status"
+          ]
+        },
+        "inputs": [],
+        "contextResolution": [],
+        "acceptanceAssertions": [
+          "A página inicial exibe apenas produtos com status ativo e flag featured verdadeira na seção de destaque",
+          "A página inicial exibe pelo menos um produto em destaque quando existem produtos cadastrados",
+          "Cada produto em destaque exibe nome, imagem e preço",
+          "A página inicial exibe a lista de serviços oferecidos com descrição e preço",
+          "A página inicial exibe a seção de pets disponíveis para adoção com foto e informações básicas",
+          "As imagens dos produtos referenciam o armazenamento de mídia da plataforma"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false
+    }
+  }
+}

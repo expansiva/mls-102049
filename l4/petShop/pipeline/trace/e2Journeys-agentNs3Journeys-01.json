@@ -1,0 +1,1286 @@
+{
+  "savedAt": "2026-07-13T19:44:48.500Z",
+  "stepId": "e2-journeys",
+  "agentName": "agentNs3Journeys",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "schemaVersion": "2026-07-06-ns3-e2-v1",
+      "moduleName": "petShop",
+      "moduleTitle": "Pet Shop — Site de Serviços, Produtos e Adoção",
+      "userLanguage": "pt-BR",
+      "version": 1,
+      "actors": [
+        {
+          "actorId": "cliente",
+          "name": "Cliente",
+          "description": "Usuário final que acessa o site, navega no catálogo, compra produtos para retirada, agenda serviços e consulta pets para adoção."
+        },
+        {
+          "actorId": "operador",
+          "name": "Operador",
+          "description": "Funcionário que executa serviços agendados e está vinculado a um ou mais turnos de trabalho."
+        },
+        {
+          "actorId": "admin",
+          "name": "Administrador",
+          "description": "Responsável por gerenciar operadores, turnos, produtos, serviços oferecidos e pets disponíveis para adoção."
+        }
+      ],
+      "journeys": [
+        {
+          "journeyId": "browseHome",
+          "actorId": "cliente",
+          "title": "Explorar página inicial",
+          "goal": "Ver rapidamente os produtos em destaque e os serviços oferecidos pelo pet shop",
+          "steps": [
+            {
+              "stepId": "openHome",
+              "title": "Acessar página inicial",
+              "intent": "O cliente abre o site e vê uma página inicial atraente com produtos em destaque e a lista de serviços oferecidos.",
+              "featureRefs": [
+                "homePage"
+              ]
+            },
+            {
+              "stepId": "viewFeaturedProducts",
+              "title": "Visualizar produtos em destaque",
+              "intent": "O cliente observa os produtos em destaque selecionados pela loja, com imagem e preço, para decidir se quer explorar mais.",
+              "featureRefs": [
+                "featuredProducts",
+                "productCatalog"
+              ]
+            },
+            {
+              "stepId": "viewOfferedServices",
+              "title": "Visualizar serviços oferecidos",
+              "intent": "O cliente vê a lista de serviços oferecidos (como banho e tosa) com descrição e preço, para considerar agendar um.",
+              "featureRefs": [
+                "serviceCatalog"
+              ]
+            },
+            {
+              "stepId": "exploreAdoptionSection",
+              "title": "Notar seção de adoção",
+              "intent": "O cliente percebe a seção de pets para adoção na página inicial e decide se quer ver os animais disponíveis.",
+              "featureRefs": [
+                "adoptablePetsGallery"
+              ]
+            }
+          ],
+          "outcome": "O cliente tem uma visão geral do que o pet shop oferece e pode seguir para comprar produtos, agendar um serviço ou ver pets para adoção.",
+          "businessRules": [
+            "A página inicial deve sempre exibir pelo menos um produto em destaque quando houver produtos cadastrados.",
+            "A lista de serviços na página inicial reflete apenas serviços ativos cadastrados pelo administrador."
+          ],
+          "notes": ""
+        },
+        {
+          "journeyId": "shopProductsForPickup",
+          "actorId": "cliente",
+          "title": "Comprar produtos para retirada na loja",
+          "goal": "Selecionar produtos do catálogo, montar um carrinho e finalizar a compra para retirada presencial na loja",
+          "steps": [
+            {
+              "stepId": "browseCatalog",
+              "title": "Navegar no catálogo de produtos",
+              "intent": "O cliente navega pelo catálogo de produtos filtrando por categoria ou buscando pelo nome para encontrar o que precisa.",
+              "featureRefs": [
+                "productCatalog"
+              ]
+            },
+            {
+              "stepId": "viewProductDetails",
+              "title": "Ver detalhes do produto",
+              "intent": "O cliente seleciona um produto para ver a imagem, descrição e preço antes de decidir comprar.",
+              "featureRefs": [
+                "productCatalog"
+              ]
+            },
+            {
+              "stepId": "addToCart",
+              "title": "Adicionar produtos ao carrinho",
+              "intent": "O cliente adiciona um ou mais produtos ao carrinho de compras, ajustando a quantidade desejada de cada item.",
+              "featureRefs": [
+                "shoppingCart"
+              ]
+            },
+            {
+              "stepId": "reviewCart",
+              "title": "Revisar carrinho",
+              "intent": "O cliente revisa os itens do carrinho, confirmando quantidades e vendo o valor total da compra.",
+              "featureRefs": [
+                "shoppingCart"
+              ]
+            },
+            {
+              "stepId": "placeOrder",
+              "title": "Finalizar pedido para retirada",
+              "intent": "O cliente finaliza o pedido indicando que irá retirar na loja física, sem pagamento online — o pagamento será feito presencialmente no momento da retirada.",
+              "featureRefs": [
+                "storePickupOrder"
+              ]
+            }
+          ],
+          "outcome": "O pedido é registrado e o cliente deve comparecer à loja para pagar e retirar os produtos.",
+          "businessRules": [
+            "O pagamento é realizado apenas presencialmente na loja física; não há pagamento online.",
+            "A retirada de produtos é feita exclusivamente na loja, sem opção de entrega.",
+            "O pedido deve conter pelo menos um item para ser finalizado."
+          ],
+          "notes": ""
+        },
+        {
+          "journeyId": "scheduleService",
+          "actorId": "cliente",
+          "title": "Agendar um serviço",
+          "goal": "Escolher um serviço e agendar um horário disponível para o seu pet",
+          "steps": [
+            {
+              "stepId": "browseServices",
+              "title": "Ver serviços oferecidos",
+              "intent": "O cliente consulta a lista de serviços disponíveis (como banho, tosa) com descrição, duração estimada e preço.",
+              "featureRefs": [
+                "serviceCatalog"
+              ]
+            },
+            {
+              "stepId": "selectService",
+              "title": "Selecionar serviço desejado",
+              "intent": "O cliente escolhe o serviço que deseja agendar para o seu pet.",
+              "featureRefs": [
+                "serviceScheduling"
+              ]
+            },
+            {
+              "stepId": "pickDateTime",
+              "title": "Escolher data e horário",
+              "intent": "O cliente visualiza os horários disponíveis baseados na capacidade de operadores por turno e seleciona a data e hora que prefere.",
+              "featureRefs": [
+                "serviceScheduling",
+                "schedulingCapacity"
+              ]
+            },
+            {
+              "stepId": "confirmBooking",
+              "title": "Confirmar agendamento",
+              "intent": "O cliente confirma o agendamento do serviço, recebendo a informação de que o pagamento será feito na loja.",
+              "featureRefs": [
+                "serviceScheduling"
+              ]
+            }
+          ],
+          "outcome": "O agendamento é registrado e vinculado a um operador disponível no turno correspondente; o cliente deve comparecer à loja no horário escolhido.",
+          "businessRules": [
+            "A disponibilidade de horários depende da quantidade de operadores alocados em cada turno.",
+            "O pagamento do serviço é realizado presencialmente na loja, após a execução ou no momento do atendimento.",
+            "O horário de funcionamento considerado para agendamentos é segunda a sábado, das 09:00 às 18:00, salvo configuração diferente pelo administrador.",
+            "Um cliente não pode agendar um serviço em horário sem operador disponível."
+          ],
+          "notes": ""
+        },
+        {
+          "journeyId": "viewAdoptablePets",
+          "actorId": "cliente",
+          "title": "Ver pets disponíveis para adoção",
+          "goal": "Visualizar pets disponíveis para adoção com fotos e informações e manifestar interesse",
+          "steps": [
+            {
+              "stepId": "browseAdoptablePets",
+              "title": "Navegar na galeria de adoção",
+              "intent": "O cliente acessa a galeria de pets disponíveis para adoção, vendo fotos e informações básicas de cada animal.",
+              "featureRefs": [
+                "adoptablePetsGallery"
+              ]
+            },
+            {
+              "stepId": "viewPetDetails",
+              "title": "Ver detalhes do pet",
+              "intent": "O cliente seleciona um pet para ver informações detalhadas como nome, idade, descrição e foto ampliada.",
+              "featureRefs": [
+                "adoptablePetsGallery"
+              ]
+            },
+            {
+              "stepId": "expressInterest",
+              "title": "Manifestar interesse na adoção",
+              "intent": "O cliente manifesta interesse em adotar o pet, sendo informado de que o processo de adoção é finalizado presencialmente na loja.",
+              "featureRefs": [
+                "adoptionInterest"
+              ]
+            }
+          ],
+          "outcome": "O interesse do cliente é registrado e ele é orientado a comparecer à loja para concluir o processo de adoção.",
+          "businessRules": [
+            "A adoção é apenas iniciada no site; a finalização acontece presencialmente na loja com verificação e documentação.",
+            "Apenas pets marcados como disponíveis para adoção pelo administrador aparecem na galeria."
+          ],
+          "notes": ""
+        },
+        {
+          "journeyId": "viewAssignedSchedule",
+          "actorId": "operador",
+          "title": "Consultar agenda de serviços do turno",
+          "goal": "Ver quais serviços estão agendados para o seu turno de trabalho",
+          "steps": [
+            {
+              "stepId": "checkShiftSchedule",
+              "title": "Ver serviços do turno",
+              "intent": "O operador acessa sua agenda e visualiza os serviços agendados para o seu turno, com horário, tipo de serviço e dados do cliente.",
+              "featureRefs": [
+                "operatorScheduleView"
+              ]
+            },
+            {
+              "stepId": "reviewServiceDetails",
+              "title": "Revisar detalhes do atendimento",
+              "intent": "O operador seleciona um agendamento para ver detalhes como o tipo de serviço, observações e informações do pet.",
+              "featureRefs": [
+                "operatorScheduleView"
+              ]
+            }
+          ],
+          "outcome": "O operador sabe quais serviços deve executar durante seu turno e pode se preparar para cada atendimento.",
+          "businessRules": [
+            "O operador vê apenas os agendamentos atribuídos ao seu turno.",
+            "A agenda do operador reflete apenas serviços confirmados."
+          ],
+          "notes": ""
+        },
+        {
+          "journeyId": "executeScheduledService",
+          "actorId": "operador",
+          "title": "Executar serviço agendado",
+          "goal": "Realizar o serviço agendado e registrar sua conclusão",
+          "steps": [
+            {
+              "stepId": "startService",
+              "title": "Iniciar atendimento",
+              "intent": "O operador inicia o atendimento do serviço agendado quando o cliente chega à loja no horário marcado.",
+              "featureRefs": [
+                "serviceExecution"
+              ]
+            },
+            {
+              "stepId": "completeService",
+              "title": "Concluir serviço",
+              "intent": "Após executar o serviço, o operador marca o agendamento como concluído, liberando a capacidade para futuros agendamentos.",
+              "featureRefs": [
+                "serviceExecution"
+              ]
+            }
+          ],
+          "outcome": "O serviço é marcado como concluído e o cliente realiza o pagamento presencial na loja.",
+          "businessRules": [
+            "Apenas o operador atribuído ao agendamento pode marcá-lo como concluído.",
+            "O pagamento é feito presencialmente na loja após a execução do serviço."
+          ],
+          "notes": ""
+        },
+        {
+          "journeyId": "manageOperatorsAndShifts",
+          "actorId": "admin",
+          "title": "Gerenciar operadores e turnos",
+          "goal": "Cadastrar operadores e definir turnos de trabalho para garantir capacidade de atendimento",
+          "steps": [
+            {
+              "stepId": "registerOperator",
+              "title": "Cadastrar operador",
+              "intent": "O administrador cadastra um novo operador informando nome e dados básicos para que ele possa ser alocado em turnos.",
+              "featureRefs": [
+                "operatorManagement"
+              ]
+            },
+            {
+              "stepId": "defineShift",
+              "title": "Definir turno de trabalho",
+              "intent": "O administrador cria um turno de trabalho especificando horário de início e fim e os dias da semana em que ele se repete.",
+              "featureRefs": [
+                "shiftManagement"
+              ]
+            },
+            {
+              "stepId": "assignOperatorToShift",
+              "title": "Alocar operador em turno",
+              "intent": "O administrador vincula um ou mais operadores a um turno, definindo quantos atendimentos simultâneos são possíveis naquele horário.",
+              "featureRefs": [
+                "shiftManagement",
+                "schedulingCapacity"
+              ]
+            },
+            {
+              "stepId": "reviewCapacity",
+              "title": "Revisar capacidade de atendimento",
+              "intent": "O administrador visualiza a capacidade de atendimento resultante das alocações para confirmar que há operadores suficientes nos horários de pico.",
+              "featureRefs": [
+                "schedulingCapacity"
+              ]
+            }
+          ],
+          "outcome": "Os turnos estão definidos com operadores alocados e a capacidade de agendamento é atualizada automaticamente.",
+          "businessRules": [
+            "A capacidade de agendamento em cada horário é determinada pelo número de operadores alocados no turno correspondente.",
+            "Um operador pode ser alocado em mais de um turno.",
+            "Turnos sobrepostos no mesmo dia são permitidos para aumentar a capacidade de atendimento."
+          ],
+          "notes": ""
+        },
+        {
+          "journeyId": "manageProducts",
+          "actorId": "admin",
+          "title": "Gerenciar catálogo de produtos",
+          "goal": "Cadastrar e atualizar produtos do catálogo e definir produtos em destaque",
+          "steps": [
+            {
+              "stepId": "addProduct",
+              "title": "Cadastrar produto",
+              "intent": "O administrador cadastra um novo produto informando nome, descrição, preço, imagem e categoria para que ele apareça no catálogo do site.",
+              "featureRefs": [
+                "productManagement"
+              ]
+            },
+            {
+              "stepId": "editProduct",
+              "title": "Editar produto",
+              "intent": "O administrador atualiza informações ou imagem de um produto já cadastrado para manter o catálogo correto.",
+              "featureRefs": [
+                "productManagement"
+              ]
+            },
+            {
+              "stepId": "markFeatured",
+              "title": "Marcar produto como destaque",
+              "intent": "O administrador seleciona quais produtos devem aparecer em destaque na página inicial para atrair a atenção dos clientes.",
+              "featureRefs": [
+                "productManagement",
+                "featuredProducts"
+              ]
+            }
+          ],
+          "outcome": "O catálogo de produtos está atualizado e os produtos em destaque aparecem na página inicial.",
+          "businessRules": [
+            "Apenas produtos cadastrados e ativos podem ser marcados como destaque.",
+            "A imagem do produto utiliza o armazenamento de mídia da plataforma."
+          ],
+          "notes": ""
+        },
+        {
+          "journeyId": "manageServices",
+          "actorId": "admin",
+          "title": "Gerenciar serviços oferecidos",
+          "goal": "Cadastrar e manter os serviços oferecidos pelo pet shop",
+          "steps": [
+            {
+              "stepId": "addService",
+              "title": "Cadastrar serviço",
+              "intent": "O administrador cadastra um novo serviço (como banho, tosa) com nome, descrição, duração estimada e preço para que os clientes possam agendá-lo.",
+              "featureRefs": [
+                "serviceManagement"
+              ]
+            },
+            {
+              "stepId": "editService",
+              "title": "Editar serviço",
+              "intent": "O administrador atualiza as informações de um serviço existente, como preço ou duração, para refletir mudanças na oferta da loja.",
+              "featureRefs": [
+                "serviceManagement"
+              ]
+            },
+            {
+              "stepId": "toggleServiceActive",
+              "title": "Ativar ou desativar serviço",
+              "intent": "O administrador ativa ou desativa um serviço para controlar se ele aparece disponível para agendamento no site.",
+              "featureRefs": [
+                "serviceManagement"
+              ]
+            }
+          ],
+          "outcome": "Os serviços oferecidos estão atualizados e apenas serviços ativos aparecem para os clientes no site.",
+          "businessRules": [
+            "Apenas serviços ativos aparecem na listagem para clientes.",
+            "Desativar um serviço não cancela agendamentos já confirmados."
+          ],
+          "notes": ""
+        },
+        {
+          "journeyId": "manageAdoptablePets",
+          "actorId": "admin",
+          "title": "Gerenciar pets para adoção",
+          "goal": "Cadastrar e manter pets disponíveis para adoção no site",
+          "steps": [
+            {
+              "stepId": "registerPet",
+              "title": "Cadastrar pet para adoção",
+              "intent": "O administrador cadastra um pet disponível para adoção informando nome, idade, descrição e foto para que ele apareça na galeria do site.",
+              "featureRefs": [
+                "petManagement"
+              ]
+            },
+            {
+              "stepId": "editPet",
+              "title": "Editar informações do pet",
+              "intent": "O administrador atualiza as informações ou a foto de um pet cadastrado para manter os dados corretos.",
+              "featureRefs": [
+                "petManagement"
+              ]
+            },
+            {
+              "stepId": "togglePetAvailability",
+              "title": "Marcar disponibilidade para adoção",
+              "intent": "O administrador marca um pet como disponível ou indisponível para adoção, controlando quais animais aparecem na galeria pública.",
+              "featureRefs": [
+                "petManagement"
+              ]
+            }
+          ],
+          "outcome": "Os pets disponíveis para adoção estão cadastrados com fotos e informações e aparecem na galeria do site.",
+          "businessRules": [
+            "A imagem do pet utiliza o armazenamento de mídia da plataforma.",
+            "Apenas pets marcados como disponíveis aparecem na galeria de adoção."
+          ],
+          "notes": ""
+        }
+      ],
+      "features": [
+        {
+          "featureId": "homePage",
+          "title": "Página inicial",
+          "priority": "now",
+          "actorIds": [
+            "cliente"
+          ],
+          "description": "Página inicial do site com visual agradável exibindo produtos em destaque, serviços oferecidos e acesso à seção de adoção.",
+          "rationale": "É a porta de entrada do site e o primeiro contato do cliente com a loja."
+        },
+        {
+          "featureId": "featuredProducts",
+          "title": "Produtos em destaque",
+          "priority": "now",
+          "actorIds": [
+            "cliente",
+            "admin"
+          ],
+          "description": "Exibição de produtos selecionados pelo administrador em destaque na página inicial, com imagem e preço.",
+          "rationale": "Destaque visual de produtos estratégicos para atrair clientes."
+        },
+        {
+          "featureId": "productCatalog",
+          "title": "Catálogo de produtos",
+          "priority": "now",
+          "actorIds": [
+            "cliente"
+          ],
+          "description": "Listagem de produtos com imagem, descrição, preço e categoria, permitindo navegação e busca pelo cliente.",
+          "rationale": "Núcleo da experiência de compra no site."
+        },
+        {
+          "featureId": "shoppingCart",
+          "title": "Carrinho de compras",
+          "priority": "now",
+          "actorIds": [
+            "cliente"
+          ],
+          "description": "Carrinho onde o cliente adiciona produtos, ajusta quantidades e revisa o total antes de finalizar o pedido.",
+          "rationale": "Permite ao cliente montar sua compra antes de finalizar para retirada."
+        },
+        {
+          "featureId": "storePickupOrder",
+          "title": "Pedido para retirada na loja",
+          "priority": "now",
+          "actorIds": [
+            "cliente"
+          ],
+          "description": "Finalização do pedido com indicação de retirada na loja física e pagamento presencial, sem pagamento online.",
+          "rationale": "Modelo de compra definido pelo escopo: retirada e pagamento na loja."
+        },
+        {
+          "featureId": "serviceCatalog",
+          "title": "Catálogo de serviços",
+          "priority": "now",
+          "actorIds": [
+            "cliente"
+          ],
+          "description": "Listagem de serviços oferecidos pelo pet shop com descrição, duração estimada e preço.",
+          "rationale": "Permite ao cliente conhecer os serviços antes de agendar."
+        },
+        {
+          "featureId": "serviceScheduling",
+          "title": "Agendamento de serviços",
+          "priority": "now",
+          "actorIds": [
+            "cliente"
+          ],
+          "description": "Funcionalidade de agendamento onde o cliente escolhe serviço, data e horário disponível e confirma o agendamento.",
+          "rationale": "Núcleo do fluxo de agendamento de serviços como banho e tosa."
+        },
+        {
+          "featureId": "schedulingCapacity",
+          "title": "Capacidade de agendamento por turno",
+          "priority": "now",
+          "actorIds": [
+            "cliente",
+            "admin"
+          ],
+          "description": "Cálculo de horários disponíveis para agendamento baseado na quantidade de operadores alocados em cada turno de trabalho.",
+          "rationale": "Garante que o agendamento respeite a capacidade real de atendimento da loja."
+        },
+        {
+          "featureId": "adoptablePetsGallery",
+          "title": "Galeria de pets para adoção",
+          "priority": "now",
+          "actorIds": [
+            "cliente"
+          ],
+          "description": "Galeria com fotos e informações dos pets disponíveis para adoção, permitindo visualização detalhada de cada animal.",
+          "rationale": "Permite ao cliente ver pets disponíveis e considerar a adoção."
+        },
+        {
+          "featureId": "adoptionInterest",
+          "title": "Manifestação de interesse em adoção",
+          "priority": "now",
+          "actorIds": [
+            "cliente"
+          ],
+          "description": "Permite ao cliente manifestar interesse em adotar um pet, sendo orientado a finalizar o processo presencialmente na loja.",
+          "rationale": "Inicia o processo de adoção no site, conforme escopo definido."
+        },
+        {
+          "featureId": "operatorScheduleView",
+          "title": "Agenda do operador",
+          "priority": "now",
+          "actorIds": [
+            "operador"
+          ],
+          "description": "Visualização dos serviços agendados para o turno do operador, com horário, tipo de serviço e dados do cliente.",
+          "rationale": "Permite ao operador saber o que deve executar em seu turno."
+        },
+        {
+          "featureId": "serviceExecution",
+          "title": "Execução e conclusão de serviço",
+          "priority": "now",
+          "actorIds": [
+            "operador"
+          ],
+          "description": "Permite ao operador iniciar e marcar a conclusão de um serviço agendado, atualizando o status do atendimento.",
+          "rationale": "Fecha o ciclo do agendamento: o serviço é executado e registrado como concluído."
+        },
+        {
+          "featureId": "operatorManagement",
+          "title": "Gestão de operadores",
+          "priority": "now",
+          "actorIds": [
+            "admin"
+          ],
+          "description": "Cadastro e manutenção de operadores do pet shop, com dados básicos para alocação em turnos.",
+          "rationale": "Base para a alocação de operadores e definição de capacidade de atendimento."
+        },
+        {
+          "featureId": "shiftManagement",
+          "title": "Gestão de turnos",
+          "priority": "now",
+          "actorIds": [
+            "admin"
+          ],
+          "description": "Criação de turnos de trabalho com horário e dias da semana, e alocação de operadores em cada turno.",
+          "rationale": "Define quando e quantos operadores estão disponíveis, impactando diretamente a capacidade de agendamento."
+        },
+        {
+          "featureId": "productManagement",
+          "title": "Gestão de produtos",
+          "priority": "now",
+          "actorIds": [
+            "admin"
+          ],
+          "description": "Cadastro, edição e ativação de produtos no catálogo, incluindo definição de produtos em destaque.",
+          "rationale": "Permite ao administrador manter o catálogo atualizado e curar os destaques da página inicial."
+        },
+        {
+          "featureId": "serviceManagement",
+          "title": "Gestão de serviços",
+          "priority": "now",
+          "actorIds": [
+            "admin"
+          ],
+          "description": "Cadastro, edição e ativação/desativação de serviços oferecidos pelo pet shop.",
+          "rationale": "Permite ao administrador controlar quais serviços estão disponíveis para agendamento."
+        },
+        {
+          "featureId": "petManagement",
+          "title": "Gestão de pets para adoção",
+          "priority": "now",
+          "actorIds": [
+            "admin"
+          ],
+          "description": "Cadastro, edição e controle de disponibilidade de pets para adoção, com foto e informações.",
+          "rationale": "Permite ao administrador manter a galeria de adoção atualizada."
+        }
+      ],
+      "decisions": [],
+      "createdAt": "2026-07-13"
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "schemaVersion": "2026-07-06-ns3-e2-v1",
+        "moduleName": "petShop",
+        "moduleTitle": "Pet Shop — Site de Serviços, Produtos e Adoção",
+        "userLanguage": "pt-BR",
+        "version": 1,
+        "actors": [
+          {
+            "actorId": "cliente",
+            "name": "Cliente",
+            "description": "Usuário final que acessa o site, navega no catálogo, compra produtos para retirada, agenda serviços e consulta pets para adoção."
+          },
+          {
+            "actorId": "operador",
+            "name": "Operador",
+            "description": "Funcionário que executa serviços agendados e está vinculado a um ou mais turnos de trabalho."
+          },
+          {
+            "actorId": "admin",
+            "name": "Administrador",
+            "description": "Responsável por gerenciar operadores, turnos, produtos, serviços oferecidos e pets disponíveis para adoção."
+          }
+        ],
+        "journeys": [
+          {
+            "journeyId": "browseHome",
+            "actorId": "cliente",
+            "title": "Explorar página inicial",
+            "goal": "Ver rapidamente os produtos em destaque e os serviços oferecidos pelo pet shop",
+            "steps": [
+              {
+                "stepId": "openHome",
+                "title": "Acessar página inicial",
+                "intent": "O cliente abre o site e vê uma página inicial atraente com produtos em destaque e a lista de serviços oferecidos.",
+                "featureRefs": [
+                  "homePage"
+                ]
+              },
+              {
+                "stepId": "viewFeaturedProducts",
+                "title": "Visualizar produtos em destaque",
+                "intent": "O cliente observa os produtos em destaque selecionados pela loja, com imagem e preço, para decidir se quer explorar mais.",
+                "featureRefs": [
+                  "featuredProducts",
+                  "productCatalog"
+                ]
+              },
+              {
+                "stepId": "viewOfferedServices",
+                "title": "Visualizar serviços oferecidos",
+                "intent": "O cliente vê a lista de serviços oferecidos (como banho e tosa) com descrição e preço, para considerar agendar um.",
+                "featureRefs": [
+                  "serviceCatalog"
+                ]
+              },
+              {
+                "stepId": "exploreAdoptionSection",
+                "title": "Notar seção de adoção",
+                "intent": "O cliente percebe a seção de pets para adoção na página inicial e decide se quer ver os animais disponíveis.",
+                "featureRefs": [
+                  "adoptablePetsGallery"
+                ]
+              }
+            ],
+            "outcome": "O cliente tem uma visão geral do que o pet shop oferece e pode seguir para comprar produtos, agendar um serviço ou ver pets para adoção.",
+            "businessRules": [
+              "A página inicial deve sempre exibir pelo menos um produto em destaque quando houver produtos cadastrados.",
+              "A lista de serviços na página inicial reflete apenas serviços ativos cadastrados pelo administrador."
+            ],
+            "notes": ""
+          },
+          {
+            "journeyId": "shopProductsForPickup",
+            "actorId": "cliente",
+            "title": "Comprar produtos para retirada na loja",
+            "goal": "Selecionar produtos do catálogo, montar um carrinho e finalizar a compra para retirada presencial na loja",
+            "steps": [
+              {
+                "stepId": "browseCatalog",
+                "title": "Navegar no catálogo de produtos",
+                "intent": "O cliente navega pelo catálogo de produtos filtrando por categoria ou buscando pelo nome para encontrar o que precisa.",
+                "featureRefs": [
+                  "productCatalog"
+                ]
+              },
+              {
+                "stepId": "viewProductDetails",
+                "title": "Ver detalhes do produto",
+                "intent": "O cliente seleciona um produto para ver a imagem, descrição e preço antes de decidir comprar.",
+                "featureRefs": [
+                  "productCatalog"
+                ]
+              },
+              {
+                "stepId": "addToCart",
+                "title": "Adicionar produtos ao carrinho",
+                "intent": "O cliente adiciona um ou mais produtos ao carrinho de compras, ajustando a quantidade desejada de cada item.",
+                "featureRefs": [
+                  "shoppingCart"
+                ]
+              },
+              {
+                "stepId": "reviewCart",
+                "title": "Revisar carrinho",
+                "intent": "O cliente revisa os itens do carrinho, confirmando quantidades e vendo o valor total da compra.",
+                "featureRefs": [
+                  "shoppingCart"
+                ]
+              },
+              {
+                "stepId": "placeOrder",
+                "title": "Finalizar pedido para retirada",
+                "intent": "O cliente finaliza o pedido indicando que irá retirar na loja física, sem pagamento online — o pagamento será feito presencialmente no momento da retirada.",
+                "featureRefs": [
+                  "storePickupOrder"
+                ]
+              }
+            ],
+            "outcome": "O pedido é registrado e o cliente deve comparecer à loja para pagar e retirar os produtos.",
+            "businessRules": [
+              "O pagamento é realizado apenas presencialmente na loja física; não há pagamento online.",
+              "A retirada de produtos é feita exclusivamente na loja, sem opção de entrega.",
+              "O pedido deve conter pelo menos um item para ser finalizado."
+            ],
+            "notes": ""
+          },
+          {
+            "journeyId": "scheduleService",
+            "actorId": "cliente",
+            "title": "Agendar um serviço",
+            "goal": "Escolher um serviço e agendar um horário disponível para o seu pet",
+            "steps": [
+              {
+                "stepId": "browseServices",
+                "title": "Ver serviços oferecidos",
+                "intent": "O cliente consulta a lista de serviços disponíveis (como banho, tosa) com descrição, duração estimada e preço.",
+                "featureRefs": [
+                  "serviceCatalog"
+                ]
+              },
+              {
+                "stepId": "selectService",
+                "title": "Selecionar serviço desejado",
+                "intent": "O cliente escolhe o serviço que deseja agendar para o seu pet.",
+                "featureRefs": [
+                  "serviceScheduling"
+                ]
+              },
+              {
+                "stepId": "pickDateTime",
+                "title": "Escolher data e horário",
+                "intent": "O cliente visualiza os horários disponíveis baseados na capacidade de operadores por turno e seleciona a data e hora que prefere.",
+                "featureRefs": [
+                  "serviceScheduling",
+                  "schedulingCapacity"
+                ]
+              },
+              {
+                "stepId": "confirmBooking",
+                "title": "Confirmar agendamento",
+                "intent": "O cliente confirma o agendamento do serviço, recebendo a informação de que o pagamento será feito na loja.",
+                "featureRefs": [
+                  "serviceScheduling"
+                ]
+              }
+            ],
+            "outcome": "O agendamento é registrado e vinculado a um operador disponível no turno correspondente; o cliente deve comparecer à loja no horário escolhido.",
+            "businessRules": [
+              "A disponibilidade de horários depende da quantidade de operadores alocados em cada turno.",
+              "O pagamento do serviço é realizado presencialmente na loja, após a execução ou no momento do atendimento.",
+              "O horário de funcionamento considerado para agendamentos é segunda a sábado, das 09:00 às 18:00, salvo configuração diferente pelo administrador.",
+              "Um cliente não pode agendar um serviço em horário sem operador disponível."
+            ],
+            "notes": ""
+          },
+          {
+            "journeyId": "viewAdoptablePets",
+            "actorId": "cliente",
+            "title": "Ver pets disponíveis para adoção",
+            "goal": "Visualizar pets disponíveis para adoção com fotos e informações e manifestar interesse",
+            "steps": [
+              {
+                "stepId": "browseAdoptablePets",
+                "title": "Navegar na galeria de adoção",
+                "intent": "O cliente acessa a galeria de pets disponíveis para adoção, vendo fotos e informações básicas de cada animal.",
+                "featureRefs": [
+                  "adoptablePetsGallery"
+                ]
+              },
+              {
+                "stepId": "viewPetDetails",
+                "title": "Ver detalhes do pet",
+                "intent": "O cliente seleciona um pet para ver informações detalhadas como nome, idade, descrição e foto ampliada.",
+                "featureRefs": [
+                  "adoptablePetsGallery"
+                ]
+              },
+              {
+                "stepId": "expressInterest",
+                "title": "Manifestar interesse na adoção",
+                "intent": "O cliente manifesta interesse em adotar o pet, sendo informado de que o processo de adoção é finalizado presencialmente na loja.",
+                "featureRefs": [
+                  "adoptionInterest"
+                ]
+              }
+            ],
+            "outcome": "O interesse do cliente é registrado e ele é orientado a comparecer à loja para concluir o processo de adoção.",
+            "businessRules": [
+              "A adoção é apenas iniciada no site; a finalização acontece presencialmente na loja com verificação e documentação.",
+              "Apenas pets marcados como disponíveis para adoção pelo administrador aparecem na galeria."
+            ],
+            "notes": ""
+          },
+          {
+            "journeyId": "viewAssignedSchedule",
+            "actorId": "operador",
+            "title": "Consultar agenda de serviços do turno",
+            "goal": "Ver quais serviços estão agendados para o seu turno de trabalho",
+            "steps": [
+              {
+                "stepId": "checkShiftSchedule",
+                "title": "Ver serviços do turno",
+                "intent": "O operador acessa sua agenda e visualiza os serviços agendados para o seu turno, com horário, tipo de serviço e dados do cliente.",
+                "featureRefs": [
+                  "operatorScheduleView"
+                ]
+              },
+              {
+                "stepId": "reviewServiceDetails",
+                "title": "Revisar detalhes do atendimento",
+                "intent": "O operador seleciona um agendamento para ver detalhes como o tipo de serviço, observações e informações do pet.",
+                "featureRefs": [
+                  "operatorScheduleView"
+                ]
+              }
+            ],
+            "outcome": "O operador sabe quais serviços deve executar durante seu turno e pode se preparar para cada atendimento.",
+            "businessRules": [
+              "O operador vê apenas os agendamentos atribuídos ao seu turno.",
+              "A agenda do operador reflete apenas serviços confirmados."
+            ],
+            "notes": ""
+          },
+          {
+            "journeyId": "executeScheduledService",
+            "actorId": "operador",
+            "title": "Executar serviço agendado",
+            "goal": "Realizar o serviço agendado e registrar sua conclusão",
+            "steps": [
+              {
+                "stepId": "startService",
+                "title": "Iniciar atendimento",
+                "intent": "O operador inicia o atendimento do serviço agendado quando o cliente chega à loja no horário marcado.",
+                "featureRefs": [
+                  "serviceExecution"
+                ]
+              },
+              {
+                "stepId": "completeService",
+                "title": "Concluir serviço",
+                "intent": "Após executar o serviço, o operador marca o agendamento como concluído, liberando a capacidade para futuros agendamentos.",
+                "featureRefs": [
+                  "serviceExecution"
+                ]
+              }
+            ],
+            "outcome": "O serviço é marcado como concluído e o cliente realiza o pagamento presencial na loja.",
+            "businessRules": [
+              "Apenas o operador atribuído ao agendamento pode marcá-lo como concluído.",
+              "O pagamento é feito presencialmente na loja após a execução do serviço."
+            ],
+            "notes": ""
+          },
+          {
+            "journeyId": "manageOperatorsAndShifts",
+            "actorId": "admin",
+            "title": "Gerenciar operadores e turnos",
+            "goal": "Cadastrar operadores e definir turnos de trabalho para garantir capacidade de atendimento",
+            "steps": [
+              {
+                "stepId": "registerOperator",
+                "title": "Cadastrar operador",
+                "intent": "O administrador cadastra um novo operador informando nome e dados básicos para que ele possa ser alocado em turnos.",
+                "featureRefs": [
+                  "operatorManagement"
+                ]
+              },
+              {
+                "stepId": "defineShift",
+                "title": "Definir turno de trabalho",
+                "intent": "O administrador cria um turno de trabalho especificando horário de início e fim e os dias da semana em que ele se repete.",
+                "featureRefs": [
+                  "shiftManagement"
+                ]
+              },
+              {
+                "stepId": "assignOperatorToShift",
+                "title": "Alocar operador em turno",
+                "intent": "O administrador vincula um ou mais operadores a um turno, definindo quantos atendimentos simultâneos são possíveis naquele horário.",
+                "featureRefs": [
+                  "shiftManagement",
+                  "schedulingCapacity"
+                ]
+              },
+              {
+                "stepId": "reviewCapacity",
+                "title": "Revisar capacidade de atendimento",
+                "intent": "O administrador visualiza a capacidade de atendimento resultante das alocações para confirmar que há operadores suficientes nos horários de pico.",
+                "featureRefs": [
+                  "schedulingCapacity"
+                ]
+              }
+            ],
+            "outcome": "Os turnos estão definidos com operadores alocados e a capacidade de agendamento é atualizada automaticamente.",
+            "businessRules": [
+              "A capacidade de agendamento em cada horário é determinada pelo número de operadores alocados no turno correspondente.",
+              "Um operador pode ser alocado em mais de um turno.",
+              "Turnos sobrepostos no mesmo dia são permitidos para aumentar a capacidade de atendimento."
+            ],
+            "notes": ""
+          },
+          {
+            "journeyId": "manageProducts",
+            "actorId": "admin",
+            "title": "Gerenciar catálogo de produtos",
+            "goal": "Cadastrar e atualizar produtos do catálogo e definir produtos em destaque",
+            "steps": [
+              {
+                "stepId": "addProduct",
+                "title": "Cadastrar produto",
+                "intent": "O administrador cadastra um novo produto informando nome, descrição, preço, imagem e categoria para que ele apareça no catálogo do site.",
+                "featureRefs": [
+                  "productManagement"
+                ]
+              },
+              {
+                "stepId": "editProduct",
+                "title": "Editar produto",
+                "intent": "O administrador atualiza informações ou imagem de um produto já cadastrado para manter o catálogo correto.",
+                "featureRefs": [
+                  "productManagement"
+                ]
+              },
+              {
+                "stepId": "markFeatured",
+                "title": "Marcar produto como destaque",
+                "intent": "O administrador seleciona quais produtos devem aparecer em destaque na página inicial para atrair a atenção dos clientes.",
+                "featureRefs": [
+                  "productManagement",
+                  "featuredProducts"
+                ]
+              }
+            ],
+            "outcome": "O catálogo de produtos está atualizado e os produtos em destaque aparecem na página inicial.",
+            "businessRules": [
+              "Apenas produtos cadastrados e ativos podem ser marcados como destaque.",
+              "A imagem do produto utiliza o armazenamento de mídia da plataforma."
+            ],
+            "notes": ""
+          },
+          {
+            "journeyId": "manageServices",
+            "actorId": "admin",
+            "title": "Gerenciar serviços oferecidos",
+            "goal": "Cadastrar e manter os serviços oferecidos pelo pet shop",
+            "steps": [
+              {
+                "stepId": "addService",
+                "title": "Cadastrar serviço",
+                "intent": "O administrador cadastra um novo serviço (como banho, tosa) com nome, descrição, duração estimada e preço para que os clientes possam agendá-lo.",
+                "featureRefs": [
+                  "serviceManagement"
+                ]
+              },
+              {
+                "stepId": "editService",
+                "title": "Editar serviço",
+                "intent": "O administrador atualiza as informações de um serviço existente, como preço ou duração, para refletir mudanças na oferta da loja.",
+                "featureRefs": [
+                  "serviceManagement"
+                ]
+              },
+              {
+                "stepId": "toggleServiceActive",
+                "title": "Ativar ou desativar serviço",
+                "intent": "O administrador ativa ou desativa um serviço para controlar se ele aparece disponível para agendamento no site.",
+                "featureRefs": [
+                  "serviceManagement"
+                ]
+              }
+            ],
+            "outcome": "Os serviços oferecidos estão atualizados e apenas serviços ativos aparecem para os clientes no site.",
+            "businessRules": [
+              "Apenas serviços ativos aparecem na listagem para clientes.",
+              "Desativar um serviço não cancela agendamentos já confirmados."
+            ],
+            "notes": ""
+          },
+          {
+            "journeyId": "manageAdoptablePets",
+            "actorId": "admin",
+            "title": "Gerenciar pets para adoção",
+            "goal": "Cadastrar e manter pets disponíveis para adoção no site",
+            "steps": [
+              {
+                "stepId": "registerPet",
+                "title": "Cadastrar pet para adoção",
+                "intent": "O administrador cadastra um pet disponível para adoção informando nome, idade, descrição e foto para que ele apareça na galeria do site.",
+                "featureRefs": [
+                  "petManagement"
+                ]
+              },
+              {
+                "stepId": "editPet",
+                "title": "Editar informações do pet",
+                "intent": "O administrador atualiza as informações ou a foto de um pet cadastrado para manter os dados corretos.",
+                "featureRefs": [
+                  "petManagement"
+                ]
+              },
+              {
+                "stepId": "togglePetAvailability",
+                "title": "Marcar disponibilidade para adoção",
+                "intent": "O administrador marca um pet como disponível ou indisponível para adoção, controlando quais animais aparecem na galeria pública.",
+                "featureRefs": [
+                  "petManagement"
+                ]
+              }
+            ],
+            "outcome": "Os pets disponíveis para adoção estão cadastrados com fotos e informações e aparecem na galeria do site.",
+            "businessRules": [
+              "A imagem do pet utiliza o armazenamento de mídia da plataforma.",
+              "Apenas pets marcados como disponíveis aparecem na galeria de adoção."
+            ],
+            "notes": ""
+          }
+        ],
+        "features": [
+          {
+            "featureId": "homePage",
+            "title": "Página inicial",
+            "priority": "now",
+            "actorIds": [
+              "cliente"
+            ],
+            "description": "Página inicial do site com visual agradável exibindo produtos em destaque, serviços oferecidos e acesso à seção de adoção.",
+            "rationale": "É a porta de entrada do site e o primeiro contato do cliente com a loja."
+          },
+          {
+            "featureId": "featuredProducts",
+            "title": "Produtos em destaque",
+            "priority": "now",
+            "actorIds": [
+              "cliente",
+              "admin"
+            ],
+            "description": "Exibição de produtos selecionados pelo administrador em destaque na página inicial, com imagem e preço.",
+            "rationale": "Destaque visual de produtos estratégicos para atrair clientes."
+          },
+          {
+            "featureId": "productCatalog",
+            "title": "Catálogo de produtos",
+            "priority": "now",
+            "actorIds": [
+              "cliente"
+            ],
+            "description": "Listagem de produtos com imagem, descrição, preço e categoria, permitindo navegação e busca pelo cliente.",
+            "rationale": "Núcleo da experiência de compra no site."
+          },
+          {
+            "featureId": "shoppingCart",
+            "title": "Carrinho de compras",
+            "priority": "now",
+            "actorIds": [
+              "cliente"
+            ],
+            "description": "Carrinho onde o cliente adiciona produtos, ajusta quantidades e revisa o total antes de finalizar o pedido.",
+            "rationale": "Permite ao cliente montar sua compra antes de finalizar para retirada."
+          },
+          {
+            "featureId": "storePickupOrder",
+            "title": "Pedido para retirada na loja",
+            "priority": "now",
+            "actorIds": [
+              "cliente"
+            ],
+            "description": "Finalização do pedido com indicação de retirada na loja física e pagamento presencial, sem pagamento online.",
+            "rationale": "Modelo de compra definido pelo escopo: retirada e pagamento na loja."
+          },
+          {
+            "featureId": "serviceCatalog",
+            "title": "Catálogo de serviços",
+            "priority": "now",
+            "actorIds": [
+              "cliente"
+            ],
+            "description": "Listagem de serviços oferecidos pelo pet shop com descrição, duração estimada e preço.",
+            "rationale": "Permite ao cliente conhecer os serviços antes de agendar."
+          },
+          {
+            "featureId": "serviceScheduling",
+            "title": "Agendamento de serviços",
+            "priority": "now",
+            "actorIds": [
+              "cliente"
+            ],
+            "description": "Funcionalidade de agendamento onde o cliente escolhe serviço, data e horário disponível e confirma o agendamento.",
+            "rationale": "Núcleo do fluxo de agendamento de serviços como banho e tosa."
+          },
+          {
+            "featureId": "schedulingCapacity",
+            "title": "Capacidade de agendamento por turno",
+            "priority": "now",
+            "actorIds": [
+              "cliente",
+              "admin"
+            ],
+            "description": "Cálculo de horários disponíveis para agendamento baseado na quantidade de operadores alocados em cada turno de trabalho.",
+            "rationale": "Garante que o agendamento respeite a capacidade real de atendimento da loja."
+          },
+          {
+            "featureId": "adoptablePetsGallery",
+            "title": "Galeria de pets para adoção",
+            "priority": "now",
+            "actorIds": [
+              "cliente"
+            ],
+            "description": "Galeria com fotos e informações dos pets disponíveis para adoção, permitindo visualização detalhada de cada animal.",
+            "rationale": "Permite ao cliente ver pets disponíveis e considerar a adoção."
+          },
+          {
+            "featureId": "adoptionInterest",
+            "title": "Manifestação de interesse em adoção",
+            "priority": "now",
+            "actorIds": [
+              "cliente"
+            ],
+            "description": "Permite ao cliente manifestar interesse em adotar um pet, sendo orientado a finalizar o processo presencialmente na loja.",
+            "rationale": "Inicia o processo de adoção no site, conforme escopo definido."
+          },
+          {
+            "featureId": "operatorScheduleView",
+            "title": "Agenda do operador",
+            "priority": "now",
+            "actorIds": [
+              "operador"
+            ],
+            "description": "Visualização dos serviços agendados para o turno do operador, com horário, tipo de serviço e dados do cliente.",
+            "rationale": "Permite ao operador saber o que deve executar em seu turno."
+          },
+          {
+            "featureId": "serviceExecution",
+            "title": "Execução e conclusão de serviço",
+            "priority": "now",
+            "actorIds": [
+              "operador"
+            ],
+            "description": "Permite ao operador iniciar e marcar a conclusão de um serviço agendado, atualizando o status do atendimento.",
+            "rationale": "Fecha o ciclo do agendamento: o serviço é executado e registrado como concluído."
+          },
+          {
+            "featureId": "operatorManagement",
+            "title": "Gestão de operadores",
+            "priority": "now",
+            "actorIds": [
+              "admin"
+            ],
+            "description": "Cadastro e manutenção de operadores do pet shop, com dados básicos para alocação em turnos.",
+            "rationale": "Base para a alocação de operadores e definição de capacidade de atendimento."
+          },
+          {
+            "featureId": "shiftManagement",
+            "title": "Gestão de turnos",
+            "priority": "now",
+            "actorIds": [
+              "admin"
+            ],
+            "description": "Criação de turnos de trabalho com horário e dias da semana, e alocação de operadores em cada turno.",
+            "rationale": "Define quando e quantos operadores estão disponíveis, impactando diretamente a capacidade de agendamento."
+          },
+          {
+            "featureId": "productManagement",
+            "title": "Gestão de produtos",
+            "priority": "now",
+            "actorIds": [
+              "admin"
+            ],
+            "description": "Cadastro, edição e ativação de produtos no catálogo, incluindo definição de produtos em destaque.",
+            "rationale": "Permite ao administrador manter o catálogo atualizado e curar os destaques da página inicial."
+          },
+          {
+            "featureId": "serviceManagement",
+            "title": "Gestão de serviços",
+            "priority": "now",
+            "actorIds": [
+              "admin"
+            ],
+            "description": "Cadastro, edição e ativação/desativação de serviços oferecidos pelo pet shop.",
+            "rationale": "Permite ao administrador controlar quais serviços estão disponíveis para agendamento."
+          },
+          {
+            "featureId": "petManagement",
+            "title": "Gestão de pets para adoção",
+            "priority": "now",
+            "actorIds": [
+              "admin"
+            ],
+            "description": "Cadastro, edição e controle de disponibilidade de pets para adoção, com foto e informações.",
+            "rationale": "Permite ao administrador manter a galeria de adoção atualizada."
+          }
+        ],
+        "decisions": [],
+        "createdAt": "2026-07-13"
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false,
+      "pipeline": {
+        "schemaVersion": "2026-07-05-ns3-pipeline-v1",
+        "flowId": "agentNewSolution3",
+        "moduleName": "petShop",
+        "createdAt": "2026-07-13T19:43:54.351Z",
+        "updatedAt": "2026-07-13T19:44:48.493Z",
+        "steps": {
+          "e1-draft": {
+            "status": "approved",
+            "updatedAt": "2026-07-13T19:43:54.359Z",
+            "dirty": false,
+            "inputsHash": "djb2:e4da94ae",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-13T19:43:54.352Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-13T19:43:54.359Z",
+            "approvedBy": "auto"
+          },
+          "checkpoint-draft": {
+            "status": "pending",
+            "updatedAt": "2026-07-13T19:43:54.351Z"
+          },
+          "e2-journeys": {
+            "status": "pending",
+            "updatedAt": "2026-07-13T19:44:48.493Z",
+            "dirty": false,
+            "inputsHash": "djb2:179f7e1f",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-13T19:44:48.493Z",
+              "errors": [],
+              "warnings": []
+            }
+          },
+          "checkpoint-journeys": {
+            "status": "pending",
+            "updatedAt": "2026-07-13T19:43:54.351Z"
+          }
+        }
+      }
+    }
+  }
+}

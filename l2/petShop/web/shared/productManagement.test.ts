@@ -1,0 +1,83 @@
+/// <mls fileReference="_102049_/l2/petShop/web/shared/productManagement.test.ts" enhancement="_102020_/l2/enhancementAura"/>
+
+import type { PetShopProductManagementBase } from './productManagement.js';
+import type { PetShopBrowseProductsInput, PetShopBrowseProductsOutput, PetShopCreateProductInput, PetShopCreateProductOutput, PetShopUpdateProductInput, PetShopUpdateProductOutput } from '../contracts/productManagement.js';
+
+type IsAny<T> = 0 extends (1 & T) ? true : false;
+type Assignable<Actual, Expected> = IsAny<Actual> extends true ? false : [Actual] extends [Expected] ? true : false;
+type Assert<T extends true> = T;
+
+declare const page: PetShopProductManagementBase;
+
+// This file is generated from .defs.ts. Add narrower state/action assertions here as materialization rules evolve.
+type _State_status = Assert<Assignable<typeof page.status, string>>;
+type _State_browseProductsState = Assert<Assignable<typeof page.browseProductsState, "idle" | "loading" | "success" | "error">>;
+type _State_browseProductsSearchName = Assert<Assignable<typeof page.browseProductsSearchName, string | PetShopBrowseProductsInput["searchName"]>>;
+type _State_browseProductsFilterStatus = Assert<Assignable<typeof page.browseProductsFilterStatus, string | PetShopBrowseProductsInput["filterStatus"]>>;
+type _State_browseProductsFilterProductCategoryId = Assert<Assignable<typeof page.browseProductsFilterProductCategoryId, string | PetShopBrowseProductsInput["filterProductCategoryId"]>>;
+type _State_browseProductsFilterFeatured = Assert<Assignable<typeof page.browseProductsFilterFeatured, string | PetShopBrowseProductsInput["filterFeatured"]>>;
+type _State_browseProductsData = Assert<Assignable<typeof page.browseProductsData, PetShopBrowseProductsOutput>>;
+type _State_createProductState = Assert<Assignable<typeof page.createProductState, "idle" | "loading" | "success" | "error">>;
+type _State_createProductName = Assert<Assignable<typeof page.createProductName, string | PetShopCreateProductInput["name"]>>;
+type _State_createProductDescription = Assert<Assignable<typeof page.createProductDescription, string | PetShopCreateProductInput["description"]>>;
+type _State_createProductPrice = Assert<Assignable<typeof page.createProductPrice, string | PetShopCreateProductInput["price"]>>;
+type _State_createProductImageUrl = Assert<Assignable<typeof page.createProductImageUrl, string | PetShopCreateProductInput["imageUrl"]>>;
+type _State_createProductProductCategoryId = Assert<Assignable<typeof page.createProductProductCategoryId, string | PetShopCreateProductInput["productCategoryId"]>>;
+type _State_createProductFeatured = Assert<Assignable<typeof page.createProductFeatured, string | PetShopCreateProductInput["featured"]>>;
+type _State_createProductOutput = Assert<Assignable<typeof page.createProductOutput, PetShopCreateProductOutput | null>>;
+type _State_createProductError = Assert<Assignable<typeof page.createProductError, string>>;
+type _State_updateProductState = Assert<Assignable<typeof page.updateProductState, "idle" | "loading" | "success" | "error">>;
+type _State_updateProductProductId = Assert<Assignable<typeof page.updateProductProductId, string | PetShopUpdateProductInput["productId"]>>;
+type _State_updateProductName = Assert<Assignable<typeof page.updateProductName, string | PetShopUpdateProductInput["name"]>>;
+type _State_updateProductDescription = Assert<Assignable<typeof page.updateProductDescription, string | PetShopUpdateProductInput["description"]>>;
+type _State_updateProductPrice = Assert<Assignable<typeof page.updateProductPrice, string | PetShopUpdateProductInput["price"]>>;
+type _State_updateProductImageUrl = Assert<Assignable<typeof page.updateProductImageUrl, string | PetShopUpdateProductInput["imageUrl"]>>;
+type _State_updateProductProductCategoryId = Assert<Assignable<typeof page.updateProductProductCategoryId, string | PetShopUpdateProductInput["productCategoryId"]>>;
+type _State_updateProductFeatured = Assert<Assignable<typeof page.updateProductFeatured, string | PetShopUpdateProductInput["featured"]>>;
+type _State_updateProductStatus = Assert<Assignable<typeof page.updateProductStatus, string | PetShopUpdateProductInput["status"]>>;
+type _State_updateProductOutput = Assert<Assignable<typeof page.updateProductOutput, PetShopUpdateProductOutput | null>>;
+type _State_updateProductError = Assert<Assignable<typeof page.updateProductError, string>>;
+type _Action_loadBrowseProducts = Assert<Assignable<typeof page.loadBrowseProducts, (...args: any[]) => unknown>>;
+type _Handler_handleBrowseProductsClick = Assert<Assignable<typeof page.handleBrowseProductsClick, (...args: any[]) => unknown>>;
+type _Action_createProduct = Assert<Assignable<typeof page.createProduct, (...args: any[]) => unknown>>;
+type _Handler_handleCreateProductClick = Assert<Assignable<typeof page.handleCreateProductClick, (...args: any[]) => unknown>>;
+type _Action_updateProduct = Assert<Assignable<typeof page.updateProduct, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProductClick = Assert<Assignable<typeof page.handleUpdateProductClick, (...args: any[]) => unknown>>;
+type _Action_setBrowseProductsSearchName = Assert<Assignable<typeof page.setBrowseProductsSearchName, (...args: any[]) => unknown>>;
+type _Handler_handleBrowseProductsSearchNameChange = Assert<Assignable<typeof page.handleBrowseProductsSearchNameChange, (...args: any[]) => unknown>>;
+type _Action_setBrowseProductsFilterStatus = Assert<Assignable<typeof page.setBrowseProductsFilterStatus, (...args: any[]) => unknown>>;
+type _Handler_handleBrowseProductsFilterStatusChange = Assert<Assignable<typeof page.handleBrowseProductsFilterStatusChange, (...args: any[]) => unknown>>;
+type _Action_setBrowseProductsFilterProductCategoryId = Assert<Assignable<typeof page.setBrowseProductsFilterProductCategoryId, (...args: any[]) => unknown>>;
+type _Handler_handleBrowseProductsFilterProductCategoryIdChange = Assert<Assignable<typeof page.handleBrowseProductsFilterProductCategoryIdChange, (...args: any[]) => unknown>>;
+type _Action_setBrowseProductsFilterFeatured = Assert<Assignable<typeof page.setBrowseProductsFilterFeatured, (...args: any[]) => unknown>>;
+type _Handler_handleBrowseProductsFilterFeaturedChange = Assert<Assignable<typeof page.handleBrowseProductsFilterFeaturedChange, (...args: any[]) => unknown>>;
+type _Action_setCreateProductName = Assert<Assignable<typeof page.setCreateProductName, (...args: any[]) => unknown>>;
+type _Handler_handleCreateProductNameChange = Assert<Assignable<typeof page.handleCreateProductNameChange, (...args: any[]) => unknown>>;
+type _Action_setCreateProductDescription = Assert<Assignable<typeof page.setCreateProductDescription, (...args: any[]) => unknown>>;
+type _Handler_handleCreateProductDescriptionChange = Assert<Assignable<typeof page.handleCreateProductDescriptionChange, (...args: any[]) => unknown>>;
+type _Action_setCreateProductPrice = Assert<Assignable<typeof page.setCreateProductPrice, (...args: any[]) => unknown>>;
+type _Handler_handleCreateProductPriceChange = Assert<Assignable<typeof page.handleCreateProductPriceChange, (...args: any[]) => unknown>>;
+type _Action_setCreateProductImageUrl = Assert<Assignable<typeof page.setCreateProductImageUrl, (...args: any[]) => unknown>>;
+type _Handler_handleCreateProductImageUrlChange = Assert<Assignable<typeof page.handleCreateProductImageUrlChange, (...args: any[]) => unknown>>;
+type _Action_setCreateProductProductCategoryId = Assert<Assignable<typeof page.setCreateProductProductCategoryId, (...args: any[]) => unknown>>;
+type _Handler_handleCreateProductProductCategoryIdChange = Assert<Assignable<typeof page.handleCreateProductProductCategoryIdChange, (...args: any[]) => unknown>>;
+type _Action_setCreateProductFeatured = Assert<Assignable<typeof page.setCreateProductFeatured, (...args: any[]) => unknown>>;
+type _Handler_handleCreateProductFeaturedChange = Assert<Assignable<typeof page.handleCreateProductFeaturedChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProductProductId = Assert<Assignable<typeof page.setUpdateProductProductId, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProductProductIdChange = Assert<Assignable<typeof page.handleUpdateProductProductIdChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProductName = Assert<Assignable<typeof page.setUpdateProductName, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProductNameChange = Assert<Assignable<typeof page.handleUpdateProductNameChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProductDescription = Assert<Assignable<typeof page.setUpdateProductDescription, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProductDescriptionChange = Assert<Assignable<typeof page.handleUpdateProductDescriptionChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProductPrice = Assert<Assignable<typeof page.setUpdateProductPrice, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProductPriceChange = Assert<Assignable<typeof page.handleUpdateProductPriceChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProductImageUrl = Assert<Assignable<typeof page.setUpdateProductImageUrl, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProductImageUrlChange = Assert<Assignable<typeof page.handleUpdateProductImageUrlChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProductProductCategoryId = Assert<Assignable<typeof page.setUpdateProductProductCategoryId, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProductProductCategoryIdChange = Assert<Assignable<typeof page.handleUpdateProductProductCategoryIdChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProductFeatured = Assert<Assignable<typeof page.setUpdateProductFeatured, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProductFeaturedChange = Assert<Assignable<typeof page.handleUpdateProductFeaturedChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProductStatus = Assert<Assignable<typeof page.setUpdateProductStatus, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProductStatusChange = Assert<Assignable<typeof page.handleUpdateProductStatusChange, (...args: any[]) => unknown>>;
+
+export {};

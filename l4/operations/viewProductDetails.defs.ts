@@ -1,0 +1,89 @@
+/// <mls fileReference="_102049_/l4/operations/viewProductDetails.defs.ts" enhancement="_blank"/>
+
+export const operationViewProductDetails = {
+  "operationId": "viewProductDetails",
+  "title": "Ver detalhes do produto",
+  "actor": "cliente",
+  "entity": "Product",
+  "kind": "view",
+  "reads": [
+    "Product",
+    "ProductCategory"
+  ],
+  "writes": [],
+  "rulesApplied": [
+    "featuredProductRequiresActive",
+    "productImageUsesPlatformStorage"
+  ],
+  "story": {
+    "actor": "cliente",
+    "goal": "Visualizar a imagem, descrição e preço de um produto específico do catálogo antes de decidir comprar.",
+    "steps": [
+      "O cliente seleciona um produto no catálogo ou na página inicial.",
+      "O sistema carrega os detalhes completos do produto incluindo imagem, descrição, preço e categoria.",
+      "O cliente avalia as informações para decidir se deseja prosseguir com a compra para retirada na loja."
+    ],
+    "outcome": "O cliente visualiza todos os detalhes do produto selecionado, podendo decidir sobre a compra."
+  },
+  "accessPattern": {
+    "kind": "getById",
+    "entity": "Product",
+    "keyField": "Product.productId",
+    "pagination": "none",
+    "selection": "single",
+    "output": [
+      "Product.productId",
+      "Product.name",
+      "Product.description",
+      "Product.price",
+      "Product.imageUrl",
+      "Product.productCategoryId",
+      "Product.featured",
+      "Product.status"
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "productId",
+      "fieldRef": "Product.productId",
+      "required": true,
+      "source": "routeParam",
+      "description": "Identificador do produto selecionado pelo cliente para visualização dos detalhes."
+    }
+  ],
+  "contextResolution": [
+    {
+      "targetRef": "Product.productId",
+      "source": "routeParam",
+      "originRef": "routeParam.productId",
+      "description": "O backend extrai o productId do parâmetro de rota da URL para buscar o produto correspondente no catálogo."
+    },
+    {
+      "targetRef": "ProductCategory.productCategoryId",
+      "source": "previousStepOutput",
+      "originRef": "Product.productCategoryId",
+      "description": "O backend resolve a categoria do produto a partir do campo productCategoryId retornado na consulta do produto, buscando o registro correspondente em ProductCategory para exibir o nome da categoria."
+    }
+  ],
+  "acceptanceAssertions": [
+    "O produto retornado possui o productId correspondente ao informado na rota.",
+    "A resposta inclui os campos name, price e imageUrl do produto.",
+    "O campo description do produto é retornado quando preenchido.",
+    "A categoria do produto é resolvida e retornada junto aos detalhes.",
+    "Apenas produtos com status ativo são exibidos para o cliente no detalhamento.",
+    "A URL da imagem do produto aponta para o armazenamento de mídia da plataforma."
+  ],
+  "pageId": "viewProductDetails",
+  "commandName": "viewProductDetails",
+  "bffName": "petShop.viewProductDetails.viewProductDetails",
+  "capability": {
+    "capabilityId": "viewProductDetails",
+    "title": "Ver detalhes do produto",
+    "actor": "cliente",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationViewProductDetails;

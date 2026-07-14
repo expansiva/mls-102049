@@ -1,0 +1,931 @@
+{
+  "savedAt": "2026-07-13T19:53:11.579Z",
+  "stepId": "e5-workflows-operations",
+  "agentName": "agentNs3Behavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "schemaVersion": "2026-07-11-ns3-e5-v2",
+      "moduleName": "petShop",
+      "createdAt": "2026-07-13T19:53:11.563Z",
+      "workflows": [
+        {
+          "workflowId": "serviceBookingLifecycle",
+          "title": "Ciclo de vida do agendamento de serviço",
+          "actorId": "cliente",
+          "primaryEntity": "ServiceBooking",
+          "featureRefs": [
+            "serviceScheduling",
+            "serviceExecution",
+            "schedulingCapacity"
+          ],
+          "operationIds": [
+            "createServiceBooking",
+            "updateServiceBookingStatus"
+          ]
+        }
+      ],
+      "operations": [
+        {
+          "operationId": "createServiceBooking",
+          "title": "Agendar serviço",
+          "actorId": "cliente",
+          "entity": "ServiceBooking",
+          "kind": "create",
+          "featureRefs": [
+            "serviceScheduling",
+            "schedulingCapacity"
+          ],
+          "workflowId": "serviceBookingLifecycle"
+        },
+        {
+          "operationId": "updateServiceBookingStatus",
+          "title": "Atualizar status do agendamento",
+          "actorId": "operador",
+          "entity": "ServiceBooking",
+          "kind": "update",
+          "featureRefs": [
+            "serviceExecution"
+          ],
+          "workflowId": "serviceBookingLifecycle"
+        },
+        {
+          "operationId": "viewHomePage",
+          "title": "Visualizar página inicial",
+          "actorId": "cliente",
+          "entity": "Product",
+          "kind": "view",
+          "featureRefs": [
+            "homePage",
+            "featuredProducts",
+            "productCatalog",
+            "serviceCatalog",
+            "adoptablePetsGallery"
+          ]
+        },
+        {
+          "operationId": "browseProducts",
+          "title": "Navegar no catálogo de produtos",
+          "actorId": "cliente",
+          "entity": "Product",
+          "kind": "query",
+          "featureRefs": [
+            "productCatalog"
+          ]
+        },
+        {
+          "operationId": "viewProductDetails",
+          "title": "Ver detalhes do produto",
+          "actorId": "cliente",
+          "entity": "Product",
+          "kind": "view",
+          "featureRefs": [
+            "productCatalog"
+          ]
+        },
+        {
+          "operationId": "browseServices",
+          "title": "Ver serviços oferecidos",
+          "actorId": "cliente",
+          "entity": "Service",
+          "kind": "query",
+          "featureRefs": [
+            "serviceCatalog"
+          ]
+        },
+        {
+          "operationId": "browseAdoptablePets",
+          "title": "Navegar na galeria de adoção",
+          "actorId": "cliente",
+          "entity": "AdoptablePet",
+          "kind": "query",
+          "featureRefs": [
+            "adoptablePetsGallery"
+          ]
+        },
+        {
+          "operationId": "viewPetDetails",
+          "title": "Ver detalhes do pet",
+          "actorId": "cliente",
+          "entity": "AdoptablePet",
+          "kind": "view",
+          "featureRefs": [
+            "adoptablePetsGallery"
+          ]
+        },
+        {
+          "operationId": "addCartItem",
+          "title": "Adicionar produtos ao carrinho",
+          "actorId": "cliente",
+          "entity": "OrderItem",
+          "kind": "create",
+          "featureRefs": [
+            "shoppingCart"
+          ]
+        },
+        {
+          "operationId": "reviewCart",
+          "title": "Revisar carrinho",
+          "actorId": "cliente",
+          "entity": "OrderItem",
+          "kind": "view",
+          "featureRefs": [
+            "shoppingCart"
+          ]
+        },
+        {
+          "operationId": "placeOrder",
+          "title": "Finalizar pedido para retirada",
+          "actorId": "cliente",
+          "entity": "Order",
+          "kind": "create",
+          "featureRefs": [
+            "storePickupOrder"
+          ]
+        },
+        {
+          "operationId": "expressAdoptionInterest",
+          "title": "Manifestar interesse na adoção",
+          "actorId": "cliente",
+          "entity": "AdoptionInterest",
+          "kind": "create",
+          "featureRefs": [
+            "adoptionInterest"
+          ]
+        },
+        {
+          "operationId": "viewOperatorSchedule",
+          "title": "Consultar agenda do turno",
+          "actorId": "operador",
+          "entity": "ServiceBooking",
+          "kind": "query",
+          "featureRefs": [
+            "operatorScheduleView"
+          ]
+        },
+        {
+          "operationId": "viewServiceBookingDetails",
+          "title": "Revisar detalhes do atendimento",
+          "actorId": "operador",
+          "entity": "ServiceBooking",
+          "kind": "view",
+          "featureRefs": [
+            "operatorScheduleView"
+          ]
+        },
+        {
+          "operationId": "queryProducts",
+          "title": "Listar produtos",
+          "actorId": "admin",
+          "entity": "Product",
+          "kind": "query",
+          "featureRefs": [
+            "productManagement"
+          ]
+        },
+        {
+          "operationId": "createProduct",
+          "title": "Cadastrar produto",
+          "actorId": "admin",
+          "entity": "Product",
+          "kind": "create",
+          "featureRefs": [
+            "productManagement"
+          ]
+        },
+        {
+          "operationId": "updateProduct",
+          "title": "Editar produto",
+          "actorId": "admin",
+          "entity": "Product",
+          "kind": "update",
+          "featureRefs": [
+            "productManagement",
+            "featuredProducts"
+          ]
+        },
+        {
+          "operationId": "queryServices",
+          "title": "Listar serviços",
+          "actorId": "admin",
+          "entity": "Service",
+          "kind": "query",
+          "featureRefs": [
+            "serviceManagement"
+          ]
+        },
+        {
+          "operationId": "createService",
+          "title": "Cadastrar serviço",
+          "actorId": "admin",
+          "entity": "Service",
+          "kind": "create",
+          "featureRefs": [
+            "serviceManagement"
+          ]
+        },
+        {
+          "operationId": "updateService",
+          "title": "Editar serviço",
+          "actorId": "admin",
+          "entity": "Service",
+          "kind": "update",
+          "featureRefs": [
+            "serviceManagement"
+          ]
+        },
+        {
+          "operationId": "queryAdoptablePets",
+          "title": "Listar pets para adoção",
+          "actorId": "admin",
+          "entity": "AdoptablePet",
+          "kind": "query",
+          "featureRefs": [
+            "petManagement"
+          ]
+        },
+        {
+          "operationId": "createAdoptablePet",
+          "title": "Cadastrar pet para adoção",
+          "actorId": "admin",
+          "entity": "AdoptablePet",
+          "kind": "create",
+          "featureRefs": [
+            "petManagement"
+          ]
+        },
+        {
+          "operationId": "updateAdoptablePet",
+          "title": "Editar informações do pet",
+          "actorId": "admin",
+          "entity": "AdoptablePet",
+          "kind": "update",
+          "featureRefs": [
+            "petManagement"
+          ]
+        },
+        {
+          "operationId": "queryOperators",
+          "title": "Listar operadores",
+          "actorId": "admin",
+          "entity": "Operator",
+          "kind": "query",
+          "featureRefs": [
+            "operatorManagement"
+          ]
+        },
+        {
+          "operationId": "createOperator",
+          "title": "Cadastrar operador",
+          "actorId": "admin",
+          "entity": "Operator",
+          "kind": "create",
+          "featureRefs": [
+            "operatorManagement"
+          ]
+        },
+        {
+          "operationId": "updateOperator",
+          "title": "Editar operador",
+          "actorId": "admin",
+          "entity": "Operator",
+          "kind": "update",
+          "featureRefs": [
+            "operatorManagement"
+          ]
+        },
+        {
+          "operationId": "queryShifts",
+          "title": "Listar turnos",
+          "actorId": "admin",
+          "entity": "Shift",
+          "kind": "query",
+          "featureRefs": [
+            "shiftManagement"
+          ]
+        },
+        {
+          "operationId": "createShift",
+          "title": "Definir turno de trabalho",
+          "actorId": "admin",
+          "entity": "Shift",
+          "kind": "create",
+          "featureRefs": [
+            "shiftManagement"
+          ]
+        },
+        {
+          "operationId": "updateShift",
+          "title": "Editar turno",
+          "actorId": "admin",
+          "entity": "Shift",
+          "kind": "update",
+          "featureRefs": [
+            "shiftManagement"
+          ]
+        },
+        {
+          "operationId": "queryShiftAssignments",
+          "title": "Consultar alocações e capacidade",
+          "actorId": "admin",
+          "entity": "ShiftAssignment",
+          "kind": "query",
+          "featureRefs": [
+            "shiftManagement",
+            "schedulingCapacity"
+          ]
+        },
+        {
+          "operationId": "createShiftAssignment",
+          "title": "Alocar operador em turno",
+          "actorId": "admin",
+          "entity": "ShiftAssignment",
+          "kind": "create",
+          "featureRefs": [
+            "shiftManagement",
+            "schedulingCapacity"
+          ]
+        },
+        {
+          "operationId": "updateShiftAssignment",
+          "title": "Editar alocação de operador",
+          "actorId": "admin",
+          "entity": "ShiftAssignment",
+          "kind": "update",
+          "featureRefs": [
+            "shiftManagement"
+          ]
+        },
+        {
+          "operationId": "deleteShiftAssignment",
+          "title": "Remover alocação de operador",
+          "actorId": "admin",
+          "entity": "ShiftAssignment",
+          "kind": "delete",
+          "featureRefs": [
+            "shiftManagement"
+          ]
+        }
+      ],
+      "managedEntities": [
+        {
+          "entity": "Product",
+          "deletionPolicy": "inactivate",
+          "inactivationState": "inactive",
+          "reason": "Produtos inativados deixam de aparecer no catálogo mas mantêm o histórico de pedidos."
+        },
+        {
+          "entity": "Service",
+          "deletionPolicy": "inactivate",
+          "inactivationState": "inactive",
+          "reason": "Serviços desativados deixam de aparecer para agendamento mas mantêm agendamentos confirmados."
+        },
+        {
+          "entity": "AdoptablePet",
+          "deletionPolicy": "inactivate",
+          "inactivationState": "unavailable",
+          "reason": "Pets indisponíveis deixam de aparecer na galeria mas mantêm o registro."
+        },
+        {
+          "entity": "Operator",
+          "deletionPolicy": "immutable",
+          "reason": "Operadores são registros permanentes referenciados por alocações de turno e histórico de agendamentos."
+        },
+        {
+          "entity": "Shift",
+          "deletionPolicy": "immutable",
+          "reason": "Turnos são referenciados por alocações e agendamentos históricos, não podendo ser removidos."
+        },
+        {
+          "entity": "ShiftAssignment",
+          "deletionPolicy": "delete",
+          "reason": "Alocações podem ser removidas quando o operador não deve mais atender no turno."
+        }
+      ]
+    },
+    "gate": {
+      "ok": false,
+      "artifact": {
+        "schemaVersion": "2026-07-11-ns3-e5-v2",
+        "moduleName": "petShop",
+        "createdAt": "2026-07-13T19:53:11.563Z",
+        "workflows": [
+          {
+            "workflowId": "serviceBookingLifecycle",
+            "title": "Ciclo de vida do agendamento de serviço",
+            "actorId": "cliente",
+            "primaryEntity": "ServiceBooking",
+            "featureRefs": [
+              "serviceScheduling",
+              "serviceExecution",
+              "schedulingCapacity"
+            ],
+            "operationIds": [
+              "createServiceBooking",
+              "updateServiceBookingStatus"
+            ]
+          }
+        ],
+        "operations": [
+          {
+            "operationId": "createServiceBooking",
+            "title": "Agendar serviço",
+            "actorId": "cliente",
+            "entity": "ServiceBooking",
+            "kind": "create",
+            "featureRefs": [
+              "serviceScheduling",
+              "schedulingCapacity"
+            ],
+            "workflowId": "serviceBookingLifecycle"
+          },
+          {
+            "operationId": "updateServiceBookingStatus",
+            "title": "Atualizar status do agendamento",
+            "actorId": "operador",
+            "entity": "ServiceBooking",
+            "kind": "update",
+            "featureRefs": [
+              "serviceExecution"
+            ],
+            "workflowId": "serviceBookingLifecycle"
+          },
+          {
+            "operationId": "viewHomePage",
+            "title": "Visualizar página inicial",
+            "actorId": "cliente",
+            "entity": "Product",
+            "kind": "view",
+            "featureRefs": [
+              "homePage",
+              "featuredProducts",
+              "productCatalog",
+              "serviceCatalog",
+              "adoptablePetsGallery"
+            ]
+          },
+          {
+            "operationId": "browseProducts",
+            "title": "Navegar no catálogo de produtos",
+            "actorId": "cliente",
+            "entity": "Product",
+            "kind": "query",
+            "featureRefs": [
+              "productCatalog"
+            ]
+          },
+          {
+            "operationId": "viewProductDetails",
+            "title": "Ver detalhes do produto",
+            "actorId": "cliente",
+            "entity": "Product",
+            "kind": "view",
+            "featureRefs": [
+              "productCatalog"
+            ]
+          },
+          {
+            "operationId": "browseServices",
+            "title": "Ver serviços oferecidos",
+            "actorId": "cliente",
+            "entity": "Service",
+            "kind": "query",
+            "featureRefs": [
+              "serviceCatalog"
+            ]
+          },
+          {
+            "operationId": "browseAdoptablePets",
+            "title": "Navegar na galeria de adoção",
+            "actorId": "cliente",
+            "entity": "AdoptablePet",
+            "kind": "query",
+            "featureRefs": [
+              "adoptablePetsGallery"
+            ]
+          },
+          {
+            "operationId": "viewPetDetails",
+            "title": "Ver detalhes do pet",
+            "actorId": "cliente",
+            "entity": "AdoptablePet",
+            "kind": "view",
+            "featureRefs": [
+              "adoptablePetsGallery"
+            ]
+          },
+          {
+            "operationId": "addCartItem",
+            "title": "Adicionar produtos ao carrinho",
+            "actorId": "cliente",
+            "entity": "OrderItem",
+            "kind": "create",
+            "featureRefs": [
+              "shoppingCart"
+            ]
+          },
+          {
+            "operationId": "reviewCart",
+            "title": "Revisar carrinho",
+            "actorId": "cliente",
+            "entity": "OrderItem",
+            "kind": "view",
+            "featureRefs": [
+              "shoppingCart"
+            ]
+          },
+          {
+            "operationId": "placeOrder",
+            "title": "Finalizar pedido para retirada",
+            "actorId": "cliente",
+            "entity": "Order",
+            "kind": "create",
+            "featureRefs": [
+              "storePickupOrder"
+            ]
+          },
+          {
+            "operationId": "expressAdoptionInterest",
+            "title": "Manifestar interesse na adoção",
+            "actorId": "cliente",
+            "entity": "AdoptionInterest",
+            "kind": "create",
+            "featureRefs": [
+              "adoptionInterest"
+            ]
+          },
+          {
+            "operationId": "viewOperatorSchedule",
+            "title": "Consultar agenda do turno",
+            "actorId": "operador",
+            "entity": "ServiceBooking",
+            "kind": "query",
+            "featureRefs": [
+              "operatorScheduleView"
+            ]
+          },
+          {
+            "operationId": "viewServiceBookingDetails",
+            "title": "Revisar detalhes do atendimento",
+            "actorId": "operador",
+            "entity": "ServiceBooking",
+            "kind": "view",
+            "featureRefs": [
+              "operatorScheduleView"
+            ]
+          },
+          {
+            "operationId": "queryProducts",
+            "title": "Listar produtos",
+            "actorId": "admin",
+            "entity": "Product",
+            "kind": "query",
+            "featureRefs": [
+              "productManagement"
+            ]
+          },
+          {
+            "operationId": "createProduct",
+            "title": "Cadastrar produto",
+            "actorId": "admin",
+            "entity": "Product",
+            "kind": "create",
+            "featureRefs": [
+              "productManagement"
+            ]
+          },
+          {
+            "operationId": "updateProduct",
+            "title": "Editar produto",
+            "actorId": "admin",
+            "entity": "Product",
+            "kind": "update",
+            "featureRefs": [
+              "productManagement",
+              "featuredProducts"
+            ]
+          },
+          {
+            "operationId": "queryServices",
+            "title": "Listar serviços",
+            "actorId": "admin",
+            "entity": "Service",
+            "kind": "query",
+            "featureRefs": [
+              "serviceManagement"
+            ]
+          },
+          {
+            "operationId": "createService",
+            "title": "Cadastrar serviço",
+            "actorId": "admin",
+            "entity": "Service",
+            "kind": "create",
+            "featureRefs": [
+              "serviceManagement"
+            ]
+          },
+          {
+            "operationId": "updateService",
+            "title": "Editar serviço",
+            "actorId": "admin",
+            "entity": "Service",
+            "kind": "update",
+            "featureRefs": [
+              "serviceManagement"
+            ]
+          },
+          {
+            "operationId": "queryAdoptablePets",
+            "title": "Listar pets para adoção",
+            "actorId": "admin",
+            "entity": "AdoptablePet",
+            "kind": "query",
+            "featureRefs": [
+              "petManagement"
+            ]
+          },
+          {
+            "operationId": "createAdoptablePet",
+            "title": "Cadastrar pet para adoção",
+            "actorId": "admin",
+            "entity": "AdoptablePet",
+            "kind": "create",
+            "featureRefs": [
+              "petManagement"
+            ]
+          },
+          {
+            "operationId": "updateAdoptablePet",
+            "title": "Editar informações do pet",
+            "actorId": "admin",
+            "entity": "AdoptablePet",
+            "kind": "update",
+            "featureRefs": [
+              "petManagement"
+            ]
+          },
+          {
+            "operationId": "queryOperators",
+            "title": "Listar operadores",
+            "actorId": "admin",
+            "entity": "Operator",
+            "kind": "query",
+            "featureRefs": [
+              "operatorManagement"
+            ]
+          },
+          {
+            "operationId": "createOperator",
+            "title": "Cadastrar operador",
+            "actorId": "admin",
+            "entity": "Operator",
+            "kind": "create",
+            "featureRefs": [
+              "operatorManagement"
+            ]
+          },
+          {
+            "operationId": "updateOperator",
+            "title": "Editar operador",
+            "actorId": "admin",
+            "entity": "Operator",
+            "kind": "update",
+            "featureRefs": [
+              "operatorManagement"
+            ]
+          },
+          {
+            "operationId": "queryShifts",
+            "title": "Listar turnos",
+            "actorId": "admin",
+            "entity": "Shift",
+            "kind": "query",
+            "featureRefs": [
+              "shiftManagement"
+            ]
+          },
+          {
+            "operationId": "createShift",
+            "title": "Definir turno de trabalho",
+            "actorId": "admin",
+            "entity": "Shift",
+            "kind": "create",
+            "featureRefs": [
+              "shiftManagement"
+            ]
+          },
+          {
+            "operationId": "updateShift",
+            "title": "Editar turno",
+            "actorId": "admin",
+            "entity": "Shift",
+            "kind": "update",
+            "featureRefs": [
+              "shiftManagement"
+            ]
+          },
+          {
+            "operationId": "queryShiftAssignments",
+            "title": "Consultar alocações e capacidade",
+            "actorId": "admin",
+            "entity": "ShiftAssignment",
+            "kind": "query",
+            "featureRefs": [
+              "shiftManagement",
+              "schedulingCapacity"
+            ]
+          },
+          {
+            "operationId": "createShiftAssignment",
+            "title": "Alocar operador em turno",
+            "actorId": "admin",
+            "entity": "ShiftAssignment",
+            "kind": "create",
+            "featureRefs": [
+              "shiftManagement",
+              "schedulingCapacity"
+            ]
+          },
+          {
+            "operationId": "updateShiftAssignment",
+            "title": "Editar alocação de operador",
+            "actorId": "admin",
+            "entity": "ShiftAssignment",
+            "kind": "update",
+            "featureRefs": [
+              "shiftManagement"
+            ]
+          },
+          {
+            "operationId": "deleteShiftAssignment",
+            "title": "Remover alocação de operador",
+            "actorId": "admin",
+            "entity": "ShiftAssignment",
+            "kind": "delete",
+            "featureRefs": [
+              "shiftManagement"
+            ]
+          }
+        ],
+        "managedEntities": [
+          {
+            "entity": "Product",
+            "deletionPolicy": "inactivate",
+            "inactivationState": "inactive",
+            "reason": "Produtos inativados deixam de aparecer no catálogo mas mantêm o histórico de pedidos."
+          },
+          {
+            "entity": "Service",
+            "deletionPolicy": "inactivate",
+            "inactivationState": "inactive",
+            "reason": "Serviços desativados deixam de aparecer para agendamento mas mantêm agendamentos confirmados."
+          },
+          {
+            "entity": "AdoptablePet",
+            "deletionPolicy": "inactivate",
+            "inactivationState": "unavailable",
+            "reason": "Pets indisponíveis deixam de aparecer na galeria mas mantêm o registro."
+          },
+          {
+            "entity": "Operator",
+            "deletionPolicy": "immutable",
+            "reason": "Operadores são registros permanentes referenciados por alocações de turno e histórico de agendamentos."
+          },
+          {
+            "entity": "Shift",
+            "deletionPolicy": "immutable",
+            "reason": "Turnos são referenciados por alocações e agendamentos históricos, não podendo ser removidos."
+          },
+          {
+            "entity": "ShiftAssignment",
+            "deletionPolicy": "delete",
+            "reason": "Alocações podem ser removidas quando o operador não deve mais atender no turno."
+          }
+        ]
+      },
+      "errors": [
+        {
+          "severity": "error",
+          "code": "classification.managedEntity.missing",
+          "message": "entity \"OrderItem\" has write operations but no managedEntities entry — declare its deletionPolicy (delete | inactivate | immutable)",
+          "path": "OrderItem"
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "warning",
+          "code": "classification.managedEntity.missing",
+          "message": "entity \"Order\" has write operations but no managedEntities entry — declare its deletionPolicy (delete | inactivate | immutable); its statusEnum may already model the exit — declare it explicitly if so (inactivate)",
+          "path": "Order"
+        },
+        {
+          "severity": "warning",
+          "code": "classification.managedEntity.missing",
+          "message": "entity \"AdoptionInterest\" has write operations but no managedEntities entry — declare its deletionPolicy (delete | inactivate | immutable); its statusEnum may already model the exit — declare it explicitly if so (inactivate)",
+          "path": "AdoptionInterest"
+        }
+      ],
+      "attempts": 1,
+      "needsHumanInput": false,
+      "retryContext": "classification.managedEntity.missing OrderItem: entity \"OrderItem\" has write operations but no managedEntities entry — declare its deletionPolicy (delete | inactivate | immutable)",
+      "pipeline": {
+        "schemaVersion": "2026-07-05-ns3-pipeline-v1",
+        "flowId": "agentNewSolution3",
+        "moduleName": "petShop",
+        "createdAt": "2026-07-13T19:43:54.351Z",
+        "updatedAt": "2026-07-13T19:53:11.575Z",
+        "steps": {
+          "e1-draft": {
+            "status": "approved",
+            "updatedAt": "2026-07-13T19:43:54.359Z",
+            "dirty": false,
+            "inputsHash": "djb2:e4da94ae",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-13T19:43:54.352Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-13T19:43:54.359Z",
+            "approvedBy": "auto"
+          },
+          "checkpoint-draft": {
+            "status": "pending",
+            "updatedAt": "2026-07-13T19:43:54.351Z"
+          },
+          "e2-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-13T19:46:54.817Z",
+            "dirty": false,
+            "inputsHash": "djb2:179f7e1f",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-13T19:44:48.493Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-13T19:46:54.817Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "checkpoint-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-13T19:46:54.817Z",
+            "dirty": false,
+            "approvedAt": "2026-07-13T19:46:54.817Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "e3-ontology": {
+            "status": "approved",
+            "updatedAt": "2026-07-13T19:48:39.585Z",
+            "dirty": false,
+            "inputsHash": "djb2:b8ff42b8",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-13T19:48:04.740Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-13T19:48:39.585Z",
+            "approvedBy": "auto"
+          },
+          "e4-actors-rules-refs": {
+            "status": "approved",
+            "updatedAt": "2026-07-13T19:50:04.887Z",
+            "dirty": false,
+            "inputsHash": "djb2:e21c0b91",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-13T19:50:04.887Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-13T19:50:04.887Z",
+            "approvedBy": "auto"
+          },
+          "e5-workflows-operations": {
+            "status": "gate_failed",
+            "updatedAt": "2026-07-13T19:53:11.575Z",
+            "dirty": false,
+            "inputsHash": "djb2:e21c0b91",
+            "lastGate": {
+              "ok": false,
+              "checkedAt": "2026-07-13T19:53:11.575Z",
+              "errors": [
+                "classification.managedEntity.missing OrderItem: entity \"OrderItem\" has write operations but no managedEntities entry — declare its deletionPolicy (delete | inactivate | immutable)"
+              ],
+              "warnings": [
+                "classification.managedEntity.missing Order: entity \"Order\" has write operations but no managedEntities entry — declare its deletionPolicy (delete | inactivate | immutable); its statusEnum may already model the exit — declare it explicitly if so (inactivate)",
+                "classification.managedEntity.missing AdoptionInterest: entity \"AdoptionInterest\" has write operations but no managedEntities entry — declare its deletionPolicy (delete | inactivate | immutable); its statusEnum may already model the exit — declare it explicitly if so (inactivate)"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "retryContext": "classification.managedEntity.missing OrderItem: entity \"OrderItem\" has write operations but no managedEntities entry — declare its deletionPolicy (delete | inactivate | immutable)"
+  },
+  "error": "classification.managedEntity.missing: entity \"OrderItem\" has write operations but no managedEntities entry — declare its deletionPolicy (delete | inactivate | immutable)"
+}

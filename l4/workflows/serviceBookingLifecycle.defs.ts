@@ -1,0 +1,77 @@
+/// <mls fileReference="_102049_/l4/workflows/serviceBookingLifecycle.defs.ts" enhancement="_blank"/>
+
+export const workflowServiceBookingLifecycle = {
+  "workflowId": "serviceBookingLifecycle",
+  "title": "Ciclo de vida do agendamento de serviço",
+  "executionMode": "sequential",
+  "trigger": "Cliente confirma o agendamento de um serviço para data e horário disponíveis, criando o registro vinculado a um operador do turno correspondente.",
+  "actors": [
+    "cliente",
+    "operador"
+  ],
+  "states": [
+    "confirmed",
+    "inProgress",
+    "completed"
+  ],
+  "transitions": [
+    {
+      "from": "confirmed",
+      "to": "inProgress",
+      "on": "startServiceExecution",
+      "by": "operador",
+      "guard": "Apenas o operador atribuído ao agendamento pode iniciá-lo."
+    },
+    {
+      "from": "inProgress",
+      "to": "completed",
+      "on": "completeServiceExecution",
+      "by": "operador",
+      "guard": "Apenas o operador atribuído ao agendamento pode marcá-lo como concluído."
+    }
+  ],
+  "operationIds": [
+    "createServiceBooking",
+    "startServiceExecution",
+    "completeServiceExecution"
+  ],
+  "entities": [
+    "ServiceBooking",
+    "Service",
+    "Operator",
+    "Shift",
+    "ShiftAssignment"
+  ],
+  "rulesApplied": [
+    "schedulingCapacityByOperators",
+    "noBookingWithoutAvailableOperator",
+    "businessHoursForScheduling",
+    "onlyAssignedOperatorCanComplete",
+    "paymentInStoreOnly"
+  ],
+  "story": {
+    "actor": "cliente",
+    "goal": "Agendar um serviço para o seu pet e ter o atendimento executado e concluído pelo operador na loja.",
+    "steps": [
+      "O cliente consulta os serviços disponíveis e seleciona o serviço desejado para o seu pet.",
+      "O cliente escolhe uma data e horário disponíveis com base na capacidade de operadores alocados por turno.",
+      "O cliente confirma o agendamento, que é vinculado a um operador disponível no turno correspondente.",
+      "O operador inicia o atendimento quando o cliente chega à loja no horário marcado.",
+      "O operador conclui o serviço e marca o agendamento como concluído, liberando capacidade para futuros agendamentos."
+    ],
+    "outcome": "O serviço é executado e marcado como concluído; o cliente realiza o pagamento presencialmente na loja."
+  },
+  "pageId": "serviceBookingLifecycle",
+  "capabilities": [
+    {
+      "capabilityId": "serviceBookingLifecycle",
+      "title": "Ciclo de vida do agendamento de serviço",
+      "actor": "cliente",
+      "priority": "now"
+    }
+  ],
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default workflowServiceBookingLifecycle;

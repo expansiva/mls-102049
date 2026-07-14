@@ -1,0 +1,645 @@
+{
+  "savedAt": "2026-07-13T19:50:04.893Z",
+  "stepId": "e4-actors-rules-refs",
+  "agentName": "agentNs3ActorsRules",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "schemaVersion": "2026-07-07-ns3-e4-v1",
+      "moduleName": "petShop",
+      "userLanguage": "pt-BR",
+      "createdAt": "2026-07-13T19:50:04.883Z",
+      "actors": [
+        {
+          "actorId": "cliente",
+          "title": "Cliente",
+          "description": "Usuário final que acessa o site, navega no catálogo de produtos, cria pedidos para retirada na loja, agenda serviços e manifesta interesse em pets para adoção.",
+          "roleScope": "petShop:cliente"
+        },
+        {
+          "actorId": "operador",
+          "title": "Operador",
+          "description": "Funcionário que executa serviços agendados, visualiza sua agenda vinculada ao turno e marca serviços como concluídos após a execução.",
+          "roleScope": "petShop:operador"
+        },
+        {
+          "actorId": "admin",
+          "title": "Administrador",
+          "description": "Responsável por gerenciar operadores, turnos, produtos, serviços oferecidos e pets disponíveis para adoção, controlando destaque, disponibilidade e capacidade de atendimento.",
+          "roleScope": "petShop:admin"
+        }
+      ],
+      "rules": [
+        {
+          "ruleId": "featuredProductRequiresActive",
+          "title": "Destaque exige produto ativo",
+          "description": "Apenas produtos cadastrados e ativos podem ser marcados como destaque; a página inicial deve sempre exibir pelo menos um produto em destaque quando houver produtos cadastrados.",
+          "appliesTo": [
+            "Product"
+          ],
+          "layer": "domain",
+          "sourceJourneyRules": [
+            "A página inicial deve sempre exibir pelo menos um produto em destaque quando houver produtos cadastrados.",
+            "Apenas produtos cadastrados e ativos podem ser marcados como destaque."
+          ]
+        },
+        {
+          "ruleId": "activeServicesOnlyListed",
+          "title": "Apenas serviços ativos são listados",
+          "description": "A listagem de serviços para clientes, inclusive na página inicial, reflete apenas serviços ativos cadastrados pelo administrador; serviços inativos não aparecem.",
+          "appliesTo": [
+            "Service"
+          ],
+          "layer": "domain",
+          "sourceJourneyRules": [
+            "A lista de serviços na página inicial reflete apenas serviços ativos cadastrados pelo administrador.",
+            "Apenas serviços ativos aparecem na listagem para clientes."
+          ]
+        },
+        {
+          "ruleId": "paymentInStoreOnly",
+          "title": "Pagamento exclusivamente presencial",
+          "description": "Todo pagamento — de pedidos de retirada e de serviços — é realizado apenas presencialmente na loja física; não existe pagamento online em nenhuma etapa do fluxo.",
+          "appliesTo": [
+            "Order",
+            "ServiceBooking"
+          ],
+          "layer": "application",
+          "sourceJourneyRules": [
+            "O pagamento é realizado apenas presencialmente na loja física; não há pagamento online.",
+            "O pagamento do serviço é realizado presencialmente na loja, após a execução ou no momento do atendimento.",
+            "O pagamento é feito presencialmente na loja após a execução do serviço."
+          ]
+        },
+        {
+          "ruleId": "pickupInStoreOnly",
+          "title": "Retirada exclusivamente na loja",
+          "description": "A retirada de produtos é feita exclusivamente na loja física; não há opção de entrega para pedidos de retirada.",
+          "appliesTo": [
+            "Order"
+          ],
+          "layer": "application",
+          "sourceJourneyRules": [
+            "A retirada de produtos é feita exclusivamente na loja, sem opção de entrega."
+          ]
+        },
+        {
+          "ruleId": "orderRequiresAtLeastOneItem",
+          "title": "Pedido exige ao menos um item",
+          "description": "Um pedido de retirada deve conter pelo menos um item para ser finalizado; pedidos sem itens não podem ser concluídos.",
+          "appliesTo": [
+            "Order",
+            "OrderItem"
+          ],
+          "layer": "domain",
+          "sourceJourneyRules": [
+            "O pedido deve conter pelo menos um item para ser finalizado."
+          ]
+        },
+        {
+          "ruleId": "schedulingCapacityByOperators",
+          "title": "Capacidade de agendamento por operadores alocados",
+          "description": "A disponibilidade de horários e a capacidade de agendamento em cada horário são determinadas pelo número de operadores alocados no turno correspondente.",
+          "appliesTo": [
+            "ServiceBooking",
+            "ShiftAssignment"
+          ],
+          "layer": "domain",
+          "sourceJourneyRules": [
+            "A disponibilidade de horários depende da quantidade de operadores alocados em cada turno.",
+            "A capacidade de agendamento em cada horário é determinada pelo número de operadores alocados no turno correspondente."
+          ]
+        },
+        {
+          "ruleId": "noBookingWithoutAvailableOperator",
+          "title": "Agendamento exige operador disponível",
+          "description": "Um cliente não pode agendar um serviço em horário em que não há operador disponível alocado no turno correspondente.",
+          "appliesTo": [
+            "ServiceBooking",
+            "Operator"
+          ],
+          "layer": "domain",
+          "sourceJourneyRules": [
+            "Um cliente não pode agendar um serviço em horário sem operador disponível."
+          ]
+        },
+        {
+          "ruleId": "businessHoursForScheduling",
+          "title": "Horário de funcionamento para agendamentos",
+          "description": "O horário de funcionamento considerado para agendamentos é segunda a sábado, das 09:00 às 18:00, salvo configuração diferente definida pelo administrador.",
+          "appliesTo": [
+            "ServiceBooking",
+            "Shift"
+          ],
+          "layer": "application",
+          "sourceJourneyRules": [
+            "O horário de funcionamento considerado para agendamentos é segunda a sábado, das 09:00 às 18:00, salvo configuração diferente pelo administrador."
+          ]
+        },
+        {
+          "ruleId": "adoptionStartedOnlineFinishedInStore",
+          "title": "Adoção iniciada online e finalizada na loja",
+          "description": "A adoção é apenas iniciada no site mediante manifestação de interesse; a finalização acontece presencialmente na loja com verificação e documentação.",
+          "appliesTo": [
+            "AdoptionInterest"
+          ],
+          "layer": "application",
+          "sourceJourneyRules": [
+            "A adoção é apenas iniciada no site; a finalização acontece presencialmente na loja com verificação e documentação."
+          ]
+        },
+        {
+          "ruleId": "onlyAvailablePetsShownInGallery",
+          "title": "Galeria exibe apenas pets disponíveis",
+          "description": "Apenas pets marcados como disponíveis para adoção pelo administrador aparecem na galeria de adoção exibida aos clientes.",
+          "appliesTo": [
+            "AdoptablePet"
+          ],
+          "layer": "domain",
+          "sourceJourneyRules": [
+            "Apenas pets marcados como disponíveis para adoção pelo administrador aparecem na galeria.",
+            "Apenas pets marcados como disponíveis aparecem na galeria de adoção."
+          ]
+        },
+        {
+          "ruleId": "operatorSeesOnlyAssignedShiftBookings",
+          "title": "Operador vê apenas agendamentos do seu turno",
+          "description": "O operador visualiza apenas os agendamentos atribuídos ao turno ao qual está alocado; agendamentos de outros turnos não são visíveis.",
+          "appliesTo": [
+            "ServiceBooking",
+            "Operator"
+          ],
+          "layer": "application",
+          "sourceJourneyRules": [
+            "O operador vê apenas os agendamentos atribuídos ao seu turno."
+          ]
+        },
+        {
+          "ruleId": "operatorScheduleShowsConfirmedOnly",
+          "title": "Agenda do operador mostra apenas confirmados",
+          "description": "A agenda do operador reflete apenas serviços com status confirmado; agendamentos não confirmados não aparecem na agenda.",
+          "appliesTo": [
+            "ServiceBooking"
+          ],
+          "layer": "domain",
+          "sourceJourneyRules": [
+            "A agenda do operador reflete apenas serviços confirmados."
+          ]
+        },
+        {
+          "ruleId": "onlyAssignedOperatorCanComplete",
+          "title": "Apenas operador atribuído conclui serviço",
+          "description": "Apenas o operador atribuído ao agendamento pode marcá-lo como concluído; outros operadores não podem finalizar agendamentos que não lhes foram atribuídos.",
+          "appliesTo": [
+            "ServiceBooking",
+            "Operator"
+          ],
+          "layer": "application",
+          "sourceJourneyRules": [
+            "Apenas o operador atribuído ao agendamento pode marcá-lo como concluído."
+          ]
+        },
+        {
+          "ruleId": "operatorMultipleShiftsAllowed",
+          "title": "Operador pode ter múltiplos turnos sobrepostos",
+          "description": "Um operador pode ser alocado em mais de um turno, e turnos sobrepostos no mesmo dia são permitidos para aumentar a capacidade de atendimento.",
+          "appliesTo": [
+            "ShiftAssignment",
+            "Shift"
+          ],
+          "layer": "domain",
+          "sourceJourneyRules": [
+            "Um operador pode ser alocado em mais de um turno.",
+            "Turnos sobrepostos no mesmo dia são permitidos para aumentar a capacidade de atendimento."
+          ]
+        },
+        {
+          "ruleId": "productImageUsesPlatformStorage",
+          "title": "Imagem de produto usa armazenamento da plataforma",
+          "description": "A imagem do produto utiliza o armazenamento de mídia da plataforma; o módulo não implementa armazenamento próprio de arquivos.",
+          "appliesTo": [
+            "Product"
+          ],
+          "layer": "application",
+          "sourceJourneyRules": [
+            "A imagem do produto utiliza o armazenamento de mídia da plataforma."
+          ]
+        },
+        {
+          "ruleId": "deactivatingServiceDoesNotCancelBookings",
+          "title": "Desativar serviço não cancela agendamentos confirmados",
+          "description": "Desativar um serviço não cancela agendamentos já confirmados; agendamentos existentes permanecem válidos mesmo após o serviço ser desativado.",
+          "appliesTo": [
+            "Service",
+            "ServiceBooking"
+          ],
+          "layer": "domain",
+          "sourceJourneyRules": [
+            "Desativar um serviço não cancela agendamentos já confirmados."
+          ]
+        },
+        {
+          "ruleId": "petImageUsesPlatformStorage",
+          "title": "Imagem de pet usa armazenamento da plataforma",
+          "description": "A imagem do pet utiliza o armazenamento de mídia da plataforma; o módulo não implementa armazenamento próprio de arquivos.",
+          "appliesTo": [
+            "AdoptablePet"
+          ],
+          "layer": "application",
+          "sourceJourneyRules": [
+            "A imagem do pet utiliza o armazenamento de mídia da plataforma."
+          ]
+        }
+      ],
+      "externalRefs": {
+        "mdm": [
+          {
+            "title": "Categoria de Produto",
+            "reason": "Catálogo de categorias de produto com identidade estável e mudanças raras, gerenciado pelo administrador para classificação de produtos no catálogo."
+          },
+          {
+            "title": "Turno de Trabalho",
+            "reason": "Definição de turnos com identidade estável usada para cálculo de capacidade de agendamento, raramente alterada após configuração inicial pelo administrador."
+          }
+        ],
+        "horizontals": [
+          {
+            "title": "Pagamento Presencial",
+            "reason": "Todas as transações — pedidos de retirada e serviços agendados — exigem pagamento presencial na loja física, demandando uma capacidade de pagamento não online."
+          }
+        ],
+        "plugins": [
+          {
+            "title": "Documento Fiscal",
+            "reason": "Vendas presenciais na loja física podem exigir emissão de documentos fiscais (NF-e/SAT) conforme legislação tributária local."
+          },
+          {
+            "title": "TEF / Terminal de Cartão",
+            "reason": "O pagamento presencial na loja pode utilizar terminais de captura de cartão (TEF) para processar pagamentos de pedidos e serviços."
+          }
+        ],
+        "agents": []
+      }
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "schemaVersion": "2026-07-07-ns3-e4-v1",
+        "moduleName": "petShop",
+        "userLanguage": "pt-BR",
+        "createdAt": "2026-07-13T19:50:04.883Z",
+        "actors": [
+          {
+            "actorId": "cliente",
+            "title": "Cliente",
+            "description": "Usuário final que acessa o site, navega no catálogo de produtos, cria pedidos para retirada na loja, agenda serviços e manifesta interesse em pets para adoção.",
+            "roleScope": "petShop:cliente"
+          },
+          {
+            "actorId": "operador",
+            "title": "Operador",
+            "description": "Funcionário que executa serviços agendados, visualiza sua agenda vinculada ao turno e marca serviços como concluídos após a execução.",
+            "roleScope": "petShop:operador"
+          },
+          {
+            "actorId": "admin",
+            "title": "Administrador",
+            "description": "Responsável por gerenciar operadores, turnos, produtos, serviços oferecidos e pets disponíveis para adoção, controlando destaque, disponibilidade e capacidade de atendimento.",
+            "roleScope": "petShop:admin"
+          }
+        ],
+        "rules": [
+          {
+            "ruleId": "featuredProductRequiresActive",
+            "title": "Destaque exige produto ativo",
+            "description": "Apenas produtos cadastrados e ativos podem ser marcados como destaque; a página inicial deve sempre exibir pelo menos um produto em destaque quando houver produtos cadastrados.",
+            "appliesTo": [
+              "Product"
+            ],
+            "layer": "domain",
+            "sourceJourneyRules": [
+              "A página inicial deve sempre exibir pelo menos um produto em destaque quando houver produtos cadastrados.",
+              "Apenas produtos cadastrados e ativos podem ser marcados como destaque."
+            ]
+          },
+          {
+            "ruleId": "activeServicesOnlyListed",
+            "title": "Apenas serviços ativos são listados",
+            "description": "A listagem de serviços para clientes, inclusive na página inicial, reflete apenas serviços ativos cadastrados pelo administrador; serviços inativos não aparecem.",
+            "appliesTo": [
+              "Service"
+            ],
+            "layer": "domain",
+            "sourceJourneyRules": [
+              "A lista de serviços na página inicial reflete apenas serviços ativos cadastrados pelo administrador.",
+              "Apenas serviços ativos aparecem na listagem para clientes."
+            ]
+          },
+          {
+            "ruleId": "paymentInStoreOnly",
+            "title": "Pagamento exclusivamente presencial",
+            "description": "Todo pagamento — de pedidos de retirada e de serviços — é realizado apenas presencialmente na loja física; não existe pagamento online em nenhuma etapa do fluxo.",
+            "appliesTo": [
+              "Order",
+              "ServiceBooking"
+            ],
+            "layer": "application",
+            "sourceJourneyRules": [
+              "O pagamento é realizado apenas presencialmente na loja física; não há pagamento online.",
+              "O pagamento do serviço é realizado presencialmente na loja, após a execução ou no momento do atendimento.",
+              "O pagamento é feito presencialmente na loja após a execução do serviço."
+            ]
+          },
+          {
+            "ruleId": "pickupInStoreOnly",
+            "title": "Retirada exclusivamente na loja",
+            "description": "A retirada de produtos é feita exclusivamente na loja física; não há opção de entrega para pedidos de retirada.",
+            "appliesTo": [
+              "Order"
+            ],
+            "layer": "application",
+            "sourceJourneyRules": [
+              "A retirada de produtos é feita exclusivamente na loja, sem opção de entrega."
+            ]
+          },
+          {
+            "ruleId": "orderRequiresAtLeastOneItem",
+            "title": "Pedido exige ao menos um item",
+            "description": "Um pedido de retirada deve conter pelo menos um item para ser finalizado; pedidos sem itens não podem ser concluídos.",
+            "appliesTo": [
+              "Order",
+              "OrderItem"
+            ],
+            "layer": "domain",
+            "sourceJourneyRules": [
+              "O pedido deve conter pelo menos um item para ser finalizado."
+            ]
+          },
+          {
+            "ruleId": "schedulingCapacityByOperators",
+            "title": "Capacidade de agendamento por operadores alocados",
+            "description": "A disponibilidade de horários e a capacidade de agendamento em cada horário são determinadas pelo número de operadores alocados no turno correspondente.",
+            "appliesTo": [
+              "ServiceBooking",
+              "ShiftAssignment"
+            ],
+            "layer": "domain",
+            "sourceJourneyRules": [
+              "A disponibilidade de horários depende da quantidade de operadores alocados em cada turno.",
+              "A capacidade de agendamento em cada horário é determinada pelo número de operadores alocados no turno correspondente."
+            ]
+          },
+          {
+            "ruleId": "noBookingWithoutAvailableOperator",
+            "title": "Agendamento exige operador disponível",
+            "description": "Um cliente não pode agendar um serviço em horário em que não há operador disponível alocado no turno correspondente.",
+            "appliesTo": [
+              "ServiceBooking",
+              "Operator"
+            ],
+            "layer": "domain",
+            "sourceJourneyRules": [
+              "Um cliente não pode agendar um serviço em horário sem operador disponível."
+            ]
+          },
+          {
+            "ruleId": "businessHoursForScheduling",
+            "title": "Horário de funcionamento para agendamentos",
+            "description": "O horário de funcionamento considerado para agendamentos é segunda a sábado, das 09:00 às 18:00, salvo configuração diferente definida pelo administrador.",
+            "appliesTo": [
+              "ServiceBooking",
+              "Shift"
+            ],
+            "layer": "application",
+            "sourceJourneyRules": [
+              "O horário de funcionamento considerado para agendamentos é segunda a sábado, das 09:00 às 18:00, salvo configuração diferente pelo administrador."
+            ]
+          },
+          {
+            "ruleId": "adoptionStartedOnlineFinishedInStore",
+            "title": "Adoção iniciada online e finalizada na loja",
+            "description": "A adoção é apenas iniciada no site mediante manifestação de interesse; a finalização acontece presencialmente na loja com verificação e documentação.",
+            "appliesTo": [
+              "AdoptionInterest"
+            ],
+            "layer": "application",
+            "sourceJourneyRules": [
+              "A adoção é apenas iniciada no site; a finalização acontece presencialmente na loja com verificação e documentação."
+            ]
+          },
+          {
+            "ruleId": "onlyAvailablePetsShownInGallery",
+            "title": "Galeria exibe apenas pets disponíveis",
+            "description": "Apenas pets marcados como disponíveis para adoção pelo administrador aparecem na galeria de adoção exibida aos clientes.",
+            "appliesTo": [
+              "AdoptablePet"
+            ],
+            "layer": "domain",
+            "sourceJourneyRules": [
+              "Apenas pets marcados como disponíveis para adoção pelo administrador aparecem na galeria.",
+              "Apenas pets marcados como disponíveis aparecem na galeria de adoção."
+            ]
+          },
+          {
+            "ruleId": "operatorSeesOnlyAssignedShiftBookings",
+            "title": "Operador vê apenas agendamentos do seu turno",
+            "description": "O operador visualiza apenas os agendamentos atribuídos ao turno ao qual está alocado; agendamentos de outros turnos não são visíveis.",
+            "appliesTo": [
+              "ServiceBooking",
+              "Operator"
+            ],
+            "layer": "application",
+            "sourceJourneyRules": [
+              "O operador vê apenas os agendamentos atribuídos ao seu turno."
+            ]
+          },
+          {
+            "ruleId": "operatorScheduleShowsConfirmedOnly",
+            "title": "Agenda do operador mostra apenas confirmados",
+            "description": "A agenda do operador reflete apenas serviços com status confirmado; agendamentos não confirmados não aparecem na agenda.",
+            "appliesTo": [
+              "ServiceBooking"
+            ],
+            "layer": "domain",
+            "sourceJourneyRules": [
+              "A agenda do operador reflete apenas serviços confirmados."
+            ]
+          },
+          {
+            "ruleId": "onlyAssignedOperatorCanComplete",
+            "title": "Apenas operador atribuído conclui serviço",
+            "description": "Apenas o operador atribuído ao agendamento pode marcá-lo como concluído; outros operadores não podem finalizar agendamentos que não lhes foram atribuídos.",
+            "appliesTo": [
+              "ServiceBooking",
+              "Operator"
+            ],
+            "layer": "application",
+            "sourceJourneyRules": [
+              "Apenas o operador atribuído ao agendamento pode marcá-lo como concluído."
+            ]
+          },
+          {
+            "ruleId": "operatorMultipleShiftsAllowed",
+            "title": "Operador pode ter múltiplos turnos sobrepostos",
+            "description": "Um operador pode ser alocado em mais de um turno, e turnos sobrepostos no mesmo dia são permitidos para aumentar a capacidade de atendimento.",
+            "appliesTo": [
+              "ShiftAssignment",
+              "Shift"
+            ],
+            "layer": "domain",
+            "sourceJourneyRules": [
+              "Um operador pode ser alocado em mais de um turno.",
+              "Turnos sobrepostos no mesmo dia são permitidos para aumentar a capacidade de atendimento."
+            ]
+          },
+          {
+            "ruleId": "productImageUsesPlatformStorage",
+            "title": "Imagem de produto usa armazenamento da plataforma",
+            "description": "A imagem do produto utiliza o armazenamento de mídia da plataforma; o módulo não implementa armazenamento próprio de arquivos.",
+            "appliesTo": [
+              "Product"
+            ],
+            "layer": "application",
+            "sourceJourneyRules": [
+              "A imagem do produto utiliza o armazenamento de mídia da plataforma."
+            ]
+          },
+          {
+            "ruleId": "deactivatingServiceDoesNotCancelBookings",
+            "title": "Desativar serviço não cancela agendamentos confirmados",
+            "description": "Desativar um serviço não cancela agendamentos já confirmados; agendamentos existentes permanecem válidos mesmo após o serviço ser desativado.",
+            "appliesTo": [
+              "Service",
+              "ServiceBooking"
+            ],
+            "layer": "domain",
+            "sourceJourneyRules": [
+              "Desativar um serviço não cancela agendamentos já confirmados."
+            ]
+          },
+          {
+            "ruleId": "petImageUsesPlatformStorage",
+            "title": "Imagem de pet usa armazenamento da plataforma",
+            "description": "A imagem do pet utiliza o armazenamento de mídia da plataforma; o módulo não implementa armazenamento próprio de arquivos.",
+            "appliesTo": [
+              "AdoptablePet"
+            ],
+            "layer": "application",
+            "sourceJourneyRules": [
+              "A imagem do pet utiliza o armazenamento de mídia da plataforma."
+            ]
+          }
+        ],
+        "externalRefs": {
+          "mdm": [
+            {
+              "title": "Categoria de Produto",
+              "reason": "Catálogo de categorias de produto com identidade estável e mudanças raras, gerenciado pelo administrador para classificação de produtos no catálogo."
+            },
+            {
+              "title": "Turno de Trabalho",
+              "reason": "Definição de turnos com identidade estável usada para cálculo de capacidade de agendamento, raramente alterada após configuração inicial pelo administrador."
+            }
+          ],
+          "horizontals": [
+            {
+              "title": "Pagamento Presencial",
+              "reason": "Todas as transações — pedidos de retirada e serviços agendados — exigem pagamento presencial na loja física, demandando uma capacidade de pagamento não online."
+            }
+          ],
+          "plugins": [
+            {
+              "title": "Documento Fiscal",
+              "reason": "Vendas presenciais na loja física podem exigir emissão de documentos fiscais (NF-e/SAT) conforme legislação tributária local."
+            },
+            {
+              "title": "TEF / Terminal de Cartão",
+              "reason": "O pagamento presencial na loja pode utilizar terminais de captura de cartão (TEF) para processar pagamentos de pedidos e serviços."
+            }
+          ],
+          "agents": []
+        }
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false,
+      "pipeline": {
+        "schemaVersion": "2026-07-05-ns3-pipeline-v1",
+        "flowId": "agentNewSolution3",
+        "moduleName": "petShop",
+        "createdAt": "2026-07-13T19:43:54.351Z",
+        "updatedAt": "2026-07-13T19:50:04.887Z",
+        "steps": {
+          "e1-draft": {
+            "status": "approved",
+            "updatedAt": "2026-07-13T19:43:54.359Z",
+            "dirty": false,
+            "inputsHash": "djb2:e4da94ae",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-13T19:43:54.352Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-13T19:43:54.359Z",
+            "approvedBy": "auto"
+          },
+          "checkpoint-draft": {
+            "status": "pending",
+            "updatedAt": "2026-07-13T19:43:54.351Z"
+          },
+          "e2-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-13T19:46:54.817Z",
+            "dirty": false,
+            "inputsHash": "djb2:179f7e1f",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-13T19:44:48.493Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-13T19:46:54.817Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "checkpoint-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-13T19:46:54.817Z",
+            "dirty": false,
+            "approvedAt": "2026-07-13T19:46:54.817Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "e3-ontology": {
+            "status": "approved",
+            "updatedAt": "2026-07-13T19:48:39.585Z",
+            "dirty": false,
+            "inputsHash": "djb2:b8ff42b8",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-13T19:48:04.740Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-13T19:48:39.585Z",
+            "approvedBy": "auto"
+          },
+          "e4-actors-rules-refs": {
+            "status": "pending",
+            "updatedAt": "2026-07-13T19:50:04.887Z",
+            "dirty": false,
+            "inputsHash": "djb2:e21c0b91",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-13T19:50:04.887Z",
+              "errors": [],
+              "warnings": []
+            }
+          }
+        }
+      }
+    }
+  }
+}

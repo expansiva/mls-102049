@@ -1,0 +1,101 @@
+/// <mls fileReference="_102049_/l4/operations/viewServiceBookingDetails.defs.ts" enhancement="_blank"/>
+
+export const operationViewServiceBookingDetails = {
+  "operationId": "viewServiceBookingDetails",
+  "title": "Revisar detalhes do atendimento",
+  "actor": "operador",
+  "entity": "ServiceBooking",
+  "kind": "view",
+  "reads": [
+    "ServiceBooking",
+    "Service"
+  ],
+  "writes": [],
+  "rulesApplied": [
+    "operatorSeesOnlyAssignedShiftBookings",
+    "paymentInStoreOnly"
+  ],
+  "story": {
+    "actor": "operador",
+    "goal": "Visualizar os detalhes completos de um agendamento de serviço atribuído ao seu turno para preparar o atendimento.",
+    "steps": [
+      "O operador seleciona um agendamento da sua agenda de turno.",
+      "O sistema recupera os detalhes do agendamento verificando que pertence ao turno do operador.",
+      "O sistema apresenta tipo de serviço, dados do cliente, data e horário, status, observações e informações de pagamento presencial."
+    ],
+    "outcome": "O operador visualiza todos os detalhes do agendamento selecionado, incluindo tipo de serviço, dados do cliente, observações e status atual."
+  },
+  "accessPattern": {
+    "kind": "getById",
+    "entity": "ServiceBooking",
+    "keyField": "ServiceBooking.serviceBookingId",
+    "pagination": "none",
+    "selection": "single",
+    "output": [
+      "ServiceBooking.serviceBookingId",
+      "ServiceBooking.serviceId",
+      "ServiceBooking.operatorId",
+      "ServiceBooking.shiftId",
+      "ServiceBooking.customerName",
+      "ServiceBooking.customerPhone",
+      "ServiceBooking.bookingDate",
+      "ServiceBooking.bookingTime",
+      "ServiceBooking.status",
+      "ServiceBooking.notes",
+      "ServiceBooking.completedAt",
+      "ServiceBooking.cancelledAt",
+      "ServiceBooking.cancelReason",
+      "ServiceBooking.createdAt",
+      "ServiceBooking.updatedAt"
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "serviceBookingId",
+      "fieldRef": "ServiceBooking.serviceBookingId",
+      "required": true,
+      "source": "routeParam",
+      "description": "Identificador do agendamento selecionado pelo operador na agenda de turno."
+    },
+    {
+      "inputId": "operatorId",
+      "fieldRef": "ServiceBooking.operatorId",
+      "required": true,
+      "source": "actorSession",
+      "description": "Identificador do operador autenticado, usado para verificar que o agendamento pertence ao seu turno."
+    }
+  ],
+  "contextResolution": [
+    {
+      "targetRef": "ServiceBooking.serviceBookingId",
+      "source": "routeParam",
+      "originRef": "routeParam.serviceBookingId",
+      "description": "O ID do agendamento é extraído do parâmetro de rota da tela de detalhes selecionada pelo operador."
+    },
+    {
+      "targetRef": "ServiceBooking.operatorId",
+      "source": "actorSession",
+      "originRef": "actorSession.actorId",
+      "description": "O ID do operador autenticado é obtido da sessão ativa para restringir a visualização apenas a agendamentos do seu turno."
+    }
+  ],
+  "acceptanceAssertions": [
+    "O retorno inclui o tipo de serviço (serviceId), nome do cliente, telefone, data e horário do agendamento, status atual e observações.",
+    "O operador só consegue visualizar agendamentos atribuídos ao turno ao qual está alocado; agendamentos de outros turnos não são retornados.",
+    "O status exibido corresponde a um dos valores válidos: confirmed, inProgress, completed ou cancelled.",
+    "Os detalhes do agendamento incluem a indicação de que o pagamento é realizado presencialmente na loja, sem opção de pagamento online."
+  ],
+  "pageId": "viewServiceBookingDetails",
+  "commandName": "viewServiceBookingDetails",
+  "bffName": "petShop.viewServiceBookingDetails.viewServiceBookingDetails",
+  "capability": {
+    "capabilityId": "viewServiceBookingDetails",
+    "title": "Revisar detalhes do atendimento",
+    "actor": "operador",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationViewServiceBookingDetails;

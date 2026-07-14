@@ -1,0 +1,122 @@
+/// <mls fileReference="_102049_/l4/operations/assignOperatorToShift.defs.ts" enhancement="_blank"/>
+
+export const operationAssignOperatorToShift = {
+  "operationId": "assignOperatorToShift",
+  "title": "Alocar operador em turno",
+  "actor": "admin",
+  "entity": "ShiftAssignment",
+  "kind": "create",
+  "reads": [
+    "Operator",
+    "Shift",
+    "ShiftAssignment"
+  ],
+  "writes": [
+    "ShiftAssignment"
+  ],
+  "rulesApplied": [
+    "schedulingCapacityByOperators",
+    "operatorMultipleShiftsAllowed"
+  ],
+  "story": {
+    "actor": "admin",
+    "goal": "Vincular um operador a um turno de trabalho para definir a capacidade de atendimentos simultâneos disponíveis naquele horário.",
+    "steps": [
+      "O administrador seleciona um operador existente e um turno existente no formulário de alocação.",
+      "O sistema valida que o operador e o turno existem e cria o vínculo de alocação.",
+      "A capacidade de agendamento do turno é recalculada considerando o novo operador alocado."
+    ],
+    "outcome": "O operador fica alocado no turno e a capacidade de atendimentos simultâneos do turno aumenta em conformidade."
+  },
+  "accessPattern": {
+    "kind": "commandInput",
+    "entity": "ShiftAssignment",
+    "keyField": "ShiftAssignment.shiftAssignmentId",
+    "pagination": "none",
+    "selection": "single",
+    "output": [
+      "ShiftAssignment.shiftAssignmentId",
+      "ShiftAssignment.operatorId",
+      "ShiftAssignment.shiftId",
+      "ShiftAssignment.createdAt"
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "operatorId",
+      "fieldRef": "ShiftAssignment.operatorId",
+      "required": true,
+      "source": "userInput",
+      "description": "Operador selecionado pelo administrador para ser alocado no turno."
+    },
+    {
+      "inputId": "shiftId",
+      "fieldRef": "ShiftAssignment.shiftId",
+      "required": true,
+      "source": "userInput",
+      "description": "Turno de trabalho selecionado pelo administrador para receber a alocação do operador."
+    },
+    {
+      "inputId": "shiftAssignmentId",
+      "fieldRef": "ShiftAssignment.shiftAssignmentId",
+      "required": true,
+      "source": "systemDefault",
+      "description": "Identificador único gerado automaticamente para a nova alocação."
+    },
+    {
+      "inputId": "createdAt",
+      "fieldRef": "ShiftAssignment.createdAt",
+      "required": true,
+      "source": "systemDefault",
+      "description": "Data e hora automáticas de criação da alocação."
+    },
+    {
+      "inputId": "updatedAt",
+      "fieldRef": "ShiftAssignment.updatedAt",
+      "required": true,
+      "source": "systemDefault",
+      "description": "Data e hora automáticas da última atualização da alocação."
+    }
+  ],
+  "contextResolution": [
+    {
+      "targetRef": "ShiftAssignment.shiftAssignmentId",
+      "source": "systemDefault",
+      "originRef": "systemDefault.uuid",
+      "description": "O backend gera um UUID para o identificador da nova alocação no momento da criação."
+    },
+    {
+      "targetRef": "ShiftAssignment.createdAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "O backend registra o timestamp atual do sistema como data de criação da alocação."
+    },
+    {
+      "targetRef": "ShiftAssignment.updatedAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "O backend registra o timestamp atual do sistema como data de atualização inicial da alocação."
+    }
+  ],
+  "acceptanceAssertions": [
+    "Após a confirmação, existe um registro em ShiftAssignment com o operatorId e shiftId informados.",
+    "O operador referenciado por operatorId existe na entidade Operator.",
+    "O turno referenciado por shiftId existe na entidade Shift.",
+    "A capacidade de agendamento do turno aumenta ao considerar o novo operador alocado, conforme a regra schedulingCapacityByOperators.",
+    "O mesmo operador pode ser alocado em múltiplos turnos, incluindo turnos sobrepostos, sem bloqueio, conforme a regra operatorMultipleShiftsAllowed.",
+    "Os campos createdAt e updatedAt da nova alocação são preenchidos automaticamente com o timestamp do momento da criação."
+  ],
+  "pageId": "assignOperatorToShift",
+  "commandName": "assignOperatorToShift",
+  "bffName": "petShop.assignOperatorToShift.assignOperatorToShift",
+  "capability": {
+    "capabilityId": "assignOperatorToShift",
+    "title": "Alocar operador em turno",
+    "actor": "admin",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationAssignOperatorToShift;

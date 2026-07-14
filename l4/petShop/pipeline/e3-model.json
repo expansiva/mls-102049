@@ -1,0 +1,327 @@
+{
+  "schemaVersion": "2026-07-07-ns3-e3-v1",
+  "moduleName": "petShop",
+  "userLanguage": "pt-BR",
+  "version": 1,
+  "createdAt": "2026-07-13T19:48:04.719Z",
+  "module": {
+    "title": "Pet Shop — Site de Serviços, Produtos e Adoção",
+    "purpose": "Site do pet shop que permite aos clientes navegar pelo catálogo de produtos, comprar para retirada na loja, agendar serviços como banho e tosa, e visualizar pets disponíveis para adoção. Permite ao administrador gerenciar operadores, turnos, produtos, serviços e pets, e aos operadores consultar e executar serviços agendados.",
+    "businessDomain": "Pet Shop Retail & Services",
+    "languages": [
+      "pt-BR"
+    ],
+    "visualStyle": "Site-first, visualmente atraente, com galerias de imagens, catálogos navegáveis, carrinho de compras e agenda orientada por status"
+  },
+  "entities": [
+    {
+      "entityId": "Product",
+      "title": "Produto",
+      "description": "Produto do catálogo do pet shop, com nome, descrição, preço, imagem, categoria e flag de destaque para exibição na página inicial.",
+      "kind": "core",
+      "ownership": "moduleOwned",
+      "statusEnum": [
+        "active",
+        "inactive"
+      ],
+      "lifecycleStates": [
+        "active",
+        "inactive"
+      ],
+      "sourceRefs": {
+        "journeyIds": [
+          "browseHome",
+          "shopProductsForPickup",
+          "manageProducts"
+        ],
+        "featureIds": [
+          "homePage",
+          "featuredProducts",
+          "productCatalog",
+          "productManagement"
+        ]
+      }
+    },
+    {
+      "entityId": "ProductCategory",
+      "title": "Categoria de Produto",
+      "description": "Categoria de classificação de produtos do catálogo, utilizada para filtragem e organização na navegação do cliente.",
+      "kind": "mdm",
+      "ownership": "moduleOwned",
+      "sourceRefs": {
+        "journeyIds": [
+          "shopProductsForPickup",
+          "manageProducts"
+        ],
+        "featureIds": [
+          "productCatalog",
+          "productManagement"
+        ]
+      }
+    },
+    {
+      "entityId": "Order",
+      "title": "Pedido de Retirada",
+      "description": "Pedido de compra de produtos finalizado pelo cliente para retirada presencial na loja, com pagamento na loja física.",
+      "kind": "core",
+      "ownership": "moduleOwned",
+      "statusEnum": [
+        "registered",
+        "completed",
+        "cancelled"
+      ],
+      "lifecycleStates": [
+        "registered",
+        "completed",
+        "cancelled"
+      ],
+      "sourceRefs": {
+        "journeyIds": [
+          "shopProductsForPickup"
+        ],
+        "featureIds": [
+          "shoppingCart",
+          "storePickupOrder"
+        ]
+      }
+    },
+    {
+      "entityId": "OrderItem",
+      "title": "Item do Pedido",
+      "description": "Linha de item de um pedido de retirada, contendo a referência ao produto e a quantidade solicitada pelo cliente.",
+      "kind": "supporting",
+      "ownership": "moduleOwned",
+      "sourceRefs": {
+        "journeyIds": [
+          "shopProductsForPickup"
+        ],
+        "featureIds": [
+          "shoppingCart",
+          "storePickupOrder"
+        ]
+      }
+    },
+    {
+      "entityId": "Service",
+      "title": "Serviço Oferecido",
+      "description": "Serviço oferecido pelo pet shop, como banho e tosa, com descrição, duração estimada, preço e estado de ativação para agendamento.",
+      "kind": "core",
+      "ownership": "moduleOwned",
+      "statusEnum": [
+        "active",
+        "inactive"
+      ],
+      "lifecycleStates": [
+        "active",
+        "inactive"
+      ],
+      "sourceRefs": {
+        "journeyIds": [
+          "browseHome",
+          "scheduleService",
+          "manageServices"
+        ],
+        "featureIds": [
+          "homePage",
+          "serviceCatalog",
+          "serviceManagement",
+          "serviceScheduling"
+        ]
+      }
+    },
+    {
+      "entityId": "ServiceBooking",
+      "title": "Agendamento de Serviço",
+      "description": "Agendamento de um serviço feito pelo cliente para uma data e horário, atribuído a um operador disponível no turno correspondente, com ciclo de execução pelo operador.",
+      "kind": "core",
+      "ownership": "moduleOwned",
+      "statusEnum": [
+        "confirmed",
+        "inProgress",
+        "completed",
+        "cancelled"
+      ],
+      "lifecycleStates": [
+        "confirmed",
+        "inProgress",
+        "completed",
+        "cancelled"
+      ],
+      "sourceRefs": {
+        "journeyIds": [
+          "scheduleService",
+          "viewAssignedSchedule",
+          "executeScheduledService"
+        ],
+        "featureIds": [
+          "serviceScheduling",
+          "operatorScheduleView",
+          "serviceExecution"
+        ]
+      }
+    },
+    {
+      "entityId": "Operator",
+      "title": "Operador",
+      "description": "Funcionário do pet shop responsável por executar serviços agendados, cadastrado pelo administrador e alocável em um ou mais turnos de trabalho.",
+      "kind": "core",
+      "ownership": "moduleOwned",
+      "sourceRefs": {
+        "journeyIds": [
+          "viewAssignedSchedule",
+          "executeScheduledService",
+          "manageOperatorsAndShifts"
+        ],
+        "featureIds": [
+          "operatorManagement",
+          "operatorScheduleView",
+          "serviceExecution",
+          "shiftManagement"
+        ]
+      }
+    },
+    {
+      "entityId": "Shift",
+      "title": "Turno de Trabalho",
+      "description": "Turno de trabalho recorrente definido pelo administrador com horário de início, fim e dias da semana, base para o cálculo de capacidade de agendamento.",
+      "kind": "mdm",
+      "ownership": "moduleOwned",
+      "sourceRefs": {
+        "journeyIds": [
+          "manageOperatorsAndShifts",
+          "scheduleService"
+        ],
+        "featureIds": [
+          "shiftManagement",
+          "schedulingCapacity"
+        ]
+      }
+    },
+    {
+      "entityId": "ShiftAssignment",
+      "title": "Alocação de Operador em Turno",
+      "description": "Vínculo operacional entre um operador e um turno, definindo a capacidade de atendimentos simultâneos disponíveis naquele horário.",
+      "kind": "core",
+      "ownership": "moduleOwned",
+      "sourceRefs": {
+        "journeyIds": [
+          "manageOperatorsAndShifts"
+        ],
+        "featureIds": [
+          "shiftManagement",
+          "schedulingCapacity"
+        ]
+      }
+    },
+    {
+      "entityId": "AdoptablePet",
+      "title": "Pet para Adoção",
+      "description": "Pet cadastrado pelo administrador para adoção, com nome, idade, descrição e foto, cuja disponibilidade controla a exibição na galeria pública.",
+      "kind": "core",
+      "ownership": "moduleOwned",
+      "statusEnum": [
+        "available",
+        "unavailable"
+      ],
+      "lifecycleStates": [
+        "available",
+        "unavailable"
+      ],
+      "sourceRefs": {
+        "journeyIds": [
+          "browseHome",
+          "viewAdoptablePets",
+          "manageAdoptablePets"
+        ],
+        "featureIds": [
+          "homePage",
+          "adoptablePetsGallery",
+          "petManagement"
+        ]
+      }
+    },
+    {
+      "entityId": "AdoptionInterest",
+      "title": "Manifestação de Interesse em Adoção",
+      "description": "Registro do interesse de um cliente em adotar um pet, iniciado no site e finalizado presencialmente na loja com verificação e documentação.",
+      "kind": "core",
+      "ownership": "moduleOwned",
+      "statusEnum": [
+        "registered",
+        "completed",
+        "cancelled"
+      ],
+      "lifecycleStates": [
+        "registered",
+        "completed",
+        "cancelled"
+      ],
+      "sourceRefs": {
+        "journeyIds": [
+          "viewAdoptablePets"
+        ],
+        "featureIds": [
+          "adoptionInterest"
+        ]
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipId": "productHasCategory",
+      "fromEntity": "Product",
+      "toEntity": "ProductCategory",
+      "type": "manyToOne",
+      "description": "Cada produto pertence a uma categoria de produto do catálogo."
+    },
+    {
+      "relationshipId": "orderHasOrderItems",
+      "fromEntity": "Order",
+      "toEntity": "OrderItem",
+      "type": "oneToMany",
+      "description": "Um pedido de retirada contém um ou mais itens de pedido."
+    },
+    {
+      "relationshipId": "orderItemReferencesProduct",
+      "fromEntity": "OrderItem",
+      "toEntity": "Product",
+      "type": "manyToOne",
+      "description": "Cada item do pedido referencia um produto do catálogo."
+    },
+    {
+      "relationshipId": "bookingForService",
+      "fromEntity": "ServiceBooking",
+      "toEntity": "Service",
+      "type": "manyToOne",
+      "description": "Cada agendamento é para um serviço oferecido pelo pet shop."
+    },
+    {
+      "relationshipId": "bookingAssignedToOperator",
+      "fromEntity": "ServiceBooking",
+      "toEntity": "Operator",
+      "type": "manyToOne",
+      "description": "Cada agendamento é atribuído a um operador disponível no turno correspondente."
+    },
+    {
+      "relationshipId": "shiftAssignmentToOperator",
+      "fromEntity": "ShiftAssignment",
+      "toEntity": "Operator",
+      "type": "manyToOne",
+      "description": "Cada alocação vincula um operador a um turno de trabalho."
+    },
+    {
+      "relationshipId": "shiftAssignmentToShift",
+      "fromEntity": "ShiftAssignment",
+      "toEntity": "Shift",
+      "type": "manyToOne",
+      "description": "Cada alocação refere-se a um turno de trabalho definido pelo administrador."
+    },
+    {
+      "relationshipId": "adoptionInterestForPet",
+      "fromEntity": "AdoptionInterest",
+      "toEntity": "AdoptablePet",
+      "type": "manyToOne",
+      "description": "Cada manifestação de interesse refere-se a um pet disponível para adoção."
+    }
+  ]
+}
