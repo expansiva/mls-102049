@@ -1,5 +1,6 @@
 /// <mls fileReference="_102049_/l1/petShop/layer_1_external/adapters/http/controllers/viewAdoptablePetDetails.ts" enhancement="_blank"/>
 import { ok, AppError, type BffHandler, type ControllerRoute } from '/_102034_/l1/server/layer_2_controllers/contracts.js';
+import '/_102049_/l1/petShop/layer_1_external/adapters/persistence/registerRepositories.js';
 import { viewAdoptablePetDetails, type ViewAdoptablePetDetailsInput } from '/_102049_/l1/petShop/layer_2_application/usecases/viewAdoptablePetDetails.js';
 
 export const petShopViewAdoptablePetDetailsHandler: BffHandler = async ({ request, ctx }) => {

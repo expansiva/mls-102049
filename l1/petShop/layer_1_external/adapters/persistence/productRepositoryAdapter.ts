@@ -8,7 +8,7 @@ interface ProductRow {
   product_category_id: string;
   status: string;
   created_at: string;
-  details: string | null;
+  details: ProductDetails | string | null;
 }
 
 interface ProductDetails {
@@ -40,7 +40,9 @@ function toRow(product: Product): ProductRow {
 
 function parseDetails(row: ProductRow): ProductDetails {
   try {
-    const parsed = JSON.parse(row.details ?? '{}') as Partial<ProductDetails>;
+    const parsed = (typeof row.details === 'string'
+      ? JSON.parse(row.details)
+      : row.details ?? {}) as Partial<ProductDetails>;
     return {
       name: parsed.name ?? '',
       description: parsed.description ?? null,

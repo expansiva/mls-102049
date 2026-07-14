@@ -22,8 +22,8 @@ export interface BrowseProductCatalogItem {
 }
 
 export interface BrowseProductCatalogOutput {
-  products: BrowseProductCatalogItem[];
-  totalCount: number;
+  items: BrowseProductCatalogItem[];
+  total: number;
 }
 
 /**
@@ -96,7 +96,7 @@ export async function browseProductCatalog(
 
   // Step 10: Return the projected collection along with totalCount
   return {
-    products: projected,
-    totalCount,
+    items: projected,
+    total: totalCount,
   };
 }

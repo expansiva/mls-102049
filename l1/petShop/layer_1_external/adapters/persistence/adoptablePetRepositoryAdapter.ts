@@ -14,7 +14,7 @@ interface AdoptablePetRow {
   adoptable_pet_id: string;
   status: string;
   created_at: string;
-  details: string | null;
+  details: AdoptablePetDetails | string | null;
 }
 
 interface AdoptablePetDetails {
@@ -45,7 +45,9 @@ function toRow(pet: AdoptablePet): AdoptablePetRow {
 
 function parseDetails(row: AdoptablePetRow): AdoptablePetDetails {
   try {
-    const parsed = JSON.parse(row.details ?? '{}') as Partial<AdoptablePetDetails>;
+    const parsed = (typeof row.details === 'string'
+      ? JSON.parse(row.details)
+      : row.details ?? {}) as Partial<AdoptablePetDetails>;
     return {
       name: parsed.name ?? '',
       age: parsed.age ?? 0,
