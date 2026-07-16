@@ -12,11 +12,6 @@
       "language": "en",
       "name": "English",
       "path": "/"
-    },
-    {
-      "language": "pt-BR",
-      "name": "Portuguese",
-      "path": "/pt-BR"
     }
   ],
   "plugins": {},
@@ -25,48 +20,15 @@
   "links": [],
   "servicesConfigEnabled": false,
   "modules": [
-    {
-      "moduleName": "petShop",
-      "backend": {
-        "backendControllers": "./_102049_/l1/petShop/layer_1_external/adapters/http/controllers",
-        "persistence": {
-          "tableDefsDir": "./_102049_/l1/petShop/layer_1_external/adapters/persistence"
-        },
-        "routeKeys": [
-          "petShop.assignOperatorToShift.assignOperatorToShift",
-          "petShop.browseAdoptablePets.browseAdoptablePets",
-          "petShop.browseAdoptablePetsAdmin.browseAdoptablePetsAdmin",
-          "petShop.browseHomePage.browseHomePage",
-          "petShop.browseOperators.browseOperators",
-          "petShop.browseProductCatalog.browseProductCatalog",
-          "petShop.browseProducts.browseProducts",
-          "petShop.browseServiceCatalog.browseServiceCatalog",
-          "petShop.browseServices.browseServices",
-          "petShop.browseShifts.browseShifts",
-          "petShop.createAdoptablePet.createAdoptablePet",
-          "petShop.createOperator.createOperator",
-          "petShop.createProduct.createProduct",
-          "petShop.createService.createService",
-          "petShop.createShift.createShift",
-          "petShop.expressAdoptionInterest.expressAdoptionInterest",
-          "petShop.placeStorePickupOrder.placeStorePickupOrder",
-          "petShop.reviewSchedulingCapacity.reviewSchedulingCapacity",
-          "petShop.serviceBookingLifecycle.completeServiceExecution",
-          "petShop.serviceBookingLifecycle.createServiceBooking",
-          "petShop.serviceBookingLifecycle.startServiceExecution",
-          "petShop.updateAdoptablePet.updateAdoptablePet",
-          "petShop.updateOperator.updateOperator",
-          "petShop.updateProduct.updateProduct",
-          "petShop.updateService.updateService",
-          "petShop.updateShift.updateShift",
-          "petShop.viewAdoptablePetDetails.viewAdoptablePetDetails",
-          "petShop.viewOperatorSchedule.viewOperatorSchedule",
-          "petShop.viewProductDetails.viewProductDetails",
-          "petShop.viewServiceBookingDetails.viewServiceBookingDetails"
-        ]
-      }
-    }
   ],
+  "layouts": {
+    "1": {
+      "name": "Default"
+    },
+    "2": {
+      "name": "Ux 2"
+    }
+  },
   "dependencies": [
     {
       "projectId": "102034",
@@ -74,20 +36,15 @@
     }
   ],
   "masters": {
-    "backend": {
-      "masterProject": 102021,
-      "agentFolder": "agentChangeBackend",
-      "runtimeProject": 102034
-    },
     "frontend": {
       "masterProject": 102020,
       "agentFolder": "agentChangeFrontend",
       "runtimeProject": 102033
-    }
-  },
-  "layouts": {
-    "1": {
-      "name": "Default"
+    },
+    "backend": {
+      "masterProject": 102021,
+      "agentFolder": "agentChangeBackend",
+      "runtimeProject": 102034
     }
   }
 }
