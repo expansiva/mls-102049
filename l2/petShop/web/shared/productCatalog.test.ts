@@ -1,0 +1,80 @@
+/// <mls fileReference="_102049_/l2/petShop/web/shared/productCatalog.test.ts" enhancement="_102020_/l2/enhancementAura"/>
+
+import type { PetShopProductCatalogBase } from './productCatalog.js';
+import type { PetShopBrowseCatalogInput, PetShopBrowseCatalogOutput, PetShopFilterProductsInput, PetShopFilterProductsOutput, PetShopSearchProductsInput, PetShopSearchProductsOutput, PetShopViewHighlightsOutput, PetShopViewProductDetailsInput, PetShopViewProductDetailsOutput } from '../contracts/productCatalog.js';
+
+type IsAny<T> = 0 extends (1 & T) ? true : false;
+type Assignable<Actual, Expected> = IsAny<Actual> extends true ? false : [Actual] extends [Expected] ? true : false;
+type Assert<T extends true> = T;
+
+declare const page: PetShopProductCatalogBase;
+
+// This file is generated from .defs.ts. Add narrower state/action assertions here as materialization rules evolve.
+type _State_status = Assert<Assignable<typeof page.status, string>>;
+type _State_viewHighlightsState = Assert<Assignable<typeof page.viewHighlightsState, "idle" | "loading" | "success" | "error">>;
+type _State_viewHighlightsData = Assert<Assignable<typeof page.viewHighlightsData, unknown[] | PetShopViewHighlightsOutput>>;
+type _State_browseCatalogState = Assert<Assignable<typeof page.browseCatalogState, "idle" | "loading" | "success" | "error">>;
+type _State_browseCatalogSearchTerm = Assert<Assignable<typeof page.browseCatalogSearchTerm, string | PetShopBrowseCatalogInput["searchTerm"]>>;
+type _State_browseCatalogPetTypeId = Assert<Assignable<typeof page.browseCatalogPetTypeId, string | PetShopBrowseCatalogInput["petTypeId"]>>;
+type _State_browseCatalogCategoryId = Assert<Assignable<typeof page.browseCatalogCategoryId, string | PetShopBrowseCatalogInput["categoryId"]>>;
+type _State_browseCatalogMinPrice = Assert<Assignable<typeof page.browseCatalogMinPrice, string | PetShopBrowseCatalogInput["minPrice"]>>;
+type _State_browseCatalogMaxPrice = Assert<Assignable<typeof page.browseCatalogMaxPrice, string | PetShopBrowseCatalogInput["maxPrice"]>>;
+type _State_browseCatalogData = Assert<Assignable<typeof page.browseCatalogData, PetShopBrowseCatalogOutput>>;
+type _State_searchProductsState = Assert<Assignable<typeof page.searchProductsState, "idle" | "loading" | "success" | "error">>;
+type _State_searchProductsSearchTerm = Assert<Assignable<typeof page.searchProductsSearchTerm, string | PetShopSearchProductsInput["searchTerm"]>>;
+type _State_searchProductsPetTypeId = Assert<Assignable<typeof page.searchProductsPetTypeId, string | PetShopSearchProductsInput["petTypeId"]>>;
+type _State_searchProductsCategoryId = Assert<Assignable<typeof page.searchProductsCategoryId, string | PetShopSearchProductsInput["categoryId"]>>;
+type _State_searchProductsMinPrice = Assert<Assignable<typeof page.searchProductsMinPrice, string | PetShopSearchProductsInput["minPrice"]>>;
+type _State_searchProductsMaxPrice = Assert<Assignable<typeof page.searchProductsMaxPrice, string | PetShopSearchProductsInput["maxPrice"]>>;
+type _State_searchProductsData = Assert<Assignable<typeof page.searchProductsData, unknown[] | PetShopSearchProductsOutput>>;
+type _State_filterProductsState = Assert<Assignable<typeof page.filterProductsState, "idle" | "loading" | "success" | "error">>;
+type _State_filterProductsPetTypeId = Assert<Assignable<typeof page.filterProductsPetTypeId, string | PetShopFilterProductsInput["petTypeId"]>>;
+type _State_filterProductsCategoryId = Assert<Assignable<typeof page.filterProductsCategoryId, string | PetShopFilterProductsInput["categoryId"]>>;
+type _State_filterProductsMinPrice = Assert<Assignable<typeof page.filterProductsMinPrice, string | PetShopFilterProductsInput["minPrice"]>>;
+type _State_filterProductsMaxPrice = Assert<Assignable<typeof page.filterProductsMaxPrice, string | PetShopFilterProductsInput["maxPrice"]>>;
+type _State_filterProductsData = Assert<Assignable<typeof page.filterProductsData, unknown[] | PetShopFilterProductsOutput>>;
+type _State_viewProductDetailsState = Assert<Assignable<typeof page.viewProductDetailsState, "idle" | "loading" | "success" | "error">>;
+type _State_viewProductDetailsProductId = Assert<Assignable<typeof page.viewProductDetailsProductId, string | PetShopViewProductDetailsInput["productId"]>>;
+type _State_viewProductDetailsData = Assert<Assignable<typeof page.viewProductDetailsData, PetShopViewProductDetailsOutput | null>>;
+type _Action_loadViewHighlights = Assert<Assignable<typeof page.loadViewHighlights, (...args: any[]) => unknown>>;
+type _Handler_handleViewHighlightsClick = Assert<Assignable<typeof page.handleViewHighlightsClick, (...args: any[]) => unknown>>;
+type _Action_loadBrowseCatalog = Assert<Assignable<typeof page.loadBrowseCatalog, (...args: any[]) => unknown>>;
+type _Handler_handleBrowseCatalogClick = Assert<Assignable<typeof page.handleBrowseCatalogClick, (...args: any[]) => unknown>>;
+type _Action_loadSearchProducts = Assert<Assignable<typeof page.loadSearchProducts, (...args: any[]) => unknown>>;
+type _Handler_handleSearchProductsClick = Assert<Assignable<typeof page.handleSearchProductsClick, (...args: any[]) => unknown>>;
+type _Action_loadFilterProducts = Assert<Assignable<typeof page.loadFilterProducts, (...args: any[]) => unknown>>;
+type _Handler_handleFilterProductsClick = Assert<Assignable<typeof page.handleFilterProductsClick, (...args: any[]) => unknown>>;
+type _Action_loadViewProductDetails = Assert<Assignable<typeof page.loadViewProductDetails, (...args: any[]) => unknown>>;
+type _Handler_handleViewProductDetailsClick = Assert<Assignable<typeof page.handleViewProductDetailsClick, (...args: any[]) => unknown>>;
+type _Action_setBrowseCatalogSearchTerm = Assert<Assignable<typeof page.setBrowseCatalogSearchTerm, (...args: any[]) => unknown>>;
+type _Handler_handleBrowseCatalogSearchTermChange = Assert<Assignable<typeof page.handleBrowseCatalogSearchTermChange, (...args: any[]) => unknown>>;
+type _Action_setBrowseCatalogPetTypeId = Assert<Assignable<typeof page.setBrowseCatalogPetTypeId, (...args: any[]) => unknown>>;
+type _Handler_handleBrowseCatalogPetTypeIdChange = Assert<Assignable<typeof page.handleBrowseCatalogPetTypeIdChange, (...args: any[]) => unknown>>;
+type _Action_setBrowseCatalogCategoryId = Assert<Assignable<typeof page.setBrowseCatalogCategoryId, (...args: any[]) => unknown>>;
+type _Handler_handleBrowseCatalogCategoryIdChange = Assert<Assignable<typeof page.handleBrowseCatalogCategoryIdChange, (...args: any[]) => unknown>>;
+type _Action_setBrowseCatalogMinPrice = Assert<Assignable<typeof page.setBrowseCatalogMinPrice, (...args: any[]) => unknown>>;
+type _Handler_handleBrowseCatalogMinPriceChange = Assert<Assignable<typeof page.handleBrowseCatalogMinPriceChange, (...args: any[]) => unknown>>;
+type _Action_setBrowseCatalogMaxPrice = Assert<Assignable<typeof page.setBrowseCatalogMaxPrice, (...args: any[]) => unknown>>;
+type _Handler_handleBrowseCatalogMaxPriceChange = Assert<Assignable<typeof page.handleBrowseCatalogMaxPriceChange, (...args: any[]) => unknown>>;
+type _Action_setSearchProductsSearchTerm = Assert<Assignable<typeof page.setSearchProductsSearchTerm, (...args: any[]) => unknown>>;
+type _Handler_handleSearchProductsSearchTermChange = Assert<Assignable<typeof page.handleSearchProductsSearchTermChange, (...args: any[]) => unknown>>;
+type _Action_setSearchProductsPetTypeId = Assert<Assignable<typeof page.setSearchProductsPetTypeId, (...args: any[]) => unknown>>;
+type _Handler_handleSearchProductsPetTypeIdChange = Assert<Assignable<typeof page.handleSearchProductsPetTypeIdChange, (...args: any[]) => unknown>>;
+type _Action_setSearchProductsCategoryId = Assert<Assignable<typeof page.setSearchProductsCategoryId, (...args: any[]) => unknown>>;
+type _Handler_handleSearchProductsCategoryIdChange = Assert<Assignable<typeof page.handleSearchProductsCategoryIdChange, (...args: any[]) => unknown>>;
+type _Action_setSearchProductsMinPrice = Assert<Assignable<typeof page.setSearchProductsMinPrice, (...args: any[]) => unknown>>;
+type _Handler_handleSearchProductsMinPriceChange = Assert<Assignable<typeof page.handleSearchProductsMinPriceChange, (...args: any[]) => unknown>>;
+type _Action_setSearchProductsMaxPrice = Assert<Assignable<typeof page.setSearchProductsMaxPrice, (...args: any[]) => unknown>>;
+type _Handler_handleSearchProductsMaxPriceChange = Assert<Assignable<typeof page.handleSearchProductsMaxPriceChange, (...args: any[]) => unknown>>;
+type _Action_setFilterProductsPetTypeId = Assert<Assignable<typeof page.setFilterProductsPetTypeId, (...args: any[]) => unknown>>;
+type _Handler_handleFilterProductsPetTypeIdChange = Assert<Assignable<typeof page.handleFilterProductsPetTypeIdChange, (...args: any[]) => unknown>>;
+type _Action_setFilterProductsCategoryId = Assert<Assignable<typeof page.setFilterProductsCategoryId, (...args: any[]) => unknown>>;
+type _Handler_handleFilterProductsCategoryIdChange = Assert<Assignable<typeof page.handleFilterProductsCategoryIdChange, (...args: any[]) => unknown>>;
+type _Action_setFilterProductsMinPrice = Assert<Assignable<typeof page.setFilterProductsMinPrice, (...args: any[]) => unknown>>;
+type _Handler_handleFilterProductsMinPriceChange = Assert<Assignable<typeof page.handleFilterProductsMinPriceChange, (...args: any[]) => unknown>>;
+type _Action_setFilterProductsMaxPrice = Assert<Assignable<typeof page.setFilterProductsMaxPrice, (...args: any[]) => unknown>>;
+type _Handler_handleFilterProductsMaxPriceChange = Assert<Assignable<typeof page.handleFilterProductsMaxPriceChange, (...args: any[]) => unknown>>;
+type _Action_setViewProductDetailsProductId = Assert<Assignable<typeof page.setViewProductDetailsProductId, (...args: any[]) => unknown>>;
+type _Handler_handleViewProductDetailsProductIdChange = Assert<Assignable<typeof page.handleViewProductDetailsProductIdChange, (...args: any[]) => unknown>>;
+
+export {};
