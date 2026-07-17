@@ -1,0 +1,152 @@
+/// <mls fileReference="_102049_/l4/operations/payInStore.defs.ts" enhancement="_blank"/>
+
+export const operationPayInStore = {
+  "operationId": "payInStore",
+  "title": "Registrar pagamento presencial",
+  "actor": "loja",
+  "entity": "Reservation",
+  "kind": "update",
+  "reads": [
+    "Reservation",
+    "Payment"
+  ],
+  "writes": [
+    "Reservation",
+    "Payment"
+  ],
+  "rulesApplied": [
+    "pickupRequiresValidReservation",
+    "reservationStatusReflectsStage",
+    "reservationExpiresIn24Hours"
+  ],
+  "story": {
+    "actor": "loja",
+    "goal": "Registrar o pagamento presencial de uma reserva pronta para retirada, concluindo a entrega ao cliente",
+    "steps": [
+      "A loja seleciona a reserva do cliente que está pronta para retirada",
+      "A loja informa o método e o valor do pagamento realizado no balcão",
+      "O sistema valida que a reserva está dentro do prazo de validade e em status que permite retirada",
+      "O sistema cria o registro de pagamento e atualiza a reserva para status entregue"
+    ],
+    "outcome": "A reserva é marcada como entregue com o pagamento registrado, e o cliente recebe os produtos"
+  },
+  "accessPattern": {
+    "kind": "commandInput",
+    "entity": "Reservation",
+    "keyField": "Reservation.reservationId",
+    "pagination": "none",
+    "selection": "single",
+    "output": [
+      "Reservation.reservationId",
+      "Reservation.status",
+      "Reservation.deliveredAt",
+      "Reservation.paymentId",
+      "Reservation.updatedAt"
+    ]
+  },
+  "outputShape": {
+    "kind": "object",
+    "fields": [
+      {
+        "name": "reservationId",
+        "type": "string",
+        "required": true,
+        "fieldRef": "Reservation.reservationId"
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "required": true,
+        "fieldRef": "Reservation.status"
+      },
+      {
+        "name": "deliveredAt",
+        "type": "string",
+        "required": true,
+        "fieldRef": "Reservation.deliveredAt"
+      },
+      {
+        "name": "paymentId",
+        "type": "string",
+        "required": true,
+        "fieldRef": "Reservation.paymentId"
+      },
+      {
+        "name": "updatedAt",
+        "type": "string",
+        "required": true,
+        "fieldRef": "Reservation.updatedAt"
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "reservationId",
+      "fieldRef": "Reservation.reservationId",
+      "required": true,
+      "source": "selectedEntity",
+      "description": "Identificador da reserva selecionada para pagamento e retirada"
+    },
+    {
+      "inputId": "paymentMethod",
+      "fieldRef": "Payment.method",
+      "required": true,
+      "source": "userInput",
+      "description": "Método de pagamento utilizado no balcão (dinheiro, cartão, pix, etc.)"
+    },
+    {
+      "inputId": "paymentAmount",
+      "fieldRef": "Payment.amount",
+      "required": true,
+      "source": "userInput",
+      "description": "Valor do pagamento realizado presencialmente"
+    }
+  ],
+  "contextResolution": [
+    {
+      "targetRef": "Reservation.reservationId",
+      "source": "selectedEntity",
+      "originRef": "Reservation.reservationId",
+      "description": "A reserva atualmente selecionada pela loja no painel de retirada"
+    },
+    {
+      "targetRef": "Reservation.deliveredAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "Timestamp atual do sistema registrado como momento da entrega"
+    },
+    {
+      "targetRef": "Reservation.paymentId",
+      "source": "systemDefault",
+      "originRef": "systemDefault.uuid",
+      "description": "UUID gerado pelo sistema para o novo registro de pagamento"
+    },
+    {
+      "targetRef": "Reservation.updatedAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "Timestamp atual do sistema registrado como momento da última atualização da reserva"
+    }
+  ],
+  "acceptanceAssertions": [
+    "Após a confirmação, a reserva existe com status 'delivered'",
+    "A reserva possui deliveredAt preenchido com o timestamp atual do sistema",
+    "A reserva possui paymentId preenchido referenciando o pagamento criado",
+    "Um registro de Payment é criado com o método e o valor informados pela loja",
+    "A operação é rejeitada se a reserva estiver expirada, cancelada ou já entregue",
+    "A operação é rejeitada se a reserva estiver fora do prazo de validade de 24 horas"
+  ],
+  "pageId": "reservationLifecycle",
+  "commandName": "payInStore",
+  "bffName": "petShop.reservationLifecycle.payInStore",
+  "capability": {
+    "capabilityId": "reservationLifecycle",
+    "title": "Ciclo de vida da reserva",
+    "actor": "loja",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationPayInStore;

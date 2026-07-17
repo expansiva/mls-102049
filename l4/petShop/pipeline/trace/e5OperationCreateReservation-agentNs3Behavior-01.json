@@ -1,0 +1,348 @@
+{
+  "savedAt": "2026-07-16T21:33:32.727Z",
+  "stepId": "e5-operation-createReservation",
+  "agentName": "agentNs3Behavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "operationId": "createReservation",
+      "title": "Criar reserva",
+      "actor": "",
+      "entity": "Reservation",
+      "kind": "create",
+      "reads": [
+        "Product"
+      ],
+      "writes": [
+        "Reservation",
+        "ReservationItem"
+      ],
+      "rulesApplied": [
+        "reservationRequiresAuthentication",
+        "reservationExpiresIn24Hours",
+        "reservationStatusReflectsStage"
+      ],
+      "story": {
+        "actor": "cliente",
+        "goal": "Criar uma reserva de produtos para retirada na loja física",
+        "steps": [
+          "Selecionar os produtos e as quantidades desejados do catálogo",
+          "Confirmar a reserva com os itens selecionados",
+          "Receber a confirmação com o prazo de retirada de 24 horas na loja"
+        ],
+        "outcome": "A reserva é criada com status 'active', contendo os itens selecionados, com prazo de expiração de 24 horas para retirada na loja física"
+      },
+      "accessPattern": {
+        "kind": "commandInput",
+        "entity": "Reservation",
+        "keyField": "Reservation.reservationId",
+        "pagination": "none",
+        "selection": "none",
+        "output": []
+      },
+      "outputShape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "reservationId",
+            "type": "string",
+            "required": true,
+            "fieldRef": "Reservation.reservationId"
+          },
+          {
+            "name": "customerId",
+            "type": "string",
+            "required": true,
+            "fieldRef": "Reservation.customerId"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "required": true,
+            "fieldRef": "Reservation.status"
+          },
+          {
+            "name": "confirmedAt",
+            "type": "string",
+            "required": true,
+            "fieldRef": "Reservation.confirmedAt"
+          },
+          {
+            "name": "expiresAt",
+            "type": "string",
+            "required": true,
+            "fieldRef": "Reservation.expiresAt"
+          },
+          {
+            "name": "createdAt",
+            "type": "string",
+            "required": true,
+            "fieldRef": "Reservation.createdAt"
+          },
+          {
+            "name": "items",
+            "type": "array",
+            "required": true,
+            "item": {
+              "fields": [
+                {
+                  "name": "productId",
+                  "type": "string",
+                  "required": true,
+                  "fieldRef": "ReservationItem.productId"
+                },
+                {
+                  "name": "quantity",
+                  "type": "number",
+                  "required": true,
+                  "fieldRef": "ReservationItem.quantity"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "inputs": [
+        {
+          "inputId": "items",
+          "fieldRef": "ReservationItem.productId",
+          "required": true,
+          "source": "userInput",
+          "description": "Lista de produtos e quantidades selecionados pelo cliente para reservar, cada item contendo productId e quantity"
+        },
+        {
+          "inputId": "customerId",
+          "fieldRef": "Reservation.customerId",
+          "required": true,
+          "source": "actorSession",
+          "description": "Cliente autenticado que está criando a reserva"
+        }
+      ],
+      "contextResolution": [
+        {
+          "inputId": "customerId",
+          "targetRef": "Reservation.customerId",
+          "source": "actorSession",
+          "originRef": "actorSession.actorId",
+          "description": "Obtido da sessão autenticada do cliente que está criando a reserva"
+        },
+        {
+          "targetRef": "Reservation.reservationId",
+          "source": "systemDefault",
+          "originRef": "systemDefault.uuid",
+          "description": "UUID gerado automaticamente para a nova reserva"
+        },
+        {
+          "targetRef": "Reservation.confirmedAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "Definido como o timestamp atual no momento da criação e confirmação da reserva"
+        },
+        {
+          "targetRef": "Reservation.expiresAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "Calculado como confirmedAt mais 24 horas conforme a regra de expiração de reservas"
+        },
+        {
+          "targetRef": "Reservation.createdAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "Definido como o timestamp atual no momento da criação da reserva"
+        },
+        {
+          "targetRef": "Reservation.updatedAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "Definido como o timestamp atual no momento da criação da reserva"
+        }
+      ],
+      "acceptanceAssertions": [
+        "Após a criação, a reserva existe com status 'active'",
+        "A reserva contém todos os itens selecionados pelo cliente com suas respectivas quantidades",
+        "O campo expiresAt da reserva é definido para exatamente 24 horas após confirmedAt",
+        "O customerId da reserva corresponde ao cliente autenticado na sessão",
+        "A reserva possui um reservationId único gerado automaticamente",
+        "Cada item da reserva referencia um produto válido e disponível no catálogo"
+      ]
+    },
+    "gate": {
+      "ok": false,
+      "artifact": {
+        "operationId": "createReservation",
+        "title": "Criar reserva",
+        "actor": "",
+        "entity": "Reservation",
+        "kind": "create",
+        "reads": [
+          "Product"
+        ],
+        "writes": [
+          "Reservation",
+          "ReservationItem"
+        ],
+        "rulesApplied": [
+          "reservationRequiresAuthentication",
+          "reservationExpiresIn24Hours",
+          "reservationStatusReflectsStage"
+        ],
+        "story": {
+          "actor": "cliente",
+          "goal": "Criar uma reserva de produtos para retirada na loja física",
+          "steps": [
+            "Selecionar os produtos e as quantidades desejados do catálogo",
+            "Confirmar a reserva com os itens selecionados",
+            "Receber a confirmação com o prazo de retirada de 24 horas na loja"
+          ],
+          "outcome": "A reserva é criada com status 'active', contendo os itens selecionados, com prazo de expiração de 24 horas para retirada na loja física"
+        },
+        "accessPattern": {
+          "kind": "commandInput",
+          "entity": "Reservation",
+          "keyField": "Reservation.reservationId",
+          "pagination": "none",
+          "selection": "none",
+          "output": []
+        },
+        "outputShape": {
+          "kind": "object",
+          "fields": [
+            {
+              "name": "reservationId",
+              "type": "string",
+              "required": true,
+              "fieldRef": "Reservation.reservationId"
+            },
+            {
+              "name": "customerId",
+              "type": "string",
+              "required": true,
+              "fieldRef": "Reservation.customerId"
+            },
+            {
+              "name": "status",
+              "type": "string",
+              "required": true,
+              "fieldRef": "Reservation.status"
+            },
+            {
+              "name": "confirmedAt",
+              "type": "string",
+              "required": true,
+              "fieldRef": "Reservation.confirmedAt"
+            },
+            {
+              "name": "expiresAt",
+              "type": "string",
+              "required": true,
+              "fieldRef": "Reservation.expiresAt"
+            },
+            {
+              "name": "createdAt",
+              "type": "string",
+              "required": true,
+              "fieldRef": "Reservation.createdAt"
+            },
+            {
+              "name": "items",
+              "type": "array",
+              "required": true,
+              "item": {
+                "fields": [
+                  {
+                    "name": "productId",
+                    "type": "string",
+                    "required": true,
+                    "fieldRef": "ReservationItem.productId"
+                  },
+                  {
+                    "name": "quantity",
+                    "type": "number",
+                    "required": true,
+                    "fieldRef": "ReservationItem.quantity"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "inputs": [
+          {
+            "inputId": "items",
+            "fieldRef": "ReservationItem.productId",
+            "required": true,
+            "source": "userInput",
+            "description": "Lista de produtos e quantidades selecionados pelo cliente para reservar, cada item contendo productId e quantity"
+          },
+          {
+            "inputId": "customerId",
+            "fieldRef": "Reservation.customerId",
+            "required": true,
+            "source": "actorSession",
+            "description": "Cliente autenticado que está criando a reserva"
+          }
+        ],
+        "contextResolution": [
+          {
+            "inputId": "customerId",
+            "targetRef": "Reservation.customerId",
+            "source": "actorSession",
+            "originRef": "actorSession.actorId",
+            "description": "Obtido da sessão autenticada do cliente que está criando a reserva"
+          },
+          {
+            "targetRef": "Reservation.reservationId",
+            "source": "systemDefault",
+            "originRef": "systemDefault.uuid",
+            "description": "UUID gerado automaticamente para a nova reserva"
+          },
+          {
+            "targetRef": "Reservation.confirmedAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "Definido como o timestamp atual no momento da criação e confirmação da reserva"
+          },
+          {
+            "targetRef": "Reservation.expiresAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "Calculado como confirmedAt mais 24 horas conforme a regra de expiração de reservas"
+          },
+          {
+            "targetRef": "Reservation.createdAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "Definido como o timestamp atual no momento da criação da reserva"
+          },
+          {
+            "targetRef": "Reservation.updatedAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "Definido como o timestamp atual no momento da criação da reserva"
+          }
+        ],
+        "acceptanceAssertions": [
+          "Após a criação, a reserva existe com status 'active'",
+          "A reserva contém todos os itens selecionados pelo cliente com suas respectivas quantidades",
+          "O campo expiresAt da reserva é definido para exatamente 24 horas após confirmedAt",
+          "O customerId da reserva corresponde ao cliente autenticado na sessão",
+          "A reserva possui um reservationId único gerado automaticamente",
+          "Cada item da reserva referencia um produto válido e disponível no catálogo"
+        ]
+      },
+      "errors": [
+        {
+          "severity": "error",
+          "code": "schema",
+          "message": "artifact.actor must have at least 1 character(s)"
+        }
+      ],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false,
+      "retryContext": "schema: artifact.actor must have at least 1 character(s)"
+    },
+    "retryContext": "schema: artifact.actor must have at least 1 character(s)"
+  },
+  "error": "schema: artifact.actor must have at least 1 character(s)"
+}

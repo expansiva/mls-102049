@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "2026-07-05-ns3-pipeline-v1",
+  "flowId": "agentNewSolution3",
+  "moduleName": "petShop",
+  "createdAt": "2026-07-16T21:23:16.915Z",
+  "updatedAt": "2026-07-16T21:35:25.373Z",
+  "steps": {
+    "e1-draft": {
+      "status": "approved",
+      "updatedAt": "2026-07-16T21:23:16.925Z",
+      "dirty": false,
+      "inputsHash": "djb2:cbdecfdd",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-16T21:23:16.916Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-16T21:23:16.925Z",
+      "approvedBy": "auto"
+    },
+    "checkpoint-draft": {
+      "status": "pending",
+      "updatedAt": "2026-07-16T21:23:16.915Z"
+    },
+    "e2-journeys": {
+      "status": "approved",
+      "updatedAt": "2026-07-16T21:24:54.461Z",
+      "dirty": false,
+      "inputsHash": "djb2:f65fecba",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-16T21:24:29.864Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-16T21:24:54.461Z",
+      "approvedBy": "human",
+      "artifactVersion": 1
+    },
+    "checkpoint-journeys": {
+      "status": "approved",
+      "updatedAt": "2026-07-16T21:24:54.461Z",
+      "dirty": false,
+      "approvedAt": "2026-07-16T21:24:54.461Z",
+      "approvedBy": "human",
+      "artifactVersion": 1
+    },
+    "e3-ontology": {
+      "status": "approved",
+      "updatedAt": "2026-07-16T21:27:04.783Z",
+      "dirty": false,
+      "inputsHash": "djb2:b8ff253d",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-16T21:26:31.759Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-16T21:27:04.783Z",
+      "approvedBy": "auto"
+    },
+    "e4-actors-rules-refs": {
+      "status": "approved",
+      "updatedAt": "2026-07-16T21:28:13.881Z",
+      "dirty": false,
+      "inputsHash": "djb2:cfec20dc",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-16T21:28:13.881Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-16T21:28:13.881Z",
+      "approvedBy": "auto"
+    },
+    "e5-workflows-operations": {
+      "status": "approved",
+      "updatedAt": "2026-07-16T21:34:32.722Z",
+      "dirty": false,
+      "inputsHash": "djb2:cfec20dc",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-16T21:30:14.997Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-16T21:34:32.722Z",
+      "approvedBy": "auto"
+    },
+    "e6-journey-map": {
+      "status": "approved",
+      "updatedAt": "2026-07-16T21:35:24.966Z",
+      "dirty": false,
+      "inputsHash": "djb2:cf652444",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-16T21:35:24.966Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-16T21:35:24.966Z",
+      "approvedBy": "auto"
+    },
+    "e7-validation-summary": {
+      "status": "approved",
+      "updatedAt": "2026-07-16T21:35:25.373Z",
+      "dirty": false,
+      "inputsHash": "djb2:af217324",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-16T21:35:25.373Z",
+        "errors": [],
+        "warnings": [
+          "capability.multiowned: capability 'reservationLifecycle' is owned by 2 workspaces (myReservations, reservationManagement)"
+        ]
+      },
+      "approvedAt": "2026-07-16T21:35:25.373Z",
+      "approvedBy": "auto"
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "savedAt": "2026-07-16T21:23:16.922Z",
+  "stepId": "e1-draft",
+  "agentName": "agentNs3Draft",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "schemaVersion": "2026-07-05-ns3-e1-v1",
+      "moduleName": "petShop",
+      "moduleTitle": "Site PetShop",
+      "userLanguage": "pt-BR",
+      "sourcePrompt": "criar um site petShop , em portugues , com vendas de produtos , o cliente reserva e busca e paga na loja , mostrar produtos em destaques, e lista completa de produtos com pesquisa por tipo pet , categoria , nome e filtro por valor",
+      "problem": "A loja PetShop precisa de um site para divulgar e vender produtos para pets. O cliente deve conseguir navegar por um catálogo com produtos em destaque, buscar e filtrar itens por tipo de pet, categoria, nome e faixa de valor, reservar os produtos desejados para retirada e efetuar o pagamento diretamente na loja física. O objetivo é aumentar a visibilidade dos produtos e facilitar a jornada de compra sem exigir pagamento online.",
+      "actors": [
+        {
+          "actorId": "cliente",
+          "name": "Cliente",
+          "assumption": "Pessoa que navega no site, busca produtos, faz reservas e retira os itens na loja pagando presencialmente."
+        },
+        {
+          "actorId": "loja",
+          "name": "Loja PetShop",
+          "assumption": "Responsável por cadastrar produtos, definir destaques, gerenciar disponibilidade e atender as reservas na loja física."
+        }
+      ],
+      "scope": {
+        "in": [
+          "Catálogo público de produtos com seção de destaques",
+          "Busca textual por nome e filtros por tipo de pet, categoria e faixa de valor",
+          "Reserva de produtos para retirada na loja",
+          "Pagamento presencial na loja física ao buscar a reserva"
+        ],
+        "out": [
+          "Pagamento online e gateways de pagamento",
+          "Entrega/delivery de produtos",
+          "Agendamento de serviços (banho, tosa, consultas veterinárias)",
+          "Gestão de estoque avançada e controle de compras/fornecedores",
+          "Autenticação, autorização e RBAC (fornecido pela plataforma)"
+        ]
+      },
+      "openQuestions": [
+        {
+          "questionId": "tempoReserva",
+          "question": "Qual o prazo de expiração de uma reserva antes que o produto seja liberado?",
+          "classification": "assumed",
+          "impact": "Define a regra de negócio para liberação automática de itens reservados.",
+          "defaultAnswer": "24 horas a partir da reserva."
+        },
+        {
+          "questionId": "loginObrigatorio",
+          "question": "O cliente precisa estar autenticado para reservar produtos?",
+          "classification": "assumed",
+          "impact": "Determina se a reserva exige identificação do cliente ou pode ser anônima.",
+          "defaultAnswer": "Sim, o cliente deve estar autenticado, pois a plataforma já fornece autenticação."
+        },
+        {
+          "questionId": "limiteItensReserva",
+          "question": "Existe limite de quantidade de itens ou de produtos distintos por reserva?",
+          "classification": "assumed",
+          "impact": "Pode afetar a modelagem da reserva e regras de separação na loja.",
+          "defaultAnswer": "Não há limite explícito nesta fase; a loja avalia disponibilidade no atendimento."
+        }
+      ],
+      "assumptions": [
+        "O pagamento é realizado exclusivamente na loja física; não há integração com gateways de pagamento online.",
+        "A plataforma já fornece autenticação, autorização, armazenamento de arquivos e suporte a i18n; esses recursos não serão recriados.",
+        "A reserva implica em comprometimento temporário do produto até a retirada ou expiração.",
+        "Produtos em destaque são definidos manualmente pela Loja PetShop."
+      ],
+      "createdAt": "2026-07-16"
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "schemaVersion": "2026-07-05-ns3-e1-v1",
+        "moduleName": "petShop",
+        "moduleTitle": "Site PetShop",
+        "userLanguage": "pt-BR",
+        "sourcePrompt": "criar um site petShop , em portugues , com vendas de produtos , o cliente reserva e busca e paga na loja , mostrar produtos em destaques, e lista completa de produtos com pesquisa por tipo pet , categoria , nome e filtro por valor",
+        "problem": "A loja PetShop precisa de um site para divulgar e vender produtos para pets. O cliente deve conseguir navegar por um catálogo com produtos em destaque, buscar e filtrar itens por tipo de pet, categoria, nome e faixa de valor, reservar os produtos desejados para retirada e efetuar o pagamento diretamente na loja física. O objetivo é aumentar a visibilidade dos produtos e facilitar a jornada de compra sem exigir pagamento online.",
+        "actors": [
+          {
+            "actorId": "cliente",
+            "name": "Cliente",
+            "assumption": "Pessoa que navega no site, busca produtos, faz reservas e retira os itens na loja pagando presencialmente."
+          },
+          {
+            "actorId": "loja",
+            "name": "Loja PetShop",
+            "assumption": "Responsável por cadastrar produtos, definir destaques, gerenciar disponibilidade e atender as reservas na loja física."
+          }
+        ],
+        "scope": {
+          "in": [
+            "Catálogo público de produtos com seção de destaques",
+            "Busca textual por nome e filtros por tipo de pet, categoria e faixa de valor",
+            "Reserva de produtos para retirada na loja",
+            "Pagamento presencial na loja física ao buscar a reserva"
+          ],
+          "out": [
+            "Pagamento online e gateways de pagamento",
+            "Entrega/delivery de produtos",
+            "Agendamento de serviços (banho, tosa, consultas veterinárias)",
+            "Gestão de estoque avançada e controle de compras/fornecedores",
+            "Autenticação, autorização e RBAC (fornecido pela plataforma)"
+          ]
+        },
+        "openQuestions": [
+          {
+            "questionId": "tempoReserva",
+            "question": "Qual o prazo de expiração de uma reserva antes que o produto seja liberado?",
+            "classification": "assumed",
+            "impact": "Define a regra de negócio para liberação automática de itens reservados.",
+            "defaultAnswer": "24 horas a partir da reserva."
+          },
+          {
+            "questionId": "loginObrigatorio",
+            "question": "O cliente precisa estar autenticado para reservar produtos?",
+            "classification": "assumed",
+            "impact": "Determina se a reserva exige identificação do cliente ou pode ser anônima.",
+            "defaultAnswer": "Sim, o cliente deve estar autenticado, pois a plataforma já fornece autenticação."
+          },
+          {
+            "questionId": "limiteItensReserva",
+            "question": "Existe limite de quantidade de itens ou de produtos distintos por reserva?",
+            "classification": "assumed",
+            "impact": "Pode afetar a modelagem da reserva e regras de separação na loja.",
+            "defaultAnswer": "Não há limite explícito nesta fase; a loja avalia disponibilidade no atendimento."
+          }
+        ],
+        "assumptions": [
+          "O pagamento é realizado exclusivamente na loja física; não há integração com gateways de pagamento online.",
+          "A plataforma já fornece autenticação, autorização, armazenamento de arquivos e suporte a i18n; esses recursos não serão recriados.",
+          "A reserva implica em comprometimento temporário do produto até a retirada ou expiração.",
+          "Produtos em destaque são definidos manualmente pela Loja PetShop."
+        ],
+        "createdAt": "2026-07-16"
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false,
+      "pipeline": {
+        "schemaVersion": "2026-07-05-ns3-pipeline-v1",
+        "flowId": "agentNewSolution3",
+        "moduleName": "petShop",
+        "createdAt": "2026-07-16T21:23:16.915Z",
+        "updatedAt": "2026-07-16T21:23:16.916Z",
+        "steps": {
+          "e1-draft": {
+            "status": "pending",
+            "updatedAt": "2026-07-16T21:23:16.916Z",
+            "dirty": false,
+            "inputsHash": "djb2:cbdecfdd",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-16T21:23:16.916Z",
+              "errors": [],
+              "warnings": []
+            }
+          },
+          "checkpoint-draft": {
+            "status": "pending",
+            "updatedAt": "2026-07-16T21:23:16.915Z"
+          },
+          "e2-journeys": {
+            "status": "pending",
+            "updatedAt": "2026-07-16T21:23:16.915Z"
+          },
+          "checkpoint-journeys": {
+            "status": "pending",
+            "updatedAt": "2026-07-16T21:23:16.915Z"
+          }
+        }
+      }
+    }
+  }
+}

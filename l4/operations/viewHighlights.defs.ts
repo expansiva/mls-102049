@@ -1,0 +1,122 @@
+/// <mls fileReference="_102049_/l4/operations/viewHighlights.defs.ts" enhancement="_blank"/>
+
+export const operationViewHighlights = {
+  "operationId": "viewHighlights",
+  "title": "Visualizar produtos em destaque",
+  "actor": "cliente",
+  "entity": "Product",
+  "kind": "view",
+  "reads": [
+    "Product",
+    "PetType",
+    "Category"
+  ],
+  "writes": [],
+  "rulesApplied": [
+    "highlightRequiresAvailableProduct",
+    "onlyAvailableProductsVisibleAndReservable",
+    "highlightsAreManualOnly"
+  ],
+  "story": {
+    "actor": "cliente",
+    "goal": "Ver imediatamente os produtos em destaque escolhidos pela loja ao entrar na página inicial do site",
+    "steps": [
+      "O cliente acessa a página inicial do site",
+      "O sistema consulta produtos marcados como destaque e disponíveis",
+      "O sistema retorna a lista de produtos em destaque com nome, descrição, preço, tipo de pet e categoria",
+      "O cliente navega pelos produtos destacados para encontrar algo de seu interesse"
+    ],
+    "outcome": "O cliente visualiza uma lista de produtos em destaque, contendo apenas produtos disponíveis marcados manualmente pela loja como destaque"
+  },
+  "accessPattern": {
+    "kind": "list",
+    "entity": "Product",
+    "keyField": "Product.productId",
+    "pagination": "optional",
+    "selection": "multiple",
+    "output": [
+      "Product.productId",
+      "Product.name",
+      "Product.description",
+      "Product.price",
+      "Product.petTypeId",
+      "Product.categoryId",
+      "Product.highlighted",
+      "Product.status"
+    ]
+  },
+  "outputShape": {
+    "kind": "list",
+    "fields": [
+      {
+        "name": "productId",
+        "type": "string",
+        "required": true,
+        "fieldRef": "Product.productId"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "fieldRef": "Product.name"
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "fieldRef": "Product.description"
+      },
+      {
+        "name": "price",
+        "type": "number",
+        "required": true,
+        "fieldRef": "Product.price"
+      },
+      {
+        "name": "petTypeId",
+        "type": "string",
+        "required": true,
+        "fieldRef": "Product.petTypeId"
+      },
+      {
+        "name": "categoryId",
+        "type": "string",
+        "required": true,
+        "fieldRef": "Product.categoryId"
+      },
+      {
+        "name": "highlighted",
+        "type": "boolean",
+        "required": true,
+        "fieldRef": "Product.highlighted"
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "required": true,
+        "fieldRef": "Product.status"
+      }
+    ]
+  },
+  "inputs": [],
+  "contextResolution": [],
+  "acceptanceAssertions": [
+    "A lista retornada contém apenas produtos com highlighted=true e status=available",
+    "Produtos com status=unavailable não aparecem na lista de destaques mesmo se estiverem marcados como highlighted=true",
+    "Cada item da lista inclui productId, name, price, petTypeId e categoryId",
+    "A lista reflete apenas produtos marcados manualmente pela loja como destaque, sem seleção automática"
+  ],
+  "pageId": "viewHighlights",
+  "commandName": "viewHighlights",
+  "bffName": "petShop.viewHighlights.viewHighlights",
+  "capability": {
+    "capabilityId": "viewHighlights",
+    "title": "Visualizar produtos em destaque",
+    "actor": "cliente",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationViewHighlights;
