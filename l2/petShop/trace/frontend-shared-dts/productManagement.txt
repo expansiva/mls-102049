@@ -1,0 +1,275 @@
+import { CollabLitElement } from '/_102029_/l2/collabLitElement.js';
+import type { PetShopBrowseProductsOutput, PetShopCreateProductOutput, PetShopUpdateProductOutput, PetShopSetProductHighlightsOutput } from '/_102049_/l2/petShop/web/contracts/productManagement.js';
+export type { PetShopBrowseProductsInput, PetShopBrowseProductsOutputItem, PetShopBrowseProductsOutput, PetShopCreateProductInput, PetShopCreateProductOutput, PetShopUpdateProductInput, PetShopUpdateProductOutput, PetShopSetProductHighlightsInput, PetShopSetProductHighlightsProduct, PetShopSetProductHighlightsOutput } from '/_102049_/l2/petShop/web/contracts/productManagement.js';
+declare const message_pt: {
+    "page.productManagement.title": string;
+    "section.productList.title": string;
+    "section.createProduct.title": string;
+    "section.updateProduct.title": string;
+    "section.setHighlights.title": string;
+    "field.searchTerm.label": string;
+    "field.petTypeId.label": string;
+    "field.categoryId.label": string;
+    "field.priceMin.label": string;
+    "field.priceMax.label": string;
+    "field.status.label": string;
+    "field.highlighted.label": string;
+    "field.name.label": string;
+    "field.description.label": string;
+    "field.price.label": string;
+    "field.productId.label": string;
+    "field.productIds.label": string;
+    "column.name.label": string;
+    "column.price.label": string;
+    "column.petTypeName.label": string;
+    "column.categoryName.label": string;
+    "column.highlighted.label": string;
+    "column.status.label": string;
+    "action.browseProducts.label": string;
+    "action.createProduct.label": string;
+    "action.updateProduct.label": string;
+    "action.setProductHighlights.label": string;
+    "empty.productList": string;
+    "action.createProduct.success": string;
+    "action.createProduct.error": string;
+    "action.updateProduct.success": string;
+    "action.updateProduct.error": string;
+    "action.setProductHighlights.success": string;
+    "action.setProductHighlights.error": string;
+    "section.product.list.title": string;
+    "org.product.table.title": string;
+    "section.create.product.title": string;
+    "org.create.form.title": string;
+    "section.update.product.title": string;
+    "org.update.form.title": string;
+    "section.set.highlights.title": string;
+    "org.highlights.form.title": string;
+    "section.catalog.title": string;
+    "section.detail.title": string;
+    "organism.productList.title": string;
+    "organism.updateProductForm.title": string;
+    "organism.createProductForm.title": string;
+    "organism.setHighlightsForm.title": string;
+    "intent.productList.title": string;
+    "intent.updateProduct.title": string;
+    "intent.createProduct.title": string;
+    "intent.setHighlights.title": string;
+    "field.product.name": string;
+    "field.product.description": string;
+    "field.product.price": string;
+    "field.product.petTypeId": string;
+    "field.product.petTypeName": string;
+    "field.product.categoryId": string;
+    "field.product.categoryName": string;
+    "field.product.highlighted": string;
+    "field.product.status": string;
+    "field.product.searchTerm": string;
+    "field.product.priceMin": string;
+    "field.product.priceMax": string;
+    "field.product.productIds": string;
+    "action.browseProducts": string;
+    "action.selectForEdit": string;
+    "action.updateProduct": string;
+    "action.createProduct": string;
+    "action.setProductHighlights": string;
+};
+type MessageType = typeof message_pt;
+export declare class PetShopProductManagementBase extends CollabLitElement {
+    private readonly stateDefaults;
+    private readonly subscribedKeys;
+    /** state ui.productManagement.status — pageStatus */
+    status: string;
+    /** state ui.productManagement.action.browseProducts.status — actionStatus, values: idle | loading | success | error */
+    browseProductsState: 'idle' | 'loading' | 'success' | 'error';
+    /** state ui.productManagement.input.browseProducts.searchTerm — input */
+    browseProductsSearchTerm: string;
+    /** state ui.productManagement.input.browseProducts.petTypeId — input */
+    browseProductsPetTypeId: string;
+    /** state ui.productManagement.input.browseProducts.categoryId — input */
+    browseProductsCategoryId: string;
+    /** state ui.productManagement.input.browseProducts.priceMin — input */
+    browseProductsPriceMin: number | '';
+    /** state ui.productManagement.input.browseProducts.priceMax — input */
+    browseProductsPriceMax: number | '';
+    /** state ui.productManagement.input.browseProducts.status — input, values: available | unavailable */
+    browseProductsStatus: 'available' | 'unavailable' | '';
+    /** state ui.productManagement.input.browseProducts.highlighted — input */
+    browseProductsHighlighted: boolean | '';
+    /** state ui.productManagement.data.browseProducts — queryResult, outputShape: array */
+    browseProductsData: PetShopBrowseProductsOutput;
+    /** state ui.productManagement.action.createProduct.status — actionStatus, values: idle | loading | success | error */
+    createProductState: 'idle' | 'loading' | 'success' | 'error';
+    /** state ui.productManagement.input.createProduct.name — input */
+    createProductName: string;
+    /** state ui.productManagement.input.createProduct.description — input */
+    createProductDescription: string;
+    /** state ui.productManagement.input.createProduct.price — input */
+    createProductPrice: number | '';
+    /** state ui.productManagement.input.createProduct.petTypeId — input */
+    createProductPetTypeId: string;
+    /** state ui.productManagement.input.createProduct.categoryId — input */
+    createProductCategoryId: string;
+    /** state ui.productManagement.input.createProduct.highlighted — input */
+    createProductHighlighted: boolean | '';
+    /** state ui.productManagement.input.createProduct.status — input, values: available | unavailable */
+    createProductStatus: 'available' | 'unavailable' | '';
+    /** state ui.productManagement.output.createProduct — commandOutput */
+    createProductOutput: PetShopCreateProductOutput | null;
+    /** state ui.productManagement.action.createProduct.error — actionError */
+    createProductError: string;
+    /** state ui.productManagement.action.updateProduct.status — actionStatus, values: idle | loading | success | error */
+    updateProductState: 'idle' | 'loading' | 'success' | 'error';
+    /** state ui.productManagement.input.updateProduct.productId — input */
+    updateProductProductId: string;
+    /** state ui.productManagement.input.updateProduct.name — input */
+    updateProductName: string;
+    /** state ui.productManagement.input.updateProduct.description — input */
+    updateProductDescription: string;
+    /** state ui.productManagement.input.updateProduct.price — input */
+    updateProductPrice: number | '';
+    /** state ui.productManagement.input.updateProduct.petTypeId — input */
+    updateProductPetTypeId: string;
+    /** state ui.productManagement.input.updateProduct.categoryId — input */
+    updateProductCategoryId: string;
+    /** state ui.productManagement.input.updateProduct.highlighted — input */
+    updateProductHighlighted: boolean | '';
+    /** state ui.productManagement.input.updateProduct.status — input, values: available | unavailable */
+    updateProductStatus: 'available' | 'unavailable' | '';
+    /** state ui.productManagement.output.updateProduct — commandOutput */
+    updateProductOutput: PetShopUpdateProductOutput | null;
+    /** state ui.productManagement.action.updateProduct.error — actionError */
+    updateProductError: string;
+    /** state ui.productManagement.action.setProductHighlights.status — actionStatus, values: idle | loading | success | error */
+    setProductHighlightsState: 'idle' | 'loading' | 'success' | 'error';
+    /** state ui.productManagement.input.setProductHighlights.productIds — input */
+    setProductHighlightsProductIds: string[] | '';
+    /** state ui.productManagement.input.setProductHighlights.highlighted — input */
+    setProductHighlightsHighlighted: boolean | '';
+    /** state ui.productManagement.output.setProductHighlights — commandOutput */
+    setProductHighlightsOutput: PetShopSetProductHighlightsOutput | null;
+    /** state ui.productManagement.action.setProductHighlights.error — actionError */
+    setProductHighlightsError: string;
+    /** i18n catalog — MessageType keys are the CLOSED msg vocabulary for page renders */
+    protected get msg(): MessageType;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    /** action browseProducts (query) — route petShop.browseProducts.browseProducts; inputs: searchTerm, petTypeId, categoryId, priceMin, priceMax, status, highlighted; writes ui.productManagement.data.browseProducts; status ui.productManagement.action.browseProducts.status */
+    loadBrowseProducts(): Promise<void>;
+    /** handler for action browseProducts — bind UI events here */
+    handleBrowseProductsClick(_event: Event): void;
+    /** action createProduct (command) — route petShop.createProduct.createProduct; inputs: name, description, price, petTypeId, categoryId, highlighted, status; writes ui.productManagement.output.createProduct; status ui.productManagement.action.createProduct.status; feedback keys action.createProduct.success / action.createProduct.error */
+    createProduct(signal?: AbortSignal): Promise<void>;
+    /** handler for action createProduct — bind UI events here */
+    handleCreateProductClick(_event: Event): void;
+    /** action updateProduct (command) — route petShop.updateProduct.updateProduct; inputs: productId, name, description, price, petTypeId, categoryId, highlighted, status; writes ui.productManagement.output.updateProduct; status ui.productManagement.action.updateProduct.status; feedback keys action.updateProduct.success / action.updateProduct.error */
+    updateProduct(signal?: AbortSignal): Promise<void>;
+    /** handler for action updateProduct — bind UI events here */
+    handleUpdateProductClick(_event: Event): void;
+    /** action setProductHighlights (command) — route petShop.setProductHighlights.setProductHighlights; inputs: productIds, highlighted; writes ui.productManagement.output.setProductHighlights; status ui.productManagement.action.setProductHighlights.status; feedback keys action.setProductHighlights.success / action.setProductHighlights.error */
+    setProductHighlights(signal?: AbortSignal): Promise<void>;
+    /** handler for action setProductHighlights — bind UI events here */
+    handleSetProductHighlightsClick(_event: Event): void;
+    /** setter for state ui.productManagement.input.browseProducts.searchTerm */
+    setBrowseProductsSearchTerm(value: string): void;
+    /** handler for action set.browseProductsSearchTerm — bind UI events here */
+    handleBrowseProductsSearchTermChange(event: Event): void;
+    /** setter for state ui.productManagement.input.browseProducts.petTypeId */
+    setBrowseProductsPetTypeId(value: string): void;
+    /** handler for action set.browseProductsPetTypeId — bind UI events here */
+    handleBrowseProductsPetTypeIdChange(event: Event): void;
+    /** setter for state ui.productManagement.input.browseProducts.categoryId */
+    setBrowseProductsCategoryId(value: string): void;
+    /** handler for action set.browseProductsCategoryId — bind UI events here */
+    handleBrowseProductsCategoryIdChange(event: Event): void;
+    /** setter for state ui.productManagement.input.browseProducts.priceMin */
+    setBrowseProductsPriceMin(value: number | ''): void;
+    /** handler for action set.browseProductsPriceMin — bind UI events here */
+    handleBrowseProductsPriceMinChange(event: Event): void;
+    /** setter for state ui.productManagement.input.browseProducts.priceMax */
+    setBrowseProductsPriceMax(value: number | ''): void;
+    /** handler for action set.browseProductsPriceMax — bind UI events here */
+    handleBrowseProductsPriceMaxChange(event: Event): void;
+    /** setter for state ui.productManagement.input.browseProducts.status */
+    setBrowseProductsStatus(value: 'available' | 'unavailable' | ''): void;
+    /** handler for action set.browseProductsStatus — bind UI events here */
+    handleBrowseProductsStatusChange(event: Event): void;
+    /** setter for state ui.productManagement.input.browseProducts.highlighted */
+    setBrowseProductsHighlighted(value: boolean | ''): void;
+    /** handler for action set.browseProductsHighlighted — bind UI events here */
+    handleBrowseProductsHighlightedChange(event: Event): void;
+    /** setter for state ui.productManagement.input.createProduct.name */
+    setCreateProductName(value: string): void;
+    /** handler for action set.createProductName — bind UI events here */
+    handleCreateProductNameChange(event: Event): void;
+    /** setter for state ui.productManagement.input.createProduct.description */
+    setCreateProductDescription(value: string): void;
+    /** handler for action set.createProductDescription — bind UI events here */
+    handleCreateProductDescriptionChange(event: Event): void;
+    /** setter for state ui.productManagement.input.createProduct.price */
+    setCreateProductPrice(value: number | ''): void;
+    /** handler for action set.createProductPrice — bind UI events here */
+    handleCreateProductPriceChange(event: Event): void;
+    /** setter for state ui.productManagement.input.createProduct.petTypeId */
+    setCreateProductPetTypeId(value: string): void;
+    /** handler for action set.createProductPetTypeId — bind UI events here */
+    handleCreateProductPetTypeIdChange(event: Event): void;
+    /** setter for state ui.productManagement.input.createProduct.categoryId */
+    setCreateProductCategoryId(value: string): void;
+    /** handler for action set.createProductCategoryId — bind UI events here */
+    handleCreateProductCategoryIdChange(event: Event): void;
+    /** setter for state ui.productManagement.input.createProduct.highlighted */
+    setCreateProductHighlighted(value: boolean | ''): void;
+    /** handler for action set.createProductHighlighted — bind UI events here */
+    handleCreateProductHighlightedChange(event: Event): void;
+    /** setter for state ui.productManagement.input.createProduct.status */
+    setCreateProductStatus(value: 'available' | 'unavailable' | ''): void;
+    /** handler for action set.createProductStatus — bind UI events here */
+    handleCreateProductStatusChange(event: Event): void;
+    /** setter for state ui.productManagement.input.updateProduct.productId */
+    setUpdateProductProductId(value: string): void;
+    /** handler for action set.updateProductProductId — bind UI events here */
+    handleUpdateProductProductIdChange(event: Event): void;
+    /** setter for state ui.productManagement.input.updateProduct.name */
+    setUpdateProductName(value: string): void;
+    /** handler for action set.updateProductName — bind UI events here */
+    handleUpdateProductNameChange(event: Event): void;
+    /** setter for state ui.productManagement.input.updateProduct.description */
+    setUpdateProductDescription(value: string): void;
+    /** handler for action set.updateProductDescription — bind UI events here */
+    handleUpdateProductDescriptionChange(event: Event): void;
+    /** setter for state ui.productManagement.input.updateProduct.price */
+    setUpdateProductPrice(value: number | ''): void;
+    /** handler for action set.updateProductPrice — bind UI events here */
+    handleUpdateProductPriceChange(event: Event): void;
+    /** setter for state ui.productManagement.input.updateProduct.petTypeId */
+    setUpdateProductPetTypeId(value: string): void;
+    /** handler for action set.updateProductPetTypeId — bind UI events here */
+    handleUpdateProductPetTypeIdChange(event: Event): void;
+    /** setter for state ui.productManagement.input.updateProduct.categoryId */
+    setUpdateProductCategoryId(value: string): void;
+    /** handler for action set.updateProductCategoryId — bind UI events here */
+    handleUpdateProductCategoryIdChange(event: Event): void;
+    /** setter for state ui.productManagement.input.updateProduct.highlighted */
+    setUpdateProductHighlighted(value: boolean | ''): void;
+    /** handler for action set.updateProductHighlighted — bind UI events here */
+    handleUpdateProductHighlightedChange(event: Event): void;
+    /** setter for state ui.productManagement.input.updateProduct.status */
+    setUpdateProductStatus(value: 'available' | 'unavailable' | ''): void;
+    /** handler for action set.updateProductStatus — bind UI events here */
+    handleUpdateProductStatusChange(event: Event): void;
+    /** setter for state ui.productManagement.input.setProductHighlights.productIds */
+    setSetProductHighlightsProductIds(value: string[] | ''): void;
+    /** handler for action set.setProductHighlightsProductIds — bind UI events here */
+    handleSetProductHighlightsProductIdsChange(event: Event): void;
+    /** setter for state ui.productManagement.input.setProductHighlights.highlighted */
+    setSetProductHighlightsHighlighted(value: boolean | ''): void;
+    /** handler for action set.setProductHighlightsHighlighted — bind UI events here */
+    handleSetProductHighlightsHighlightedChange(event: Event): void;
+    private getStateValue;
+    private getInputValue;
+    private getNumberInputValue;
+    private getBooleanInputValue;
+    private normalizeStringArray;
+    private clearInputStates;
+    private refreshBrowseProducts;
+}

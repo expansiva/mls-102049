@@ -1,0 +1,44 @@
+{
+  "savedAt": "2026-07-17T00:56:00.865Z",
+  "pageId": "myReservations",
+  "genome": "page21",
+  "objective": {
+    "actor": "Cliente autenticado do pet shop",
+    "jobToBeDone": "Visualizar minhas reservas com status e prazo de retirada, cancelar reservas indesejadas e criar novas reservas de produtos",
+    "primaryDecision": "Decidir se devo cancelar uma reserva ativa ou pronta que não vou mais retirar",
+    "decisiveInfo": [
+      "status",
+      "expiresAt",
+      "items",
+      "reservationId"
+    ],
+    "usageFrequency": "Ocasional — o cliente acessa para conferir status de reservas existentes e agir quando necessário",
+    "criticalActions": [
+      {
+        "action": "viewMyReservations",
+        "presentation": "master-detail list com colunas de status, prazo e itens"
+      },
+      {
+        "action": "cancelReservation",
+        "presentation": "contextual-transition-actions — botão inline na reserva selecionada, com motivo opcional"
+      },
+      {
+        "action": "createReservation",
+        "presentation": "primary-button em seção dedicada para nova reserva"
+      }
+    ],
+    "informationHierarchy": [
+      "1. Lista de reservas com status e prazo de expiração (decisivo para cancelar)",
+      "2. Itens de cada reserva (para confirmar o que foi reservado)",
+      "3. Ação contextual de cancelamento para reservas ativas/prontas",
+      "4. Formulário de criação de nova reserva"
+    ],
+    "successCriteria": "O cliente vê imediatamente suas reservas com status e prazo, identifica quais ainda pode cancelar, cancela com um clique e motivo opcional, e pode iniciar uma nova reserva sem fricção",
+    "antiPatterns": [
+      "Formulário separado de cancelamento com ID digitado manualmente",
+      "Select livre sobre todos os status do ciclo de vida",
+      "Mostrar status do sistema (draft, expired, delivered) como opções de ação para o cliente",
+      "Sobrecarregar cada card com todos os campos da entidade Reservation"
+    ]
+  }
+}
