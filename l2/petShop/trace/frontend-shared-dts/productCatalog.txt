@@ -1,0 +1,209 @@
+import { CollabLitElement } from '/_102029_/l2/collabLitElement.js';
+import type { PetShopViewHighlightsOutput, PetShopBrowseCatalogOutput, PetShopSearchProductsOutput, PetShopFilterProductsOutput, PetShopViewProductDetailsOutput } from '/_102049_/l2/petShop/web/contracts/productCatalog.js';
+export type { PetShopViewHighlightsInput, PetShopViewHighlightsOutputItem, PetShopViewHighlightsOutput, PetShopBrowseCatalogInput, PetShopBrowseCatalogProduct, PetShopBrowseCatalogOutput, PetShopSearchProductsInput, PetShopSearchProductsOutputItem, PetShopSearchProductsOutput, PetShopFilterProductsInput, PetShopFilterProductsOutputItem, PetShopFilterProductsOutput, PetShopViewProductDetailsInput, PetShopViewProductDetailsOutput } from '/_102049_/l2/petShop/web/contracts/productCatalog.js';
+declare const message_pt: {
+    "page.productCatalog.title": string;
+    "section.overview.title": string;
+    "section.catalog.title": string;
+    "section.details.title": string;
+    "organism.highlightsCards.title": string;
+    "organism.catalogSummary.title": string;
+    "organism.catalogBrowser.title": string;
+    "organism.productDetails.title": string;
+    "intention.viewHighlights.title": string;
+    "intention.browseCatalogSummary.title": string;
+    "intention.browseCatalogFilter.title": string;
+    "intention.searchProductsFilter.title": string;
+    "intention.filterProductsFilter.title": string;
+    "intention.searchProductsList.title": string;
+    "intention.filterProductsList.title": string;
+    "intention.viewProductDetails.title": string;
+    "intention.viewHighlights.empty": string;
+    "intention.browseCatalogSummary.empty": string;
+    "intention.searchProductsList.empty": string;
+    "intention.filterProductsList.empty": string;
+    "intention.viewProductDetails.empty": string;
+    "field.searchTerm.label": string;
+    "field.petTypeId.label": string;
+    "field.categoryId.label": string;
+    "field.minPrice.label": string;
+    "field.maxPrice.label": string;
+    "field.productId.label": string;
+    "field.name.label": string;
+    "field.description.label": string;
+    "field.price.label": string;
+    "field.petTypeName.label": string;
+    "field.categoryName.label": string;
+    "field.highlighted.label": string;
+    "field.status.label": string;
+    "field.products.label": string;
+    "field.total.label": string;
+    "field.page.label": string;
+    "field.pageSize.label": string;
+    "field.createdAt.label": string;
+    "field.updatedAt.label": string;
+    "action.browseCatalog.label": string;
+    "action.searchProducts.label": string;
+    "action.filterProducts.label": string;
+    "action.viewProductDetails.label": string;
+    "action.viewHighlights.label": string;
+    "sec.overview.title": string;
+    "org.highlights.title": string;
+    "org.catalog.summary.title": string;
+    "sec.catalog.title": string;
+    "org.catalog.browser.title": string;
+    "sec.details.title": string;
+    "org.product.details.title": string;
+    "page.title": string;
+    "section.highlights.title": string;
+    "section.detail.title": string;
+    "empty.highlights": string;
+    "empty.catalog": string;
+    "empty.detail": string;
+};
+type MessageType = typeof message_pt;
+export declare class PetShopProductCatalogBase extends CollabLitElement {
+    private readonly subscribedKeys;
+    /** state ui.productCatalog.status — pageStatus */
+    status: string;
+    /** state ui.productCatalog.action.viewHighlights.status — actionStatus, values: idle | loading | success | error */
+    viewHighlightsState: 'idle' | 'loading' | 'success' | 'error';
+    /** state ui.productCatalog.data.viewHighlights — queryResult, outputShape: array */
+    viewHighlightsData: PetShopViewHighlightsOutput;
+    /** state ui.productCatalog.action.browseCatalog.status — actionStatus, values: idle | loading | success | error */
+    browseCatalogState: 'idle' | 'loading' | 'success' | 'error';
+    /** state ui.productCatalog.input.browseCatalog.searchTerm — input */
+    browseCatalogSearchTerm: string;
+    /** state ui.productCatalog.input.browseCatalog.petTypeId — input */
+    browseCatalogPetTypeId: string;
+    /** state ui.productCatalog.input.browseCatalog.categoryId — input */
+    browseCatalogCategoryId: string;
+    /** state ui.productCatalog.input.browseCatalog.minPrice — input */
+    browseCatalogMinPrice: number | '';
+    /** state ui.productCatalog.input.browseCatalog.maxPrice — input */
+    browseCatalogMaxPrice: number | '';
+    /** state ui.productCatalog.data.browseCatalog — queryResult, outputShape: paginated */
+    browseCatalogData: PetShopBrowseCatalogOutput;
+    /** state ui.productCatalog.action.searchProducts.status — actionStatus, values: idle | loading | success | error */
+    searchProductsState: 'idle' | 'loading' | 'success' | 'error';
+    /** state ui.productCatalog.input.searchProducts.searchTerm — input */
+    searchProductsSearchTerm: string;
+    /** state ui.productCatalog.input.searchProducts.petTypeId — input */
+    searchProductsPetTypeId: string;
+    /** state ui.productCatalog.input.searchProducts.categoryId — input */
+    searchProductsCategoryId: string;
+    /** state ui.productCatalog.input.searchProducts.minPrice — input */
+    searchProductsMinPrice: number | '';
+    /** state ui.productCatalog.input.searchProducts.maxPrice — input */
+    searchProductsMaxPrice: number | '';
+    /** state ui.productCatalog.data.searchProducts — queryResult, outputShape: array */
+    searchProductsData: PetShopSearchProductsOutput;
+    /** state ui.productCatalog.action.filterProducts.status — actionStatus, values: idle | loading | success | error */
+    filterProductsState: 'idle' | 'loading' | 'success' | 'error';
+    /** state ui.productCatalog.input.filterProducts.petTypeId — input */
+    filterProductsPetTypeId: string;
+    /** state ui.productCatalog.input.filterProducts.categoryId — input */
+    filterProductsCategoryId: string;
+    /** state ui.productCatalog.input.filterProducts.minPrice — input */
+    filterProductsMinPrice: number | '';
+    /** state ui.productCatalog.input.filterProducts.maxPrice — input */
+    filterProductsMaxPrice: number | '';
+    /** state ui.productCatalog.data.filterProducts — queryResult, outputShape: array */
+    filterProductsData: PetShopFilterProductsOutput;
+    /** state ui.productCatalog.action.viewProductDetails.status — actionStatus, values: idle | loading | success | error */
+    viewProductDetailsState: 'idle' | 'loading' | 'success' | 'error';
+    /** state ui.productCatalog.input.viewProductDetails.productId — input */
+    viewProductDetailsProductId: string;
+    /** state ui.productCatalog.data.viewProductDetails — queryResult, outputShape: object */
+    viewProductDetailsData: PetShopViewProductDetailsOutput | null;
+    /** i18n catalog — MessageType keys are the CLOSED msg vocabulary for page renders */
+    protected get msg(): MessageType;
+    /** lifecycle connectedCallback — init state, subscribe and load data */
+    connectedCallback(): void;
+    /** lifecycle disconnectedCallback — cleanup subscriptions */
+    disconnectedCallback(): void;
+    /** action viewHighlights (query) — route petShop.viewHighlights.viewHighlights; inputs: none; writes ui.productCatalog.data.viewHighlights; status ui.productCatalog.action.viewHighlights.status */
+    loadViewHighlights(): Promise<void>;
+    /** handler for action viewHighlights — bind UI events here */
+    handleViewHighlightsClick(event: Event): void;
+    /** action browseCatalog (query) — route petShop.browseCatalog.browseCatalog; inputs: ui.productCatalog.input.browseCatalog.searchTerm, ui.productCatalog.input.browseCatalog.petTypeId, ui.productCatalog.input.browseCatalog.categoryId, ui.productCatalog.input.browseCatalog.minPrice, ui.productCatalog.input.browseCatalog.maxPrice; writes ui.productCatalog.data.browseCatalog; status ui.productCatalog.action.browseCatalog.status */
+    loadBrowseCatalog(): Promise<void>;
+    /** handler for action browseCatalog — bind UI events here */
+    handleBrowseCatalogClick(event: Event): void;
+    /** action searchProducts (query) — route petShop.searchProducts.searchProducts; inputs: ui.productCatalog.input.searchProducts.searchTerm, ui.productCatalog.input.searchProducts.petTypeId, ui.productCatalog.input.searchProducts.categoryId, ui.productCatalog.input.searchProducts.minPrice, ui.productCatalog.input.searchProducts.maxPrice; writes ui.productCatalog.data.searchProducts; status ui.productCatalog.action.searchProducts.status */
+    loadSearchProducts(): Promise<void>;
+    /** handler for action searchProducts — bind UI events here */
+    handleSearchProductsClick(event: Event): void;
+    /** action filterProducts (query) — route petShop.filterProducts.filterProducts; inputs: ui.productCatalog.input.filterProducts.petTypeId, ui.productCatalog.input.filterProducts.categoryId, ui.productCatalog.input.filterProducts.minPrice, ui.productCatalog.input.filterProducts.maxPrice; writes ui.productCatalog.data.filterProducts; status ui.productCatalog.action.filterProducts.status */
+    loadFilterProducts(): Promise<void>;
+    /** handler for action filterProducts — bind UI events here */
+    handleFilterProductsClick(event: Event): void;
+    /** action viewProductDetails (query) — route petShop.viewProductDetails.viewProductDetails; inputs: ui.productCatalog.input.viewProductDetails.productId; writes ui.productCatalog.data.viewProductDetails; status ui.productCatalog.action.viewProductDetails.status */
+    loadViewProductDetails(): Promise<void>;
+    /** handler for action viewProductDetails — bind UI events here */
+    handleViewProductDetailsClick(event: Event): void;
+    /** setter for state ui.productCatalog.input.browseCatalog.searchTerm */
+    setBrowseCatalogSearchTerm(value: string): void;
+    /** handler for action set.browseCatalogSearchTerm — bind UI events here */
+    handleBrowseCatalogSearchTermChange(event: Event): void;
+    /** setter for state ui.productCatalog.input.browseCatalog.petTypeId */
+    setBrowseCatalogPetTypeId(value: string): void;
+    /** handler for action set.browseCatalogPetTypeId — bind UI events here */
+    handleBrowseCatalogPetTypeIdChange(event: Event): void;
+    /** setter for state ui.productCatalog.input.browseCatalog.categoryId */
+    setBrowseCatalogCategoryId(value: string): void;
+    /** handler for action set.browseCatalogCategoryId — bind UI events here */
+    handleBrowseCatalogCategoryIdChange(event: Event): void;
+    /** setter for state ui.productCatalog.input.browseCatalog.minPrice */
+    setBrowseCatalogMinPrice(value: number | ''): void;
+    /** handler for action set.browseCatalogMinPrice — bind UI events here */
+    handleBrowseCatalogMinPriceChange(event: Event): void;
+    /** setter for state ui.productCatalog.input.browseCatalog.maxPrice */
+    setBrowseCatalogMaxPrice(value: number | ''): void;
+    /** handler for action set.browseCatalogMaxPrice — bind UI events here */
+    handleBrowseCatalogMaxPriceChange(event: Event): void;
+    /** setter for state ui.productCatalog.input.searchProducts.searchTerm */
+    setSearchProductsSearchTerm(value: string): void;
+    /** handler for action set.searchProductsSearchTerm — bind UI events here */
+    handleSearchProductsSearchTermChange(event: Event): void;
+    /** setter for state ui.productCatalog.input.searchProducts.petTypeId */
+    setSearchProductsPetTypeId(value: string): void;
+    /** handler for action set.searchProductsPetTypeId — bind UI events here */
+    handleSearchProductsPetTypeIdChange(event: Event): void;
+    /** setter for state ui.productCatalog.input.searchProducts.categoryId */
+    setSearchProductsCategoryId(value: string): void;
+    /** handler for action set.searchProductsCategoryId — bind UI events here */
+    handleSearchProductsCategoryIdChange(event: Event): void;
+    /** setter for state ui.productCatalog.input.searchProducts.minPrice */
+    setSearchProductsMinPrice(value: number | ''): void;
+    /** handler for action set.searchProductsMinPrice — bind UI events here */
+    handleSearchProductsMinPriceChange(event: Event): void;
+    /** setter for state ui.productCatalog.input.searchProducts.maxPrice */
+    setSearchProductsMaxPrice(value: number | ''): void;
+    /** handler for action set.searchProductsMaxPrice — bind UI events here */
+    handleSearchProductsMaxPriceChange(event: Event): void;
+    /** setter for state ui.productCatalog.input.filterProducts.petTypeId */
+    setFilterProductsPetTypeId(value: string): void;
+    /** handler for action set.filterProductsPetTypeId — bind UI events here */
+    handleFilterProductsPetTypeIdChange(event: Event): void;
+    /** setter for state ui.productCatalog.input.filterProducts.categoryId */
+    setFilterProductsCategoryId(value: string): void;
+    /** handler for action set.filterProductsCategoryId — bind UI events here */
+    handleFilterProductsCategoryIdChange(event: Event): void;
+    /** setter for state ui.productCatalog.input.filterProducts.minPrice */
+    setFilterProductsMinPrice(value: number | ''): void;
+    /** handler for action set.filterProductsMinPrice — bind UI events here */
+    handleFilterProductsMinPriceChange(event: Event): void;
+    /** setter for state ui.productCatalog.input.filterProducts.maxPrice */
+    setFilterProductsMaxPrice(value: number | ''): void;
+    /** handler for action set.filterProductsMaxPrice — bind UI events here */
+    handleFilterProductsMaxPriceChange(event: Event): void;
+    /** setter for state ui.productCatalog.input.viewProductDetails.productId */
+    setViewProductDetailsProductId(value: string): void;
+    /** handler for action set.viewProductDetailsProductId — bind UI events here */
+    handleViewProductDetailsProductIdChange(event: Event): void;
+    private initStateValue;
+    private normalizeOptionalString;
+    private normalizeOptionalNumber;
+    private getRouteParams;
+}

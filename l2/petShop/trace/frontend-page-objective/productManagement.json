@@ -1,0 +1,55 @@
+{
+  "savedAt": "2026-07-17T00:57:17.739Z",
+  "pageId": "productManagement",
+  "genome": "page21",
+  "objective": {
+    "actor": "Operador/gestor da loja",
+    "jobToBeDone": "Gerenciar o catálogo de produtos, encontrando itens rapidamente e criando ou editando produtos com destaque e disponibilidade corretos.",
+    "primaryDecision": "Qual produto selecionar para editar ou criar um novo produto no catálogo.",
+    "decisiveInfo": [
+      "name",
+      "price",
+      "petTypeName",
+      "categoryName",
+      "highlighted",
+      "status"
+    ],
+    "usageFrequency": "Uso ocasional/operacional em back-office.",
+    "criticalActions": [
+      {
+        "action": "browseProducts",
+        "presentation": "primary-search-and-filter"
+      },
+      {
+        "action": "updateProduct",
+        "presentation": "contextual-detail-primary-button"
+      },
+      {
+        "action": "createProduct",
+        "presentation": "primary-button"
+      },
+      {
+        "action": "setProductHighlights",
+        "presentation": "bulk-form-inline"
+      }
+    ],
+    "informationHierarchy": [
+      "Lista filtrável de produtos",
+      "Detalhe/edição do produto selecionado",
+      "Cadastro de novo produto",
+      "Ação em massa de destaque"
+    ],
+    "successCriteria": [
+      "Produtos são encontrados por busca/filtros em poucos passos",
+      "Edição ocorre sem perder o contexto da lista",
+      "Cadastro é concluído com validações claras",
+      "Destaques em massa são aplicados com confirmação visual"
+    ],
+    "antiPatterns": [
+      "formulário de transição de status separado",
+      "edição de id manual",
+      "expor timestamps como campos editáveis",
+      "select livre para status sem contexto"
+    ]
+  }
+}

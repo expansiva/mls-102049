@@ -1,0 +1,103 @@
+import { CollabLitElement } from '/_102029_/l2/collabLitElement.js';
+import type { PetShopCreateReservationOutput, PetShopCancelReservationOutput, PetShopViewMyReservationsOutput } from '/_102049_/l2/petShop/web/contracts/myReservations.js';
+export type { PetShopCreateReservationInput, PetShopCreateReservationItem, PetShopCreateReservationOutput, PetShopCancelReservationInput, PetShopCancelReservationRestoredProduct, PetShopCancelReservationOutput, PetShopViewMyReservationsInput, PetShopViewMyReservationsItem, PetShopViewMyReservationsOutputItem, PetShopViewMyReservationsOutput, } from '/_102049_/l2/petShop/web/contracts/myReservations.js';
+declare const message_pt: {
+    "section.board.title": string;
+    "section.create.title": string;
+    "section.cancel.title": string;
+    "column.reservationId.label": string;
+    "column.status.label": string;
+    "column.expiresAt.label": string;
+    "column.createdAt.label": string;
+    "column.confirmedAt.label": string;
+    "column.readyAt.label": string;
+    "column.items.label": string;
+    "empty.board": string;
+    "empty.create": string;
+    "empty.cancel": string;
+    "field.items.label": string;
+    "field.reservationId.label": string;
+    "field.cancelReason.label": string;
+    "action.createReservation.label": string;
+    "action.cancelReservation.label": string;
+    "action.createReservation.success": string;
+    "action.createReservation.error": string;
+    "action.cancelReservation.success": string;
+    "action.cancelReservation.error": string;
+    "rowAction.cancelReservation.label": string;
+    "toolbar.refresh.label": string;
+    "lane.active": string;
+    "lane.ready": string;
+    "lane.delivered": string;
+    "lane.expired": string;
+    "lane.cancelled": string;
+    "page.myReservations.title": string;
+    "section.reservations.title": string;
+    "section.createReservation.title": string;
+    "organism.reservationList.title": string;
+    "organism.createForm.title": string;
+    "intention.queryReservations.title": string;
+    "intention.cancelReservation.title": string;
+    "intention.createReservation.title": string;
+    "filter.status.label": string;
+    "action.viewMyReservations.label": string;
+    "action.selectForCancel.label": string;
+    "empty.reservations": string;
+    "empty.cancelContext": string;
+    "empty.createForm": string;
+};
+type MessageType = typeof message_pt;
+export declare class PetShopMyReservationsBase extends CollabLitElement {
+    /** state ui.myReservations.status — pageStatus */
+    status: string;
+    /** state ui.myReservations.action.createReservation.status — actionStatus, values: idle|loading|success|error */
+    createReservationState: 'idle' | 'loading' | 'success' | 'error';
+    /** state ui.myReservations.input.createReservation.items — input */
+    createReservationItems: string;
+    /** state ui.myReservations.output.createReservation — commandOutput */
+    createReservationOutput: PetShopCreateReservationOutput | null;
+    /** state ui.myReservations.action.createReservation.error — actionError */
+    createReservationError: string;
+    /** state ui.myReservations.action.cancelReservation.status — actionStatus, values: idle|loading|success|error */
+    cancelReservationState: 'idle' | 'loading' | 'success' | 'error';
+    /** state ui.myReservations.input.cancelReservation.reservationId — input (selection) */
+    cancelReservationReservationId: string;
+    /** state ui.myReservations.input.cancelReservation.cancelReason — input */
+    cancelReservationCancelReason: string;
+    /** state ui.myReservations.output.cancelReservation — commandOutput */
+    cancelReservationOutput: PetShopCancelReservationOutput | null;
+    /** state ui.myReservations.action.cancelReservation.error — actionError */
+    cancelReservationError: string;
+    /** state ui.myReservations.action.viewMyReservations.status — actionStatus, values: idle|loading|success|error */
+    viewMyReservationsState: 'idle' | 'loading' | 'success' | 'error';
+    /** state ui.myReservations.data.viewMyReservations — queryResult, outputShape: array */
+    viewMyReservationsData: PetShopViewMyReservationsOutput;
+    /** i18n catalog — MessageType keys are the CLOSED msg vocabulary for page renders */
+    protected get msg(): MessageType;
+    /** action createReservation (command) — route petShop.reservationLifecycle.createReservation; inputs: items; writes ui.myReservations.output.createReservation; status ui.myReservations.action.createReservation.status; feedback keys action.createReservation.success / action.createReservation.error */
+    createReservation(): Promise<void>;
+    /** handler for action createReservation — bind UI events here */
+    handleCreateReservationClick(e: Event): Promise<void>;
+    /** action cancelReservation (command) — route petShop.reservationLifecycle.cancelReservation; inputs: reservationId, cancelReason; writes ui.myReservations.output.cancelReservation; status ui.myReservations.action.cancelReservation.status; feedback keys action.cancelReservation.success / action.cancelReservation.error */
+    cancelReservation(): Promise<void>;
+    /** handler for action cancelReservation — bind UI events here */
+    handleCancelReservationClick(e: Event): Promise<void>;
+    /** action viewMyReservations (query) — route petShop.viewMyReservations.viewMyReservations; inputs: none; writes ui.myReservations.data.viewMyReservations; status ui.myReservations.action.viewMyReservations.status */
+    loadViewMyReservations(): Promise<void>;
+    /** handler for action viewMyReservations — bind UI events here */
+    handleViewMyReservationsClick(e: Event): Promise<void>;
+    /** setter for state ui.myReservations.input.createReservation.items */
+    setCreateReservationItems(value: string): void;
+    /** handler for action set.createReservationItems — bind UI events here */
+    handleCreateReservationItemsChange(e: Event): void;
+    /** setter for state ui.myReservations.input.cancelReservation.reservationId */
+    setCancelReservationReservationId(value: string): void;
+    /** handler for action set.cancelReservationReservationId — bind UI events here */
+    handleCancelReservationReservationIdChange(e: Event): void;
+    /** setter for state ui.myReservations.input.cancelReservation.cancelReason */
+    setCancelReservationCancelReason(value: string): void;
+    /** handler for action set.cancelReservationCancelReason — bind UI events here */
+    handleCancelReservationCancelReasonChange(e: Event): void;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+}
