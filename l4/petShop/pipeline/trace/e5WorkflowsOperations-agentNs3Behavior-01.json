@@ -1,0 +1,509 @@
+{
+  "savedAt": "2026-07-16T21:30:15.000Z",
+  "stepId": "e5-workflows-operations",
+  "agentName": "agentNs3Behavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "schemaVersion": "2026-07-11-ns3-e5-v2",
+      "moduleName": "petShop",
+      "createdAt": "2026-07-16T21:30:14.991Z",
+      "workflows": [
+        {
+          "workflowId": "reservationLifecycle",
+          "title": "Ciclo de vida da reserva",
+          "actorId": "cliente",
+          "primaryEntity": "Reservation",
+          "featureRefs": [
+            "reserveProducts",
+            "cancelReservation",
+            "payInStore",
+            "updateReservationStatus",
+            "reservationExpiration"
+          ],
+          "operationIds": [
+            "createReservation",
+            "cancelReservation",
+            "updateReservationStatus",
+            "payInStore",
+            "expireReservations"
+          ]
+        }
+      ],
+      "operations": [
+        {
+          "operationId": "createReservation",
+          "title": "Criar reserva",
+          "actorId": "cliente",
+          "entity": "Reservation",
+          "kind": "create",
+          "featureRefs": [
+            "reserveProducts"
+          ],
+          "workflowId": "reservationLifecycle"
+        },
+        {
+          "operationId": "cancelReservation",
+          "title": "Cancelar reserva",
+          "actorId": "cliente",
+          "entity": "Reservation",
+          "kind": "update",
+          "featureRefs": [
+            "cancelReservation"
+          ],
+          "workflowId": "reservationLifecycle"
+        },
+        {
+          "operationId": "updateReservationStatus",
+          "title": "Atualizar status da reserva",
+          "actorId": "loja",
+          "entity": "Reservation",
+          "kind": "update",
+          "featureRefs": [
+            "updateReservationStatus"
+          ],
+          "workflowId": "reservationLifecycle"
+        },
+        {
+          "operationId": "payInStore",
+          "title": "Registrar pagamento presencial",
+          "actorId": "loja",
+          "entity": "Reservation",
+          "kind": "update",
+          "featureRefs": [
+            "payInStore"
+          ],
+          "workflowId": "reservationLifecycle"
+        },
+        {
+          "operationId": "expireReservations",
+          "title": "Expirar reservas vencidas",
+          "actorId": "loja",
+          "entity": "Reservation",
+          "kind": "update",
+          "featureRefs": [
+            "reservationExpiration"
+          ],
+          "workflowId": "reservationLifecycle"
+        },
+        {
+          "operationId": "viewHighlights",
+          "title": "Visualizar produtos em destaque",
+          "actorId": "cliente",
+          "entity": "Product",
+          "kind": "view",
+          "featureRefs": [
+            "viewHighlights"
+          ]
+        },
+        {
+          "operationId": "browseCatalog",
+          "title": "Navegar pelo catálogo completo",
+          "actorId": "cliente",
+          "entity": "Product",
+          "kind": "query",
+          "featureRefs": [
+            "browseCatalog"
+          ]
+        },
+        {
+          "operationId": "searchProducts",
+          "title": "Buscar produtos por nome",
+          "actorId": "cliente",
+          "entity": "Product",
+          "kind": "query",
+          "featureRefs": [
+            "searchProducts"
+          ]
+        },
+        {
+          "operationId": "filterProducts",
+          "title": "Filtrar produtos por tipo de pet, categoria e faixa de valor",
+          "actorId": "cliente",
+          "entity": "Product",
+          "kind": "query",
+          "featureRefs": [
+            "filterProducts"
+          ]
+        },
+        {
+          "operationId": "viewProductDetails",
+          "title": "Ver detalhes de um produto",
+          "actorId": "cliente",
+          "entity": "Product",
+          "kind": "view",
+          "featureRefs": [
+            "viewProductDetails"
+          ]
+        },
+        {
+          "operationId": "viewMyReservations",
+          "title": "Visualizar minhas reservas",
+          "actorId": "cliente",
+          "entity": "Reservation",
+          "kind": "query",
+          "featureRefs": [
+            "viewMyReservations"
+          ]
+        },
+        {
+          "operationId": "listReservations",
+          "title": "Listar reservas recebidas",
+          "actorId": "loja",
+          "entity": "Reservation",
+          "kind": "query",
+          "featureRefs": [
+            "listReservations"
+          ]
+        },
+        {
+          "operationId": "browseProducts",
+          "title": "Listar produtos do catálogo",
+          "actorId": "loja",
+          "entity": "Product",
+          "kind": "query",
+          "featureRefs": [
+            "manageProductCatalog"
+          ]
+        },
+        {
+          "operationId": "createProduct",
+          "title": "Cadastrar produto",
+          "actorId": "loja",
+          "entity": "Product",
+          "kind": "create",
+          "featureRefs": [
+            "manageProductCatalog"
+          ]
+        },
+        {
+          "operationId": "updateProduct",
+          "title": "Editar produto",
+          "actorId": "loja",
+          "entity": "Product",
+          "kind": "update",
+          "featureRefs": [
+            "manageProductCatalog"
+          ]
+        },
+        {
+          "operationId": "setProductHighlights",
+          "title": "Definir produtos em destaque",
+          "actorId": "loja",
+          "entity": "Product",
+          "kind": "update",
+          "featureRefs": [
+            "setProductHighlights"
+          ]
+        }
+      ],
+      "managedEntities": [
+        {
+          "entity": "Product",
+          "deletionPolicy": "inactivate",
+          "inactivationState": "unavailable",
+          "reason": "Produtos indisponíveis não aparecem na vitrine pública nem podem ser reservados; a loja define disponibilidade conforme o estoque físico, sem remover o cadastro."
+        }
+      ]
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "schemaVersion": "2026-07-11-ns3-e5-v2",
+        "moduleName": "petShop",
+        "createdAt": "2026-07-16T21:30:14.991Z",
+        "workflows": [
+          {
+            "workflowId": "reservationLifecycle",
+            "title": "Ciclo de vida da reserva",
+            "actorId": "cliente",
+            "primaryEntity": "Reservation",
+            "featureRefs": [
+              "reserveProducts",
+              "cancelReservation",
+              "payInStore",
+              "updateReservationStatus",
+              "reservationExpiration"
+            ],
+            "operationIds": [
+              "createReservation",
+              "cancelReservation",
+              "updateReservationStatus",
+              "payInStore",
+              "expireReservations"
+            ]
+          }
+        ],
+        "operations": [
+          {
+            "operationId": "createReservation",
+            "title": "Criar reserva",
+            "actorId": "cliente",
+            "entity": "Reservation",
+            "kind": "create",
+            "featureRefs": [
+              "reserveProducts"
+            ],
+            "workflowId": "reservationLifecycle"
+          },
+          {
+            "operationId": "cancelReservation",
+            "title": "Cancelar reserva",
+            "actorId": "cliente",
+            "entity": "Reservation",
+            "kind": "update",
+            "featureRefs": [
+              "cancelReservation"
+            ],
+            "workflowId": "reservationLifecycle"
+          },
+          {
+            "operationId": "updateReservationStatus",
+            "title": "Atualizar status da reserva",
+            "actorId": "loja",
+            "entity": "Reservation",
+            "kind": "update",
+            "featureRefs": [
+              "updateReservationStatus"
+            ],
+            "workflowId": "reservationLifecycle"
+          },
+          {
+            "operationId": "payInStore",
+            "title": "Registrar pagamento presencial",
+            "actorId": "loja",
+            "entity": "Reservation",
+            "kind": "update",
+            "featureRefs": [
+              "payInStore"
+            ],
+            "workflowId": "reservationLifecycle"
+          },
+          {
+            "operationId": "expireReservations",
+            "title": "Expirar reservas vencidas",
+            "actorId": "loja",
+            "entity": "Reservation",
+            "kind": "update",
+            "featureRefs": [
+              "reservationExpiration"
+            ],
+            "workflowId": "reservationLifecycle"
+          },
+          {
+            "operationId": "viewHighlights",
+            "title": "Visualizar produtos em destaque",
+            "actorId": "cliente",
+            "entity": "Product",
+            "kind": "view",
+            "featureRefs": [
+              "viewHighlights"
+            ]
+          },
+          {
+            "operationId": "browseCatalog",
+            "title": "Navegar pelo catálogo completo",
+            "actorId": "cliente",
+            "entity": "Product",
+            "kind": "query",
+            "featureRefs": [
+              "browseCatalog"
+            ]
+          },
+          {
+            "operationId": "searchProducts",
+            "title": "Buscar produtos por nome",
+            "actorId": "cliente",
+            "entity": "Product",
+            "kind": "query",
+            "featureRefs": [
+              "searchProducts"
+            ]
+          },
+          {
+            "operationId": "filterProducts",
+            "title": "Filtrar produtos por tipo de pet, categoria e faixa de valor",
+            "actorId": "cliente",
+            "entity": "Product",
+            "kind": "query",
+            "featureRefs": [
+              "filterProducts"
+            ]
+          },
+          {
+            "operationId": "viewProductDetails",
+            "title": "Ver detalhes de um produto",
+            "actorId": "cliente",
+            "entity": "Product",
+            "kind": "view",
+            "featureRefs": [
+              "viewProductDetails"
+            ]
+          },
+          {
+            "operationId": "viewMyReservations",
+            "title": "Visualizar minhas reservas",
+            "actorId": "cliente",
+            "entity": "Reservation",
+            "kind": "query",
+            "featureRefs": [
+              "viewMyReservations"
+            ]
+          },
+          {
+            "operationId": "listReservations",
+            "title": "Listar reservas recebidas",
+            "actorId": "loja",
+            "entity": "Reservation",
+            "kind": "query",
+            "featureRefs": [
+              "listReservations"
+            ]
+          },
+          {
+            "operationId": "browseProducts",
+            "title": "Listar produtos do catálogo",
+            "actorId": "loja",
+            "entity": "Product",
+            "kind": "query",
+            "featureRefs": [
+              "manageProductCatalog"
+            ]
+          },
+          {
+            "operationId": "createProduct",
+            "title": "Cadastrar produto",
+            "actorId": "loja",
+            "entity": "Product",
+            "kind": "create",
+            "featureRefs": [
+              "manageProductCatalog"
+            ]
+          },
+          {
+            "operationId": "updateProduct",
+            "title": "Editar produto",
+            "actorId": "loja",
+            "entity": "Product",
+            "kind": "update",
+            "featureRefs": [
+              "manageProductCatalog"
+            ]
+          },
+          {
+            "operationId": "setProductHighlights",
+            "title": "Definir produtos em destaque",
+            "actorId": "loja",
+            "entity": "Product",
+            "kind": "update",
+            "featureRefs": [
+              "setProductHighlights"
+            ]
+          }
+        ],
+        "managedEntities": [
+          {
+            "entity": "Product",
+            "deletionPolicy": "inactivate",
+            "inactivationState": "unavailable",
+            "reason": "Produtos indisponíveis não aparecem na vitrine pública nem podem ser reservados; a loja define disponibilidade conforme o estoque físico, sem remover o cadastro."
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false,
+      "pipeline": {
+        "schemaVersion": "2026-07-05-ns3-pipeline-v1",
+        "flowId": "agentNewSolution3",
+        "moduleName": "petShop",
+        "createdAt": "2026-07-16T21:23:16.915Z",
+        "updatedAt": "2026-07-16T21:30:14.997Z",
+        "steps": {
+          "e1-draft": {
+            "status": "approved",
+            "updatedAt": "2026-07-16T21:23:16.925Z",
+            "dirty": false,
+            "inputsHash": "djb2:cbdecfdd",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-16T21:23:16.916Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-16T21:23:16.925Z",
+            "approvedBy": "auto"
+          },
+          "checkpoint-draft": {
+            "status": "pending",
+            "updatedAt": "2026-07-16T21:23:16.915Z"
+          },
+          "e2-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-16T21:24:54.461Z",
+            "dirty": false,
+            "inputsHash": "djb2:f65fecba",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-16T21:24:29.864Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-16T21:24:54.461Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "checkpoint-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-16T21:24:54.461Z",
+            "dirty": false,
+            "approvedAt": "2026-07-16T21:24:54.461Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "e3-ontology": {
+            "status": "approved",
+            "updatedAt": "2026-07-16T21:27:04.783Z",
+            "dirty": false,
+            "inputsHash": "djb2:b8ff253d",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-16T21:26:31.759Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-16T21:27:04.783Z",
+            "approvedBy": "auto"
+          },
+          "e4-actors-rules-refs": {
+            "status": "approved",
+            "updatedAt": "2026-07-16T21:28:13.881Z",
+            "dirty": false,
+            "inputsHash": "djb2:cfec20dc",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-16T21:28:13.881Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-16T21:28:13.881Z",
+            "approvedBy": "auto"
+          },
+          "e5-workflows-operations": {
+            "status": "pending",
+            "updatedAt": "2026-07-16T21:30:14.997Z",
+            "dirty": false,
+            "inputsHash": "djb2:cfec20dc",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-16T21:30:14.997Z",
+              "errors": [],
+              "warnings": []
+            }
+          }
+        }
+      }
+    }
+  }
+}
