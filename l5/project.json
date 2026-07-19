@@ -20,33 +20,6 @@
   "links": [],
   "servicesConfigEnabled": false,
   "modules": [
-    {
-      "moduleName": "petShop",
-      "backend": {
-        "backendControllers": "./_102049_/l1/petShop/layer_1_external/adapters/http/controllers",
-        "persistence": {
-          "tableDefsDir": "./_102049_/l1/petShop/layer_1_external/adapters/persistence"
-        },
-        "routeKeys": [
-          "petShop.browseCatalog.browseCatalog",
-          "petShop.browseProducts.browseProducts",
-          "petShop.createProduct.createProduct",
-          "petShop.filterProducts.filterProducts",
-          "petShop.listReservations.listReservations",
-          "petShop.reservationLifecycle.cancelReservation",
-          "petShop.reservationLifecycle.createReservation",
-          "petShop.reservationLifecycle.expireReservations",
-          "petShop.reservationLifecycle.payInStore",
-          "petShop.reservationLifecycle.updateReservationStatus",
-          "petShop.searchProducts.searchProducts",
-          "petShop.setProductHighlights.setProductHighlights",
-          "petShop.updateProduct.updateProduct",
-          "petShop.viewHighlights.viewHighlights",
-          "petShop.viewMyReservations.viewMyReservations",
-          "petShop.viewProductDetails.viewProductDetails"
-        ]
-      }
-    }
   ],
   "layouts": {
     "1": {
