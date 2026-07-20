@@ -1,0 +1,420 @@
+{
+  "savedAt": "2026-07-19T20:04:30.778Z",
+  "stepId": "e5-operation-browseProducts",
+  "agentName": "agentNsBehavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "operationId": "browseProducts",
+      "title": "Pesquisar e filtrar produtos no catálogo",
+      "actors": [
+        "cliente"
+      ],
+      "entity": "Product",
+      "kind": "query",
+      "reads": [
+        "Product",
+        "ProductCategory",
+        "PetType"
+      ],
+      "writes": [],
+      "rulesApplied": [
+        "catalogShowsAll",
+        "combinedFilters",
+        "caseInsensitiveSearch"
+      ],
+      "story": {
+        "actor": "cliente",
+        "goal": "Pesquisar e filtrar produtos no catálogo para encontrar produtos adequados ao seu pet e orçamento",
+        "steps": [
+          "Acessa a listagem completa de produtos do catálogo",
+          "Digita um nome ou parte do nome para pesquisar produtos",
+          "Seleciona tipo de pet e/ou categoria para filtrar os resultados",
+          "Define uma faixa de preço para refinar a busca",
+          "Visualiza a lista paginada de produtos que atendem a todos os critérios aplicados"
+        ],
+        "outcome": "O cliente recebe uma lista paginada de produtos que atendem simultaneamente a todos os filtros de nome, tipo de pet, categoria e faixa de valor"
+      },
+      "accessPattern": {
+        "kind": "list",
+        "entity": "Product",
+        "keyField": "Product.productId",
+        "pagination": "required",
+        "selection": "none",
+        "output": [
+          "Product.productId",
+          "Product.name",
+          "Product.price",
+          "Product.isFeatured",
+          "Product.categoryId",
+          "Product.petTypeId",
+          "Product.createdAt",
+          "Product.updatedAt"
+        ]
+      },
+      "outputShape": {
+        "kind": "paginated",
+        "fields": [
+          {
+            "name": "items",
+            "type": "array",
+            "required": true,
+            "item": {
+              "fields": [
+                {
+                  "name": "productId",
+                  "type": "string",
+                  "required": true,
+                  "fieldRef": "Product.productId"
+                },
+                {
+                  "name": "name",
+                  "type": "string",
+                  "required": true,
+                  "fieldRef": "Product.name"
+                },
+                {
+                  "name": "price",
+                  "type": "number",
+                  "required": true,
+                  "fieldRef": "Product.price"
+                },
+                {
+                  "name": "isFeatured",
+                  "type": "boolean",
+                  "required": true,
+                  "fieldRef": "Product.isFeatured"
+                },
+                {
+                  "name": "categoryId",
+                  "type": "string",
+                  "required": true,
+                  "fieldRef": "Product.categoryId"
+                },
+                {
+                  "name": "categoryName",
+                  "type": "string",
+                  "required": true,
+                  "fieldRef": "ProductCategory.name"
+                },
+                {
+                  "name": "petTypeId",
+                  "type": "string",
+                  "required": true,
+                  "fieldRef": "Product.petTypeId"
+                },
+                {
+                  "name": "petTypeName",
+                  "type": "string",
+                  "required": true,
+                  "fieldRef": "PetType.name"
+                },
+                {
+                  "name": "createdAt",
+                  "type": "string",
+                  "required": true,
+                  "fieldRef": "Product.createdAt"
+                },
+                {
+                  "name": "updatedAt",
+                  "type": "string",
+                  "required": true,
+                  "fieldRef": "Product.updatedAt"
+                }
+              ]
+            }
+          },
+          {
+            "name": "total",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "page",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "pageSize",
+            "type": "number",
+            "required": true
+          }
+        ]
+      },
+      "inputs": [
+        {
+          "inputId": "searchName",
+          "required": false,
+          "source": "userInput",
+          "description": "Texto parcial do nome do produto para pesquisa insensível a caixa",
+          "type": "string"
+        },
+        {
+          "inputId": "petTypeId",
+          "required": false,
+          "source": "userInput",
+          "description": "Identificador do tipo de pet para filtrar produtos adequados",
+          "type": "string"
+        },
+        {
+          "inputId": "categoryId",
+          "required": false,
+          "source": "userInput",
+          "description": "Identificador da categoria para filtrar produtos",
+          "type": "string"
+        },
+        {
+          "inputId": "minPrice",
+          "required": false,
+          "source": "userInput",
+          "description": "Valor mínimo da faixa de preço para filtrar produtos dentro do orçamento",
+          "type": "string"
+        },
+        {
+          "inputId": "maxPrice",
+          "required": false,
+          "source": "userInput",
+          "description": "Valor máximo da faixa de preço para filtrar produtos dentro do orçamento",
+          "type": "string"
+        },
+        {
+          "inputId": "page",
+          "required": false,
+          "source": "userInput",
+          "description": "Número da página atual para paginação dos resultados",
+          "type": "number"
+        },
+        {
+          "inputId": "pageSize",
+          "required": false,
+          "source": "userInput",
+          "description": "Quantidade de itens por página",
+          "type": "number"
+        }
+      ],
+      "contextResolution": [],
+      "acceptanceAssertions": [
+        "A listagem retorna todos os produtos cadastrados, independentemente de estarem marcados como destaque ou não",
+        "A pesquisa por nome é insensível a maiúsculas e minúsculas, retornando resultados correspondentes independente da capitalização informada",
+        "Os filtros de tipo de pet, categoria, nome e faixa de valor funcionam simultaneamente, permitindo combinação de múltiplos critérios",
+        "O resultado é paginado e contém o total de produtos que atendem aos critérios aplicados",
+        "Cada produto retornado inclui productId, name, price, isFeatured, categoryId, petTypeId, categoryName e petTypeName"
+      ],
+      "pageId": "browseProducts",
+      "commandName": "browseProducts",
+      "bffName": "petShop.browseProducts.browseProducts",
+      "capability": {
+        "capabilityId": "browseProducts",
+        "title": "Pesquisar e filtrar produtos no catálogo",
+        "actor": "cliente",
+        "priority": "now"
+      },
+      "statusFrontend": "toCreate",
+      "statusBackend": "toCreate"
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "operationId": "browseProducts",
+        "title": "Pesquisar e filtrar produtos no catálogo",
+        "actors": [
+          "cliente"
+        ],
+        "entity": "Product",
+        "kind": "query",
+        "reads": [
+          "Product",
+          "ProductCategory",
+          "PetType"
+        ],
+        "writes": [],
+        "rulesApplied": [
+          "catalogShowsAll",
+          "combinedFilters",
+          "caseInsensitiveSearch"
+        ],
+        "story": {
+          "actor": "cliente",
+          "goal": "Pesquisar e filtrar produtos no catálogo para encontrar produtos adequados ao seu pet e orçamento",
+          "steps": [
+            "Acessa a listagem completa de produtos do catálogo",
+            "Digita um nome ou parte do nome para pesquisar produtos",
+            "Seleciona tipo de pet e/ou categoria para filtrar os resultados",
+            "Define uma faixa de preço para refinar a busca",
+            "Visualiza a lista paginada de produtos que atendem a todos os critérios aplicados"
+          ],
+          "outcome": "O cliente recebe uma lista paginada de produtos que atendem simultaneamente a todos os filtros de nome, tipo de pet, categoria e faixa de valor"
+        },
+        "accessPattern": {
+          "kind": "list",
+          "entity": "Product",
+          "keyField": "Product.productId",
+          "pagination": "required",
+          "selection": "none",
+          "output": [
+            "Product.productId",
+            "Product.name",
+            "Product.price",
+            "Product.isFeatured",
+            "Product.categoryId",
+            "Product.petTypeId",
+            "Product.createdAt",
+            "Product.updatedAt"
+          ]
+        },
+        "outputShape": {
+          "kind": "paginated",
+          "fields": [
+            {
+              "name": "items",
+              "type": "array",
+              "required": true,
+              "item": {
+                "fields": [
+                  {
+                    "name": "productId",
+                    "type": "string",
+                    "required": true,
+                    "fieldRef": "Product.productId"
+                  },
+                  {
+                    "name": "name",
+                    "type": "string",
+                    "required": true,
+                    "fieldRef": "Product.name"
+                  },
+                  {
+                    "name": "price",
+                    "type": "number",
+                    "required": true,
+                    "fieldRef": "Product.price"
+                  },
+                  {
+                    "name": "isFeatured",
+                    "type": "boolean",
+                    "required": true,
+                    "fieldRef": "Product.isFeatured"
+                  },
+                  {
+                    "name": "categoryId",
+                    "type": "string",
+                    "required": true,
+                    "fieldRef": "Product.categoryId"
+                  },
+                  {
+                    "name": "categoryName",
+                    "type": "string",
+                    "required": true,
+                    "fieldRef": "ProductCategory.name"
+                  },
+                  {
+                    "name": "petTypeId",
+                    "type": "string",
+                    "required": true,
+                    "fieldRef": "Product.petTypeId"
+                  },
+                  {
+                    "name": "petTypeName",
+                    "type": "string",
+                    "required": true,
+                    "fieldRef": "PetType.name"
+                  },
+                  {
+                    "name": "createdAt",
+                    "type": "string",
+                    "required": true,
+                    "fieldRef": "Product.createdAt"
+                  },
+                  {
+                    "name": "updatedAt",
+                    "type": "string",
+                    "required": true,
+                    "fieldRef": "Product.updatedAt"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "total",
+              "type": "number",
+              "required": true
+            },
+            {
+              "name": "page",
+              "type": "number",
+              "required": true
+            },
+            {
+              "name": "pageSize",
+              "type": "number",
+              "required": true
+            }
+          ]
+        },
+        "inputs": [
+          {
+            "inputId": "searchName",
+            "required": false,
+            "source": "userInput",
+            "description": "Texto parcial do nome do produto para pesquisa insensível a caixa",
+            "type": "string"
+          },
+          {
+            "inputId": "petTypeId",
+            "required": false,
+            "source": "userInput",
+            "description": "Identificador do tipo de pet para filtrar produtos adequados",
+            "type": "string"
+          },
+          {
+            "inputId": "categoryId",
+            "required": false,
+            "source": "userInput",
+            "description": "Identificador da categoria para filtrar produtos",
+            "type": "string"
+          },
+          {
+            "inputId": "minPrice",
+            "required": false,
+            "source": "userInput",
+            "description": "Valor mínimo da faixa de preço para filtrar produtos dentro do orçamento",
+            "type": "string"
+          },
+          {
+            "inputId": "maxPrice",
+            "required": false,
+            "source": "userInput",
+            "description": "Valor máximo da faixa de preço para filtrar produtos dentro do orçamento",
+            "type": "string"
+          },
+          {
+            "inputId": "page",
+            "required": false,
+            "source": "userInput",
+            "description": "Número da página atual para paginação dos resultados",
+            "type": "number"
+          },
+          {
+            "inputId": "pageSize",
+            "required": false,
+            "source": "userInput",
+            "description": "Quantidade de itens por página",
+            "type": "number"
+          }
+        ],
+        "contextResolution": [],
+        "acceptanceAssertions": [
+          "A listagem retorna todos os produtos cadastrados, independentemente de estarem marcados como destaque ou não",
+          "A pesquisa por nome é insensível a maiúsculas e minúsculas, retornando resultados correspondentes independente da capitalização informada",
+          "Os filtros de tipo de pet, categoria, nome e faixa de valor funcionam simultaneamente, permitindo combinação de múltiplos critérios",
+          "O resultado é paginado e contém o total de produtos que atendem aos critérios aplicados",
+          "Cada produto retornado inclui productId, name, price, isFeatured, categoryId, petTypeId, categoryName e petTypeName"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false
+    }
+  }
+}
