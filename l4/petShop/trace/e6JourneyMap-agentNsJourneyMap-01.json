@@ -1,0 +1,247 @@
+{
+  "savedAt": "2026-07-19T20:05:59.251Z",
+  "stepId": "e6-journey-map",
+  "agentName": "agentNsJourneyMap",
+  "attempt": 1,
+  "payload": {
+    "siteMap": {
+      "schemaVersion": "2026-07-19-ns-e6-sitemap-v1",
+      "moduleName": "petShop",
+      "note": "Site map (permanent page index) — workspaces, landings and advisory edges. Detail (sections/organisms/bffCalls) lives per-workspace under workspaces/.",
+      "workspaces": [
+        {
+          "workspaceId": "catalog",
+          "title": "Catálogo de produtos",
+          "actors": [
+            "cliente"
+          ],
+          "kind": "workflow",
+          "entity": "Product",
+          "operationIds": [
+            "browseFeaturedProducts",
+            "browseProducts",
+            "viewProductDetails",
+            "createReservation"
+          ],
+          "purpose": "O cliente navega pela vitrine e pelo catálogo, visualiza detalhes dos produtos e reserva itens para retirada na loja",
+          "workflowId": "reservationLifecycle"
+        },
+        {
+          "workspaceId": "reservationManagement",
+          "title": "Gestão de reservas",
+          "actors": [
+            "atendente"
+          ],
+          "kind": "workflow",
+          "entity": "Reservation",
+          "operationIds": [
+            "browseReservations",
+            "updateReservationStatus",
+            "processPayment"
+          ],
+          "purpose": "O atendente visualiza reservas pendentes, confirma ou cancela e recebe o pagamento presencial na retirada",
+          "workflowId": "reservationLifecycle"
+        }
+      ],
+      "landings": [
+        {
+          "actorId": "cliente",
+          "workspaceId": "catalog",
+          "reason": "O cliente começa navegando pela vitrine de produtos em destaque na página inicial"
+        },
+        {
+          "actorId": "atendente",
+          "workspaceId": "reservationManagement",
+          "reason": "O atendente inicia o dia visualizando a lista de reservas pendentes"
+        }
+      ],
+      "navigationEdges": [
+        {
+          "from": "catalog",
+          "to": "reservationManagement",
+          "operationId": "createReservation",
+          "description": "A reserva criada pelo cliente aparece na lista de reservas do atendente para confirmação e preparo"
+        }
+      ]
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "schemaVersion": "2026-07-19-ns-e6-sitemap-v1",
+        "moduleName": "petShop",
+        "note": "Site map (permanent page index) — workspaces, landings and advisory edges. Detail (sections/organisms/bffCalls) lives per-workspace under workspaces/.",
+        "workspaces": [
+          {
+            "workspaceId": "catalog",
+            "title": "Catálogo de produtos",
+            "actors": [
+              "cliente"
+            ],
+            "kind": "workflow",
+            "entity": "Product",
+            "operationIds": [
+              "browseFeaturedProducts",
+              "browseProducts",
+              "viewProductDetails",
+              "createReservation"
+            ],
+            "purpose": "O cliente navega pela vitrine e pelo catálogo, visualiza detalhes dos produtos e reserva itens para retirada na loja",
+            "workflowId": "reservationLifecycle"
+          },
+          {
+            "workspaceId": "reservationManagement",
+            "title": "Gestão de reservas",
+            "actors": [
+              "atendente"
+            ],
+            "kind": "workflow",
+            "entity": "Reservation",
+            "operationIds": [
+              "browseReservations",
+              "updateReservationStatus",
+              "processPayment"
+            ],
+            "purpose": "O atendente visualiza reservas pendentes, confirma ou cancela e recebe o pagamento presencial na retirada",
+            "workflowId": "reservationLifecycle"
+          }
+        ],
+        "landings": [
+          {
+            "actorId": "cliente",
+            "workspaceId": "catalog",
+            "reason": "O cliente começa navegando pela vitrine de produtos em destaque na página inicial"
+          },
+          {
+            "actorId": "atendente",
+            "workspaceId": "reservationManagement",
+            "reason": "O atendente inicia o dia visualizando a lista de reservas pendentes"
+          }
+        ],
+        "navigationEdges": [
+          {
+            "from": "catalog",
+            "to": "reservationManagement",
+            "operationId": "createReservation",
+            "description": "A reserva criada pelo cliente aparece na lista de reservas do atendente para confirmação e preparo"
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false,
+      "pipeline": {
+        "schemaVersion": "2026-07-05-ns-pipeline-v1",
+        "flowId": "agentNewSolution",
+        "moduleName": "petShop",
+        "createdAt": "2026-07-19T19:57:35.027Z",
+        "updatedAt": "2026-07-19T20:05:59.249Z",
+        "steps": {
+          "e1-draft": {
+            "status": "approved",
+            "updatedAt": "2026-07-19T19:57:35.041Z",
+            "dirty": false,
+            "inputsHash": "djb2:3ab9130e",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-19T19:57:35.030Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-19T19:57:35.041Z",
+            "approvedBy": "auto"
+          },
+          "checkpoint-draft": {
+            "status": "pending",
+            "updatedAt": "2026-07-19T19:57:35.027Z"
+          },
+          "e2-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-19T19:58:49.643Z",
+            "dirty": false,
+            "inputsHash": "djb2:ea43f0d5",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-19T19:58:49.305Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-19T19:58:49.643Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "checkpoint-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-19T19:58:49.643Z",
+            "dirty": false,
+            "approvedAt": "2026-07-19T19:58:49.643Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "e3-ontology": {
+            "status": "approved",
+            "updatedAt": "2026-07-19T20:01:08.612Z",
+            "dirty": false,
+            "inputsHash": "djb2:b8ff5cb2",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-19T20:00:36.466Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-19T20:01:08.612Z",
+            "approvedBy": "auto"
+          },
+          "e4-actors-rules-refs": {
+            "status": "approved",
+            "updatedAt": "2026-07-19T20:02:05.402Z",
+            "dirty": false,
+            "inputsHash": "djb2:e1f36bd8",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-19T20:02:05.402Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-19T20:02:05.402Z",
+            "approvedBy": "auto"
+          },
+          "e5-workflows-operations": {
+            "status": "approved",
+            "updatedAt": "2026-07-19T20:05:16.728Z",
+            "dirty": false,
+            "inputsHash": "djb2:e1f36bd8",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-19T20:03:24.755Z",
+              "errors": [],
+              "warnings": [
+                "classification.managedEntity.unused ReservationItem: managedEntities entry \"ReservationItem\" has no write operations under management — entry is inert",
+                "classification.managedEntity.unused Payment: managedEntities entry \"Payment\" has no write operations under management — entry is inert"
+              ]
+            },
+            "approvedAt": "2026-07-19T20:05:16.728Z",
+            "approvedBy": "auto"
+          },
+          "e6-journey-map": {
+            "status": "pending",
+            "updatedAt": "2026-07-19T20:05:59.249Z",
+            "dirty": false,
+            "inputsHash": "djb2:0a30d773",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-19T20:05:59.249Z",
+              "errors": [],
+              "warnings": []
+            }
+          },
+          "e7-validation-summary": {
+            "status": "pending",
+            "updatedAt": "2026-07-19T20:01:08.612Z"
+          }
+        }
+      }
+    }
+  },
+  "promptChars": 13887
+}

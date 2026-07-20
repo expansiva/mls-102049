@@ -1,0 +1,356 @@
+{
+  "savedAt": "2026-07-19T20:03:24.756Z",
+  "stepId": "e5-workflows-operations",
+  "agentName": "agentNsBehavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "schemaVersion": "2026-07-11-ns-e5-v2",
+      "moduleName": "petShop",
+      "createdAt": "2026-07-19T20:03:24.750Z",
+      "workflows": [
+        {
+          "workflowId": "reservationLifecycle",
+          "title": "Ciclo de vida da reserva",
+          "actorId": "atendente",
+          "primaryEntity": "Reservation",
+          "featureRefs": [
+            "productReservation",
+            "reservationManagement",
+            "inStorePayment"
+          ],
+          "operationIds": [
+            "createReservation",
+            "updateReservationStatus",
+            "processPayment"
+          ]
+        }
+      ],
+      "operations": [
+        {
+          "operationId": "browseFeaturedProducts",
+          "title": "Visualizar produtos em destaque na vitrine",
+          "actorId": "cliente",
+          "entity": "Product",
+          "kind": "query",
+          "featureRefs": [
+            "featuredProductsDisplay"
+          ]
+        },
+        {
+          "operationId": "browseProducts",
+          "title": "Pesquisar e filtrar produtos no catálogo",
+          "actorId": "cliente",
+          "entity": "Product",
+          "kind": "query",
+          "featureRefs": [
+            "productCatalogListing",
+            "productSearch",
+            "priceRangeFilter"
+          ]
+        },
+        {
+          "operationId": "viewProductDetails",
+          "title": "Visualizar detalhes do produto",
+          "actorId": "cliente",
+          "entity": "Product",
+          "kind": "view",
+          "featureRefs": [
+            "productDetailsView"
+          ]
+        },
+        {
+          "operationId": "browseReservations",
+          "title": "Visualizar reservas pendentes e localizar cliente",
+          "actorId": "atendente",
+          "entity": "Reservation",
+          "kind": "query",
+          "featureRefs": [
+            "reservationManagement"
+          ]
+        },
+        {
+          "operationId": "createReservation",
+          "title": "Reservar produtos para retirada na loja",
+          "actorId": "cliente",
+          "entity": "Reservation",
+          "kind": "create",
+          "featureRefs": [
+            "productReservation"
+          ],
+          "workflowId": "reservationLifecycle"
+        },
+        {
+          "operationId": "updateReservationStatus",
+          "title": "Confirmar ou cancelar reserva",
+          "actorId": "atendente",
+          "entity": "Reservation",
+          "kind": "update",
+          "featureRefs": [
+            "reservationManagement"
+          ],
+          "workflowId": "reservationLifecycle"
+        },
+        {
+          "operationId": "processPayment",
+          "title": "Receber pagamento presencial e encerrar reserva",
+          "actorId": "atendente",
+          "entity": "Payment",
+          "kind": "create",
+          "featureRefs": [
+            "inStorePayment",
+            "reservationManagement"
+          ],
+          "workflowId": "reservationLifecycle"
+        }
+      ],
+      "managedEntities": [
+        {
+          "entity": "ReservationItem",
+          "deletionPolicy": "immutable",
+          "reason": "Itens de reserva são criados junto com a reserva e mantidos permanentemente como registro histórico, mesmo quando a reserva é cancelada."
+        },
+        {
+          "entity": "Payment",
+          "deletionPolicy": "immutable",
+          "reason": "Pagamentos presenciais são registrados como posted e não são removidos ou estornados neste módulo."
+        }
+      ]
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "schemaVersion": "2026-07-11-ns-e5-v2",
+        "moduleName": "petShop",
+        "createdAt": "2026-07-19T20:03:24.750Z",
+        "workflows": [
+          {
+            "workflowId": "reservationLifecycle",
+            "title": "Ciclo de vida da reserva",
+            "actorId": "atendente",
+            "primaryEntity": "Reservation",
+            "featureRefs": [
+              "productReservation",
+              "reservationManagement",
+              "inStorePayment"
+            ],
+            "operationIds": [
+              "createReservation",
+              "updateReservationStatus",
+              "processPayment"
+            ]
+          }
+        ],
+        "operations": [
+          {
+            "operationId": "browseFeaturedProducts",
+            "title": "Visualizar produtos em destaque na vitrine",
+            "actorId": "cliente",
+            "entity": "Product",
+            "kind": "query",
+            "featureRefs": [
+              "featuredProductsDisplay"
+            ]
+          },
+          {
+            "operationId": "browseProducts",
+            "title": "Pesquisar e filtrar produtos no catálogo",
+            "actorId": "cliente",
+            "entity": "Product",
+            "kind": "query",
+            "featureRefs": [
+              "productCatalogListing",
+              "productSearch",
+              "priceRangeFilter"
+            ]
+          },
+          {
+            "operationId": "viewProductDetails",
+            "title": "Visualizar detalhes do produto",
+            "actorId": "cliente",
+            "entity": "Product",
+            "kind": "view",
+            "featureRefs": [
+              "productDetailsView"
+            ]
+          },
+          {
+            "operationId": "browseReservations",
+            "title": "Visualizar reservas pendentes e localizar cliente",
+            "actorId": "atendente",
+            "entity": "Reservation",
+            "kind": "query",
+            "featureRefs": [
+              "reservationManagement"
+            ]
+          },
+          {
+            "operationId": "createReservation",
+            "title": "Reservar produtos para retirada na loja",
+            "actorId": "cliente",
+            "entity": "Reservation",
+            "kind": "create",
+            "featureRefs": [
+              "productReservation"
+            ],
+            "workflowId": "reservationLifecycle"
+          },
+          {
+            "operationId": "updateReservationStatus",
+            "title": "Confirmar ou cancelar reserva",
+            "actorId": "atendente",
+            "entity": "Reservation",
+            "kind": "update",
+            "featureRefs": [
+              "reservationManagement"
+            ],
+            "workflowId": "reservationLifecycle"
+          },
+          {
+            "operationId": "processPayment",
+            "title": "Receber pagamento presencial e encerrar reserva",
+            "actorId": "atendente",
+            "entity": "Payment",
+            "kind": "create",
+            "featureRefs": [
+              "inStorePayment",
+              "reservationManagement"
+            ],
+            "workflowId": "reservationLifecycle"
+          }
+        ],
+        "managedEntities": [
+          {
+            "entity": "ReservationItem",
+            "deletionPolicy": "immutable",
+            "reason": "Itens de reserva são criados junto com a reserva e mantidos permanentemente como registro histórico, mesmo quando a reserva é cancelada."
+          },
+          {
+            "entity": "Payment",
+            "deletionPolicy": "immutable",
+            "reason": "Pagamentos presenciais são registrados como posted e não são removidos ou estornados neste módulo."
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": [
+        {
+          "severity": "warning",
+          "code": "classification.managedEntity.unused",
+          "message": "managedEntities entry \"ReservationItem\" has no write operations under management — entry is inert",
+          "path": "ReservationItem"
+        },
+        {
+          "severity": "warning",
+          "code": "classification.managedEntity.unused",
+          "message": "managedEntities entry \"Payment\" has no write operations under management — entry is inert",
+          "path": "Payment"
+        }
+      ],
+      "attempts": 1,
+      "needsHumanInput": false,
+      "pipeline": {
+        "schemaVersion": "2026-07-05-ns-pipeline-v1",
+        "flowId": "agentNewSolution",
+        "moduleName": "petShop",
+        "createdAt": "2026-07-19T19:57:35.027Z",
+        "updatedAt": "2026-07-19T20:03:24.755Z",
+        "steps": {
+          "e1-draft": {
+            "status": "approved",
+            "updatedAt": "2026-07-19T19:57:35.041Z",
+            "dirty": false,
+            "inputsHash": "djb2:3ab9130e",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-19T19:57:35.030Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-19T19:57:35.041Z",
+            "approvedBy": "auto"
+          },
+          "checkpoint-draft": {
+            "status": "pending",
+            "updatedAt": "2026-07-19T19:57:35.027Z"
+          },
+          "e2-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-19T19:58:49.643Z",
+            "dirty": false,
+            "inputsHash": "djb2:ea43f0d5",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-19T19:58:49.305Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-19T19:58:49.643Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "checkpoint-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-19T19:58:49.643Z",
+            "dirty": false,
+            "approvedAt": "2026-07-19T19:58:49.643Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "e3-ontology": {
+            "status": "approved",
+            "updatedAt": "2026-07-19T20:01:08.612Z",
+            "dirty": false,
+            "inputsHash": "djb2:b8ff5cb2",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-19T20:00:36.466Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-19T20:01:08.612Z",
+            "approvedBy": "auto"
+          },
+          "e4-actors-rules-refs": {
+            "status": "approved",
+            "updatedAt": "2026-07-19T20:02:05.402Z",
+            "dirty": false,
+            "inputsHash": "djb2:e1f36bd8",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-19T20:02:05.402Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-19T20:02:05.402Z",
+            "approvedBy": "auto"
+          },
+          "e5-workflows-operations": {
+            "status": "pending",
+            "updatedAt": "2026-07-19T20:03:24.755Z",
+            "dirty": false,
+            "inputsHash": "djb2:e1f36bd8",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-19T20:03:24.755Z",
+              "errors": [],
+              "warnings": [
+                "classification.managedEntity.unused ReservationItem: managedEntities entry \"ReservationItem\" has no write operations under management — entry is inert",
+                "classification.managedEntity.unused Payment: managedEntities entry \"Payment\" has no write operations under management — entry is inert"
+              ]
+            }
+          },
+          "e6-journey-map": {
+            "status": "pending",
+            "updatedAt": "2026-07-19T20:01:08.612Z"
+          },
+          "e7-validation-summary": {
+            "status": "pending",
+            "updatedAt": "2026-07-19T20:01:08.612Z"
+          }
+        }
+      }
+    }
+  },
+  "promptChars": 24428
+}

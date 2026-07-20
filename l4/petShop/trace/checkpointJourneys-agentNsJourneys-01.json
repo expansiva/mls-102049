@@ -1,0 +1,11 @@
+{
+  "savedAt": "2026-07-19T19:58:49.646Z",
+  "stepId": "checkpoint-journeys",
+  "agentName": "agentNsJourneys",
+  "attempt": 1,
+  "payload": {
+    "fast": true,
+    "version": 1
+  },
+  "error": "[fast] checkpoint auto-aprovado"
+}

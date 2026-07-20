@@ -1,0 +1,26 @@
+{
+  "savedAt": "2026-07-19T20:07:28.877Z",
+  "stepId": "e7-validation-summary",
+  "agentName": "agentNsValidation",
+  "attempt": 1,
+  "payload": {
+    "report": {
+      "passed": true,
+      "counts": {
+        "entities": 6,
+        "workflows": 1,
+        "operations": 7,
+        "workspaces": 2
+      },
+      "errors": [],
+      "warnings": [
+        {
+          "severity": "warning",
+          "code": "capability.multiowned",
+          "message": "capability 'reservationLifecycle' is owned by 2 workspaces (catalog, reservationManagement)"
+        }
+      ]
+    },
+    "todoOwners": 8
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "savedAt": "2026-07-20T00:53:00.618Z",
+  "pageId": "catalog",
+  "genome": "page21",
+  "objective": {
+    "actor": "Cliente do pet shop",
+    "jobToBeDone": "Encontrar rapidamente um produto relevante no catálogo, ver seus detalhes e reservar para retirada na loja.",
+    "primaryDecision": "Qual produto escolher e reservar.",
+    "decisiveInfo": [
+      "name",
+      "price",
+      "categoryId",
+      "petTypeId",
+      "categoryName",
+      "petTypeName",
+      "isFeatured"
+    ],
+    "usageFrequency": "Ocasional, navegação de vitrine com pesquisa pontual.",
+    "criticalActions": [
+      {
+        "action": "browseCatalog",
+        "presentation": "compact-filters + list"
+      },
+      {
+        "action": "featuredProducts",
+        "presentation": "highlighted-card-list"
+      },
+      {
+        "action": "productDetails",
+        "presentation": "contextual-detail-panel"
+      },
+      {
+        "action": "reserveProduct",
+        "presentation": "primary-button"
+      }
+    ],
+    "informationHierarchy": [
+      "Produtos em destaque (vitrine)",
+      "Catálogo completo com filtros",
+      "Detalhes do produto selecionado",
+      "Reserva do produto"
+    ],
+    "successCriteria": [
+      "Usuário encontra produtos por filtros e vitrine",
+      "Detalhes do produto aparecem com clareza",
+      "Reserva é concluída com confirmação"
+    ],
+    "antiPatterns": [
+      "Formulário separado para escolher produto",
+      "Campo de id digitado manualmente",
+      "Status/ids como entradas editáveis",
+      "Filtro como seção isolada"
+    ]
+  }
+}

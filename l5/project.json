@@ -20,6 +20,24 @@
   "links": [],
   "servicesConfigEnabled": false,
   "modules": [
+    {
+      "moduleName": "petShop",
+      "backend": {
+        "backendControllers": "./_102049_/l1/petShop/layer_1_external/adapters/http/controllers",
+        "persistence": {
+          "tableDefsDir": "./_102049_/l1/petShop/layer_1_external/adapters/persistence"
+        },
+        "routeKeys": [
+          "petShop.catalog.browseCatalog",
+          "petShop.catalog.featuredProducts",
+          "petShop.catalog.productDetails",
+          "petShop.catalog.reserveProduct",
+          "petShop.reservationManagement.browseReservationsQuery",
+          "petShop.reservationManagement.processPaymentCommand",
+          "petShop.reservationManagement.updateReservationStatusCommand"
+        ]
+      }
+    }
   ],
   "layouts": {
     "1": {

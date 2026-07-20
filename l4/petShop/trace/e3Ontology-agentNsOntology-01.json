@@ -1,0 +1,430 @@
+{
+  "savedAt": "2026-07-19T20:00:36.468Z",
+  "stepId": "e3-ontology",
+  "agentName": "agentNsOntology",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "schemaVersion": "2026-07-07-ns-e3-v1",
+      "moduleName": "petShop",
+      "userLanguage": "pt-BR",
+      "version": 1,
+      "createdAt": "2026-07-19T20:00:36.463Z",
+      "module": {
+        "title": "Pet Shop — Catálogo e Reserva de Produtos",
+        "purpose": "Este módulo oferece uma vitrine digital e catálogo completo de produtos do pet shop, permitindo que clientes pesquisem, filtrem e reservem produtos para retirada presencial na loja. O atendente gerencia as reservas recebidas, confirma a disponibilidade e registra o pagamento presencial no momento da retirada, encerrando o ciclo da reserva.",
+        "businessDomain": "Pet Retail",
+        "languages": [
+          "pt-BR"
+        ],
+        "visualStyle": "Storefront-first, catálogo limpo com busca e filtros, fluxo de reserva simples, UI de gestão do atendente orientada por status"
+      },
+      "entities": [
+        {
+          "entityId": "Product",
+          "title": "Produto",
+          "description": "Produto do catálogo do pet shop, mantido por processo administrativo externo, com nome, preço, tipo de pet, categoria e flag de destaque para vitrine.",
+          "kind": "mdm",
+          "ownership": "external",
+          "sourceRefs": {
+            "journeyIds": [
+              "browseFeaturedProducts",
+              "searchAndFilterCatalog",
+              "reserveProducts"
+            ],
+            "featureIds": [
+              "featuredProductsDisplay",
+              "productCatalogListing",
+              "productSearch",
+              "priceRangeFilter",
+              "productDetailsView",
+              "productReservation"
+            ]
+          }
+        },
+        {
+          "entityId": "ProductCategory",
+          "title": "Categoria de Produto",
+          "description": "Categoria de produtos do pet shop, como ração, acessórios, higiene e brinquedos, usada como filtro no catálogo.",
+          "kind": "mdm",
+          "ownership": "external",
+          "sourceRefs": {
+            "journeyIds": [
+              "searchAndFilterCatalog"
+            ],
+            "featureIds": [
+              "productSearch"
+            ]
+          }
+        },
+        {
+          "entityId": "PetType",
+          "title": "Tipo de Pet",
+          "description": "Tipo de pet (cão, gato, pássaro, etc.) associado aos produtos do catálogo, usado como filtro na busca.",
+          "kind": "mdm",
+          "ownership": "external",
+          "sourceRefs": {
+            "journeyIds": [
+              "searchAndFilterCatalog"
+            ],
+            "featureIds": [
+              "productSearch"
+            ]
+          }
+        },
+        {
+          "entityId": "Reservation",
+          "title": "Reserva",
+          "description": "Reserva de produtos feita pelo cliente para retirada presencial na loja, contendo dados de contato (nome e telefone), prazo de validade de 24 horas e status de atendimento controlado pelo atendente.",
+          "kind": "core",
+          "ownership": "moduleOwned",
+          "statusEnum": [
+            "pending",
+            "confirmed",
+            "fulfilled",
+            "cancelled"
+          ],
+          "lifecycleStates": [
+            "pending",
+            "confirmed",
+            "fulfilled",
+            "cancelled"
+          ],
+          "sourceRefs": {
+            "journeyIds": [
+              "reserveProducts",
+              "manageReservations",
+              "processInStorePayment"
+            ],
+            "featureIds": [
+              "productReservation",
+              "reservationManagement",
+              "inStorePayment"
+            ]
+          }
+        },
+        {
+          "entityId": "ReservationItem",
+          "title": "Item de Reserva",
+          "description": "Item de linha de uma reserva, contendo a referência ao produto e a quantidade reservada pelo cliente.",
+          "kind": "supporting",
+          "ownership": "moduleOwned",
+          "sourceRefs": {
+            "journeyIds": [
+              "reserveProducts",
+              "manageReservations",
+              "processInStorePayment"
+            ],
+            "featureIds": [
+              "productReservation",
+              "reservationManagement",
+              "inStorePayment"
+            ]
+          }
+        },
+        {
+          "entityId": "Payment",
+          "title": "Pagamento Presencial",
+          "description": "Registro do pagamento recebido presencialmente na loja no momento da retirada da reserva, informando método e valor total.",
+          "kind": "event",
+          "ownership": "moduleOwned",
+          "statusEnum": [
+            "posted",
+            "voided"
+          ],
+          "sourceRefs": {
+            "journeyIds": [
+              "processInStorePayment"
+            ],
+            "featureIds": [
+              "inStorePayment"
+            ]
+          }
+        }
+      ],
+      "relationships": [
+        {
+          "relationshipId": "productBelongsToCategory",
+          "fromEntity": "Product",
+          "toEntity": "ProductCategory",
+          "type": "manyToOne",
+          "description": "Cada produto pertence a uma categoria de produto."
+        },
+        {
+          "relationshipId": "productTargetsPetType",
+          "fromEntity": "Product",
+          "toEntity": "PetType",
+          "type": "manyToOne",
+          "description": "Cada produto é associado a um tipo de pet para filtragem no catálogo."
+        },
+        {
+          "relationshipId": "reservationHasItems",
+          "fromEntity": "Reservation",
+          "toEntity": "ReservationItem",
+          "type": "oneToMany",
+          "description": "Uma reserva contém um ou mais itens de reserva com produtos e quantidades."
+        },
+        {
+          "relationshipId": "reservationItemRefersToProduct",
+          "fromEntity": "ReservationItem",
+          "toEntity": "Product",
+          "type": "manyToOne",
+          "description": "Cada item de reserva referencia um produto do catálogo."
+        },
+        {
+          "relationshipId": "reservationHasPayment",
+          "fromEntity": "Reservation",
+          "toEntity": "Payment",
+          "type": "oneToOne",
+          "description": "Uma reserva atendida possui um registro de pagamento presencial associado."
+        }
+      ]
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "schemaVersion": "2026-07-07-ns-e3-v1",
+        "moduleName": "petShop",
+        "userLanguage": "pt-BR",
+        "version": 1,
+        "createdAt": "2026-07-19T20:00:36.463Z",
+        "module": {
+          "title": "Pet Shop — Catálogo e Reserva de Produtos",
+          "purpose": "Este módulo oferece uma vitrine digital e catálogo completo de produtos do pet shop, permitindo que clientes pesquisem, filtrem e reservem produtos para retirada presencial na loja. O atendente gerencia as reservas recebidas, confirma a disponibilidade e registra o pagamento presencial no momento da retirada, encerrando o ciclo da reserva.",
+          "businessDomain": "Pet Retail",
+          "languages": [
+            "pt-BR"
+          ],
+          "visualStyle": "Storefront-first, catálogo limpo com busca e filtros, fluxo de reserva simples, UI de gestão do atendente orientada por status"
+        },
+        "entities": [
+          {
+            "entityId": "Product",
+            "title": "Produto",
+            "description": "Produto do catálogo do pet shop, mantido por processo administrativo externo, com nome, preço, tipo de pet, categoria e flag de destaque para vitrine.",
+            "kind": "mdm",
+            "ownership": "external",
+            "sourceRefs": {
+              "journeyIds": [
+                "browseFeaturedProducts",
+                "searchAndFilterCatalog",
+                "reserveProducts"
+              ],
+              "featureIds": [
+                "featuredProductsDisplay",
+                "productCatalogListing",
+                "productSearch",
+                "priceRangeFilter",
+                "productDetailsView",
+                "productReservation"
+              ]
+            }
+          },
+          {
+            "entityId": "ProductCategory",
+            "title": "Categoria de Produto",
+            "description": "Categoria de produtos do pet shop, como ração, acessórios, higiene e brinquedos, usada como filtro no catálogo.",
+            "kind": "mdm",
+            "ownership": "external",
+            "sourceRefs": {
+              "journeyIds": [
+                "searchAndFilterCatalog"
+              ],
+              "featureIds": [
+                "productSearch"
+              ]
+            }
+          },
+          {
+            "entityId": "PetType",
+            "title": "Tipo de Pet",
+            "description": "Tipo de pet (cão, gato, pássaro, etc.) associado aos produtos do catálogo, usado como filtro na busca.",
+            "kind": "mdm",
+            "ownership": "external",
+            "sourceRefs": {
+              "journeyIds": [
+                "searchAndFilterCatalog"
+              ],
+              "featureIds": [
+                "productSearch"
+              ]
+            }
+          },
+          {
+            "entityId": "Reservation",
+            "title": "Reserva",
+            "description": "Reserva de produtos feita pelo cliente para retirada presencial na loja, contendo dados de contato (nome e telefone), prazo de validade de 24 horas e status de atendimento controlado pelo atendente.",
+            "kind": "core",
+            "ownership": "moduleOwned",
+            "statusEnum": [
+              "pending",
+              "confirmed",
+              "fulfilled",
+              "cancelled"
+            ],
+            "lifecycleStates": [
+              "pending",
+              "confirmed",
+              "fulfilled",
+              "cancelled"
+            ],
+            "sourceRefs": {
+              "journeyIds": [
+                "reserveProducts",
+                "manageReservations",
+                "processInStorePayment"
+              ],
+              "featureIds": [
+                "productReservation",
+                "reservationManagement",
+                "inStorePayment"
+              ]
+            }
+          },
+          {
+            "entityId": "ReservationItem",
+            "title": "Item de Reserva",
+            "description": "Item de linha de uma reserva, contendo a referência ao produto e a quantidade reservada pelo cliente.",
+            "kind": "supporting",
+            "ownership": "moduleOwned",
+            "sourceRefs": {
+              "journeyIds": [
+                "reserveProducts",
+                "manageReservations",
+                "processInStorePayment"
+              ],
+              "featureIds": [
+                "productReservation",
+                "reservationManagement",
+                "inStorePayment"
+              ]
+            }
+          },
+          {
+            "entityId": "Payment",
+            "title": "Pagamento Presencial",
+            "description": "Registro do pagamento recebido presencialmente na loja no momento da retirada da reserva, informando método e valor total.",
+            "kind": "event",
+            "ownership": "moduleOwned",
+            "statusEnum": [
+              "posted",
+              "voided"
+            ],
+            "sourceRefs": {
+              "journeyIds": [
+                "processInStorePayment"
+              ],
+              "featureIds": [
+                "inStorePayment"
+              ]
+            }
+          }
+        ],
+        "relationships": [
+          {
+            "relationshipId": "productBelongsToCategory",
+            "fromEntity": "Product",
+            "toEntity": "ProductCategory",
+            "type": "manyToOne",
+            "description": "Cada produto pertence a uma categoria de produto."
+          },
+          {
+            "relationshipId": "productTargetsPetType",
+            "fromEntity": "Product",
+            "toEntity": "PetType",
+            "type": "manyToOne",
+            "description": "Cada produto é associado a um tipo de pet para filtragem no catálogo."
+          },
+          {
+            "relationshipId": "reservationHasItems",
+            "fromEntity": "Reservation",
+            "toEntity": "ReservationItem",
+            "type": "oneToMany",
+            "description": "Uma reserva contém um ou mais itens de reserva com produtos e quantidades."
+          },
+          {
+            "relationshipId": "reservationItemRefersToProduct",
+            "fromEntity": "ReservationItem",
+            "toEntity": "Product",
+            "type": "manyToOne",
+            "description": "Cada item de reserva referencia um produto do catálogo."
+          },
+          {
+            "relationshipId": "reservationHasPayment",
+            "fromEntity": "Reservation",
+            "toEntity": "Payment",
+            "type": "oneToOne",
+            "description": "Uma reserva atendida possui um registro de pagamento presencial associado."
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false,
+      "pipeline": {
+        "schemaVersion": "2026-07-05-ns-pipeline-v1",
+        "flowId": "agentNewSolution",
+        "moduleName": "petShop",
+        "createdAt": "2026-07-19T19:57:35.027Z",
+        "updatedAt": "2026-07-19T20:00:36.466Z",
+        "steps": {
+          "e1-draft": {
+            "status": "approved",
+            "updatedAt": "2026-07-19T19:57:35.041Z",
+            "dirty": false,
+            "inputsHash": "djb2:3ab9130e",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-19T19:57:35.030Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-19T19:57:35.041Z",
+            "approvedBy": "auto"
+          },
+          "checkpoint-draft": {
+            "status": "pending",
+            "updatedAt": "2026-07-19T19:57:35.027Z"
+          },
+          "e2-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-19T19:58:49.643Z",
+            "dirty": false,
+            "inputsHash": "djb2:ea43f0d5",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-19T19:58:49.305Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-19T19:58:49.643Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "checkpoint-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-19T19:58:49.643Z",
+            "dirty": false,
+            "approvedAt": "2026-07-19T19:58:49.643Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "e3-ontology": {
+            "status": "pending",
+            "updatedAt": "2026-07-19T20:00:36.466Z",
+            "dirty": false,
+            "inputsHash": "djb2:b8ff5cb2",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-19T20:00:36.466Z",
+              "errors": [],
+              "warnings": []
+            }
+          }
+        }
+      }
+    }
+  },
+  "promptChars": 21763
+}
