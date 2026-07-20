@@ -49,7 +49,41 @@
     },
     "102034": {
       "root": "../mls-102034",
-      "type": "master backend"
+      "type": "master backend",
+      "modules": [
+        {
+          "moduleId": "mdm",
+          "basePath": "/mdm",
+          "shellMode": "spa",
+          "backendRouter": "./_102034_/l1/mdm/layer_2_controllers/router.js"
+        },
+        {
+          "moduleId": "monitor",
+          "basePath": "/monitor",
+          "shellMode": "spa",
+          "backendRouter": "./_102034_/l1/monitor/layer_2_controllers/router.js"
+        },
+        {
+          "moduleId": "audit",
+          "basePath": "/audit",
+          "shellMode": "spa",
+          "backendRouter": "./_102034_/l1/audit/layer_2_controllers/router.js"
+        }
+      ],
+      "persistenceModules": [
+        {
+          "moduleId": "platform",
+          "persistenceEntrypoint": "./_102034_/l1/server/persistence.js"
+        },
+        {
+          "moduleId": "mdm",
+          "persistenceEntrypoint": "./_102034_/l1/mdm/persistence.js"
+        },
+        {
+          "moduleId": "monitor",
+          "persistenceEntrypoint": "./_102034_/l1/monitor/persistence.js"
+        }
+      ]
     },
     "102036": {
       "root": "../mls-102036",
@@ -62,8 +96,101 @@
         "projectId": "102049"
       },
       "modules": [
+        {
+          "moduleId": "petShop",
+          "basePath": "/petShop",
+          "shellMode": "spa",
+          "backendControllers": "./_102049_/l1/petShop/layer_1_external/adapters/http/controllers",
+          "navigation": [
+            {
+              "id": "catalog",
+              "label": "Catálogo de produtos",
+              "href": "/petShop/catalog",
+              "description": "Catálogo de produtos",
+              "actors": [
+                "cliente"
+              ],
+              "landing": true
+            },
+            {
+              "id": "reservationManagement",
+              "label": "Gestão de reservas",
+              "href": "/petShop/reservationManagement",
+              "description": "Gestão de reservas",
+              "actors": [
+                "atendente"
+              ],
+              "landing": true
+            }
+          ],
+          "landings": [
+            {
+              "actorId": "cliente",
+              "pageId": "catalog",
+              "route": "/petShop/catalog"
+            },
+            {
+              "actorId": "atendente",
+              "pageId": "reservationManagement",
+              "route": "/petShop/reservationManagement"
+            }
+          ],
+          "frontend": {
+            "layer": "l2",
+            "pageTests": [
+              "_102049_/l2/petShop/web/desktop/page11/catalog.test.js",
+              "_102049_/l2/petShop/web/desktop/page11/reservationManagement.test.js"
+            ],
+            "pages": [
+              {
+                "pageId": "catalog",
+                "route": "/petShop/catalog/:productId?",
+                "source": "l2/petShop/web/desktop/page11/catalog.ts",
+                "definition": "l2/petShop/web/desktop/page11/catalog.defs.ts",
+                "componentTag": "pet-shop--web--desktop--page11--catalog-102049",
+                "title": "Catálogo de produtos",
+                "actors": [
+                  "cliente"
+                ],
+                "public": true
+              },
+              {
+                "pageId": "reservationManagement",
+                "route": "/petShop/reservationManagement/:reservationId?",
+                "source": "l2/petShop/web/desktop/page11/reservationManagement.ts",
+                "definition": "l2/petShop/web/desktop/page11/reservationManagement.defs.ts",
+                "componentTag": "pet-shop--web--desktop--page11--reservation-management-102049",
+                "title": "Gestão de reservas",
+                "actors": [
+                  "atendente"
+                ],
+                "public": true
+              },
+              {
+                "pageId": "catalog-page21",
+                "route": "/petShop/catalog-page21/:productId?",
+                "source": "l2/petShop/web/desktop/page21/catalog.ts",
+                "definition": "l2/petShop/web/desktop/page21/catalog.defs.ts",
+                "componentTag": "pet-shop--web--desktop--page21--catalog-102049",
+                "title": "Catálogo de produtos - PAGE21"
+              },
+              {
+                "pageId": "reservationManagement-page21",
+                "route": "/petShop/reservationManagement-page21/:reservationId?",
+                "source": "l2/petShop/web/desktop/page21/reservationManagement.ts",
+                "definition": "l2/petShop/web/desktop/page21/reservationManagement.defs.ts",
+                "componentTag": "pet-shop--web--desktop--page21--reservation-management-102049",
+                "title": "Gestão de reservas - PAGE21"
+              }
+            ]
+          }
+        }
       ],
       "persistenceModules": [
+        {
+          "moduleId": "petShop",
+          "tableDefsDir": "./_102049_/l1/petShop/layer_1_external/adapters/persistence"
+        }
       ]
     }
   }
