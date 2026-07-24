@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "buildCI": "node ../scripts/buildCI/buildCI.mjs 102049",
     "publish": "node ../scripts/runPublishMlsBase.mjs 102049 remote --sites",
     "publish:local": "node ../scripts/runPublishMlsBase.mjs 102049 local"
+  },
+  "dependencies": {
+    "mls-102020": "git+https://github.com/expansiva/mls-102020.git",
+    "mls-102027": "git+https://github.com/expansiva/mls-102027.git"
   }
 }
