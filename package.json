@@ -8,7 +8,9 @@
     "publish:local": "node ../scripts/runPublishMlsBase.mjs 102049 local"
   },
   "actionDependencies": {
+    "mls-ci": "git+https://github.com/expansiva/mls-ci.git",
     "mls-102020": "git+https://github.com/expansiva/mls-102020.git",
+    "mls-102025": "git+https://github.com/expansiva/mls-102025.git",
     "mls-102027": "git+https://github.com/expansiva/mls-102027.git"
   }
 }
