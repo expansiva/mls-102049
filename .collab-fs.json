@@ -1,0 +1,1557 @@
+{
+  "schemaVersion": 1,
+  "project": 102049,
+  "selectedAt": "2026-07-20T02:43:09.697Z",
+  "lastSyncAt": "2026-07-20T02:43:09.697Z",
+  "syncMode": "manual",
+  "files": {
+    "l1/petShop/layer_1_external/adapters/http/controllers/catalog.defs.ts": {
+      "path": "l1/petShop/layer_1_external/adapters/http/controllers/catalog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "8e8e2f6eb70b9435f1a4a81bfbebe47b2ed7662cd3b460531945c6e7f7af8852",
+      "diskHash": "",
+      "diskSize": 17696,
+      "diskLastModified": 1784513516035,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_1_external/adapters/http/controllers/catalog.ts": {
+      "path": "l1/petShop/layer_1_external/adapters/http/controllers/catalog.ts",
+      "versionRef": "0",
+      "browserHash": "8633971f2cb3a9af55c43f68aa5d50676715c483476ba2fae5f4776dfc0ee141",
+      "diskHash": "",
+      "diskSize": 6211,
+      "diskLastModified": 1784513516033,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_1_external/adapters/http/controllers/reservationManagement.defs.ts": {
+      "path": "l1/petShop/layer_1_external/adapters/http/controllers/reservationManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "650983cb9b31e6c225607f15322d8b44d30941b79aa3c0a3ffea5c0ad342dddd",
+      "diskHash": "",
+      "diskSize": 13082,
+      "diskLastModified": 1784513516034,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_1_external/adapters/http/controllers/reservationManagement.ts": {
+      "path": "l1/petShop/layer_1_external/adapters/http/controllers/reservationManagement.ts",
+      "versionRef": "0",
+      "browserHash": "b10ff44bb63e34b1178424b7354bc794bb54547daf1c78eee359b7dccf0a54a6",
+      "diskHash": "",
+      "diskSize": 5096,
+      "diskLastModified": 1784513516034,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_1_external/adapters/persistence/payment.defs.ts": {
+      "path": "l1/petShop/layer_1_external/adapters/persistence/payment.defs.ts",
+      "versionRef": "0",
+      "browserHash": "ffe5b1189c1b9855eb58a887bd7ed538f1f3a9936412cfd28e04ad7c3b24ab1a",
+      "diskHash": "",
+      "diskSize": 2657,
+      "diskLastModified": 1784513516033,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_1_external/adapters/persistence/payment.ts": {
+      "path": "l1/petShop/layer_1_external/adapters/persistence/payment.ts",
+      "versionRef": "0",
+      "browserHash": "615c0181207e62f536673ce5fa2f98440b692fb5903a9aead7df955cfc60628c",
+      "diskHash": "",
+      "diskSize": 1242,
+      "diskLastModified": 1784513516940,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_1_external/adapters/persistence/paymentRepositoryAdapter.defs.ts": {
+      "path": "l1/petShop/layer_1_external/adapters/persistence/paymentRepositoryAdapter.defs.ts",
+      "versionRef": "0",
+      "browserHash": "369f24a2959022b1e2f43f9d95da000586fd50ec37647b2f0b9bdd2d69b404fd",
+      "diskHash": "",
+      "diskSize": 1833,
+      "diskLastModified": 1784513516940,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_1_external/adapters/persistence/paymentRepositoryAdapter.ts": {
+      "path": "l1/petShop/layer_1_external/adapters/persistence/paymentRepositoryAdapter.ts",
+      "versionRef": "0",
+      "browserHash": "93ab80def1f17bb9313d7caf5a3d5905105d2e886675cf413dd1fc8f3c1c8569",
+      "diskHash": "",
+      "diskSize": 2728,
+      "diskLastModified": 1784513516940,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_1_external/adapters/persistence/registerRepositories.ts": {
+      "path": "l1/petShop/layer_1_external/adapters/persistence/registerRepositories.ts",
+      "versionRef": "0",
+      "browserHash": "6bdcc605cc7e4d58d8c0a277a8a4d3fd65c8c3e87c744911354c4e7257eef59e",
+      "diskHash": "",
+      "diskSize": 925,
+      "diskLastModified": 1784513516940,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_1_external/adapters/persistence/reservation.defs.ts": {
+      "path": "l1/petShop/layer_1_external/adapters/persistence/reservation.defs.ts",
+      "versionRef": "0",
+      "browserHash": "d8c0838e776d57144626c39cb83cf14a0b9a844b84a07fad94317774cf3e41cb",
+      "diskHash": "",
+      "diskSize": 2433,
+      "diskLastModified": 1784513516940,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_1_external/adapters/persistence/reservation.ts": {
+      "path": "l1/petShop/layer_1_external/adapters/persistence/reservation.ts",
+      "versionRef": "0",
+      "browserHash": "cd29cae846a81ead7f0b3322428b93f4e4e49ff4c2317212923053607811ff68",
+      "diskHash": "",
+      "diskSize": 1149,
+      "diskLastModified": 1784513517330,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_1_external/adapters/persistence/reservationRepositoryAdapter.defs.ts": {
+      "path": "l1/petShop/layer_1_external/adapters/persistence/reservationRepositoryAdapter.defs.ts",
+      "versionRef": "0",
+      "browserHash": "3ba6e53a0475e4cfde69eb51ee87d9d143d087c10bf51816f0cd4628a282579b",
+      "diskHash": "",
+      "diskSize": 1937,
+      "diskLastModified": 1784513517330,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_1_external/adapters/persistence/reservationRepositoryAdapter.ts": {
+      "path": "l1/petShop/layer_1_external/adapters/persistence/reservationRepositoryAdapter.ts",
+      "versionRef": "0",
+      "browserHash": "b3fadb328d9aa329e691044def396e2aa67abb2d79cad27bb69a09e07a89df43",
+      "diskHash": "",
+      "diskSize": 4570,
+      "diskLastModified": 1784513517330,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_1_external/adapters/persistence/seeds.ts": {
+      "path": "l1/petShop/layer_1_external/adapters/persistence/seeds.ts",
+      "versionRef": "0",
+      "browserHash": "2bc6b21093ed1dfb90fec38ea16a049c7ee49d198601b5dae77203acee3c4135",
+      "diskHash": "",
+      "diskSize": 38306,
+      "diskLastModified": 1784513517330,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/ports/paymentRepository.defs.ts": {
+      "path": "l1/petShop/layer_2_application/ports/paymentRepository.defs.ts",
+      "versionRef": "0",
+      "browserHash": "f89ea53e20e1330fd89cb4428d76975083936607266d2054efb5e754a6456755",
+      "diskHash": "",
+      "diskSize": 1895,
+      "diskLastModified": 1784513517330,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/ports/paymentRepository.ts": {
+      "path": "l1/petShop/layer_2_application/ports/paymentRepository.ts",
+      "versionRef": "0",
+      "browserHash": "1c8edc5ff2cfea822ebd81be13dec8846caacd81d6626741ca592940f883686c",
+      "diskHash": "",
+      "diskSize": 860,
+      "diskLastModified": 1784513517631,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/ports/reservationRepository.defs.ts": {
+      "path": "l1/petShop/layer_2_application/ports/reservationRepository.defs.ts",
+      "versionRef": "0",
+      "browserHash": "c007c26b2a10fea3593d5bec85e15d3a1c3caab055e3e6a38938ebbddf88840e",
+      "diskHash": "",
+      "diskSize": 2349,
+      "diskLastModified": 1784513517631,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/ports/reservationRepository.ts": {
+      "path": "l1/petShop/layer_2_application/ports/reservationRepository.ts",
+      "versionRef": "0",
+      "browserHash": "2d0e5be485c89552c9a7cb2bc364f8242cd8f03e7431054c057b69c894acceac",
+      "diskHash": "",
+      "diskSize": 768,
+      "diskLastModified": 1784513517631,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/usecases/browseFeaturedProducts.defs.ts": {
+      "path": "l1/petShop/layer_2_application/usecases/browseFeaturedProducts.defs.ts",
+      "versionRef": "0",
+      "browserHash": "ff9dd55dc7335032c122cf4abc213cb07f188e7625c85a8636ed5f17a45c4e54",
+      "diskHash": "",
+      "diskSize": 6102,
+      "diskLastModified": 1784513517631,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/usecases/browseFeaturedProducts.ts": {
+      "path": "l1/petShop/layer_2_application/usecases/browseFeaturedProducts.ts",
+      "versionRef": "0",
+      "browserHash": "48485184c690be40b95a40b7bb3a02189c961c0231baf7e328a3de7935df020a",
+      "diskHash": "",
+      "diskSize": 3556,
+      "diskLastModified": 1784513517631,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/usecases/browseProducts.defs.ts": {
+      "path": "l1/petShop/layer_2_application/usecases/browseProducts.defs.ts",
+      "versionRef": "0",
+      "browserHash": "16df100380a86f0c252493ad299e6d3bcdf750b8262d8e97ccdf4534cc2b761a",
+      "diskHash": "",
+      "diskSize": 6742,
+      "diskLastModified": 1784513517924,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/usecases/browseProducts.ts": {
+      "path": "l1/petShop/layer_2_application/usecases/browseProducts.ts",
+      "versionRef": "0",
+      "browserHash": "0fa097f85932fa8810f7e916f8d2f9ca1d71b6e689fee1e5a9280c3d8bb5ced6",
+      "diskHash": "",
+      "diskSize": 5915,
+      "diskLastModified": 1784513517925,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/usecases/browseReservations.defs.ts": {
+      "path": "l1/petShop/layer_2_application/usecases/browseReservations.defs.ts",
+      "versionRef": "0",
+      "browserHash": "1814b3195337cad345b7b0a612ea7ef17265e34411ee07d6feb4cad15f6f16ff",
+      "diskHash": "",
+      "diskSize": 6112,
+      "diskLastModified": 1784513517925,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/usecases/browseReservations.ts": {
+      "path": "l1/petShop/layer_2_application/usecases/browseReservations.ts",
+      "versionRef": "0",
+      "browserHash": "d5a37b155821f3596565ce307fb3ec35cd07c8b0dfb363a9e0aa68ffe14c0188",
+      "diskHash": "",
+      "diskSize": 3822,
+      "diskLastModified": 1784513517925,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/usecases/createReservation.defs.ts": {
+      "path": "l1/petShop/layer_2_application/usecases/createReservation.defs.ts",
+      "versionRef": "0",
+      "browserHash": "180230f5ca9455df769c37179699fac974766ca60cd4db5c99fc8264bebc87f8",
+      "diskHash": "",
+      "diskSize": 7193,
+      "diskLastModified": 1784513517924,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/usecases/createReservation.ts": {
+      "path": "l1/petShop/layer_2_application/usecases/createReservation.ts",
+      "versionRef": "0",
+      "browserHash": "e12c6a783749147da1150cf4fac2bf84eb545108d12d9e7cf1b1ac39e8d367d3",
+      "diskHash": "",
+      "diskSize": 4617,
+      "diskLastModified": 1784513518222,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/usecases/processPayment.defs.ts": {
+      "path": "l1/petShop/layer_2_application/usecases/processPayment.defs.ts",
+      "versionRef": "0",
+      "browserHash": "9c86d0c9e0ad2ecebb4cddd1804a7226a8912ae2a6164fb5b45ad1e4aec983c1",
+      "diskHash": "",
+      "diskSize": 6699,
+      "diskLastModified": 1784513518222,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/usecases/processPayment.ts": {
+      "path": "l1/petShop/layer_2_application/usecases/processPayment.ts",
+      "versionRef": "0",
+      "browserHash": "7c05764d9fe1cafd58fe899753f07f0161bc4b78ae04e44a160011d5a897564f",
+      "diskHash": "",
+      "diskSize": 5623,
+      "diskLastModified": 1784513518222,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/usecases/updateReservationStatus.defs.ts": {
+      "path": "l1/petShop/layer_2_application/usecases/updateReservationStatus.defs.ts",
+      "versionRef": "0",
+      "browserHash": "e4226b0c944804971f8f88d1d909643dc43e7dfb0fd8f923d564a12078b76b43",
+      "diskHash": "",
+      "diskSize": 8229,
+      "diskLastModified": 1784513518223,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/usecases/updateReservationStatus.ts": {
+      "path": "l1/petShop/layer_2_application/usecases/updateReservationStatus.ts",
+      "versionRef": "0",
+      "browserHash": "728e335c28486ba402d778ebbd2d1d244fbbb60079e37f5325250434bdf3bcb3",
+      "diskHash": "",
+      "diskSize": 5660,
+      "diskLastModified": 1784513518223,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/usecases/viewProductDetails.defs.ts": {
+      "path": "l1/petShop/layer_2_application/usecases/viewProductDetails.defs.ts",
+      "versionRef": "0",
+      "browserHash": "9d33d383f16e82b12927c5a0907ef3c971f5328f37e7dc50cfd6db0cd19011d3",
+      "diskHash": "",
+      "diskSize": 5689,
+      "diskLastModified": 1784513518515,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_2_application/usecases/viewProductDetails.ts": {
+      "path": "l1/petShop/layer_2_application/usecases/viewProductDetails.ts",
+      "versionRef": "0",
+      "browserHash": "9e696552e732789d4d9385bb375f6e88a6d9a30705ebbc690be248e80657e700",
+      "diskHash": "",
+      "diskSize": 2040,
+      "diskLastModified": 1784513518515,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_3_domain/entities/payment.defs.ts": {
+      "path": "l1/petShop/layer_3_domain/entities/payment.defs.ts",
+      "versionRef": "0",
+      "browserHash": "70ee6973f585089fccea21f17c18e50a9845d787d11e77da0ae6ab122e125ee2",
+      "diskHash": "",
+      "diskSize": 2950,
+      "diskLastModified": 1784513518515,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_3_domain/entities/payment.ts": {
+      "path": "l1/petShop/layer_3_domain/entities/payment.ts",
+      "versionRef": "0",
+      "browserHash": "86718c227153cadf5698b6577a6421825ce3ed4a3357480b517dd122dbc1a280",
+      "diskHash": "",
+      "diskSize": 749,
+      "diskLastModified": 1784513518515,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_3_domain/entities/reservation.defs.ts": {
+      "path": "l1/petShop/layer_3_domain/entities/reservation.defs.ts",
+      "versionRef": "0",
+      "browserHash": "a829eda6df8cdc63ddfeccaae27fe04ac5a7ad4947ae050b4ba609b77426b322",
+      "diskHash": "",
+      "diskSize": 5390,
+      "diskLastModified": 1784513518516,
+      "lastDirection": "fs-to-browser"
+    },
+    "l1/petShop/layer_3_domain/entities/reservation.ts": {
+      "path": "l1/petShop/layer_3_domain/entities/reservation.ts",
+      "versionRef": "0",
+      "browserHash": "bf432a82f066d9e7b2584e8b3ab2ccb8caaba26b06983683ce9fda9c8bd2ec9b",
+      "diskHash": "",
+      "diskSize": 4175,
+      "diskLastModified": 1784513519638,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/designSystem.ts": {
+      "path": "l2/designSystem.ts",
+      "versionRef": "4ddabdbfea37dcacb5153a940e7e9bc65d378b51",
+      "browserHash": "f87d4f664752fad8feefd2d7559122f38251aa5d7f1f975f1fa45db28da2cd6b",
+      "diskHash": "",
+      "diskSize": 21654,
+      "diskLastModified": 1784505280602,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/trace/frontend-create-pages/catalog.json": {
+      "path": "l2/petShop/trace/frontend-create-pages/catalog.json",
+      "versionRef": "0",
+      "browserHash": "d8500443de97ee87c0911e5e23628dba652c4ee6f1348614393a82f41ff55df4",
+      "diskHash": "",
+      "diskSize": 148,
+      "diskLastModified": 1784513519638,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/trace/frontend-create-pages/reservationManagement.json": {
+      "path": "l2/petShop/trace/frontend-create-pages/reservationManagement.json",
+      "versionRef": "0",
+      "browserHash": "fe70cb1a8b9c851373e2ee50d33d3b0329c943b9b27e324c12c3a91c305e8384",
+      "diskHash": "",
+      "diskSize": 162,
+      "diskLastModified": 1784513519638,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/trace/frontend-page-objective/catalog.json": {
+      "path": "l2/petShop/trace/frontend-page-objective/catalog.json",
+      "versionRef": "0",
+      "browserHash": "04d95ed923eedef7683c1f99cfa0339f246ccb3be1deadd37e94471798d96ba0",
+      "diskHash": "",
+      "diskSize": 1586,
+      "diskLastModified": 1784513519638,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/contracts/catalog.browseCatalog.ts": {
+      "path": "l2/petShop/web/contracts/catalog.browseCatalog.ts",
+      "versionRef": "0",
+      "browserHash": "0ec3645dc9a244437a8778eb462d556be92e8cba5506009145d53cbf2c5ee44b",
+      "diskHash": "",
+      "diskSize": 810,
+      "diskLastModified": 1784513520709,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/contracts/catalog.featuredProducts.ts": {
+      "path": "l2/petShop/web/contracts/catalog.featuredProducts.ts",
+      "versionRef": "0",
+      "browserHash": "9231cd4b7455262bd974d3cab95d5601eb8f43ee94c2f61ef623a03cccef6852",
+      "diskHash": "",
+      "diskSize": 684,
+      "diskLastModified": 1784513520709,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/contracts/catalog.productDetails.ts": {
+      "path": "l2/petShop/web/contracts/catalog.productDetails.ts",
+      "versionRef": "0",
+      "browserHash": "430e1926400716795cacd8d98387dbb508cb74438715fd9e8f9d7266599cc5ff",
+      "diskHash": "",
+      "diskSize": 639,
+      "diskLastModified": 1784513520709,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/contracts/catalog.reserveProduct.ts": {
+      "path": "l2/petShop/web/contracts/catalog.reserveProduct.ts",
+      "versionRef": "0",
+      "browserHash": "e97f1d06fee3b798103c860a6533a6e6d681460e8167f2a689f75c8e73c7667a",
+      "diskHash": "",
+      "diskSize": 708,
+      "diskLastModified": 1784513520709,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/contracts/reservationManagement.browseReservationsQuery.ts": {
+      "path": "l2/petShop/web/contracts/reservationManagement.browseReservationsQuery.ts",
+      "versionRef": "0",
+      "browserHash": "8585e6ac501930b2aefc26682b79d10f9c2ca861f3e4bd4748754c9a96c46366",
+      "diskHash": "",
+      "diskSize": 754,
+      "diskLastModified": 1784513520709,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/contracts/reservationManagement.processPaymentCommand.ts": {
+      "path": "l2/petShop/web/contracts/reservationManagement.processPaymentCommand.ts",
+      "versionRef": "0",
+      "browserHash": "2241616e2896c4ffde76177f8017c4c445373ad54c6adaf17c4a50488a0d5d40",
+      "diskHash": "",
+      "diskSize": 717,
+      "diskLastModified": 1784513521182,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/contracts/reservationManagement.updateReservationStatusCommand.ts": {
+      "path": "l2/petShop/web/contracts/reservationManagement.updateReservationStatusCommand.ts",
+      "versionRef": "0",
+      "browserHash": "aa70860af0aa3c0f20e286b354ce9869596b3b0687a39bdc0de0636b6919bc00",
+      "diskHash": "",
+      "diskSize": 918,
+      "diskLastModified": 1784513521182,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/desktop/page11/catalog.defs.ts": {
+      "path": "l2/petShop/web/desktop/page11/catalog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "3630f48d23f0601b7b7588033bb001c550403d493e2551d78c4d5718997726ec",
+      "diskHash": "",
+      "diskSize": 33667,
+      "diskLastModified": 1784513521183,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/desktop/page11/catalog.test.ts": {
+      "path": "l2/petShop/web/desktop/page11/catalog.test.ts",
+      "versionRef": "0",
+      "browserHash": "b13d6ff407684063c07ea658927411c24646fb042714810b16007937d994d8a9",
+      "diskHash": "",
+      "diskSize": 2576,
+      "diskLastModified": 1784513521182,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/desktop/page11/catalog.ts": {
+      "path": "l2/petShop/web/desktop/page11/catalog.ts",
+      "versionRef": "0",
+      "browserHash": "03ed2f3b3ee23abd7a5cd32f064fed4bf00bbba21f9ef04cad5c48e6002ab776",
+      "diskHash": "",
+      "diskSize": 30038,
+      "diskLastModified": 1784513521181,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/desktop/page11/reservationManagement.defs.ts": {
+      "path": "l2/petShop/web/desktop/page11/reservationManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "e34f9abe9421d53583a554fa61e9759c098cdb6b32679fee3a8bdd08f3ee3e01",
+      "diskHash": "",
+      "diskSize": 22769,
+      "diskLastModified": 1784513522329,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/desktop/page11/reservationManagement.test.ts": {
+      "path": "l2/petShop/web/desktop/page11/reservationManagement.test.ts",
+      "versionRef": "0",
+      "browserHash": "d83cf54efc00bd34c029586da01808ddb7b7b8625fd3d4acc09607d307b30fcb",
+      "diskHash": "",
+      "diskSize": 2079,
+      "diskLastModified": 1784513522329,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/desktop/page11/reservationManagement.ts": {
+      "path": "l2/petShop/web/desktop/page11/reservationManagement.ts",
+      "versionRef": "0",
+      "browserHash": "72a60543fd6b865f37d42993d66ec486fcecf4ca6db3b1e7e0f5413392eb559d",
+      "diskHash": "",
+      "diskSize": 22772,
+      "diskLastModified": 1784513522329,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/desktop/page21/catalog.defs.ts": {
+      "path": "l2/petShop/web/desktop/page21/catalog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "b6482a391b243254cb923f3cb51f4fb6431e154280a805ca3f9c14c8b4995415",
+      "diskHash": "",
+      "diskSize": 31445,
+      "diskLastModified": 1784513522329,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/desktop/page21/catalog.ts": {
+      "path": "l2/petShop/web/desktop/page21/catalog.ts",
+      "versionRef": "0",
+      "browserHash": "d9d5770468027202938718fe6f1b6987ba3290dd80e1144056dfd077a7c60545",
+      "diskHash": "",
+      "diskSize": 28648,
+      "diskLastModified": 1784513522329,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/desktop/page21/reservationManagement.defs.ts": {
+      "path": "l2/petShop/web/desktop/page21/reservationManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6b8ea5df5bd1d9aa7a15e1130cd83001fa584177b1394db24bfd7909dc9bb074",
+      "diskHash": "",
+      "diskSize": 19530,
+      "diskLastModified": 1784513523387,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/desktop/page21/reservationManagement.ts": {
+      "path": "l2/petShop/web/desktop/page21/reservationManagement.ts",
+      "versionRef": "0",
+      "browserHash": "f67fddd02190cdb375367cfab42a2e1457de7f0ed41fdd3b92862d0f6434488a",
+      "diskHash": "",
+      "diskSize": 21348,
+      "diskLastModified": 1784513523386,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/shared/catalog.defs.ts": {
+      "path": "l2/petShop/web/shared/catalog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "a3be05bfec53b5af3668b51222d9de5ef1d4ee14d90a677c20f6c0e148707f13",
+      "diskHash": "",
+      "diskSize": 32174,
+      "diskLastModified": 1784513523386,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/shared/catalog.test.ts": {
+      "path": "l2/petShop/web/shared/catalog.test.ts",
+      "versionRef": "0",
+      "browserHash": "4c9081d31d1f30caca897b64b75f6f5188fdb31ee8188bdc83156778de1a0440",
+      "diskHash": "",
+      "diskSize": 11026,
+      "diskLastModified": 1784513523386,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/shared/catalog.ts": {
+      "path": "l2/petShop/web/shared/catalog.ts",
+      "versionRef": "0",
+      "browserHash": "6ae35c45feab43b39e8f9d90f030c95ad5ea2aef6b980d818e6e792d2559109c",
+      "diskHash": "",
+      "diskSize": 40766,
+      "diskLastModified": 1784513523386,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/shared/reservationManagement.defs.ts": {
+      "path": "l2/petShop/web/shared/reservationManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "de67dd4e125cd5a9640af95e11f5ec56338fc4b3596b4d0df1646e49f8926c18",
+      "diskHash": "",
+      "diskSize": 25070,
+      "diskLastModified": 1784513524536,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/shared/reservationManagement.test.ts": {
+      "path": "l2/petShop/web/shared/reservationManagement.test.ts",
+      "versionRef": "0",
+      "browserHash": "d2b0270ded26f2468d4601d1ceb5d7e47ab893e8bbc7cf185559ad3669610f68",
+      "diskHash": "",
+      "diskSize": 8112,
+      "diskLastModified": 1784513524534,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/petShop/web/shared/reservationManagement.ts": {
+      "path": "l2/petShop/web/shared/reservationManagement.ts",
+      "versionRef": "0",
+      "browserHash": "de0f57558a6f6ea0d479b52e8790985b1a404cd63876e551ad5298835a909dd1",
+      "diskHash": "",
+      "diskSize": 31455,
+      "diskLastModified": 1784513524534,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/project.ts": {
+      "path": "l2/project.ts",
+      "versionRef": "9e3664d4f391c3f3dcf4f8d807b098fee3e5fd14",
+      "browserHash": "862773e39e3ae57ba7bbb24c37b0e7e42a71272c1c223fa8b45300a01c144911",
+      "diskHash": "",
+      "diskSize": 325,
+      "diskLastModified": 1784505280602,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/trace/frontend-materialize-verify/materialize-phase-shared-verify-v2-v3.json": {
+      "path": "l2/trace/frontend-materialize-verify/materialize-phase-shared-verify-v2-v3.json",
+      "versionRef": "0",
+      "browserHash": "0fa75c8d3854f1f1ab2fd9d9651e1603b3b2f35d275b610a7f9f90187ba05b61",
+      "diskHash": "",
+      "diskSize": 7936,
+      "diskLastModified": 1784513524535,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/trace/frontend-materialize-verify/materialize-phase-shared-verify-v2.json": {
+      "path": "l2/trace/frontend-materialize-verify/materialize-phase-shared-verify-v2.json",
+      "versionRef": "0",
+      "browserHash": "ecb3d0ed32ce314fd504f06da59944fa3c33f67e6cf35527f78542331b380f11",
+      "diskHash": "",
+      "diskSize": 7471,
+      "diskLastModified": 1784513525733,
+      "lastDirection": "fs-to-browser"
+    },
+    "l2/trace/frontend-materialize-verify/materialize-phase-shared-verify.json": {
+      "path": "l2/trace/frontend-materialize-verify/materialize-phase-shared-verify.json",
+      "versionRef": "0",
+      "browserHash": "2bc70101be38eb67439da83c9f3475845cf2c379cf7d1351be02ad0683fe425a",
+      "diskHash": "",
+      "diskSize": 7930,
+      "diskLastModified": 1784513525733,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/actors.defs.ts": {
+      "path": "l4/petShop/actors.defs.ts",
+      "versionRef": "0",
+      "browserHash": "9d9985335b854a2c9ba2d6f0a1540372a65c270767c71a9ae35df6acef628c3f",
+      "diskHash": "",
+      "diskSize": 670,
+      "diskLastModified": 1784513525733,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/contracts/catalog.browseCatalog.defs.ts": {
+      "path": "l4/petShop/contracts/catalog.browseCatalog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6dba8ec2689fbc05e9b5548223639f5401b865d30dd92b95cf6286453fa22a3e",
+      "diskHash": "",
+      "diskSize": 968,
+      "diskLastModified": 1784506051160,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/contracts/catalog.featuredProducts.defs.ts": {
+      "path": "l4/petShop/contracts/catalog.featuredProducts.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6dba8ec2689fbc05e9b5548223639f5401b865d30dd92b95cf6286453fa22a3e",
+      "diskHash": "",
+      "diskSize": 816,
+      "diskLastModified": 1784506051612,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/contracts/catalog.productDetails.defs.ts": {
+      "path": "l4/petShop/contracts/catalog.productDetails.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6dba8ec2689fbc05e9b5548223639f5401b865d30dd92b95cf6286453fa22a3e",
+      "diskHash": "",
+      "diskSize": 712,
+      "diskLastModified": 1784506051612,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/contracts/catalog.reserveProduct.defs.ts": {
+      "path": "l4/petShop/contracts/catalog.reserveProduct.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6dba8ec2689fbc05e9b5548223639f5401b865d30dd92b95cf6286453fa22a3e",
+      "diskHash": "",
+      "diskSize": 854,
+      "diskLastModified": 1784506051613,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/contracts/reservationManagement.browseReservationsQuery.defs.ts": {
+      "path": "l4/petShop/contracts/reservationManagement.browseReservationsQuery.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6dba8ec2689fbc05e9b5548223639f5401b865d30dd92b95cf6286453fa22a3e",
+      "diskHash": "",
+      "diskSize": 914,
+      "diskLastModified": 1784506051612,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/contracts/reservationManagement.processPaymentCommand.defs.ts": {
+      "path": "l4/petShop/contracts/reservationManagement.processPaymentCommand.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6dba8ec2689fbc05e9b5548223639f5401b865d30dd92b95cf6286453fa22a3e",
+      "diskHash": "",
+      "diskSize": 804,
+      "diskLastModified": 1784506051613,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/contracts/reservationManagement.updateReservationStatusCommand.defs.ts": {
+      "path": "l4/petShop/contracts/reservationManagement.updateReservationStatusCommand.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6dba8ec2689fbc05e9b5548223639f5401b865d30dd92b95cf6286453fa22a3e",
+      "diskHash": "",
+      "diskSize": 1005,
+      "diskLastModified": 1784506051912,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/journeys/browseFeaturedProducts.defs.ts": {
+      "path": "l4/petShop/journeys/browseFeaturedProducts.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6ab086c5e20d34c77a35a7fa5c71f0ec61bff234593caacfded7b122ffee5822",
+      "diskHash": "",
+      "diskSize": 851,
+      "diskLastModified": 1784513526247,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/journeys/manageReservations.defs.ts": {
+      "path": "l4/petShop/journeys/manageReservations.defs.ts",
+      "versionRef": "0",
+      "browserHash": "f7b40fe9f0078fc21620e550278b0e9b40c7b10b5f4ce8af3052ad1a4a16321c",
+      "diskHash": "",
+      "diskSize": 930,
+      "diskLastModified": 1784513526247,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/journeys/processInStorePayment.defs.ts": {
+      "path": "l4/petShop/journeys/processInStorePayment.defs.ts",
+      "versionRef": "0",
+      "browserHash": "1b9ddbc40d49a08c03d56ff0c7907faed88eb795030c160d795375da83f33b9f",
+      "diskHash": "",
+      "diskSize": 899,
+      "diskLastModified": 1784513526247,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/journeys/reserveProducts.defs.ts": {
+      "path": "l4/petShop/journeys/reserveProducts.defs.ts",
+      "versionRef": "0",
+      "browserHash": "c76e50260319b46e4ee3d230dae48f844f05d7c50959fb974700a9c8435290ea",
+      "diskHash": "",
+      "diskSize": 896,
+      "diskLastModified": 1784513526247,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/journeys/searchAndFilterCatalog.defs.ts": {
+      "path": "l4/petShop/journeys/searchAndFilterCatalog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "acd073c403b7b31285e2a9ed0a22ba306c07b4af5af4931256a456f3f9a602d7",
+      "diskHash": "",
+      "diskSize": 954,
+      "diskLastModified": 1784513526247,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/module.defs.ts": {
+      "path": "l4/petShop/module.defs.ts",
+      "versionRef": "0",
+      "browserHash": "a00f141da97db0dd798123f0b2ea7e0016df9154446631d637ab5abc41c88fcc",
+      "diskHash": "",
+      "diskSize": 5912,
+      "diskLastModified": 1784513527371,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/ontology/Payment.defs.ts": {
+      "path": "l4/petShop/ontology/Payment.defs.ts",
+      "versionRef": "0",
+      "browserHash": "8fbde5fd793a59105f022852c9d12646bedd58656e7ed341b83aa0c57b540ee6",
+      "diskHash": "",
+      "diskSize": 2285,
+      "diskLastModified": 1784513527371,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/ontology/PetType.defs.ts": {
+      "path": "l4/petShop/ontology/PetType.defs.ts",
+      "versionRef": "0",
+      "browserHash": "5d43aa9f03177cf78bb2aef7f9d0123632ee18b06d6aed907c896d3db7ff9f7f",
+      "diskHash": "",
+      "diskSize": 1110,
+      "diskLastModified": 1784513527372,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/ontology/Product.defs.ts": {
+      "path": "l4/petShop/ontology/Product.defs.ts",
+      "versionRef": "0",
+      "browserHash": "4fa5a040ce56a5835fba2cab3557caee102b834de2c8ed658476495cbcaae0d6",
+      "diskHash": "",
+      "diskSize": 1970,
+      "diskLastModified": 1784513527371,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/ontology/ProductCategory.defs.ts": {
+      "path": "l4/petShop/ontology/ProductCategory.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6d0c0094e46cfb90ed1012756b256e3f6138fdd8cde680d1da30b41dad8cf535",
+      "diskHash": "",
+      "diskSize": 1353,
+      "diskLastModified": 1784513527371,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/ontology/Reservation.defs.ts": {
+      "path": "l4/petShop/ontology/Reservation.defs.ts",
+      "versionRef": "0",
+      "browserHash": "d86d0dfe32f0e9edb3348968b9296d79dca9dda9ebaddcc01b7cf9a98ed0d840",
+      "diskHash": "",
+      "diskSize": 2835,
+      "diskLastModified": 1784513527832,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/ontology/ReservationItem.defs.ts": {
+      "path": "l4/petShop/ontology/ReservationItem.defs.ts",
+      "versionRef": "0",
+      "browserHash": "378721eda41b7d2e0f3b503db13ad9416286f4daa8772065707d056d2f008f72",
+      "diskHash": "",
+      "diskSize": 1451,
+      "diskLastModified": 1784513527832,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/operations/browseFeaturedProducts.defs.ts": {
+      "path": "l4/petShop/operations/browseFeaturedProducts.defs.ts",
+      "versionRef": "0",
+      "browserHash": "5f608fe367cc0cd0ff3aa43f075d17e2a16613dc0d2a185caa070876cb3b7436",
+      "diskHash": "",
+      "diskSize": 4990,
+      "diskLastModified": 1784513527832,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/operations/browseProducts.defs.ts": {
+      "path": "l4/petShop/operations/browseProducts.defs.ts",
+      "versionRef": "0",
+      "browserHash": "8d0d1072c44f3ab4bb8d38b14e96b668823f13754fa1bb696c38a12161425eab",
+      "diskHash": "",
+      "diskSize": 6338,
+      "diskLastModified": 1784513527832,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/operations/browseReservations.defs.ts": {
+      "path": "l4/petShop/operations/browseReservations.defs.ts",
+      "versionRef": "0",
+      "browserHash": "b9fc1a1db1640f7b7aff69f29a265ef52a596b4a880bc248d115fa80f2e64848",
+      "diskHash": "",
+      "diskSize": 5236,
+      "diskLastModified": 1784513527832,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/operations/createReservation.defs.ts": {
+      "path": "l4/petShop/operations/createReservation.defs.ts",
+      "versionRef": "0",
+      "browserHash": "efdcc3e607b6f3f6900e9bbb83d95c21e592b41e786137fd39e79e9862dce328",
+      "diskHash": "",
+      "diskSize": 6649,
+      "diskLastModified": 1784513528342,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/operations/processPayment.defs.ts": {
+      "path": "l4/petShop/operations/processPayment.defs.ts",
+      "versionRef": "0",
+      "browserHash": "5a15acef78875a06c58456471b8f5ace937a1596e716411e1e48d56a08eee230",
+      "diskHash": "",
+      "diskSize": 6290,
+      "diskLastModified": 1784513528342,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/operations/updateReservationStatus.defs.ts": {
+      "path": "l4/petShop/operations/updateReservationStatus.defs.ts",
+      "versionRef": "0",
+      "browserHash": "f3e5cc1797ec0c6a58b2ae2692616134069a6dc2f6d24f0ca74e62c3455d0079",
+      "diskHash": "",
+      "diskSize": 7036,
+      "diskLastModified": 1784513528342,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/operations/viewProductDetails.defs.ts": {
+      "path": "l4/petShop/operations/viewProductDetails.defs.ts",
+      "versionRef": "0",
+      "browserHash": "60c5a2742381b35a0d63fc705eab48bca6c86f4fc3ba142bed2017b238265202",
+      "diskHash": "",
+      "diskSize": 4586,
+      "diskLastModified": 1784513528342,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/pipeline/e1-draft.json": {
+      "path": "l4/petShop/pipeline/e1-draft.json",
+      "versionRef": "0",
+      "browserHash": "2dd61bfcbf8f63ea5d9b61d01f9e8a4f3e68be855744ea8e20ee3ac67bdef6a1",
+      "diskHash": "",
+      "diskSize": 3742,
+      "diskLastModified": 1784513528342,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/pipeline/e1-draft.md": {
+      "path": "l4/petShop/pipeline/e1-draft.md",
+      "versionRef": "0",
+      "browserHash": "eb972b31e22b299144ca5e1236b634cd8099012e170c2e8a513ddb0b1bb044ec",
+      "diskHash": "",
+      "diskSize": 2485,
+      "diskLastModified": 1784513528874,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/pipeline/e2-journeys-audit.json": {
+      "path": "l4/petShop/pipeline/e2-journeys-audit.json",
+      "versionRef": "0",
+      "browserHash": "35a02d21aeeacb23cdf4e1c35c82a3b91555f88bd115c718db09eb13f5662252",
+      "diskHash": "",
+      "diskSize": 17560,
+      "diskLastModified": 1784513528873,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/pipeline/e2-journeys.json": {
+      "path": "l4/petShop/pipeline/e2-journeys.json",
+      "versionRef": "0",
+      "browserHash": "0e3a33fa7afb11f9c0a4cfbd2bb74713caeeea574618bc9ed1cc0cb084c43fbd",
+      "diskHash": "",
+      "diskSize": 14792,
+      "diskLastModified": 1784513528874,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/pipeline/e2-journeys.md": {
+      "path": "l4/petShop/pipeline/e2-journeys.md",
+      "versionRef": "0",
+      "browserHash": "e87853f9546d9c2a6b2cc49a856f8495fd8d82138729d1f3de55437f0ae5b11d",
+      "diskHash": "",
+      "diskSize": 710,
+      "diskLastModified": 1784513528875,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/pipeline/e3-model.json": {
+      "path": "l4/petShop/pipeline/e3-model.json",
+      "versionRef": "0",
+      "browserHash": "04fc020eb2531d8efc18e1e024afef9ec509ef00001bbab96193761fae78a4b3",
+      "diskHash": "",
+      "diskSize": 5586,
+      "diskLastModified": 1784513528874,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/pipeline/e3-ontology.md": {
+      "path": "l4/petShop/pipeline/e3-ontology.md",
+      "versionRef": "0",
+      "browserHash": "cd3eb936b18eaa628fd76069a1cc69984018516ba84396e4a935c2a46dcfb192",
+      "diskHash": "",
+      "diskSize": 6330,
+      "diskLastModified": 1784513528895,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/pipeline/e4-actors-rules.json": {
+      "path": "l4/petShop/pipeline/e4-actors-rules.json",
+      "versionRef": "0",
+      "browserHash": "0bb05ae41279dff89bab07b9d9dea6aa75d832ae789811d99c64b24b0958bdb7",
+      "diskHash": "",
+      "diskSize": 8005,
+      "diskLastModified": 1784513528895,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/pipeline/e4-actors-rules.md": {
+      "path": "l4/petShop/pipeline/e4-actors-rules.md",
+      "versionRef": "0",
+      "browserHash": "f7f5825a95f49a596a078a37ea3eff8701797fbbf162e23dd0050d0a6d589eb4",
+      "diskHash": "",
+      "diskSize": 6186,
+      "diskLastModified": 1784513528895,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/pipeline/e5-behavior.md": {
+      "path": "l4/petShop/pipeline/e5-behavior.md",
+      "versionRef": "0",
+      "browserHash": "082b861d8ab38b94891daffa485490fe44681ee303d66a0d1e125f580df332da",
+      "diskHash": "",
+      "diskSize": 1341,
+      "diskLastModified": 1784513528895,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/pipeline/e5-classification.json": {
+      "path": "l4/petShop/pipeline/e5-classification.json",
+      "versionRef": "0",
+      "browserHash": "f5f2fcd0bf5d5857689867263c2b1ae75d5d932f95aea7425158f30027456a48",
+      "diskHash": "",
+      "diskSize": 3051,
+      "diskLastModified": 1784513528895,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/pipeline/e6-journey-map.md": {
+      "path": "l4/petShop/pipeline/e6-journey-map.md",
+      "versionRef": "0",
+      "browserHash": "1589c34e1f8ef167a63f9f89dcd338f6d88e954847e72d56b4ba86a9b0ae3874",
+      "diskHash": "",
+      "diskSize": 2804,
+      "diskLastModified": 1784513528903,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/pipeline/e7-validation.md": {
+      "path": "l4/petShop/pipeline/e7-validation.md",
+      "versionRef": "0",
+      "browserHash": "e1530d54e2172c1d5437676ce166f07e982ec519afb5d718a33d546630063cdd",
+      "diskHash": "",
+      "diskSize": 906,
+      "diskLastModified": 1784513528903,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/pipeline/pipeline.json": {
+      "path": "l4/petShop/pipeline/pipeline.json",
+      "versionRef": "0",
+      "browserHash": "cb9b2b6913667a0baf9828aff74fad517d5a623cc519922990919a85288f5928",
+      "diskHash": "",
+      "diskSize": 3740,
+      "diskLastModified": 1784513528903,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/rules/petShopRules.defs.ts": {
+      "path": "l4/petShop/rules/petShopRules.defs.ts",
+      "versionRef": "0",
+      "browserHash": "8ad1682011955443c7915dd9b858b4be6018805f4081241b8140f5b0774b3cff",
+      "diskHash": "",
+      "diskSize": 4817,
+      "diskLastModified": 1784513528903,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/siteMap.defs.ts": {
+      "path": "l4/petShop/siteMap.defs.ts",
+      "versionRef": "0",
+      "browserHash": "08f05c29a139916d50969a49edaca6db8fc0e3331c703b4c0928cf56df2ec871",
+      "diskHash": "",
+      "diskSize": 2089,
+      "diskLastModified": 1784513528903,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/005-agent-cb-domain-entity.defs.ts": {
+      "path": "l4/petShop/trace/005-agent-cb-domain-entity.defs.ts",
+      "versionRef": "0",
+      "browserHash": "3e8645adca5409e4d4bc8cb98654990dd527a8269c66c0360944a7bc13e11054",
+      "diskHash": "",
+      "diskSize": 9592,
+      "diskLastModified": 1784513529301,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/007-agent-cb-repository-port.defs.ts": {
+      "path": "l4/petShop/trace/007-agent-cb-repository-port.defs.ts",
+      "versionRef": "0",
+      "browserHash": "08c6dfed9f78b6011831c93346aca119f57448b780762f21085f53a78bf100d1",
+      "diskHash": "",
+      "diskSize": 3450,
+      "diskLastModified": 1784513529302,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/008-agent-cb-persistence-table.defs.ts": {
+      "path": "l4/petShop/trace/008-agent-cb-persistence-table.defs.ts",
+      "versionRef": "0",
+      "browserHash": "991a649ffc1dcd4af3bfea5bbf6d9b395a3f6d410c33b94cabea27f9bfa0906b",
+      "diskHash": "",
+      "diskSize": 5149,
+      "diskLastModified": 1784513529301,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/009-agent-cb-repository-adapter.defs.ts": {
+      "path": "l4/petShop/trace/009-agent-cb-repository-adapter.defs.ts",
+      "versionRef": "0",
+      "browserHash": "320e88ee6d162171d33fd676516699e0259bbb8eda96cb24cbfb0a40d38da5a0",
+      "diskHash": "",
+      "diskSize": 2772,
+      "diskLastModified": 1784513529301,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/012-agent-cb-usecase.defs.ts": {
+      "path": "l4/petShop/trace/012-agent-cb-usecase.defs.ts",
+      "versionRef": "0",
+      "browserHash": "5ccfa1b727bd7404c4621177387bbeeaee1a7fddcdc30fd92e917b6cf4ea243d",
+      "diskHash": "",
+      "diskSize": 6710,
+      "diskLastModified": 1784513529302,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/013-agent-cb-usecase.defs.ts": {
+      "path": "l4/petShop/trace/013-agent-cb-usecase.defs.ts",
+      "versionRef": "0",
+      "browserHash": "9f95e5ed35f6aeb23caeff466e1d26124794f669ab4dfdaa4654d9aaa0ba4382",
+      "diskHash": "",
+      "diskSize": 7500,
+      "diskLastModified": 1784513529816,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/014-agent-cb-usecase.defs.ts": {
+      "path": "l4/petShop/trace/014-agent-cb-usecase.defs.ts",
+      "versionRef": "0",
+      "browserHash": "f065255e4d8ee82c3a2363ace209e5c3df485c42de6df9c62f08aa65c99aec23",
+      "diskHash": "",
+      "diskSize": 6417,
+      "diskLastModified": 1784513529816,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/015-agent-cb-usecase.defs.ts": {
+      "path": "l4/petShop/trace/015-agent-cb-usecase.defs.ts",
+      "versionRef": "0",
+      "browserHash": "795e099df4f797d81c6e94b6ce73d813cab35e220322563c7dfe407da5394d36",
+      "diskHash": "",
+      "diskSize": 7519,
+      "diskLastModified": 1784513529815,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/016-agent-cb-usecase.defs.ts": {
+      "path": "l4/petShop/trace/016-agent-cb-usecase.defs.ts",
+      "versionRef": "0",
+      "browserHash": "95f16f9910123d4e4d9477704f1a501b69f01d276c0e9a313f5ed36499eeadd5",
+      "diskHash": "",
+      "diskSize": 7151,
+      "diskLastModified": 1784513529815,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/017-agent-cb-usecase.defs.ts": {
+      "path": "l4/petShop/trace/017-agent-cb-usecase.defs.ts",
+      "versionRef": "0",
+      "browserHash": "4a3f6176a7818b996f9d86923ed1721c6b25a5a095b143160012822ff6e3aeb0",
+      "diskHash": "",
+      "diskSize": 8701,
+      "diskLastModified": 1784513529816,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/018-agent-cb-usecase.defs.ts": {
+      "path": "l4/petShop/trace/018-agent-cb-usecase.defs.ts",
+      "versionRef": "0",
+      "browserHash": "6f7fa2f6376e77b4accbf627ce8b8448f5e118d6fb8877eceeda08e222a986f2",
+      "diskHash": "",
+      "diskSize": 6367,
+      "diskLastModified": 1784513530204,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/019-agent-cb-judge.defs.ts": {
+      "path": "l4/petShop/trace/019-agent-cb-judge.defs.ts",
+      "versionRef": "0",
+      "browserHash": "1ac57adbeaed566882c19a58a0961aa4328cc5132f006b9fda404154551950d2",
+      "diskHash": "",
+      "diskSize": 1380,
+      "diskLastModified": 1784513530204,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/021-agent-cb-usecase.defs.ts": {
+      "path": "l4/petShop/trace/021-agent-cb-usecase.defs.ts",
+      "versionRef": "0",
+      "browserHash": "5dab993f34190d3292a67c48ffb6da3aa81a99114e25aef9b7c54e320cd07eaa",
+      "diskHash": "",
+      "diskSize": 6464,
+      "diskLastModified": 1784513530204,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/022-agent-cb-judge.defs.ts": {
+      "path": "l4/petShop/trace/022-agent-cb-judge.defs.ts",
+      "versionRef": "0",
+      "browserHash": "77b4d29273be894b33f65ff6e4d3134c0f6ccc41bb5a1908bee78f30b25103c9",
+      "diskHash": "",
+      "diskSize": 1468,
+      "diskLastModified": 1784513530204,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/051-agent-cb-seeds.defs.ts": {
+      "path": "l4/petShop/trace/051-agent-cb-seeds.defs.ts",
+      "versionRef": "0",
+      "browserHash": "d3562347542bb9b993afbe35f5a95785c670c249d2c7e643d578f872d4ffee4e",
+      "diskHash": "",
+      "diskSize": 6388,
+      "diskLastModified": 1784513530205,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/052-agent-cb-seeds.defs.ts": {
+      "path": "l4/petShop/trace/052-agent-cb-seeds.defs.ts",
+      "versionRef": "0",
+      "browserHash": "9106984cd8596e968691d45dfea5437a98d03513951a933eece3987bbd2064c2",
+      "diskHash": "",
+      "diskSize": 7464,
+      "diskLastModified": 1784513530637,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/053-agent-cb-seeds.defs.ts": {
+      "path": "l4/petShop/trace/053-agent-cb-seeds.defs.ts",
+      "versionRef": "0",
+      "browserHash": "8a50ee74a94a546eba644a7847dca06f2befefb7861b0a570ba3c8a56d857fb5",
+      "diskHash": "",
+      "diskSize": 11929,
+      "diskLastModified": 1784513530636,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/054-agent-cb-seeds.defs.ts": {
+      "path": "l4/petShop/trace/054-agent-cb-seeds.defs.ts",
+      "versionRef": "0",
+      "browserHash": "c86bd8a090963437cd8e5b66df3ad951cf63588bda61f789f289342f82b14d6a",
+      "diskHash": "",
+      "diskSize": 12681,
+      "diskLastModified": 1784513530636,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/057-agent-cb-seeds.defs.ts": {
+      "path": "l4/petShop/trace/057-agent-cb-seeds.defs.ts",
+      "versionRef": "0",
+      "browserHash": "748ecaad347475f988e34f8d13a3dfd73e3cb8e05a64bb885da098941c30f931",
+      "diskHash": "",
+      "diskSize": 6539,
+      "diskLastModified": 1784513530636,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/058-agent-cb-seeds.defs.ts": {
+      "path": "l4/petShop/trace/058-agent-cb-seeds.defs.ts",
+      "versionRef": "0",
+      "browserHash": "5c37e76058b6d09ffb0ed5d183718b5bf5808e6047768eb949bc496d2d06b131",
+      "diskHash": "",
+      "diskSize": 7437,
+      "diskLastModified": 1784513530637,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/059-agent-cb-seeds.defs.ts": {
+      "path": "l4/petShop/trace/059-agent-cb-seeds.defs.ts",
+      "versionRef": "0",
+      "browserHash": "469502711423fc90223db8c1194e7f81a371dc8f68a168aaba4fc88ee93d93db",
+      "diskHash": "",
+      "diskSize": 13100,
+      "diskLastModified": 1784513531858,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/060-agent-cb-seeds.defs.ts": {
+      "path": "l4/petShop/trace/060-agent-cb-seeds.defs.ts",
+      "versionRef": "0",
+      "browserHash": "b9b7d0e665d497dfb29a6f21efb8f71c5a65ee5a9ddfa79f35df74c426607ff9",
+      "diskHash": "",
+      "diskSize": 13139,
+      "diskLastModified": 1784513531858,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/061-agent-cb-seeds.defs.ts": {
+      "path": "l4/petShop/trace/061-agent-cb-seeds.defs.ts",
+      "versionRef": "0",
+      "browserHash": "cbbab2f55f143dee049d412176b7d5e33e4fa92cccc62ac54e1f31d0b1580539",
+      "diskHash": "",
+      "diskSize": 12212,
+      "diskLastModified": 1784513531858,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/062-agent-cb-seeds.defs.ts": {
+      "path": "l4/petShop/trace/062-agent-cb-seeds.defs.ts",
+      "versionRef": "0",
+      "browserHash": "115ba998fd59528ba426ac84412413bc2c7ad2d6c65691f47df56b52e086d296",
+      "diskHash": "",
+      "diskSize": 12836,
+      "diskLastModified": 1784513531859,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/100-agent-cb-seeds.defs.ts": {
+      "path": "l4/petShop/trace/100-agent-cb-seeds.defs.ts",
+      "versionRef": "0",
+      "browserHash": "56789aa64d5076c89b4f20c3c9a066f15734075fa86b0a71d789d9006a8ff141",
+      "diskHash": "",
+      "diskSize": 12581,
+      "diskLastModified": 1784513531858,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/101-agent-cb-seeds.defs.ts": {
+      "path": "l4/petShop/trace/101-agent-cb-seeds.defs.ts",
+      "versionRef": "0",
+      "browserHash": "e3266130cdfbeda695340640c6cfec874809bd087f92564735eb616db496fdda",
+      "diskHash": "",
+      "diskSize": 12588,
+      "diskLastModified": 1784513532162,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/behavior-health-report.json": {
+      "path": "l4/petShop/trace/behavior-health-report.json",
+      "versionRef": "0",
+      "browserHash": "5fc957333b3ad59930253dd8c55fd30ece76cdd68d41d38ae4428d1152ce70e0",
+      "diskHash": "",
+      "diskSize": 464,
+      "diskLastModified": 1784513532162,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/checkpointJourneys-agentNsJourneys-01.json": {
+      "path": "l4/petShop/trace/checkpointJourneys-agentNsJourneys-01.json",
+      "versionRef": "0",
+      "browserHash": "1dc51868fb183b074e8b100713cf18d48726261f31abc6cfff746e2c418fae37",
+      "diskHash": "",
+      "diskSize": 230,
+      "diskLastModified": 1784513532162,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e1Draft-agentNsDraft-01.json": {
+      "path": "l4/petShop/trace/e1Draft-agentNsDraft-01.json",
+      "versionRef": "0",
+      "browserHash": "6375222ac565cfd1bc100e1542bf313bde99a9cb0d46bb984c5883f8d6d20121",
+      "diskHash": "",
+      "diskSize": 9540,
+      "diskLastModified": 1784513532162,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e2Journeys-agentNsJourneys-01.json": {
+      "path": "l4/petShop/trace/e2Journeys-agentNsJourneys-01.json",
+      "versionRef": "0",
+      "browserHash": "98be77d0ffcd93449c23c323d3dd3edf8f20f21467996cf7a5dc8a92b04ae62e",
+      "diskHash": "",
+      "diskSize": 34895,
+      "diskLastModified": 1784513532163,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e3EntityPayment-agentNsOntology-01.json": {
+      "path": "l4/petShop/trace/e3EntityPayment-agentNsOntology-01.json",
+      "versionRef": "0",
+      "browserHash": "cf6ff1a4310bb4d94cf5d03ebf6406aa9ca2eeaa168b9476d5a620754084d1e8",
+      "diskHash": "",
+      "diskSize": 5329,
+      "diskLastModified": 1784513532578,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e3EntityPetType-agentNsOntology-01.json": {
+      "path": "l4/petShop/trace/e3EntityPetType-agentNsOntology-01.json",
+      "versionRef": "0",
+      "browserHash": "f47a0ff8c028c49b274b7c58187af6892f48c74160ef3dc059f59522de2ce763",
+      "diskHash": "",
+      "diskSize": 2499,
+      "diskLastModified": 1784513532578,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e3EntityProduct-agentNsOntology-01.json": {
+      "path": "l4/petShop/trace/e3EntityProduct-agentNsOntology-01.json",
+      "versionRef": "0",
+      "browserHash": "3ca2f0d516e884314b77a03b7e24b7fdc1b0cd8518c9ac45abc5deb44deb84c8",
+      "diskHash": "",
+      "diskSize": 4459,
+      "diskLastModified": 1784513532578,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e3EntityProductCategory-agentNsOntology-01.json": {
+      "path": "l4/petShop/trace/e3EntityProductCategory-agentNsOntology-01.json",
+      "versionRef": "0",
+      "browserHash": "2d95743d876005a266ef97eec6e1d177005a26d280650dcd56fb033352134b14",
+      "diskHash": "",
+      "diskSize": 3005,
+      "diskLastModified": 1784513532578,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e3EntityReservation-agentNsOntology-01.json": {
+      "path": "l4/petShop/trace/e3EntityReservation-agentNsOntology-01.json",
+      "versionRef": "0",
+      "browserHash": "3248427abbf058b51695bb9a5ccb337961c8ba598c4bd54da65dbb2afae4a15f",
+      "diskHash": "",
+      "diskSize": 6589,
+      "diskLastModified": 1784513532578,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e3EntityReservationItem-agentNsOntology-01.json": {
+      "path": "l4/petShop/trace/e3EntityReservationItem-agentNsOntology-01.json",
+      "versionRef": "0",
+      "browserHash": "f555fd2a3e21df25787a51aa7e2d9435b282b9d669d92d635a985f9334e47e51",
+      "diskHash": "",
+      "diskSize": 3261,
+      "diskLastModified": 1784513532597,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e3Ontology-agentNsOntology-01.json": {
+      "path": "l4/petShop/trace/e3Ontology-agentNsOntology-01.json",
+      "versionRef": "0",
+      "browserHash": "b0eb1232ffcc7d19cd013fb35dfad2dfbfc589292f578b0ef1a847437078be80",
+      "diskHash": "",
+      "diskSize": 15285,
+      "diskLastModified": 1784513532597,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e4ActorsRulesRefs-agentNsActorsRules-01.json": {
+      "path": "l4/petShop/trace/e4ActorsRulesRefs-agentNsActorsRules-01.json",
+      "versionRef": "0",
+      "browserHash": "dde43c1f48351d2486b9e7786182bd3dc597887898591881e6a5b30dd06241a4",
+      "diskHash": "",
+      "diskSize": 21237,
+      "diskLastModified": 1784513532597,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e5OperationBrowseFeaturedProducts-agentNsBehavior-01.json": {
+      "path": "l4/petShop/trace/e5OperationBrowseFeaturedProducts-agentNsBehavior-01.json",
+      "versionRef": "0",
+      "browserHash": "297cf3ce8645c872aeb24d629e7072235d7f1c7a19797307c44b0230bc1f05d7",
+      "diskHash": "",
+      "diskSize": 10975,
+      "diskLastModified": 1784513532597,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e5OperationBrowseProducts-agentNsBehavior-01.json": {
+      "path": "l4/petShop/trace/e5OperationBrowseProducts-agentNsBehavior-01.json",
+      "versionRef": "0",
+      "browserHash": "bf4d4f9855e1e8a8213c7ccd01a0cffc8213b39c7036a68ecf49cc12bbbe9053",
+      "diskHash": "",
+      "diskSize": 14272,
+      "diskLastModified": 1784513532597,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e5OperationBrowseReservations-agentNsBehavior-01.json": {
+      "path": "l4/petShop/trace/e5OperationBrowseReservations-agentNsBehavior-01.json",
+      "versionRef": "0",
+      "browserHash": "5fe6240d593d200ab619555842c4dab43801811b166393bd84daaeacbd2b99a4",
+      "diskHash": "",
+      "diskSize": 11428,
+      "diskLastModified": 1784513532606,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e5OperationCreateReservation-agentNsBehavior-01.json": {
+      "path": "l4/petShop/trace/e5OperationCreateReservation-agentNsBehavior-01.json",
+      "versionRef": "0",
+      "browserHash": "ae4822367acd547c793f0bb43ec930334385ec1251bdc8d15c8166051663fe7c",
+      "diskHash": "",
+      "diskSize": 14822,
+      "diskLastModified": 1784513532607,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e5OperationProcessPayment-agentNsBehavior-01.json": {
+      "path": "l4/petShop/trace/e5OperationProcessPayment-agentNsBehavior-01.json",
+      "versionRef": "0",
+      "browserHash": "edb9445b4eb8b8045ac92083b0653199118d299292c8be3d3df22cac60f5a220",
+      "diskHash": "",
+      "diskSize": 13853,
+      "diskLastModified": 1784513532606,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e5OperationUpdateReservationStatus-agentNsBehavior-01.json": {
+      "path": "l4/petShop/trace/e5OperationUpdateReservationStatus-agentNsBehavior-01.json",
+      "versionRef": "0",
+      "browserHash": "d283b316e18499065e9e855aec4f874bb0a3b1ff77e3a245ed9dd1aeb899e278",
+      "diskHash": "",
+      "diskSize": 15572,
+      "diskLastModified": 1784513532607,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e5OperationViewProductDetails-agentNsBehavior-01.json": {
+      "path": "l4/petShop/trace/e5OperationViewProductDetails-agentNsBehavior-01.json",
+      "versionRef": "0",
+      "browserHash": "d751d12467f46e2b2e97ae1d9919d9524188727aeb7546ff286b4468552706e4",
+      "diskHash": "",
+      "diskSize": 10109,
+      "diskLastModified": 1784513532607,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e5WorkflowReservationLifecycle-agentNsBehavior-01.json": {
+      "path": "l4/petShop/trace/e5WorkflowReservationLifecycle-agentNsBehavior-01.json",
+      "versionRef": "0",
+      "browserHash": "94d00d2c9bd6c1c82cbbc7e908feb614dce356d7128b2e86ec9ba6c5f60788da",
+      "diskHash": "",
+      "diskSize": 6685,
+      "diskLastModified": 1784513532616,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e5WorkflowsOperations-agentNsBehavior-01.json": {
+      "path": "l4/petShop/trace/e5WorkflowsOperations-agentNsBehavior-01.json",
+      "versionRef": "0",
+      "browserHash": "e5f00a9f714bd79925bc08833c369b231fb40eda88da14cf6b0fb1129d867075",
+      "diskHash": "",
+      "diskSize": 11691,
+      "diskLastModified": 1784513532616,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e6DetailCatalog-agentNsJourneyMap-01.json": {
+      "path": "l4/petShop/trace/e6DetailCatalog-agentNsJourneyMap-01.json",
+      "versionRef": "0",
+      "browserHash": "7b598957b6aa0711e906c083cbb8ac7ecbef85345f3cba311e50caf99cd2a272",
+      "diskHash": "",
+      "diskSize": 14783,
+      "diskLastModified": 1784513532616,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e6DetailReservationManagement-agentNsJourneyMap-01.json": {
+      "path": "l4/petShop/trace/e6DetailReservationManagement-agentNsJourneyMap-01.json",
+      "versionRef": "0",
+      "browserHash": "c37231979b47f0a4e3342f0e36a8cbb2212de6151765661663369b2ef312aec8",
+      "diskHash": "",
+      "diskSize": 9273,
+      "diskLastModified": 1784513532616,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e6Finalize-agentNsJourneyMap-01.json": {
+      "path": "l4/petShop/trace/e6Finalize-agentNsJourneyMap-01.json",
+      "versionRef": "0",
+      "browserHash": "d6acabaa38b5058efe8fe7e47fcfef366e7dc09d10019f33218389656f71ec01",
+      "diskHash": "",
+      "diskSize": 182,
+      "diskLastModified": 1784513532616,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e6JourneyMap-agentNsJourneyMap-01.json": {
+      "path": "l4/petShop/trace/e6JourneyMap-agentNsJourneyMap-01.json",
+      "versionRef": "0",
+      "browserHash": "d1ec55a8cd2fc22114469725044806e3c314a8e8c706e090c61329827966373f",
+      "diskHash": "",
+      "diskSize": 8682,
+      "diskLastModified": 1784513532624,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/trace/e7ValidationSummary-agentNsValidation-01.json": {
+      "path": "l4/petShop/trace/e7ValidationSummary-agentNsValidation-01.json",
+      "versionRef": "0",
+      "browserHash": "e05c57d532706c8fd654a1291919ca917fc897dff062abed5fc610eabea85154",
+      "diskHash": "",
+      "diskSize": 600,
+      "diskLastModified": 1784513532624,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/workflows/reservationLifecycle.defs.ts": {
+      "path": "l4/petShop/workflows/reservationLifecycle.defs.ts",
+      "versionRef": "0",
+      "browserHash": "e8291245f156ba9933bfb751e432732956304c45140fd910b8141f37d1baae02",
+      "diskHash": "",
+      "diskSize": 3122,
+      "diskLastModified": 1784513532624,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/workspaces/catalog.defs.ts": {
+      "path": "l4/petShop/workspaces/catalog.defs.ts",
+      "versionRef": "0",
+      "browserHash": "ddfbb297b3eb2f7400a4b1a453c381da889ace5fb7f7189a68a79e48e6a27db4",
+      "diskHash": "",
+      "diskSize": 12866,
+      "diskLastModified": 1784513532624,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/petShop/workspaces/reservationManagement.defs.ts": {
+      "path": "l4/petShop/workspaces/reservationManagement.defs.ts",
+      "versionRef": "0",
+      "browserHash": "c570fdd3be69c8a2b9d7eb45a0d9e596372bc50e6a1274d0078160e1ecc4ed54",
+      "diskHash": "",
+      "diskSize": 8100,
+      "diskLastModified": 1784513532624,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/trace/cb-health-report.json": {
+      "path": "l4/trace/cb-health-report.json",
+      "versionRef": "0",
+      "browserHash": "13856f410bc0ed0c30a8cdf97e216602e3ce78f6d43d25e44947e1e06d29e754",
+      "diskHash": "",
+      "diskSize": 183,
+      "diskLastModified": 1784513532909,
+      "lastDirection": "fs-to-browser"
+    },
+    "l4/trace/cb-repair-state.json": {
+      "path": "l4/trace/cb-repair-state.json",
+      "versionRef": "0",
+      "browserHash": "6bafe35814705c80386a5438072d7e2b828012f12027f38762d7fd2fbc24c9a6",
+      "diskHash": "",
+      "diskSize": 173,
+      "diskLastModified": 1784513532909,
+      "lastDirection": "fs-to-browser"
+    },
+    "l5/config.json": {
+      "path": "l5/config.json",
+      "versionRef": "076b6ed2c3f2e8a2f82d01ea64e216fd07da4b75",
+      "browserHash": "4eadadd6b1600487f82a9808ea27317734ef52fa5dfcdd050e7e72ab355c0a85",
+      "diskHash": "",
+      "diskSize": 6202,
+      "diskLastModified": 1784515196786,
+      "lastDirection": "fs-to-browser"
+    },
+    "l5/petShop/process.defs.ts": {
+      "path": "l5/petShop/process.defs.ts",
+      "versionRef": "0",
+      "browserHash": "216d9898afd5bcf9181c4000d3038b85e4321cd261b54b1b640356bc25879976",
+      "diskHash": "",
+      "diskSize": 1461,
+      "diskLastModified": 1784513532909,
+      "lastDirection": "fs-to-browser"
+    },
+    "l5/petShop/todoBackend.defs.ts": {
+      "path": "l5/petShop/todoBackend.defs.ts",
+      "versionRef": "0",
+      "browserHash": "148fe0da4e6613c2c6b5e40449c752122acf9dfa72cc9d1712d553daf7973148",
+      "diskHash": "",
+      "diskSize": 3630,
+      "diskLastModified": 1784513532909,
+      "lastDirection": "fs-to-browser"
+    },
+    "l5/petShop/todoFrontend.defs.ts": {
+      "path": "l5/petShop/todoFrontend.defs.ts",
+      "versionRef": "0",
+      "browserHash": "7d95f2357b4609f3e507634c858d5509b78ab36d25daafb4a4101fcace5f65b7",
+      "diskHash": "",
+      "diskSize": 3666,
+      "diskLastModified": 1784513533681,
+      "lastDirection": "fs-to-browser"
+    },
+    "l5/project.json": {
+      "path": "l5/project.json",
+      "versionRef": "854781638d49dd18c211f919b7dc5fa5b386932d",
+      "browserHash": "acd09c552d568c97db51a04eaa38a0a45276f3069d193e338200c5df04a97113",
+      "diskHash": "",
+      "diskSize": 1583,
+      "diskLastModified": 1784513533680,
+      "lastDirection": "fs-to-browser"
+    }
+  }
+}

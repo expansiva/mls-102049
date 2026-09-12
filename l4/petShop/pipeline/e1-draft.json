@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "2026-07-05-ns-e1-v1",
+  "moduleName": "petShop",
+  "moduleTitle": "Pet Shop — Catálogo e Reserva de Produtos",
+  "userLanguage": "pt-BR",
+  "sourcePrompt": "criar um site petShop , em portugues , com vendas de produtos , o cliente reserva e busca e paga na loja , mostrar produtos em destaques, e lista completa de produtos com pesquisa por tipo pet , categoria , nome e filtro por valor",
+  "problem": "O pet shop precisa de uma vitrine digital para exibir produtos em destaque e um catálogo completo, permitindo que clientes pesquisem e filtrem itens por tipo de pet, categoria, nome e faixa de valor. O cliente deve poder reservar produtos para retirada presencial e pagamento na loja, enquanto o atendente gerencia a confirmação e o recebimento do pagamento no ponto físico.",
+  "actors": [
+    {
+      "actorId": "cliente",
+      "name": "Cliente",
+      "assumption": "Navega no site, pesquisa produtos, faz reservas e retira os itens na loja pagando presencialmente."
+    },
+    {
+      "actorId": "atendente",
+      "name": "Atendente/Loja",
+      "assumption": "Confirma reservas recebidas, prepara os produtos e recebe o pagamento na loja no momento da retirada."
+    }
+  ],
+  "scope": {
+    "in": [
+      "Vitrine com produtos em destaque",
+      "Catálogo completo de produtos com listagem e detalhes",
+      "Pesquisa por tipo de pet, categoria e nome do produto",
+      "Filtro por faixa de valor",
+      "Reserva de produtos para retirada na loja",
+      "Registro de reserva com dados do cliente",
+      "Confirmação e atendimento da reserva pelo atendente",
+      "Pagamento presencial na loja no momento da retirada"
+    ],
+    "out": [
+      "Pagamento online e integração com gateways",
+      "Entrega delivery ou logística de envio",
+      "Gestão avançada de estoque, ERP ou compras",
+      "Administração do catálogo de produtos (cadastro/edição de itens)",
+      "Autenticação, autorização e controle de sessão (capacidades da plataforma)",
+      "Armazenamento de arquivos e mídia (capacidade da plataforma)"
+    ]
+  },
+  "openQuestions": [
+    {
+      "questionId": "identificacaoCliente",
+      "question": "Como o cliente se identifica para fazer uma reserva?",
+      "classification": "assumed",
+      "impact": "Define se é necessário login ou apenas dados básicos como nome e telefone.",
+      "defaultAnswer": "O cliente informa nome e telefone no momento da reserva; login opcional via plataforma."
+    },
+    {
+      "questionId": "validadeReserva",
+      "question": "Qual o prazo de validade para retirada de uma reserva?",
+      "classification": "assumed",
+      "impact": "Impacta a regra de negócio para expiração ou cancelamento automático.",
+      "defaultAnswer": "A reserva tem validade de 24 horas, podendo ser cancelada pelo atendente se não for retirada."
+    },
+    {
+      "questionId": "controleEstoque",
+      "question": "A reserva deve bloquear ou reduzir a quantidade disponível no estoque?",
+      "classification": "assumed",
+      "impact": "Define se o sistema precisa controlar saldo reservado.",
+      "defaultAnswer": "Não há bloqueio automático de estoque; o atendente verifica a disponibilidade no momento da retirada."
+    }
+  ],
+  "assumptions": [
+    "O catálogo de produtos já é mantido por processo administrativo externo a este módulo.",
+    "O pagamento é processado presencialmente na loja; não há integração financeira online.",
+    "A plataforma fornece autenticação, autorização, armazenamento de mídia e internacionalização quando necessário.",
+    "O cliente pode fazer a reserva sem necessidade de cadastro prévio, bastando informar dados de contato."
+  ],
+  "createdAt": "2026-07-19"
+}

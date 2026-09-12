@@ -1,0 +1,55 @@
+{
+  "savedAt": "2026-07-20T02:11:39.735Z",
+  "planId": "materialize-phase-shared-verify-v2-v3",
+  "attempt": 3,
+  "brokenCount": 2,
+  "broken": [
+    {
+      "planId": "materialize-catalog-l2-shared",
+      "defPath": "_102049_/l2/petShop/web/shared/catalog.defs.ts",
+      "outputPath": "_102049_/l2/petShop/web/shared/catalog.ts",
+      "typecheck": "failed",
+      "errors": [
+        "file://server/_102049_/l2/petShop/web/shared/catalog.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/catalog.featuredProducts.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/catalog.featuredProducts.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/catalog.browseCatalog.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/catalog.browseCatalog.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/catalog.productDetails.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/catalog.productDetails.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/catalog.reserveProduct.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/catalog.reserveProduct.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/catalog.featuredProducts.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/catalog.browseCatalog.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/catalog.productDetails.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/catalog.reserveProduct.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.test.ts - TS2792 - Cannot find module '../contracts/catalog.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.test.ts - TS2344 - Type 'false' does not satisfy the constraint 'true'.",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.test.ts - TS2344 - Type 'false' does not satisfy the constraint 'true'.",
+        "file://server/_102049_/l2/petShop/web/shared/catalog.test.ts - TS2344 - Type 'false' does not satisfy the constraint 'true'."
+      ],
+      "warnings": []
+    },
+    {
+      "planId": "materialize-reservationmanagement-l2-shared",
+      "defPath": "_102049_/l2/petShop/web/shared/reservationManagement.defs.ts",
+      "outputPath": "_102049_/l2/petShop/web/shared/reservationManagement.ts",
+      "typecheck": "failed",
+      "errors": [
+        "file://server/_102049_/l2/petShop/web/shared/reservationManagement.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/reservationManagement.browseReservationsQuery.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/reservationManagement.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/reservationManagement.browseReservationsQuery.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/reservationManagement.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/reservationManagement.updateReservationStatusCommand.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/reservationManagement.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/reservationManagement.updateReservationStatusCommand.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/reservationManagement.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/reservationManagement.processPaymentCommand.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/reservationManagement.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/reservationManagement.processPaymentCommand.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/reservationManagement.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/reservationManagement.browseReservationsQuery.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/reservationManagement.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/reservationManagement.updateReservationStatusCommand.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/reservationManagement.ts - TS2792 - Cannot find module '/_102049_/l2/petShop/web/contracts/reservationManagement.processPaymentCommand.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/reservationManagement.test.ts - TS2792 - Cannot find module '../contracts/reservationManagement.js'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?",
+        "file://server/_102049_/l2/petShop/web/shared/reservationManagement.test.ts - TS2344 - Type 'false' does not satisfy the constraint 'true'.",
+        "file://server/_102049_/l2/petShop/web/shared/reservationManagement.test.ts - TS2344 - Type 'false' does not satisfy the constraint 'true'."
+      ],
+      "warnings": []
+    }
+  ],
+  "agent": "agentCfeMaterializePhase"
+}

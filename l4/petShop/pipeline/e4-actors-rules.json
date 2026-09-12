@@ -1,0 +1,199 @@
+{
+  "schemaVersion": "2026-07-07-ns-e4-v1",
+  "moduleName": "petShop",
+  "userLanguage": "pt-BR",
+  "createdAt": "2026-07-19T20:02:05.395Z",
+  "actors": [
+    {
+      "actorId": "cliente",
+      "title": "Cliente",
+      "description": "Navega no site, pesquisa produtos, faz reservas e retira os itens na loja pagando presencialmente.",
+      "roleScope": "petShop:cliente"
+    },
+    {
+      "actorId": "atendente",
+      "title": "Atendente/Loja",
+      "description": "Confirma reservas recebidas, prepara os produtos e recebe o pagamento na loja no momento da retirada.",
+      "roleScope": "petShop:atendente"
+    }
+  ],
+  "rules": [
+    {
+      "ruleId": "featuredProductsOnly",
+      "title": "Vitrine apenas com produtos em destaque",
+      "description": "A vitrine deve exibir exclusivamente produtos marcados como destaque por processo administrativo externo; produtos não destacados nunca aparecem na vitrine.",
+      "appliesTo": [
+        "Product"
+      ],
+      "layer": "domain",
+      "sourceJourneyRules": [
+        "A vitrine exibe apenas produtos marcados como destaque pelo processo administrativo externo."
+      ]
+    },
+    {
+      "ruleId": "featuredOrderFlexible",
+      "title": "Ordem dos destaques é flexível",
+      "description": "A ordem de exibição dos produtos em destaque na vitrine pode variar conforme critérios definidos pela loja, sem ordem fixa obrigatória.",
+      "appliesTo": [
+        "Product"
+      ],
+      "layer": "application",
+      "sourceJourneyRules": [
+        "A ordem dos produtos em destaque pode variar conforme critérios definidos pela loja."
+      ]
+    },
+    {
+      "ruleId": "combinedFilters",
+      "title": "Filtros de catálogo combináveis",
+      "description": "Os filtros de tipo de pet, categoria, nome e faixa de valor devem funcionar simultaneamente, permitindo combinação de múltiplos critérios na pesquisa do catálogo.",
+      "appliesTo": [
+        "Product"
+      ],
+      "layer": "application",
+      "sourceJourneyRules": [
+        "Os filtros podem ser combinados: tipo de pet, categoria, nome e faixa de valor funcionam simultaneamente."
+      ]
+    },
+    {
+      "ruleId": "catalogShowsAll",
+      "title": "Catálogo lista todos os produtos",
+      "description": "A listagem do catálogo deve mostrar todos os produtos cadastrados, independentemente de estarem marcados como destaque ou não.",
+      "appliesTo": [
+        "Product"
+      ],
+      "layer": "domain",
+      "sourceJourneyRules": [
+        "A listagem do catálogo mostra todos os produtos cadastrados, independentemente de estarem em destaque."
+      ]
+    },
+    {
+      "ruleId": "caseInsensitiveSearch",
+      "title": "Pesquisa por nome insensível a caixa",
+      "description": "A pesquisa de produtos por nome deve ser insensível a maiúsculas e minúsculas, retornando resultados correspondentes independente da capitalização informada.",
+      "appliesTo": [
+        "Product"
+      ],
+      "layer": "application",
+      "sourceJourneyRules": [
+        "A pesquisa por nome é insensível a maiúsculas e minúsculas."
+      ]
+    },
+    {
+      "ruleId": "reservationRequiresContact",
+      "title": "Reserva exige nome e telefone",
+      "description": "Uma reserva só pode ser registrada se contiver no mínimo o nome e o telefone do cliente; reservas sem esses dados são rejeitadas.",
+      "appliesTo": [
+        "Reservation"
+      ],
+      "layer": "domain",
+      "sourceJourneyRules": [
+        "A reserva exige no mínimo nome e telefone do cliente."
+      ]
+    },
+    {
+      "ruleId": "reservationValidity24h",
+      "title": "Validade da reserva de 24 horas",
+      "description": "Cada reserva tem validade de 24 horas a partir do registro; após esse prazo o atendente pode cancelá-la, não havendo renovação automática.",
+      "appliesTo": [
+        "Reservation"
+      ],
+      "layer": "domain",
+      "sourceJourneyRules": [
+        "Cada reserva tem validade de 24 horas a partir do registro; após esse prazo pode ser cancelada pelo atendente.",
+        "A reserva tem validade de 24 horas; após esse prazo o atendente pode cancelá-la."
+      ]
+    },
+    {
+      "ruleId": "noAutomaticStockBlock",
+      "title": "Sem bloqueio automático de estoque",
+      "description": "Não há bloqueio automático de estoque no momento da reserva; a disponibilidade real do produto é verificada pelo atendente na preparação ou retirada.",
+      "appliesTo": [
+        "ReservationItem"
+      ],
+      "layer": "domain",
+      "sourceJourneyRules": [
+        "Não há bloqueio automático de estoque no momento da reserva; a disponibilidade é verificada pelo atendente na retirada.",
+        "O atendente verifica a disponibilidade real do produto no momento da preparação, pois não há bloqueio automático de estoque."
+      ]
+    },
+    {
+      "ruleId": "multipleProductsPerReservation",
+      "title": "Múltiplos produtos por reserva",
+      "description": "O cliente pode reservar mais de um produto na mesma reserva, cada um com sua própria quantidade, formando múltiplos itens de reserva.",
+      "appliesTo": [
+        "ReservationItem"
+      ],
+      "layer": "domain",
+      "sourceJourneyRules": [
+        "O cliente pode reservar mais de um produto na mesma reserva."
+      ]
+    },
+    {
+      "ruleId": "reservationStatuses",
+      "title": "Status permitidos da reserva",
+      "description": "Uma reserva pode assumir apenas os status: pendente, confirmada, atendida (retirada e paga) ou cancelada; nenhum outro status é válido no domínio.",
+      "appliesTo": [
+        "Reservation"
+      ],
+      "layer": "domain",
+      "sourceJourneyRules": [
+        "Uma reserva pode ter os status: pendente, confirmada, atendida (retirada e paga) ou cancelada."
+      ]
+    },
+    {
+      "ruleId": "inStorePaymentOnly",
+      "title": "Pagamento exclusivamente presencial",
+      "description": "O pagamento é sempre presencial na loja; não existe pagamento online nem qualquer forma de cobrança remota neste módulo.",
+      "appliesTo": [
+        "Payment"
+      ],
+      "layer": "domain",
+      "sourceJourneyRules": [
+        "O pagamento é sempre presencial na loja; não há pagamento online."
+      ]
+    },
+    {
+      "ruleId": "totalFromPricesAndQuantities",
+      "title": "Total calculado por preços e quantidades",
+      "description": "O valor total do pagamento deve ser calculado a partir dos preços dos produtos e das quantidades reservadas em cada item da reserva.",
+      "appliesTo": [
+        "Payment"
+      ],
+      "layer": "domain",
+      "sourceJourneyRules": [
+        "O valor total é calculado a partir dos preços dos produtos e quantidades reservadas."
+      ]
+    },
+    {
+      "ruleId": "paymentRequiresReceipt",
+      "title": "Pagamento exige recebimento efetivo",
+      "description": "A reserva só pode ser marcada como paga após o recebimento efetivo do pagamento pelo atendente; não é possível marcar como paga sem confirmação do pagamento presencial.",
+      "appliesTo": [
+        "Payment"
+      ],
+      "layer": "application",
+      "sourceJourneyRules": [
+        "A reserva só pode ser marcada como paga após o recebimento efetivo do pagamento pelo atendente."
+      ]
+    }
+  ],
+  "externalRefs": {
+    "mdm": [
+      {
+        "title": "Catálogo de Produtos",
+        "reason": "Os produtos exibidos no catálogo e na vitrine são gerenciados por processo administrativo externo; o módulo apenas consome os dados de produto, incluindo flag de destaque e preço."
+      },
+      {
+        "title": "Categorias de Produto",
+        "reason": "As categorias utilizadas nos filtros de catálogo são dados mestros externos, gerenciados fora do módulo."
+      },
+      {
+        "title": "Tipos de Pet",
+        "reason": "Os tipos de pet usados para filtragem no catálogo são dados mestros externos, gerenciados fora do módulo."
+      }
+    ],
+    "horizontals": [],
+    "plugins": [],
+    "agents": []
+  }
+}

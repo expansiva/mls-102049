@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "2026-07-05-ns-pipeline-v1",
+  "flowId": "agentNewSolution",
+  "moduleName": "petShop",
+  "createdAt": "2026-07-19T19:57:35.027Z",
+  "updatedAt": "2026-07-19T20:07:28.876Z",
+  "steps": {
+    "e1-draft": {
+      "status": "approved",
+      "updatedAt": "2026-07-19T19:57:35.041Z",
+      "dirty": false,
+      "inputsHash": "djb2:3ab9130e",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-19T19:57:35.030Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-19T19:57:35.041Z",
+      "approvedBy": "auto"
+    },
+    "checkpoint-draft": {
+      "status": "pending",
+      "updatedAt": "2026-07-19T19:57:35.027Z"
+    },
+    "e2-journeys": {
+      "status": "approved",
+      "updatedAt": "2026-07-19T19:58:49.643Z",
+      "dirty": false,
+      "inputsHash": "djb2:ea43f0d5",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-19T19:58:49.305Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-19T19:58:49.643Z",
+      "approvedBy": "human",
+      "artifactVersion": 1
+    },
+    "checkpoint-journeys": {
+      "status": "approved",
+      "updatedAt": "2026-07-19T19:58:49.643Z",
+      "dirty": false,
+      "approvedAt": "2026-07-19T19:58:49.643Z",
+      "approvedBy": "human",
+      "artifactVersion": 1
+    },
+    "e3-ontology": {
+      "status": "approved",
+      "updatedAt": "2026-07-19T20:01:08.612Z",
+      "dirty": false,
+      "inputsHash": "djb2:b8ff5cb2",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-19T20:00:36.466Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-19T20:01:08.612Z",
+      "approvedBy": "auto"
+    },
+    "e4-actors-rules-refs": {
+      "status": "approved",
+      "updatedAt": "2026-07-19T20:02:05.402Z",
+      "dirty": false,
+      "inputsHash": "djb2:e1f36bd8",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-19T20:02:05.402Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-19T20:02:05.402Z",
+      "approvedBy": "auto"
+    },
+    "e5-workflows-operations": {
+      "status": "approved",
+      "updatedAt": "2026-07-19T20:05:16.728Z",
+      "dirty": false,
+      "inputsHash": "djb2:e1f36bd8",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-19T20:03:24.755Z",
+        "errors": [],
+        "warnings": [
+          "classification.managedEntity.unused ReservationItem: managedEntities entry \"ReservationItem\" has no write operations under management — entry is inert",
+          "classification.managedEntity.unused Payment: managedEntities entry \"Payment\" has no write operations under management — entry is inert"
+        ]
+      },
+      "approvedAt": "2026-07-19T20:05:16.728Z",
+      "approvedBy": "auto"
+    },
+    "e6-journey-map": {
+      "status": "approved",
+      "updatedAt": "2026-07-19T20:07:28.484Z",
+      "dirty": false,
+      "inputsHash": "djb2:0a30d773",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-19T20:05:59.249Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-19T20:07:28.484Z",
+      "approvedBy": "auto"
+    },
+    "e7-validation-summary": {
+      "status": "approved",
+      "updatedAt": "2026-07-19T20:07:28.876Z",
+      "dirty": false,
+      "inputsHash": "djb2:0b9122c1",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-19T20:07:28.876Z",
+        "errors": [],
+        "warnings": [
+          "capability.multiowned: capability 'reservationLifecycle' is owned by 2 workspaces (catalog, reservationManagement)"
+        ]
+      },
+      "approvedAt": "2026-07-19T20:07:28.876Z",
+      "approvedBy": "auto"
+    }
+  }
+}
